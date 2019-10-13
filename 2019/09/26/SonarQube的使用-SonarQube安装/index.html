@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      [SonarQube的使用] SonarQube安装 | Alterem
+    
+  </title>
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Altrem">
+  <meta name="description" content>
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Annie.css">
+  
+  <!-- jquery -->
+	<script src="/js/jquery.min.js"></script>
+
+  <!-- leancloud -->
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script src="/js/leancloud.js"></script>
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground" data-img-mode="normal" data-normal-src="https://images.unsplash.com/photo-1463579934088-98fe605ed062?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1920" data-random-max="110" data-random-src="https://alterem.github.io/Random-img/">
+	<div class="mask">
+		<!-- Logo and navigation -->
+		<div class="h-header">
+			<div id="logo">
+				<a href="/">
+						
+						<img src="/img/logo.png" alt="Logo">
+					
+				</a>
+			</div>
+			
+			<div id="navigation-show">
+				<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+			</div>				
+		</div>
+
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<p class="motto"></p>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
+			</a>
+
+			
+				<!-- 
+	This is only a demo, please go to "https://time.is" to set your city time! 
+-->
+<style type="text/css">
+	.header-date {
+		font-size: 1rem;
+		color: #fff;
+		position: absolute;
+		bottom: 5px;
+		right: 1rem;
+		/*writing-mode: tb-rl;*/
+	}	
+	
+	.header-date a {
+		border-bottom: none;
+	}
+
+	@media only screen and (max-width: 768 ) {
+		.header-date {
+			font-size: 1rem;
+		}
+	}
+</style>
+<div class="header-date">
+	<a href="https://time.is/Beijing" target="_blank" id="time_is_link" rel="nofollow"></a>
+	<span id="Beijing_z43d"></span>
+</div>
+<script src="/js/widget_time_is-zh.js"></script>
+<script>
+	time_is_widget.init({
+		Beijing_z43d:{
+			template:"DATE TIME",
+			date_format:"year年 monthname dnum日"
+		}
+	});
+</script>
+			
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><h1>0.0%</h1></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			当前文章&nbsp;:&nbsp;《[SonarQube的使用] SonarQube安装》
+		
+	</p>
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<h3>Navigation</h3>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	<div class="nav-body">
+		<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	<div class="nav-footer">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/alterem" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="mailto:13027991217@163.com" target="_blank">
+				<i class="fa fa-envelope"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="https://gitee.com/alterem" target="_blank">
+				<i class="fa fa-git-square"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+		<script src="/plugin/toc/katelog.min.js"></script>
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+	<div class="article-title">
+		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+		
+	<a href="/2019/09/26/SonarQube的使用-SonarQube安装/" itemprop="url">
+		[SonarQube的使用] SonarQube安装
+	</a>
+
+	</div>
+
+	<div class="article-meta">
+		<span>
+			<i class="fa fa-calendar"></i>
+			
+
+
+	发布于
+
+	<a href="/2019/09/26/SonarQube的使用-SonarQube安装/" itemprop="url">
+		<time datetime="2019-09-26T03:15:44.000Z" itemprop="datePublished">
+	  		2019-09-26
+	  </time>
+	</a>
+	&nbsp;
+
+
+
+
+
+			
+
+
+
+
+	更新于
+
+	<a href="/2019/09/26/SonarQube的使用-SonarQube安装/" itemprop="url">
+		<time datetime="2019-09-26T03:15:44.000Z" itemprop="dateUpdated">
+	  		2019-09-26
+	  </time>
+	</a> 
+
+
+
+		</span>
+		<span>
+			<i class="fa fa-tags"></i>
+			
+	
+		<a href="/tags/Sonar/" class=" ">
+			Sonar
+		</a>
+	
+		<a href="/tags/SonarQube/" class=" ">
+			SonarQube
+		</a>
+	
+		
+		</span>
+		
+		
+
+
+
+	</div>
+
+	<div class="article-content" id="article-content">
+		<h2 id="工欲善其事必先利其器"><a href="#工欲善其事必先利其器" class="headerlink" title="工欲善其事必先利其器"></a>工欲善其事必先利其器</h2><h3 id="一-SonarQube代码质量检查工具简介"><a href="#一-SonarQube代码质量检查工具简介" class="headerlink" title="一 . SonarQube代码质量检查工具简介"></a>一 . SonarQube代码质量检查工具简介</h3><blockquote>
+<p>Sonar (SonarQube)是一个开源平台，用于管理源代码的质量</p>
+<p>Sonar 不只是一个质量数据报告工具，更是代码质量管理平台</p>
+</blockquote>
+<p>支持Java, C#, C/C++, PL/SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。</p>
+<p>Sonar可以从以下七个维度检测代码质量，而作为开发人员至少需要处理前5种代码质量问题。</p>
+<ol>
+<li><p>不遵循代码标准</p>
+</li>
+<li><p>sonar可以通过PMD,CheckStyle,Findbugs等等代码规则检测工具规范代码编写。</p>
+</li>
+<li><p>潜在的缺陷</p>
+<p>sonar可以通过PMD,CheckStyle,Findbugs等等代码规则检测工具检 测出潜在的缺陷。</p>
+</li>
+<li><p>糟糕的复杂度分布</p>
+<p>文件、类、方法等，如果复杂度过高将难以改变，这会使得开发人员 难以理解它们, 且如果没有自动化的单元测试，对于程</p>
+<p>序中的任何组件的改变都将可能导致需要全面的回归测试。</p>
+</li>
+<li><p>重复</p>
+<p>显然程序中包含大量复制粘贴的代码是质量低下的，sonar可以展示 源码中重复严重的地方。</p>
+</li>
+<li><p>注释不足或者过多</p>
+<p>没有注释将使代码可读性变差，特别是当不可避免地出现人员变动 时，程序的可读性将大幅下降 而过多的注释又会使得开发人员将精力过多地花费在阅读注释上，亦违背初衷。</p>
+</li>
+<li><p>缺乏单元测试</p>
+<p>sonar可以很方便地统计并展示单元测试覆盖率。</p>
+</li>
+<li><p>糟糕的设计</p>
+<p>通过sonar可以找出循环，展示包与包、类与类之间的相互依赖关系，可以检测自定义的架构规则 通过sonar可以管理第三方</p>
+<p>的jar包，可以利用LCOM4检测单个任务规则的应用情况， 检测藕合。</p>
+</li>
+</ol>
+<h4 id="为什么要选择sonarQube"><a href="#为什么要选择sonarQube" class="headerlink" title="为什么要选择sonarQube?"></a>为什么要选择sonarQube?</h4><p>个人使用之后认为 : sonarQube的优势如下(相比于阿里编码规约这种市面上常见类似软件):</p>
+<ol>
+<li><p>更加优秀的图形化界面</p>
+<p>基本上通过界面就可以对自己项目的代码状况一目了然</p>
+</li>
+<li><p>可以查询出其它软件难以定位到的问题</p>
+<p>比如 : </p>
+<p>可能导致空指针异常的问题 (对象在进行使用前没有加空的判断)</p>
+<p>可能导致内存泄漏的问题, 在try catch 块里面,直接使用e.printStackTrace()将堆栈信息打印到内存的</p>
+<p>可能导致的漏洞 : 成员变量使用public定义的</p>
+<p>还有诸如 : 流等未关闭或者是非正常关闭都能够检测出来!</p>
+<p>功能非常强大!!</p>
+</li>
+</ol>
+<h3 id="二-安装："><a href="#二-安装：" class="headerlink" title="二. 安装："></a>二. 安装：</h3><h4 id="2-1-安装SonarQube-web-server"><a href="#2-1-安装SonarQube-web-server" class="headerlink" title="2.1 安装SonarQube web server"></a>2.1 安装SonarQube web server</h4><ol>
+<li><p>首先确保安装了jdk1.8 +</p>
+</li>
+<li><p>到此链接 <a href="https://www.sonarqube.org/downloads/" target="_blank" rel="noopener">https://www.sonarqube.org/downloads/</a> </p>
+<p>下载sonalqube(下载社区版,是开源的),</p>
+</li>
+</ol>
+<p>我下载的是sonarqube-7.2.1，因为最新版<strong>7.9.1</strong>需要<strong>jdk11</strong>支持</p>
+<p>并解压,解压完之后的目录如下 :</p>
+<p>  <img src="https://i.loli.net/2019/07/23/5d36fc50c7a2434782.png" alt></p>
+<ol start="3">
+<li><p>到解压目录的bin\macosx-universal-64(对应系统)目录下:</p>
+<p>linux、Mac <code>sh sonar.sh start</code>启动</p>
+<p>windows 双击<code>StartSonar.bat</code> 启动</p>
+</li>
+<li><p>到浏览器界面,输入 : <a href="http://localhost:9000" target="_blank" rel="noopener">http://localhost:9000</a> </p>
+<p>如果能访问表明安装成功</p>
+</li>
+</ol>
+<h4 id="2-2-安装数据库"><a href="#2-2-安装数据库" class="headerlink" title="2.2 安装数据库"></a>2.2 安装数据库</h4><ol>
+<li><p>版本要求:</p>
+<p>在conf目录下的sonar.properties文件下:</p>
+<p>有这样一行配置 : </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#----- MySQL &gt;=5.6 &amp;&amp; &lt; 8.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为sonarqube 创建一个数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> sonar;</span><br><span class="line"><span class="comment">-- 创建数据库</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建sonarqube用户并进行授权</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'username'</span>@<span class="string">'host'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'password'</span>; </span><br><span class="line"><span class="comment">-- 创建用户并设置密码</span></span><br><span class="line"><span class="comment">-- username 为创建的用户名</span></span><br><span class="line"><span class="comment">-- host 为对应的主机地址,本地就是localhost</span></span><br><span class="line"><span class="comment">-- password 为设置的密码</span></span><br><span class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'username'</span>@<span class="string">'localhost'</span>;</span><br><span class="line"><span class="comment">-- 对用户进行授权操作</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改SonarQube配置文件,添加Mysql相关配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span><br><span class="line"># 刚刚创建的sonarQube用户</span><br><span class="line">sonar.jdbc.username=sonar</span><br><span class="line"># 创建用户对应的密码</span><br><span class="line">sonar.jdbc.password=sonar</span><br><span class="line"># 设置编码格式为UTF-8</span><br><span class="line">sonar.sorceEncoding=UTF-8</span><br><span class="line"># sonar登陆用户名</span><br><span class="line">sonar.login=admin</span><br><span class="line"># sonar登陆密码</span><br><span class="line">sonar.password=admin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-3-重新启动服务端"><a href="#2-3-重新启动服务端" class="headerlink" title="2.3 重新启动服务端"></a>2.3 重新启动服务端</h4><ol>
+<li><p>退出 SonarQube 服务端</p>
+<p>在之前弹出的cmd窗口执行ctrl + c,</p>
+<p>弹出来的提示选择Y,退出SonarQube服务</p>
+</li>
+<li><p>双击StartSonar.bat文件, 重新启动SonarQube</p>
+<p>这次因为要进行数据库的初始化操作,所以需要的时间可能稍微久一点</p>
+</li>
+<li><p>启动成功后,浏览器输入 : <a href="http://localhost:9000" target="_blank" rel="noopener">http://localhost:9000</a> 进入界面</p>
+</li>
+<li><p>登录 </p>
+<p>点击界面右上角的登录按钮, 进行登录 :</p>
+<p>初始的账户名 : admin</p>
+<p>初始的密码  :  admin</p>
+<p>附 : 一些关键配置的修改,如 主机地址,context,端口号等:</p>
+<p>通常情况下使用默认的配置即可!</p>
+<p>文件 /conf/sonar.properties</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#sonar.web.host=0.0.0.0 </span><br><span class="line">#sonar.web.context=</span><br><span class="line">#sonar.web.port=9000</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="三-使用"><a href="#三-使用" class="headerlink" title="三. 使用"></a>三. 使用</h3><h4 id="3-1-安装必要的插件-汉化包举例"><a href="#3-1-安装必要的插件-汉化包举例" class="headerlink" title="3.1. 安装必要的插件 (汉化包举例)"></a>3.1. 安装必要的插件 (汉化包举例)</h4><p>点击 导航栏的 Administration, 选择Marketplace</p>
+<p>搜索 Chinese pack, 点击install进行安装</p>
+<p>安装成功后, 重启 SonarQube !</p>
+<p><img src="https://i.loli.net/2019/07/23/5d3700230c22d72279.png" alt="pack"></p>
+<h4 id="3-2-开始分析项目代码源代码"><a href="#3-2-开始分析项目代码源代码" class="headerlink" title="3.2. 开始分析项目代码源代码"></a>3.2. 开始分析项目代码源代码</h4><p>使用maven的方式进行分析</p>
+<h5 id="3-2-1-编辑maven-的settings-xml文件"><a href="#3-2-1-编辑maven-的settings-xml文件" class="headerlink" title="3.2.1 编辑maven 的settings.xml文件"></a>3.2.1 编辑maven 的settings.xml文件</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">pluginGroups</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">pluginGroup</span>&gt;</span>org.sonarsource.scanner.maven<span class="tag">&lt;/<span class="name">pluginGroup</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">pluginGroups</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">id</span>&gt;</span>sonar<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">sonar.host.url</span>&gt;</span>http://loaclhost:9000<span class="tag">&lt;/<span class="name">sonar.host.url</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中sonar.host.url 值就是 上文启动的sonar 服务器地址。</p>
+<h5 id="3-2-2-对maven项目进行分析"><a href="#3-2-2-对maven项目进行分析" class="headerlink" title="3.2.2 对maven项目进行分析"></a>3.2.2 对maven项目进行分析</h5><p>到项目所在的文件路径下: </p>
+<p>使用命令提示符或者是power shell执行 如下命令: </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar</span><br></pre></td></tr></table></figure>
+<p>出现: BUILD SUCCESS 标识之后</p>
+<p><img src="https://i.loli.net/2019/07/23/5d370208e866016992.png" alt="BUILD SUCCESS"></p>
+<p>刷新界面查看 :</p>
+<p><img src="https://i.loli.net/2019/07/23/5d3702b53d88f89420.png" alt></p>
+<p><img src="https://i.loli.net/2019/07/23/5d370392516ff39969.png" alt></p>
+<h4 id="3-3-配置分析参数"><a href="#3-3-配置分析参数" class="headerlink" title="3.3 配置分析参数"></a>3.3 配置分析参数</h4><p>强制参数：    </p>
+<ol>
+<li>Server<br>sonar.host.url        <a href="http://localhost:9000" target="_blank" rel="noopener">http://localhost:9000</a></li>
+<li>Project Configuration<br>sonar.projectKey              Maven   <groupid>:<artifactid><br>sonar.sources                  Maven 默认的源码路径</artifactid></groupid></li>
+</ol>
+<p>可以配置的参数：</p>
+<ol>
+<li>Project identity<br>sonar.projectName        项目名称<br>sonar.projectversion     项目版本</li>
+<li>Authentication<br>sonar.login                  分析该项目的用户名称<br>sonar.password                分析该项目的用户密码</li>
+</ol>
+<h4 id="3-4-程序员用户使用说明"><a href="#3-4-程序员用户使用说明" class="headerlink" title="3.4. 程序员用户使用说明"></a>3.4. 程序员用户使用说明</h4><p>SonarQube Web管理者通过配置和设置以下参数值对项目源代码进行：</p>
+<p>复杂度、覆盖率、文档、重复、问题、可维护性、可靠性、安全性、大小等约束和规范。</p>
+<p>sonar中的质量阈管理以下内容。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">复杂度</span><br><span class="line">	复杂度</span><br><span class="line">	复杂度/类</span><br><span class="line">	复杂度/文件</span><br><span class="line">	复杂度/方法</span><br><span class="line">覆盖率</span><br><span class="line">	分支覆盖</span><br><span class="line">	集成测试的新分支覆盖</span><br><span class="line">	新代码的分支覆盖率</span><br><span class="line">	覆盖率</span><br><span class="line">	新集成测试覆盖</span><br><span class="line">	新覆盖率</span><br><span class="line">	集成测试分支覆盖</span><br><span class="line">	集成测试覆盖</span><br><span class="line">	集成测试覆盖行</span><br><span class="line">	集成测试未覆盖分支</span><br><span class="line">	集成测试未覆盖行</span><br><span class="line">	代码覆盖率</span><br><span class="line">	集成测试的新行覆盖</span><br><span class="line">	新代码覆盖率</span><br><span class="line">	代码行</span><br><span class="line">	集成测试的新行覆盖</span><br><span class="line">	覆盖的新代码</span><br><span class="line">	总体分支覆盖率</span><br><span class="line">	总体新分支覆盖率</span><br><span class="line">	总体覆盖率</span><br><span class="line">	总体新覆盖率</span><br><span class="line">	总体代码覆盖率</span><br><span class="line">	总体新代码覆盖率</span><br><span class="line">	总体覆盖的新行数</span><br><span class="line">	总体未覆盖分支</span><br><span class="line">	总体未覆盖的新分支</span><br><span class="line">	总体未覆盖代码</span><br><span class="line">	总体未覆盖新行数</span><br><span class="line">	单元测试忽略数</span><br><span class="line">	未覆盖分支</span><br><span class="line">	集成测试未覆盖的新分支</span><br><span class="line">	未覆盖新分支</span><br><span class="line">	未覆盖的代码</span><br><span class="line">	集成测试未覆盖的行</span><br><span class="line">	未覆盖的新代码</span><br><span class="line">	单元测试持续时间</span><br><span class="line">	单元测试错误数</span><br><span class="line">	单元测试失败数</span><br><span class="line">	单元测试成功 (%)</span><br><span class="line">	单元测试数</span><br><span class="line">文档</span><br><span class="line">	注释行</span><br><span class="line">	注释 (%)</span><br><span class="line">	公共API</span><br><span class="line">	公共注释的API (%)</span><br><span class="line">	公共未注释的API</span><br><span class="line">重复</span><br><span class="line">	重复块</span><br><span class="line">	重复文件</span><br><span class="line">	重复行</span><br><span class="line">	重复行(%)</span><br><span class="line">问题</span><br><span class="line">	阻断违规</span><br><span class="line">	确认问题</span><br><span class="line">	严重违规</span><br><span class="line">	误判问题</span><br><span class="line">	提示违规</span><br><span class="line">	违规</span><br><span class="line">	主要违规</span><br><span class="line">	次要违规</span><br><span class="line">	新阻断违规</span><br><span class="line">	新严重违规</span><br><span class="line">	新提示违规</span><br><span class="line">	新违规</span><br><span class="line">	新主要违规</span><br><span class="line">	新次要违规</span><br><span class="line">	开启问题</span><br><span class="line">	重开问题</span><br><span class="line">	不修复的问题</span><br><span class="line">可维护性</span><br><span class="line">	新代码的技术债务</span><br><span class="line">	坏味道</span><br><span class="line">	达到可维护性A级所需的工作</span><br><span class="line">	新增坏味道</span><br><span class="line">	技术债务</span><br><span class="line">	技术债务比率</span><br><span class="line">	新代码技术债务比率</span><br><span class="line">	Management</span><br><span class="line">	Burned budget</span><br><span class="line">	Business value</span><br><span class="line">	Team size</span><br><span class="line">可靠性</span><br><span class="line">	Bugs</span><br><span class="line">	新增Bugs</span><br><span class="line">	可靠性修复工作</span><br><span class="line">	新代码的可靠性修复工作</span><br><span class="line">安全性</span><br><span class="line">	新增漏洞</span><br><span class="line">	安全修复工作</span><br><span class="line">	新代码的安全修复工作</span><br><span class="line">	漏洞</span><br><span class="line">大小</span><br><span class="line">	类</span><br><span class="line">	目录</span><br><span class="line">	文件</span><br><span class="line">	方法</span><br><span class="line">	生成的行数</span><br><span class="line">	生成的代码行数</span><br><span class="line">	行数</span><br><span class="line">	代码行数</span><br><span class="line">	项目</span><br><span class="line">	语句</span><br></pre></td></tr></table></figure>
+	
+	</div>
+	
+	<div id="current-post-cover" data-scr="https://images.unsplash.com/photo-1493770348161-369560ae357d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=880&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1360"></div>
+
+	<!-- relate post, comment...-->
+	<div class="investment-container">
+		<div class="investment-header">
+			<div class="investment-title-1">
+				<div class="on">相关文章</div>
+				<div>评论</div>
+				<div>分享</div>
+			</div>
+			<div class="investment-title-2">	            
+				
+	<span>
+		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		
+			<a href="/2019/09/26/SonarQube的使用-在idea&eclipse中安装与使用sonarlint/" title="SonarQube的使用-在idea&eclipse中安装与使用sonarlint" rel="prev">
+				&laquo;上一篇
+			</a>
+		
+		
+			<a href="/2019/09/24/教程-教你如何给你的头像添加一个好看的国旗/" title="教程|教你如何给你的头像添加一个好看的国旗" rel="next">
+				下一篇&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+			</div>	
+		</div>
+		
+		<div class="investment-content">
+			<div class="investment-content-list">
+				
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/26/SonarQube的使用-在idea&eclipse中安装与使用sonarlint/" title="SonarQube的使用-在idea&eclipse中安装与使用sonarlint">
+								SonarQube的使用-在idea&eclipse中安装与使用sonarlint			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 26日, 2019				
+							</p>
+							<p class="relate-post-content">
+								介绍​        代码质量管理的开源平台，用于管理源代码的质量 通过插件形式，可以支持包括java,C#,C/C++,PL/SQL,Cobol,JavaScrip,Groovy等等二十几种编程语言的代码质量管理与检测。集成了Che...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/26/SonarQube的使用-在idea&eclipse中安装与使用sonarlint/" title="SonarQube的使用-在idea&eclipse中安装与使用sonarlint">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://tva1.sinaimg.cn/large/006y8mN6gy1g7ctnyo2w5j311s0og75t.jpg" alt="SonarQube的使用-在idea&amp;eclipse中安装与使用sonarlint">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/14/Python自动更换壁纸爬虫与tkinter结合/" title="Python自动更换壁纸爬虫与tkinter结合">
+								Python自动更换壁纸爬虫与tkinter结合			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 14日, 2019				
+							</p>
+							<p class="relate-post-content">
+								直接上代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/14/Python自动更换壁纸爬虫与tkinter结合/" title="Python自动更换壁纸爬虫与tkinter结合">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1457877916676-133b53113613?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="Python自动更换壁纸爬虫与tkinter结合">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/13/MySQL的5种时间类型的比较/" title="MySQL的5种时间类型的比较">
+								MySQL的5种时间类型的比较			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 13日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+
+
+日期时间类型
+占用空间
+日期格式
+最小值
+最大值
+零值表示
+
+
+
+
+DATETIME
+8 bytes
+YYYY-MM-DD HH:MM:SS
+1000-01-01 00:00:00
+9999-12-31 23:59:59
+000...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/13/MySQL的5种时间类型的比较/" title="MySQL的5种时间类型的比较">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1551928692-6954104dee5a?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="MySQL的5种时间类型的比较">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/13/MySQL在CentOS上执行自动备份/" title="MySql在CentOS上执行自动备份">
+								MySql在CentOS上执行自动备份			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 13日, 2019				
+							</p>
+							<p class="relate-post-content">
+								​    开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：版本控制
+​    很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/13/MySQL在CentOS上执行自动备份/" title="MySql在CentOS上执行自动备份">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1486748609709-34286e9eaadb?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="MySql在CentOS上执行自动备份">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/11/python拆分excel/" title="python拆分excel">
+								python拆分excel			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 11日, 2019				
+							</p>
+							<p class="relate-post-content">
+								根据某一列，拆分成几个不同的EXCEL文件操作方法：将EXCEL文件拖至EXE文件上，根据提示操作。
+
+12345678910111213141516171819202122232425262728293031323334353637...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/11/python拆分excel/" title="python拆分excel">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1519109679804-798766d15fd2?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="python拆分excel">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/30/Lombok介绍、使用方法和总结/" title="Lombok介绍、使用方法和总结">
+								Lombok介绍、使用方法和总结			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 30日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+文章来源公众号：猿人谷
+
+1 Lombok背景介绍官方介绍如下：
+1Project Lombok makes java a spicier language by adding 'handlers' that know how to...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/30/Lombok介绍、使用方法和总结/" title="Lombok介绍、使用方法和总结">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1472586662442-3eec04b9dbda?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="Lombok介绍、使用方法和总结">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/29/高可用的一些思考和理解/" title="高可用的一些思考和理解">
+								高可用的一些思考和理解			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 29日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+本文来源公众号：匠心零度
+
+
+在目前的互联网大时代，在高并发等冲击下，还必须保证服务高可用，如果服务不高可用那么意味着：
+
+系统不是7*24小时提供服务，那么用户体验就特别差了，可能用户下次不用了，留不住用户。
+当系统不可用的时候，...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/29/高可用的一些思考和理解/" title="高可用的一些思考和理解">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1490006017569-465ccb897ba1?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="高可用的一些思考和理解">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/27/【Python】哄女朋友的那些奇技淫巧/" title="【Python】哄女朋友的那些奇技淫巧">
+								【Python】哄女朋友的那些奇技淫巧			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 27日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+
+本文来源公众号： Python乱炖
+
+
+Python里面的奇技淫巧
+声明
+“以下所有模块均可
+使用pip直接安装”
+
+说python是
+所有编程语言里面
+最奇葩的语言
+这肯定是没错了
+它可以做
+自动化，爬虫，数据，AI，机器学习
+...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/27/【Python】哄女朋友的那些奇技淫巧/" title="【Python】哄女朋友的那些奇技淫巧">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://tva1.sinaimg.cn/large/006y8mN6gy1g7duo28cdkj311s0og77j.jpg" alt="【Python】哄女朋友的那些奇技淫巧">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/24/教程-教你如何给你的头像添加一个好看的国旗/" title="教程|教你如何给你的头像添加一个好看的国旗">
+								教程|教你如何给你的头像添加一个好看的国旗			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 24日, 2019				
+							</p>
+							<p class="relate-post-content">
+								今天朋友圈又火了，听说原因是 @腾讯官网 就能得到一顶绿色的帽子，啊呸，是一个好看的国庆节头像，可是听说没一会就502了，那么我们自己动手实现一个吧
+由于代码比较简单就不一一介绍了。
+
+123456789101112131415161...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/24/教程-教你如何给你的头像添加一个好看的国旗/" title="教程|教你如何给你的头像添加一个好看的国旗">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1505495142263-9357db572571?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="教程|教你如何给你的头像添加一个好看的国旗">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/06/24/在SpringMVC项目中使用HIkariCP/" title="在SpringMVC项目中使用HIkariCP">
+								在SpringMVC项目中使用HIkariCP			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 24日, 2019				
+							</p>
+							<p class="relate-post-content">
+								什么是HIkariCP
+https://www.jianshu.com/p/15b846107a7c
+
+使用HikariCP数据源pom.xml12345&lt;dependency&gt;  &lt;groupId&gt;com.z...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/06/24/在SpringMVC项目中使用HIkariCP/" title="在SpringMVC项目中使用HIkariCP">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1503365268595-ee3947b49b1b?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1360&amp;h=880&amp;fit=crop&amp;ixid=eyJhcHBfaWQiOjF9" alt="在SpringMVC项目中使用HIkariCP">
+							</a>
+						</div>
+					</li>											
+			
+			
+		</ul>
+	
+</div>	
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-comment">
+
+	
+
+		
+
+			<!-- gitalk comment -->
+			<!-- show gitalk comment -->
+<div id="gitalk-container"></div>
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//Thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//Remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//Create gitalk
+	var gitalk = new Gitalk({
+		clientID: '5008a761435512ea3979',
+		clientSecret: '7df7311c248582d1b31aa362810f6e6770b7a6bb',
+		//id: window.location.pathname,
+		//id: decodeURI(window.location.pathname),
+		//id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
+		repo: 'Blog-Comment-Repo',
+		owner: 'alterem',
+		admin: 'alterem',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+
+		
+		
+	
+
+</div>
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-share">
+	
+	
+</div>
+
+
+			</div>
+		</div>	
+	</div>
+	</div>
+</div>
+
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+
+<!-- show math formula -->
+
+
+
+	
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	var titleID = $('.article-title a'),
+		imageID = $('.article-content img'),
+		videoID = $('.article-content video');
+
+	var postTitle = titleID.text() ? titleID.text() : "No post title!";
+
+	imageID.each(function() {
+		var imgPath = $(this).attr('src'),
+			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
+	});
+
+	videoID.each(function() {
+		var videoPath = $(this).attr('src');
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+	});
+	//TODO：支持html5 video
+
+	if($('#layout-post').length) {
+		$('[data-fancybox="gallery"]').fancybox({
+			loop: true,
+			buttons: [
+				"zoom",
+				"share",
+				"slideShow",
+				"fullScreen",
+				//"download",
+				"thumbs",
+				"close"
+			],
+			protect: false
+		});
+	}
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div class="social">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/alterem" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="mailto:13027991217@163.com" target="_blank">
+				<i class="fa fa-envelope"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="https://gitee.com/alterem" target="_blank">
+				<i class="fa fa-git-square"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+		
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2019, content by Alterem. All Rights Reserved.
+			
+			
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+		</p>
+		<p>
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>
+</footer>
+		
+	<!-- set '1' to show motto in all pages! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		$(".motto").html( getMingYanContent() );
+	</script>	
+
+
+
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup">
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/plugin/search/search.js"></script>
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+<!-- love effect -->
+
+	<script src="/plugin/love/love.js"></script>
+
+
+<!-- back to top -->
+
+	
+	<div id="totop">
+  		<a href="javascript:;" name="TOTOP" class="fa fa-arrow-up"></a>
+	</div>
+
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<script src="/plugin/vibrant/vibrant.js"></script>
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imgLazyLoader/yall.min.js"></script>
+<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/js/resizediv.js"></script>
+<script src="/js/main.js"></script>
+	</body>	
+</html>

@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      EurekaClient注册到EurekaServer的秘密 | Alterem
+    
+  </title>
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Altrem">
+  <meta name="description" content>
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Annie.css">
+  
+  <!-- jquery -->
+	<script src="/js/jquery.min.js"></script>
+
+  <!-- leancloud -->
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script src="/js/leancloud.js"></script>
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground" data-img-mode="normal" data-normal-src="https://images.unsplash.com/photo-1463579934088-98fe605ed062?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1920" data-random-max="110" data-random-src="https://alterem.github.io/Random-img/">
+	<div class="mask">
+		<!-- Logo and navigation -->
+		<div class="h-header">
+			<div id="logo">
+				<a href="/">
+						
+						<img src="/img/logo.png" alt="Logo">
+					
+				</a>
+			</div>
+			
+			<div id="navigation-show">
+				<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+			</div>				
+		</div>
+
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<p class="motto"></p>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
+			</a>
+
+			
+				<!-- 
+	This is only a demo, please go to "https://time.is" to set your city time! 
+-->
+<style type="text/css">
+	.header-date {
+		font-size: 1rem;
+		color: #fff;
+		position: absolute;
+		bottom: 5px;
+		right: 1rem;
+		/*writing-mode: tb-rl;*/
+	}	
+	
+	.header-date a {
+		border-bottom: none;
+	}
+
+	@media only screen and (max-width: 768 ) {
+		.header-date {
+			font-size: 1rem;
+		}
+	}
+</style>
+<div class="header-date">
+	<a href="https://time.is/Beijing" target="_blank" id="time_is_link" rel="nofollow"></a>
+	<span id="Beijing_z43d"></span>
+</div>
+<script src="/js/widget_time_is-zh.js"></script>
+<script>
+	time_is_widget.init({
+		Beijing_z43d:{
+			template:"DATE TIME",
+			date_format:"year年 monthname dnum日"
+		}
+	});
+</script>
+			
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><h1>0.0%</h1></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			当前文章&nbsp;:&nbsp;《EurekaClient注册到EurekaServer的秘密》
+		
+	</p>
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<h3>Navigation</h3>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	<div class="nav-body">
+		<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	<div class="nav-footer">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/alterem" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="mailto:13027991217@163.com" target="_blank">
+				<i class="fa fa-envelope"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="https://gitee.com/alterem" target="_blank">
+				<i class="fa fa-git-square"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+		<script src="/plugin/toc/katelog.min.js"></script>
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+	<div class="article-title">
+		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+		
+	<a href="/2019/06/12/EurekaClient注册到EurekaServer的秘密/" itemprop="url">
+		EurekaClient注册到EurekaServer的秘密
+	</a>
+
+	</div>
+
+	<div class="article-meta">
+		<span>
+			<i class="fa fa-calendar"></i>
+			
+
+
+	发布于
+
+	<a href="/2019/06/12/EurekaClient注册到EurekaServer的秘密/" itemprop="url">
+		<time datetime="2019-06-12T10:10:20.000Z" itemprop="datePublished">
+	  		2019-06-12
+	  </time>
+	</a>
+	&nbsp;
+
+
+
+
+
+			
+
+
+
+
+	更新于
+
+	<a href="/2019/06/12/EurekaClient注册到EurekaServer的秘密/" itemprop="url">
+		<time datetime="2019-06-12T10:10:20.000Z" itemprop="dateUpdated">
+	  		2019-06-12
+	  </time>
+	</a> 
+
+
+
+		</span>
+		<span>
+			<i class="fa fa-tags"></i>
+			
+	
+		<a href="/tags/Eureka/" class=" ">
+			Eureka
+		</a>
+	
+		
+		</span>
+		
+		
+
+
+
+	</div>
+
+	<div class="article-content" id="article-content">
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们知道Eureka分为两部分，Eureka Server和Eureka Client。Eureka Server充当注册中心的角色，Eureka Client相对于Eureka Server来说是客户端，需要将自身信息注册到注册中心。本文主要介绍的就是在Eureka Client注册到Eureka Server时     <code>RetryableClientQuarantineRefreshPercentage</code>参数的使用技巧。 </p>
+<a id="more"></a>
+<h2 id="Eureka-Client注册过程分析"><a href="#Eureka-Client注册过程分析" class="headerlink" title="Eureka Client注册过程分析"></a>Eureka Client注册过程分析</h2><p>Eureka Client注册到Eureka Server时，首先遇到第一个问题就是Eureka Client端要知道Server的地址，这个参数对应的是     <code>eureka.client.service-url.defaultZone</code>举个例子，在Eureka Client的properties文件中配置如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eureka.client.service-url.defaultZone=</span><br><span class="line">http://localhost:8761/eureka,http://localhost:8762/eureka,http://localhost:8763/eureka,http://localhost:8764/eureka</span><br></pre></td></tr></table></figure>
+<p>如上图所示，Eureka Client配置对应的Eureka Server地址分别是8761、8762、8763、8764。这里存在两个问题： </p>
+<ul>
+<li>Eureka Client会将自身信息分别注册到这四个地址吗？     </li>
+<li>Eureka Clinent注册机制是怎样的？     </li>
+</ul>
+<p>源码面前一目了然，带着这两个问题我们通过源码来解答这两个问题。Eureka Client在启动的时候注册源码如下：<br><code>RetryableEurekaHttpClient</code>中的<code>execut</code>方法 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> &lt;R&gt; <span class="function">EurekaHttpResponse&lt;R&gt; <span class="title">execute</span><span class="params">(RequestExecutor&lt;R&gt; requestExecutor)</span> </span>&#123;</span><br><span class="line">    List&lt;EurekaEndpoint&gt; candidateHosts = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">int</span> endpointIdx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> retry = <span class="number">0</span>; retry &lt; numberOfRetries; retry++) &#123;</span><br><span class="line">        EurekaHttpClient currentHttpClient = delegate.get();</span><br><span class="line">        EurekaEndpoint currentEndpoint = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (currentHttpClient == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (candidateHosts == <span class="keyword">null</span>) &#123;</span><br><span class="line">                candidateHosts = getHostCandidates();</span><br><span class="line">                <span class="keyword">if</span> (candidateHosts.isEmpty()) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> TransportException(<span class="string">"There is no known eureka server; cluster server list is empty"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (endpointIdx &gt;= candidateHosts.size()) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> TransportException(<span class="string">"Cannot execute request on any known server"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            currentEndpoint = candidateHosts.get(endpointIdx++);</span><br><span class="line">            currentHttpClient = clientFactory.newClient(currentEndpoint);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            EurekaHttpResponse&lt;R&gt; response = requestExecutor.execute(currentHttpClient);</span><br><span class="line">            <span class="keyword">if</span> (serverStatusEvaluator.accept(response.getStatusCode(), requestExecutor.getRequestType())) &#123;</span><br><span class="line">                delegate.set(currentHttpClient);</span><br><span class="line">                <span class="keyword">if</span> (retry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    logger.info(<span class="string">"Request execution succeeded on retry #&#123;&#125;"</span>, retry);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> response;</span><br><span class="line">            &#125;</span><br><span class="line">            logger.warn(<span class="string">"Request execution failure with status code &#123;&#125;; retrying on another server if available"</span>, response.getStatusCode());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logger.warn(<span class="string">"Request execution failed with message: &#123;&#125;"</span>, e.getMessage());  <span class="comment">// just log message as the underlying client should log the stacktrace</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Connection error or 5xx from the server that must be retried on another server</span></span><br><span class="line">        delegate.compareAndSet(currentHttpClient, <span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">if</span> (currentEndpoint != <span class="keyword">null</span>) &#123;</span><br><span class="line">            quarantineSet.add(currentEndpoint);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> TransportException(<span class="string">"Retry limit reached; giving up on completing the request"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照我的理解，代码精简后内容如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> endpointIdx = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//用来保存所有Eureka Server信息(8761、8762、8763、8764)</span></span><br><span class="line">List&lt;EurekaEndpoint&gt; candidateHosts = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//numberOfRetries的值代码写死默认为3次</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> retry = <span class="number">0</span>; retry &lt; numberOfRetries; retry++) &#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *首次进入循环时，获取全量的Eureka Server信息(8761、8762、8763、8764)</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">if</span> (candidateHosts == <span class="keyword">null</span>) &#123;</span><br><span class="line">        candidateHosts = getHostCandidates();</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *通过endpointIdx自增，依次获取Eureka Server信息，然后发送</span></span><br><span class="line"><span class="comment">	 *注册的Post请求.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">    currentEndpoint = candidateHosts.get(endpointIdx++);</span><br><span class="line">    currentHttpClient = clientFactory.newClient(currentEndpoint);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">	 	*发送注册的Post请求动作，注意如果成功，则跳出循环，如果失败则</span></span><br><span class="line"><span class="comment">	 	*根据endpointIdx依次获取下一个Eureka Server.</span></span><br><span class="line"><span class="comment">	 	*/</span></span><br><span class="line">        response = requestExecutor.execute(currentHttpClient);</span><br><span class="line">        <span class="keyword">return</span> respones;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="comment">//向注册中心(Eureka Server)发起注册的post出现异常时，打印日志...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果此次注册动作失败，将当前的信息保存到quarantineSet中(一个Set集合)</span></span><br><span class="line">    <span class="keyword">if</span> (currentEndpoint != <span class="keyword">null</span>) &#123;</span><br><span class="line">        quarantineSet.add(currentEndpoint);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果都失败,则以异常形式抛出...</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> TransportException(<span class="string">"Retry limit reached; giving up on completing the request"</span>);</span><br></pre></td></tr></table></figure>
+<p>上面代码中还有一个方法很重要就是     <code>List&lt;EurekaEndpoint&gt; candidateHosts = getHostCandidates();</code>接下来看下     <code>getHostCandidates()</code>方法源码 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="title">getHostCandidates</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;EurekaEndpoint&gt; candidateHosts = clusterResolver.getClusterEndpoints();</span><br><span class="line">    quarantineSet.retainAll(candidateHosts);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If enough hosts are bad, we have no choice but start over again</span></span><br><span class="line">    <span class="keyword">int</span> threshold = (<span class="keyword">int</span>) (candidateHosts.size() * transportConfig.getRetryableClientQuarantineRefreshPercentage());</span><br><span class="line">    <span class="keyword">if</span> (quarantineSet.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// no-op</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;</span><br><span class="line">        logger.debug(<span class="string">"Clearing quarantined list of size &#123;&#125;"</span>, quarantineSet.size());</span><br><span class="line">        quarantineSet.clear();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());</span><br><span class="line">        <span class="keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;</span><br><span class="line">                remainingHosts.add(endpoint);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        candidateHosts = remainingHosts;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> candidateHosts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照我的理解，将代码精简下，只包括关键逻辑，内容如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="title">getHostCandidates</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取所有defaultZone配置的注册中心信息(Eureka Server)，</span></span><br><span class="line"><span class="comment">     * 在本文例子中代表4个(8761、8762、8763、8764)Eureka Server</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    List candidateHosts = clusterResolver.getClusterEndpoints();</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * quarantineSet这个Set集合中保存的是不可用的Eureka Server</span></span><br><span class="line"><span class="comment">     * 此处是拿不可用的Eureka Server与全量的Eureka Server取交集</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    quarantineSet.retainAll(candidateHosts);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据RetryableClientQuarantineRefreshPercentage参数计算阈值</span></span><br><span class="line"><span class="comment">     * 该阈值后续会和quarantineSet中保存的不可用的Eureka Server个数</span></span><br><span class="line"><span class="comment">     * 作比较，从而判断是否返回全量的Eureka Server还是过滤掉不可用的</span></span><br><span class="line"><span class="comment">     * Eureka Server。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">int</span> threshold = </span><br><span class="line">       (<span class="keyword">int</span>) (</span><br><span class="line">        candidateHosts.size()</span><br><span class="line">              *</span><br><span class="line">        transportConfig.getRetryableClientQuarantineRefreshPercentage()</span><br><span class="line">        );</span><br><span class="line">    <span class="keyword">if</span> (quarantineSet.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 首次进入的时候，此时quarantineSet为空，直接返回全量的</span></span><br><span class="line"><span class="comment">         * Eureka Server列表</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 将不可用的Eureka Server与threshold值相比较，如果不可</span></span><br><span class="line"><span class="comment">         * 用的Eureka Server个数大于阈值，则将之间保存的Eureka</span></span><br><span class="line"><span class="comment">         * Server内容直接清空，并返回全量的Eureka Server列表。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        quarantineSet.clear();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 通过quarantineSet集合保存不可用的Eureka Server来过滤</span></span><br><span class="line"><span class="comment">         * 全量的EurekaServer，从而获取此次Eureka Client要注册要</span></span><br><span class="line"><span class="comment">         * 注册的Eureka Server实例地址。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());</span><br><span class="line">        <span class="keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;</span><br><span class="line">                remainingHosts.add(endpoint);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        candidateHosts = remainingHosts;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> candidateHosts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过源码分析，我们现在初步知道，当Eureka Client向Eureka Server发起注册请求的时候(根据defaultZone寻找Eureka Server列表)，如果有一次请求注册成功，那么后续就不会在向其他Eureka Server发起注册请求。以本文为例，注册中心有四个(8761、8762、8763、8764)。如果8761对应的Eureka Server服务的状态是UP，那么Eureka Client向该注册中心注册成功后，不会再向(8762、8763、8764)对应的Eureka Server发起注册请求(对应程序是在for循环中直接return respones)。 </p>
+<p>说到这里又引出来另外一个问题，如果8761这个Eureka Server是down掉的呢？ </p>
+<p>根据源码我们可知Eureka Client首次会向8761这个Server发起注册请求，如果该Server的状态是down，那么它会将该Server保存到quarantineSet这个Set集合中，然后再次访问8762这个Eureka Server，如果8762这个Server的状态依旧是down，它也会把这个Server保存到quarantineSet这个Set集合中，然后继续访问8763这个Server，如果8763这个Server的状态依旧是down，此时除了会将其保存到quarantineSet这个Set集合中之外，还会跳出本次循环。从而结束此次注册过程。 </p>
+<p>说道这里有人要问接下来会不会向8764这个Server发起注册，答案是否定的，因为循环的次数默认是3次。所以即使8764这个Server的状态是UP，它也不会接收到来自Eureka Client发起的注册信息。 </p>
+<p>Eureka Client向Eureka Server发起注册信息的过程除了在Eureka Client启动的时候触发，还有另外一种方式，就是后台定时任务。<br>假设我们上面描述的场景是在Eureka Client启动的时候，因为在启动的时候注册这个过程全部失败了，当后台定时任务执行时，还会进入该注册流程。注意此时quarantineSet的值为3(8761、8762、8763之前注册失败的Eureka Server)。<br>所以当程序再次进入     <code>getHostCandidates()</code>方法时，     <code>if (quarantineSet.isEmpty())</code>这个方法是不满足的，接下来会走     <code>else if (quarantineSet.size() &gt;= threshold)</code>这个判断，如果这个判断成立，那么会将quarantineSet集合清空，同时返回全量的Eureka Server列表，如果这个判断不成立，会拿quarantineSet集合中保存的内容去过滤Eureka Server的全量列表。以本文为例： </p>
+<ul>
+<li><code>quarantineSet</code>中保存的是(8761、8762、8763)三个Eureka Server     </li>
+<li>Eureka Server全量列表的内容是(8761、8762、8763、8764)四个Eureka Server，过滤后返回的结果为8764这个Eureka Server。     </li>
+</ul>
+<p>在本文的例子中8761、8762、8763这三个Eureka Server的状态是down而8764这个Eureka Server的状态是UP，我们其实是想走到最后的else分支，从而完成过滤操作，并最终得到8764这个Server，遗憾的是它并不会走到这个分支，而是被上面的     <code>else if (quarantineSet.size() &gt;= threshold)</code>这个分支所拦截，返回的依旧是全量的Eureka Server列表。这样造成的后果就是Eureka Client依旧会依次向(8761、8762、8763)这三个down的Eureka Server发起注册请求。<br>那么问题的关键在哪里呢？问题的关键就是threshold这个值的由来，因为此时quarantineSet.size()的值为3，而3这个值大于threshold，从而导致，会将quarantineSet集合清空，返回全量的Server列表。<br>我们知道threshold这个值是根据全量的Eureka Server列表乘以一个可配置的参数计算出来的，在本文的例子当中，我的properties文件中除了defaultZone之外并没有配置这个参数，那么也就是说这个参数是有默认值的，通过源码我们了解到，这个默认值是0.66。具体源码如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertyBasedTransportConfigConstants</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *省略部分源码</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Values</span> </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SESSION_RECONNECT_INTERVAL = <span class="number">20</span>*<span class="number">60</span>;</span><br><span class="line">        <span class="comment">//默认值为0.66</span></span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> QUARANTINE_REFRESH_PERCENTAGE = <span class="number">0.66</span>;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DATA_STALENESS_TRHESHOLD = <span class="number">5</span>*<span class="number">60</span>;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ASYNC_RESOLVER_REFRESH_INTERVAL = <span class="number">5</span>*<span class="number">60</span>*<span class="number">1000</span>;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ASYNC_RESOLVER_WARMUP_TIMEOUT = <span class="number">5000</span>;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ASYNC_EXECUTOR_THREADPOOL_SIZE = <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *<span class="doctag">@return</span> the percentage of the full endpoints set above which the   </span></span><br><span class="line"><span class="comment"> *quarantine set is cleared in the range [0, 1.0]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">getRetryableClientQuarantineRefreshPercentage</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>看到这里就不难理解了，因为这个值是0.66而此时全量的Eureka Server值为4。计算之后的值为2，而由于注册的for循环为3次，所以当第二次发起注册流程的时候quarantineSet的值始终大于threshold。这样就会导致一个问题，就是如果8761、8762、8763一直是down即使8764一直是好的，那么Eureka Client也不会注册成功。而且这个参数值的区间为0到1. </p>
+<p>既然通过源码分析我们找到了问题根源，其实对应的我们也找到了解决这个问题的办法，就是对应把这个参数值调大些。<br>这个值在properties中对应的写法如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eureka.client.transport.retryableClientQuarantineRefreshPercentage = xxx</span><br></pre></td></tr></table></figure>
+<p>接下来我们修改下properties文件，修改后的内容如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eureka.client.service-url.defaultZone=</span><br><span class="line">http:<span class="comment">//localhost:8761/eureka,http://localhost:8762/eureka,http://localhost:8763/eureka,http://localhost:8764/eureka</span></span><br><span class="line">eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>接下来按照这个配置再次回顾下上面的流程： </p>
+<ul>
+<li>Eureka Client启动时进行注册(8761、8762、8763的状态是down)，所以此时quarantineSet的值为3.     </li>
+<li>接下来在定时任务中又触发注册事件，此时因为参数的值从0.66调整为1。所以计算出的threshold的值为4。而此时quarantineSet的值为3。所以不会进入到         <code>else if (quarantineSet.size() &gt;= threshold)</code>分支，而是会进入最后的esle分支。     </li>
+<li>在else分支中会完成过滤功能，最终返回的list中的结果只有一个就是8764这个Eureka Server。     </li>
+<li>Eureka Client向8764这个Eureka Server发起注册请求，得到成功相应，并返回。     </li>
+</ul>
+<h2 id="遗留问题"><a href="#遗留问题" class="headerlink" title="遗留问题"></a>遗留问题</h2><p>说道这里我们感觉好像是解决了这个问题，那么问一个问题，这个参数值可以设置的无限大吗？ </p>
+<p>比如我将这个参数值设置为10，虽然javaDoc中说明这个参数值的范围在0-1之间，但是并没有说明如果将这个参数调整大于1会出现什么情况。接下来按照上面的流程我们分析下：<br>之前我们分析的流程中的前提是8761、8762、8763这三台Server的状态是down而8764这个server的状态是up，现在我们修改下这个前提。<br>假设一开始8761、8762、8763、8764这四台Eureka Server的状态都是down。 </p>
+<ul>
+<li>Eureka Client启动时进行注册(8761、8762、8763的状态是down)，所以此时quarantineSet的值为3.     </li>
+<li>接下来在定时任务中又触发注册事件，此时因为参数的值从0.66调整为10。所以计算出的threshold的值为40。而此时quarantineSet的值为3。所以不会进入到         <code>else if (quarantineSet.size() &gt;= threshold)</code>分支，而是会进入最后的esle分支。     </li>
+<li>在else分支中会完成过滤功能，最终返回的list中的结果只有一个就是8764这个Eureka Server。     </li>
+<li>Eureka Client向8764这个Eureka Server发起注册请求，因为此时8764的状态也是down导致注册失败，此时quarantineSet中的内容是(8761、8762、8763、8764)     </li>
+<li>当定时任务再次触发时         <code>if (quarantineSet.isEmpty())</code>这个分支不会进入，因为此时quarantineSet的值为4     </li>
+<li><code>else if (quarantineSet.size() &gt;= threshold)</code>这分支也不会进入因为threshold的值为40     </li>
+<li>最终会进入else分支，这个分支原本的含义是想通过quarantineSet来充当过滤器，从全量的Eureka Server中过滤掉之前状态为down的Eureka Server，但是由于quarantineSet的值现在已经是全量，导致过滤后的结果返回的是一个空的list。即使此时Eureka Server列表(8761、8762、8763、8764)任何一个Server的状态变为UP，该Eureka Client也不可能完成注册事件。     </li>
+</ul>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>上面出现的那个问题，根本原因个人认为是由于     <code>eureka.client.transport.retryableClientQuarantineRefreshPercentage</code>参数过大而源码中没有校验，从而导致没有进入     <code>else if (quarantineSet.size() &gt;= threshold)</code>的逻辑分支，因为此时如果quarantineSet中的值已经达到了所有Eureka Server列表，那么此时我们希望的是将这个Set集合清空，从而再次返回全量的Eureka Server列表，也就是说再重新来一次注册流程。<br>所以基于上面的分析，个人认为在源码的     <code>getHostCandidates</code>增加下校验，具体代码如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="title">getHostCandidates</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;EurekaEndpoint&gt; candidateHosts = clusterResolver.getClusterEndpoints();</span><br><span class="line">    quarantineSet.retainAll(candidateHosts);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If enough hosts are bad, we have no choice but start over again</span></span><br><span class="line">    <span class="keyword">int</span> threshold = (<span class="keyword">int</span>) (candidateHosts.size() * transportConfig.getRetryableClientQuarantineRefreshPercentage());</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 增加判断如果threshold的值过大，即超过Eureka Server</span></span><br><span class="line"><span class="comment">     * 列表的数量，那么将其再次赋值，赋值的内容为Eureka Server</span></span><br><span class="line"><span class="comment">     * 列表的数量。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (threshold &gt; candidateHosts.size()) &#123;</span><br><span class="line">  	    threshold = candidateHosts.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (quarantineSet.isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// no-op</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;</span><br><span class="line">        logger.debug(<span class="string">"Clearing quarantined list of size &#123;&#125;"</span>, quarantineSet.size());</span><br><span class="line">        quarantineSet.clear();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());</span><br><span class="line">        <span class="keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;</span><br><span class="line">                remainingHosts.add(endpoint);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        candidateHosts = remainingHosts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> candidateHosts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上内容就是个人对     <code>eureka.client.transport.retryableClientQuarantineRefreshPercentage</code>的理解，由于本人知识水平有限，对此问题也可能理解不正确，还请大家多多留言讨论。</p>
+<p>最后感谢<a href="http://spring4all.com/" target="_blank" rel="noopener">spring4all社区</a>提供这个平台，能让大家交流学习Spring相关知识。 </p>
+	
+	</div>
+	
+	<div id="current-post-cover" data-scr="https://images.unsplash.com/photo-1497729873038-8a30b0cf4fa9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1360&h=880&fit=crop&ixid=eyJhcHBfaWQiOjF9"></div>
+
+	<!-- relate post, comment...-->
+	<div class="investment-container">
+		<div class="investment-header">
+			<div class="investment-title-1">
+				<div class="on">相关文章</div>
+				<div>评论</div>
+				<div>分享</div>
+			</div>
+			<div class="investment-title-2">	            
+				
+	<span>
+		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		
+			<a href="/2019/06/12/运算符优先级/" title="运算符优先级" rel="prev">
+				&laquo;上一篇
+			</a>
+		
+		
+			<a href="/2019/06/12/使用hexo搭建个人博客/" title="使用hexo搭建个人博客" rel="next">
+				下一篇&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+			</div>	
+		</div>
+		
+		<div class="investment-content">
+			<div class="investment-content-list">
+				
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/14/Python自动更换壁纸爬虫与tkinter结合/" title="Python自动更换壁纸爬虫与tkinter结合">
+								Python自动更换壁纸爬虫与tkinter结合			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 14日, 2019				
+							</p>
+							<p class="relate-post-content">
+								直接上代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/14/Python自动更换壁纸爬虫与tkinter结合/" title="Python自动更换壁纸爬虫与tkinter结合">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1457877916676-133b53113613?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="Python自动更换壁纸爬虫与tkinter结合">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/13/MySQL的5种时间类型的比较/" title="MySQL的5种时间类型的比较">
+								MySQL的5种时间类型的比较			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 13日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+
+
+日期时间类型
+占用空间
+日期格式
+最小值
+最大值
+零值表示
+
+
+
+
+DATETIME
+8 bytes
+YYYY-MM-DD HH:MM:SS
+1000-01-01 00:00:00
+9999-12-31 23:59:59
+000...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/13/MySQL的5种时间类型的比较/" title="MySQL的5种时间类型的比较">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1551928692-6954104dee5a?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="MySQL的5种时间类型的比较">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/13/MySQL在CentOS上执行自动备份/" title="MySql在CentOS上执行自动备份">
+								MySql在CentOS上执行自动备份			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 13日, 2019				
+							</p>
+							<p class="relate-post-content">
+								​    开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：版本控制
+​    很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/13/MySQL在CentOS上执行自动备份/" title="MySql在CentOS上执行自动备份">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1486748609709-34286e9eaadb?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="MySql在CentOS上执行自动备份">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/11/python拆分excel/" title="python拆分excel">
+								python拆分excel			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 11日, 2019				
+							</p>
+							<p class="relate-post-content">
+								根据某一列，拆分成几个不同的EXCEL文件操作方法：将EXCEL文件拖至EXE文件上，根据提示操作。
+
+12345678910111213141516171819202122232425262728293031323334353637...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/11/python拆分excel/" title="python拆分excel">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1519109679804-798766d15fd2?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="python拆分excel">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/30/Lombok介绍、使用方法和总结/" title="Lombok介绍、使用方法和总结">
+								Lombok介绍、使用方法和总结			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 30日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+文章来源公众号：猿人谷
+
+1 Lombok背景介绍官方介绍如下：
+1Project Lombok makes java a spicier language by adding 'handlers' that know how to...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/30/Lombok介绍、使用方法和总结/" title="Lombok介绍、使用方法和总结">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1472586662442-3eec04b9dbda?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="Lombok介绍、使用方法和总结">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/29/高可用的一些思考和理解/" title="高可用的一些思考和理解">
+								高可用的一些思考和理解			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 29日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+本文来源公众号：匠心零度
+
+
+在目前的互联网大时代，在高并发等冲击下，还必须保证服务高可用，如果服务不高可用那么意味着：
+
+系统不是7*24小时提供服务，那么用户体验就特别差了，可能用户下次不用了，留不住用户。
+当系统不可用的时候，...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/29/高可用的一些思考和理解/" title="高可用的一些思考和理解">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1490006017569-465ccb897ba1?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="高可用的一些思考和理解">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/27/【Python】哄女朋友的那些奇技淫巧/" title="【Python】哄女朋友的那些奇技淫巧">
+								【Python】哄女朋友的那些奇技淫巧			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 27日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+
+本文来源公众号： Python乱炖
+
+
+Python里面的奇技淫巧
+声明
+“以下所有模块均可
+使用pip直接安装”
+
+说python是
+所有编程语言里面
+最奇葩的语言
+这肯定是没错了
+它可以做
+自动化，爬虫，数据，AI，机器学习
+...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/27/【Python】哄女朋友的那些奇技淫巧/" title="【Python】哄女朋友的那些奇技淫巧">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://tva1.sinaimg.cn/large/006y8mN6gy1g7duo28cdkj311s0og77j.jpg" alt="【Python】哄女朋友的那些奇技淫巧">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/26/SonarQube的使用-在idea&eclipse中安装与使用sonarlint/" title="SonarQube的使用-在idea&eclipse中安装与使用sonarlint">
+								SonarQube的使用-在idea&eclipse中安装与使用sonarlint			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 26日, 2019				
+							</p>
+							<p class="relate-post-content">
+								介绍​        代码质量管理的开源平台，用于管理源代码的质量 通过插件形式，可以支持包括java,C#,C/C++,PL/SQL,Cobol,JavaScrip,Groovy等等二十几种编程语言的代码质量管理与检测。集成了Che...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/26/SonarQube的使用-在idea&eclipse中安装与使用sonarlint/" title="SonarQube的使用-在idea&eclipse中安装与使用sonarlint">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://tva1.sinaimg.cn/large/006y8mN6gy1g7ctnyo2w5j311s0og75t.jpg" alt="SonarQube的使用-在idea&amp;eclipse中安装与使用sonarlint">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/26/SonarQube的使用-SonarQube安装/" title="[SonarQube的使用] SonarQube安装">
+								[SonarQube的使用] SonarQube安装			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 26日, 2019				
+							</p>
+							<p class="relate-post-content">
+								工欲善其事必先利其器一 . SonarQube代码质量检查工具简介
+Sonar (SonarQube)是一个开源平台，用于管理源代码的质量
+Sonar 不只是一个质量数据报告工具，更是代码质量管理平台
+
+支持Java, C#, C/C...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/26/SonarQube的使用-SonarQube安装/" title="[SonarQube的使用] SonarQube安装">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1493770348161-369560ae357d?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="[SonarQube的使用] SonarQube安装">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/09/24/教程-教你如何给你的头像添加一个好看的国旗/" title="教程|教你如何给你的头像添加一个好看的国旗">
+								教程|教你如何给你的头像添加一个好看的国旗			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 24日, 2019				
+							</p>
+							<p class="relate-post-content">
+								今天朋友圈又火了，听说原因是 @腾讯官网 就能得到一顶绿色的帽子，啊呸，是一个好看的国庆节头像，可是听说没一会就502了，那么我们自己动手实现一个吧
+由于代码比较简单就不一一介绍了。
+
+123456789101112131415161...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/09/24/教程-教你如何给你的头像添加一个好看的国旗/" title="教程|教你如何给你的头像添加一个好看的国旗">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1505495142263-9357db572571?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="教程|教你如何给你的头像添加一个好看的国旗">
+							</a>
+						</div>
+					</li>											
+			
+			
+		</ul>
+	
+</div>	
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-comment">
+
+	
+
+		
+
+			<!-- gitalk comment -->
+			<!-- show gitalk comment -->
+<div id="gitalk-container"></div>
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//Thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//Remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//Create gitalk
+	var gitalk = new Gitalk({
+		clientID: '5008a761435512ea3979',
+		clientSecret: '7df7311c248582d1b31aa362810f6e6770b7a6bb',
+		//id: window.location.pathname,
+		//id: decodeURI(window.location.pathname),
+		//id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
+		repo: 'Blog-Comment-Repo',
+		owner: 'alterem',
+		admin: 'alterem',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+
+		
+		
+	
+
+</div>
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-share">
+	
+	
+</div>
+
+
+			</div>
+		</div>	
+	</div>
+	</div>
+</div>
+
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+
+<!-- show math formula -->
+
+
+
+	
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	var titleID = $('.article-title a'),
+		imageID = $('.article-content img'),
+		videoID = $('.article-content video');
+
+	var postTitle = titleID.text() ? titleID.text() : "No post title!";
+
+	imageID.each(function() {
+		var imgPath = $(this).attr('src'),
+			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
+	});
+
+	videoID.each(function() {
+		var videoPath = $(this).attr('src');
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+	});
+	//TODO：支持html5 video
+
+	if($('#layout-post').length) {
+		$('[data-fancybox="gallery"]').fancybox({
+			loop: true,
+			buttons: [
+				"zoom",
+				"share",
+				"slideShow",
+				"fullScreen",
+				//"download",
+				"thumbs",
+				"close"
+			],
+			protect: false
+		});
+	}
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div class="social">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/alterem" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="mailto:13027991217@163.com" target="_blank">
+				<i class="fa fa-envelope"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="https://gitee.com/alterem" target="_blank">
+				<i class="fa fa-git-square"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+		
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2019, content by Alterem. All Rights Reserved.
+			
+			
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+		</p>
+		<p>
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>
+</footer>
+		
+	<!-- set '1' to show motto in all pages! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		$(".motto").html( getMingYanContent() );
+	</script>	
+
+
+
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup">
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/plugin/search/search.js"></script>
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+<!-- love effect -->
+
+	<script src="/plugin/love/love.js"></script>
+
+
+<!-- back to top -->
+
+	
+	<div id="totop">
+  		<a href="javascript:;" name="TOTOP" class="fa fa-arrow-up"></a>
+	</div>
+
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<script src="/plugin/vibrant/vibrant.js"></script>
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imgLazyLoader/yall.min.js"></script>
+<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/js/resizediv.js"></script>
+<script src="/js/main.js"></script>
+	</body>	
+</html>

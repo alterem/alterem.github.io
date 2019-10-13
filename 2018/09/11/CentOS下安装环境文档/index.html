@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      CentOS下安装环境文档 | Alterem
+    
+  </title>
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Altrem">
+  <meta name="description" content>
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Annie.css">
+  
+  <!-- jquery -->
+	<script src="/js/jquery.min.js"></script>
+
+  <!-- leancloud -->
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script src="/js/leancloud.js"></script>
+<link rel="stylesheet" href="/css/prism-ghcolors.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<!-- Preloader -->
+
+	<div id="preloader">
+		<div class="pre-container">
+			
+				<div class="spinner">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+						
+		</div>
+	</div>
+
+
+<!-- header -->
+<header class="fixbackground" data-img-mode="normal" data-normal-src="https://images.unsplash.com/photo-1463579934088-98fe605ed062?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1920" data-random-max="110" data-random-src="https://alterem.github.io/Random-img/">
+	<div class="mask">
+		<!-- Logo and navigation -->
+		<div class="h-header">
+			<div id="logo">
+				<a href="/">
+						
+						<img src="/img/logo.png" alt="Logo">
+					
+				</a>
+			</div>
+			
+			<div id="navigation-show">
+				<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+			</div>				
+		</div>
+
+		<!-- motto -->
+		<div class="h-body">	
+			
+				<p class="motto"></p>
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more"><i class="fa fa-angle-double-down" aria-hidden="true"></i>
+			</a>
+
+			
+				<!-- 
+	This is only a demo, please go to "https://time.is" to set your city time! 
+-->
+<style type="text/css">
+	.header-date {
+		font-size: 1rem;
+		color: #fff;
+		position: absolute;
+		bottom: 5px;
+		right: 1rem;
+		/*writing-mode: tb-rl;*/
+	}	
+	
+	.header-date a {
+		border-bottom: none;
+	}
+
+	@media only screen and (max-width: 768 ) {
+		.header-date {
+			font-size: 1rem;
+		}
+	}
+</style>
+<div class="header-date">
+	<a href="https://time.is/Beijing" target="_blank" id="time_is_link" rel="nofollow"></a>
+	<span id="Beijing_z43d"></span>
+</div>
+<script src="/js/widget_time_is-zh.js"></script>
+<script>
+	time_is_widget.init({
+		Beijing_z43d:{
+			template:"DATE TIME",
+			date_format:"year年 monthname dnum日"
+		}
+	});
+</script>
+			
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><h1>0.0%</h1></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			当前文章&nbsp;:&nbsp;《CentOS下安装环境文档》
+		
+	</p>
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<h3>Navigation</h3>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	<div class="nav-body">
+		<ul>
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home">主页</a>
+		</li>
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive">归档</a>
+		</li>
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories">分类</a>
+		</li>
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags">标签</a>
+		</li>
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about">关于</a>
+		</li>
+	
+
+	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
+</ul>
+	</div>
+	<div class="nav-footer">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/alterem" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="mailto:13027991217@163.com" target="_blank">
+				<i class="fa fa-envelope"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="https://gitee.com/alterem" target="_blank">
+				<i class="fa fa-git-square"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+	<div class="article-title">
+		<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+		
+	<a href="/2018/09/11/CentOS下安装环境文档/" itemprop="url">
+		CentOS下安装环境文档
+	</a>
+
+	</div>
+
+	<div class="article-meta">
+		<span>
+			<i class="fa fa-calendar"></i>
+			
+
+
+	发布于
+
+	<a href="/2018/09/11/CentOS下安装环境文档/" itemprop="url">
+		<time datetime="2018-09-11T07:01:34.000Z" itemprop="datePublished">
+	  		2018-09-11
+	  </time>
+	</a>
+	&nbsp;
+
+
+
+
+
+			
+
+
+
+
+	更新于
+
+	<a href="/2018/09/11/CentOS下安装环境文档/" itemprop="url">
+		<time datetime="2018-09-11T07:01:34.000Z" itemprop="dateUpdated">
+	  		2019-03-15
+	  </time>
+	</a> 
+
+
+
+		</span>
+		<span>
+			<i class="fa fa-tags"></i>
+			
+	
+		<a href="/tags/CentOS/" class=" ">
+			CentOS
+		</a>
+	
+		<a href="/tags/MySQL/" class=" ">
+			MySQL
+		</a>
+	
+		<a href="/tags/JDK/" class=" ">
+			JDK
+		</a>
+	
+		<a href="/tags/Tomcat/" class=" ">
+			Tomcat
+		</a>
+	
+		<a href="/tags/Nginx/" class=" ">
+			Nginx
+		</a>
+	
+		
+		</span>
+		
+		
+
+
+
+	</div>
+
+	<div class="article-content" id="article-content">
+		<hr>
+<p>【JDK1.7安装】</p>
+<hr>
+<p>1)登录Sun的JDK官方下载网 址:<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html</a></p>
+<p>2)下载jdk-7u67-linux-x64.rpm文件</p>
+<p>》删除系统自带OpenJDK</p>
+<p>CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默认安装了一个openjdk1.7版本</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># java -version</span><br><span class="line"></span><br><span class="line">java version &quot;1.7.0&quot;</span><br><span class="line"></span><br><span class="line">OpenJDK  Runtime Environment (build 1.7.0-b09)</span><br><span class="line"></span><br><span class="line">OpenJDK Client VM (build 1.7.0-b09, mixed mode)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>备注：</p>
+<p>无须删除原有的openjdk;否则，与之相关的openoffice等软件，也会自动随之删除；</p>
+</blockquote>
+<p>如果直接”应用程序-添加/删除软件–基本系统–java“删除其他相关软件也会自动删除，所以删除前，最好安装配置好新的JDK环境</p>
+<p> 1) 删除原有的JDK：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -qa|grep jdk</span><br></pre></td></tr></table></figure>
+<p>查看安装的JDK，会显示多个java-1.7.0-openjdk-1.7.0相关的程序，在以下一一卸载。直到删完为止，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># rpm -e --nodeps java-1.7.0-openjdk-1.7.0.65-2.5.1.2.el6_5.x86_64</span><br><span class="line"># rpm -e --nodeps java-1.7.0-openjdk-devel-1.7.0.65-2.5.1.2.el6_5.x86_64</span><br><span class="line"># rpm -e --nodeps java-1.7.0-openjdk-demo-1.7.0.65-2.5.1.2.el6_5.x86_64</span><br></pre></td></tr></table></figure>
+<p>……</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -qa|grep java</span><br></pre></td></tr></table></figure>
+<p>查看安装的JAVA关联程序，在以下一一卸载。直到删完为止，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -e --nodeps tzdata-java-2014h-1.el6.noarch</span><br></pre></td></tr></table></figure>
+<p>……</p>
+<p>》配置新的JDK环境</p>
+<p>1）把安装文件文件保存在/usr/java/tools下 ,并切换到root用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># mkdir /usr/java  //创建/urs/java目录</span><br><span class="line"># cd /usr/java/</span><br><span class="line"># rpm -ivh ./tools/jdk-7u67-linux-x64.rpm</span><br></pre></td></tr></table></figure>
+<p>》配置jdk1.6.0_22环境变量</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/profile</span><br><span class="line"></span><br><span class="line">JAVA_HOME=/usr/java/jdk1.7.0_79</span><br><span class="line">JRE_HOME=/usr/java/jdk1.7.0_79/jre</span><br><span class="line">PATH=PATH:JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line">CLASSPATH=:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</span><br><span class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</span><br></pre></td></tr></table></figure>
+<p>》使环境变量生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>》测试安装</p>
+<p>   1)查看版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># java -version</span><br><span class="line"></span><br><span class="line">java version &quot;1.7.0_67&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.7.0_67-b01)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 24.65-b04, mixed mode)</span><br><span class="line">Java HotSpot(TM) Client VM (build 17.1-b03, mixed mode, sharing)</span><br></pre></td></tr></table></figure>
+<p>说明成功了。</p>
+<hr>
+<p>【MYSQL5.5的安装】</p>
+<hr>
+<p>安装方式分为rpm和源码编译安装两种，本文是采用mysql源码编译方式，编译器使用Cmake。软件需要mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz，请自行下载。</p>
+<p>》下载地址：</p>
+<p><a href="http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.40.tar.gz" target="_blank" rel="noopener">http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.40.tar.gz</a></p>
+<p><a href="http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz" target="_blank" rel="noopener">http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz</a></p>
+<p>其中mysql使用最新的稳定版本，即最新试用版的上一个版本，且非rc或者alpha的版本，Cmake直接用的最新版。</p>
+<p> 》上传mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz到/usr/java/tools文件夹下。</p>
+<p> 》CentOS安装g++和ncurses-devel</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install gcc-c++</span><br><span class="line"># yum install ncurses-devel</span><br></pre></td></tr></table></figure>
+<p>》cmake的安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># mkdir -p /usr/java/make</span><br><span class="line"># cd /usr/java/make</span><br><span class="line"># mv ../tools/cmake-2.8.10.2.tar.gz ./</span><br><span class="line"># tar -zxv -f cmake-2.8.10.2.tar.gz</span><br><span class="line"># cd cmake-2.8.10.2</span><br><span class="line"># ./configure</span><br><span class="line"># make</span><br><span class="line"># make install</span><br></pre></td></tr></table></figure>
+<p>》将cmake永久加入系统环境变量</p>
+<p>》用vi在文件/etc/profile文件中增加变量，使其永久有效，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/profile</span><br></pre></td></tr></table></figure>
+<p>》在文件PATH中加入MAKE_PATH环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/java/jdk1.7.0_67</span><br><span class="line">JRE_HOME=/usr/java/jdk1.7.0_67/jre</span><br><span class="line">MAKE_PATH=/usr/java/cmake/cmake-2.8.10.2/bin</span><br><span class="line">PATH=MAKE_PATH:PATH:JAVA_HOME/bin:JRE_HOME/bin</span><br><span class="line">CLASSPATH=:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</span><br><span class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</span><br></pre></td></tr></table></figure>
+<p>》执行以下代码使刚才的修改生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>》用 export 命令查看PATH值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># echo $PATH</span><br></pre></td></tr></table></figure>
+<p>》创建mysql的安装目录及数据库存放目录</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mkdir -p /usr/java/mysql //安装mysql</span><br><span class="line"># mkdir -p /usr/java/mysql/data //存放数据库</span><br></pre></td></tr></table></figure>
+<p>》创建mysql用户及用户组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># groupadd mysql</span><br><span class="line"># useradd -r -g mysql mysql</span><br></pre></td></tr></table></figure>
+<p>》编译安装mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/java/mysql</span><br><span class="line"># tar zxvf ../tools/mysql-5.5.40.tar.gz</span><br><span class="line"># cd mysql-5.5.40/</span><br><span class="line"># cmake -DCMAKE_INSTALL_PREFIX=/usr/java/mysql \</span><br><span class="line">-DMYSQL_UNIX_ADDR=/usr/java/mysql/mysql.sock \</span><br><span class="line">-DDEFAULT_CHARSET=utf8 \</span><br><span class="line">-DDEFAULT_COLLATION=utf8_general_ci \</span><br><span class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_MEMORY_STORAGE_ENGINE=1 \</span><br><span class="line">-DWITH_READLINE=1 \</span><br><span class="line">-DENABLED_LOCAL_INFILE=1 \</span><br><span class="line">-DMYSQL_DATADIR=/usr/java/mysql/data \</span><br><span class="line">-DMYSQL_USER=mysql \</span><br><span class="line">-DMYSQL_TCP_PORT=6666</span><br><span class="line"># make</span><br><span class="line"># make install</span><br></pre></td></tr></table></figure>
+<p>》检验是否安装成功</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># cd  /usr/java/mysql</span><br><span class="line">[root@fiona mysql]# ls</span><br><span class="line">bin      data  include         lib  mysql-5.5.40  mysql-test  scripts  sql-bench</span><br><span class="line">COPYING  docs  INSTALL-BINARY  man  mysql.sock    README      share    support-files</span><br></pre></td></tr></table></figure>
+<p> 有bin等以上文件的话，恭喜你已经成功安装了mysql。</p>
+<p> 》配置mysql</p>
+<p> 》设置mysql目录权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/java/mysql //把当前目录中所有文件的所有者设为root，所属组为mysql</span><br><span class="line"># chown -R root:mysql .</span><br><span class="line"># chown -R mysql:mysql data</span><br></pre></td></tr></table></figure>
+<p>》将mysql的启动服务添加到系统服务中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cp support-files/my-medium.cnf /etc/my.cnf</span><br><span class="line">cp：是否覆盖&quot;/etc/my.cnf&quot;？ y</span><br></pre></td></tr></table></figure>
+<p>》创建系统数据库的表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/java/mysql</span><br><span class="line"># scripts/mysql_install_db --user=mysql</span><br></pre></td></tr></table></figure>
+<p>》设置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /root/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>在修改PATH=$PATH:$HOME/bin为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=PATH:HOME/bin:/usr/java/mysql/bin:/usr/java/mysql/lib</span><br><span class="line"># source /root/.bash_profile //使刚才的修改生效</span><br></pre></td></tr></table></figure>
+<p>》手动启动mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ./bin/mysqld_safe --user=mysql &amp; //启动MySQL，但不能停止</span><br><span class="line">mysqladmin -u root -p shutdown //此时root还没密码，所以为空值，提示输入密码时，直接回车即可。</span><br></pre></td></tr></table></figure>
+<p>》将mysql的启动服务添加到系统服务中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cp support-files/mysql.server /etc/init.d/mysql</span><br></pre></td></tr></table></figure>
+<p>》启动mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># service mysql start</span><br><span class="line">Starting MySQL... ERROR! The server quit without updating PID file (/usr/java/mysql/data/localhost.localdomain.pid).</span><br></pre></td></tr></table></figure>
+<p>》启动失败：</p>
+<p>》我这里是权限问题，先改变权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chown -R mysql:mysql /usr/java/mysql</span><br></pre></td></tr></table></figure>
+<p>》接着启动服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># /etc/init.d/mysql start</span><br></pre></td></tr></table></figure>
+<p>》修改MySQL的root用户的密码以及打开远程连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># mysql -u root mysql</span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; desc user;</span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON . TO root@&quot;%&quot; IDENTIFIED BY &quot;root&quot;; //为root添加远程连接的能力</span><br><span class="line">mysql&gt; update user set Password = password(&apos;x123456.&apos;) where User=&apos;root&apos;; //设置root用户密码</span><br><span class="line">mysql&gt; select Host,User,Password from user where User=&apos;root&apos;;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; exit</span><br></pre></td></tr></table></figure>
+<p>》重新登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mysql -u root -p</span><br><span class="line">enter password:x123456.000</span><br></pre></td></tr></table></figure>
+<p>》若还不能进行远程连接，关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost]# /etc/rc.d/init.d/iptables stop</span><br></pre></td></tr></table></figure>
+<p>用远程工具连接上了表示成功了。</p>
+<hr>
+<p>【TOMCAT7.0的安装】</p>
+<hr>
+<p>》先下载apache-tomcat-7.0.56.tar.gz</p>
+<p>》下载地下：<a href="http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># cd /usr/java</span><br><span class="line"># tar -zxvf ./tools/apache-tomcat-7.0.56.tar.gz</span><br><span class="line"># cd /etc/rc.d/init.d</span><br><span class="line"># vi tomcat</span><br><span class="line">#----------输入以下信息---------------------</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># chkconfig: 345 80 15</span><br><span class="line"># description: Tomcat is a Servlet+JSP Engine.</span><br><span class="line"># Enter the jdk installation directory</span><br><span class="line">jdk_File=/usr/java/jdk1.7.0_67</span><br><span class="line"># Enter the tomcat installation directory</span><br><span class="line">tomcat_File=/usr/java/apache-tomcat-7.0.56</span><br><span class="line">export JAVA_HOME=$jdk_File</span><br><span class="line"># Source function library.</span><br><span class="line">. /etc/rc.d/init.d/functions</span><br><span class="line">start()&#123;</span><br><span class="line">if [ -z $(/sbin/pidof java) ]; then</span><br><span class="line">echo &quot;Starting tomcat&quot;</span><br><span class="line">$tomcat_File/bin/startup.sh</span><br><span class="line">touch /var/lock/subsys/tomcat</span><br><span class="line">else</span><br><span class="line">echo &quot;tomcat allready running&quot;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line">stop()&#123;</span><br><span class="line">if [ ! -z $(/sbin/pidof java) ]; then</span><br><span class="line">echo &quot;Shutting down tomcat&quot;</span><br><span class="line">$tomcat_File/bin/shutdown.sh</span><br><span class="line">until [ -z $(/sbin/pidof java) ]; do :; done</span><br><span class="line">rm -f /var/lock/subsys/tomcat</span><br><span class="line">else</span><br><span class="line">echo &quot;tomcat not running&quot;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">start)</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">stop)</span><br><span class="line">stop</span><br><span class="line">;;</span><br><span class="line">restart)</span><br><span class="line">stop</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">status)</span><br><span class="line">$tomcat_File/bin/catalina.sh version</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">echo &quot;Usage: $0 &#123;start|stop|restart|status&#125;&quot;</span><br><span class="line">esac</span><br><span class="line">exit 0</span><br><span class="line">#----------输入以下信息---------------------</span><br><span class="line"></span><br><span class="line">:wq! #保存退出 </span><br><span class="line"># chmod 755 /etc/rc.d/init.d/tomcat #添加执行权限</span><br><span class="line"># chkconfig --add tomcat #添加服务</span><br><span class="line"># chkconfig tomcat on #设置开机启动</span><br><span class="line"># service tomcat stop #停止</span><br><span class="line"># service tomcat start #启动</span><br><span class="line"># service tomcat restart #重启</span><br><span class="line"># service tomcat status #查看状态信息</span><br></pre></td></tr></table></figure>
+<hr>
+<p>【nginx-1.7.6.tar.gz的安装】</p>
+<hr>
+<p>》先下载nginx-1.7.6.tar.gz</p>
+<p>》下载URL:<a href="http://nginx.org/download/nginx-1.7.6.tar.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.7.6.tar.gz</a></p>
+<p>》把nginx-1.7.6.tar.gz放到/usr/java/tools目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/local/</span><br><span class="line"># tar -zxvf /usr/java/tools/nginx-1.7.5.tar.gz</span><br><span class="line"># cd nginx-1.7.6/</span><br><span class="line"># yum -y install pcre-devel</span><br><span class="line"># yum install -y zlib-devel</span><br><span class="line"># ./configure</span><br><span class="line"># make &amp;&amp; make install</span><br><span class="line"># cd /usr/local/nginx</span><br><span class="line"># cd sbin</span><br><span class="line"># ./nginx</span><br><span class="line"># /etc/rc.d/init.d/iptables stop</span><br></pre></td></tr></table></figure>
+<p>》配置服务器启动方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/init.d/nginx</span><br><span class="line">#---------输入以下信息------------------</span><br><span class="line"></span><br><span class="line"># nginx Startup script for the Nginx HTTP Server</span><br><span class="line"># it is v.0.0.2 version.</span><br><span class="line"># chkconfig: - 85 15</span><br><span class="line"># description: Nginx is a high-performance web and proxy server.</span><br><span class="line"># It has a lot of features, but it&apos;s not for everyone.</span><br><span class="line"># processname: nginx</span><br><span class="line"># pidfile: /software/nginx/logs/nginx.pid</span><br><span class="line"># config: /software/nginx/conf/nginx.conf</span><br><span class="line">nginxd=/usr/local/nginx/sbin/nginx</span><br><span class="line">nginx_config=/usr/local/nginx/conf/nginx.conf</span><br><span class="line">nginx_pid=/usr/local/nginx/logs/nginx.pid</span><br><span class="line">RETVAL=0</span><br><span class="line">prog=&quot;nginx&quot;</span><br><span class="line"># Source function library.</span><br><span class="line">. /etc/rc.d/init.d/functions</span><br><span class="line"># Source networking configuration.</span><br><span class="line">. /etc/sysconfig/network</span><br><span class="line"># Check that networking is up.</span><br><span class="line">[ $&#123;NETWORKING&#125; = &quot;no&quot; ] &amp;&amp; exit 0</span><br><span class="line">[ -x $nginxd ] || exit 0</span><br><span class="line"># Start nginx daemons functions.</span><br><span class="line">start() &#123;</span><br><span class="line">if [ -e $nginx_pid ];then</span><br><span class="line">echo &quot;nginx already running....&quot;</span><br><span class="line">exit 1</span><br><span class="line">fi</span><br><span class="line">echo -n &quot;Starting prog: &quot;</span><br><span class="line">daemon nginxd -c &#123;nginx_config&#125;</span><br><span class="line">RETVAL=$?</span><br><span class="line">echo</span><br><span class="line">[ $RETVAL = 0 ] &amp;&amp; touch /var/lock/subsys/nginx</span><br><span class="line">return $RETVAL</span><br><span class="line">&#125;</span><br><span class="line"># Stop nginx daemons functions.</span><br><span class="line">stop() &#123;</span><br><span class="line">echo -n &quot;Stopping prog: &quot;</span><br><span class="line">killproc $nginxd</span><br><span class="line">RETVAL=$?</span><br><span class="line">echo</span><br><span class="line">[ $RETVAL = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /usr/local/nginx/logs/nginx.pid</span><br><span class="line">&#125;</span><br><span class="line">reload() &#123;</span><br><span class="line">echo -n &quot;Reloading prog: &quot;</span><br><span class="line">#kill -HUP cat $&#123;nginx_pid&#125;</span><br><span class="line">killproc $nginxd -HUP</span><br><span class="line">RETVAL=$?</span><br><span class="line">echo</span><br><span class="line">&#125;</span><br><span class="line"># See how we were called.</span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">start)</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">stop)</span><br><span class="line">stop</span><br><span class="line">;;</span><br><span class="line">reload)</span><br><span class="line">reload</span><br><span class="line">;;</span><br><span class="line">restart)</span><br><span class="line">stop</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">status)</span><br><span class="line">status $prog</span><br><span class="line">RETVAL=$?</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">echo &quot;Usage: prog &#123;start|stop|restart|reload|status|help&#125;&quot;</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br><span class="line">exit $RETVAL</span><br><span class="line">#---------输入以下信息------------------</span><br><span class="line"></span><br><span class="line"># chmod 755 /etc/init.d/nginx &amp;&amp; chkconfig nginx on</span><br><span class="line"># service nginx start</span><br><span class="line"># service nginx stop</span><br><span class="line"># service nginx restart</span><br><span class="line"># ps -ef | grep nginx</span><br><span class="line"># netstat -pant | grep 80</span><br></pre></td></tr></table></figure>
+<p>》测试在浏览器中输入广域网IP看看能不能看到欢迎界面，如果能就表示成功了。</p>
+<hr>
+<p>【配置规则】</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure>
+<p>增加如下配置:</p>
+<blockquote>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT</p>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 8888 -j ACCEPT</p>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 6666 -j ACCEPT</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># service iptables restart</span><br></pre></td></tr></table></figure>
+<p>》系统启动的方式为自启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># chkconfig mysql on</span><br><span class="line"># chkconfig nginx on</span><br><span class="line"># chkconfig tomcat on</span><br></pre></td></tr></table></figure>
+	
+	</div>
+	
+	<div id="current-post-cover" data-scr="https://images.unsplash.com/photo-1552620888-a4553dd93b5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=680&h=440&q=80"></div>
+
+	<!-- relate post, comment...-->
+	<div class="investment-container">
+		<div class="investment-header">
+			<div class="investment-title-1">
+				<div class="on">相关文章</div>
+				<div>评论</div>
+				<div>分享</div>
+			</div>
+			<div class="investment-title-2">	            
+				
+	<span>
+		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
+		
+			<a href="/2018/09/11/用JAVA写一个简易图片防篡改/" title="用JAVA写一个简易图片防篡改" rel="prev">
+				&laquo;上一篇
+			</a>
+		
+		
+			<a href="/2018/09/11/CentOS-7-安装-Apache-MySQL-PHP-指南/" title="CentOS 7 安装 Apache, MySQL, PHP 指南" rel="next">
+				下一篇&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+			</div>	
+		</div>
+		
+		<div class="investment-content">
+			<div class="investment-content-list">
+				
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/09/14/10招强化Linux安全的技能/" title="10招强化Linux安全的技能">
+								10招强化Linux安全的技能			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 14日, 2018				
+							</p>
+							<p class="relate-post-content">
+								1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。
+查询运行在runlevel 3的服务列表：
+1[alter@alter ~]# /sb...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/09/14/10招强化Linux安全的技能/" title="10招强化Linux安全的技能">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1461511669078-d46bf351cd6e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;w=1360&amp;h=880&amp;fit=max&amp;s=6c049f444a1102cffa9d6bbc79f33559" alt="10招强化Linux安全的技能">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/09/11/CentOS-7-安装-Apache-MySQL-PHP-指南/" title="CentOS 7 安装 Apache, MySQL, PHP 指南">
+								CentOS 7 安装 Apache, MySQL, PHP 指南			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 11日, 2018				
+							</p>
+							<p class="relate-post-content">
+								一个 LAMP 软件栈通常由多个开源软件组合而成，它们合力驱动一个服务器去运行 web 站点和应用。LAMP 这个术语实际上是一个由 Linux 操作系统，Apache web 服务器，MySQL 数据库服务器，以及 PHP 编程环境...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/09/11/CentOS-7-安装-Apache-MySQL-PHP-指南/" title="CentOS 7 安装 Apache, MySQL, PHP 指南">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1461489418981-38015d9f587c?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;w=680&amp;h=440&amp;fit=max&amp;s=f32c075236a3cfcedd79cfae74b6b335" alt="CentOS 7 安装 Apache, MySQL, PHP 指南">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/09/11/Linux服务器初始化设置用户和ssh公私钥登陆/" title="Linux服务器初始化设置用户和ssh公私钥登陆">
+								Linux服务器初始化设置用户和ssh公私钥登陆			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 11日, 2018				
+							</p>
+							<p class="relate-post-content">
+								
+当我们开始使用一个新的服务器的时候，首先一定要对服务器的登陆等做一些修改工作，笔者曾经就因为对服务器登陆安全没有重视，导致服务器数据全部丢失。接下来我们按照步骤，罗列出应该做的一些事情。 
+
+修改ssh端口号第一件事情：
+修改ssh...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/09/11/Linux服务器初始化设置用户和ssh公私钥登陆/" title="Linux服务器初始化设置用户和ssh公私钥登陆">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1461301214746-1e109215d6d3?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;w=680&amp;h=440&amp;fit=max&amp;s=4c8d66571305909d949a305c8a3c27d4" alt="Linux服务器初始化设置用户和ssh公私钥登陆">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/09/11/CentOS7下安装和配置redis/" title="CentOS7下安装和配置redis">
+								CentOS7下安装和配置redis			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 11日, 2018				
+							</p>
+							<p class="relate-post-content">
+								Redis是一个高性能的，开源key-value型数据库。是构建高性能，可扩展的Web应用的完美解决方案，可以内存存储亦可持久化存储。因为要使用跨进程，跨服务级别的数据缓存，在对比多个方案后，决定使用Redis。顺便整理下Redis的...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/09/11/CentOS7下安装和配置redis/" title="CentOS7下安装和配置redis">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1461438820504-6d00ea0157a5?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;w=680&amp;h=440&amp;fit=max&amp;s=55db46ad358f287f1d603400ee04023e" alt="CentOS7下安装和配置redis">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/09/11/CentOS安装node8-x版本/" title="CentOS安装node8.x版本">
+								CentOS安装node8.x版本			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								九月 11日, 2018				
+							</p>
+							<p class="relate-post-content">
+								由于一些原因需要给CentOS服务器安装8.0以上版本的node, 本来直接通过yum管理安装管理，但是没找到好办法，在此记录一下自己最后使用的简单过程：
+安装之前删除原来的node和npm (我原来是用yum安装的，如果是第一次安装...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/09/11/CentOS安装node8-x版本/" title="CentOS安装node8.x版本">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1461468611824-46457c0e11fd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;w=680&amp;h=440&amp;fit=max&amp;s=6b062881920aa55ab8ea88f2cef4d4ce" alt="CentOS安装node8.x版本">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/06/10/CentOS7搭建ngrok服务器/" title="CentOS7搭建ngrok服务器">
+								CentOS7搭建ngrok服务器			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 10日, 2019				
+							</p>
+							<p class="relate-post-content">
+								ngrok是一个反向代理，它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道， 使得外网可以访问本地的计算机服务。也就是说，我们提供的服务（比如web站点）无需搭建在外部服务器， 只要通过ngrok把站点映射...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/06/10/CentOS7搭建ngrok服务器/" title="CentOS7搭建ngrok服务器">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1522328130867-8df79ee56d04?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1360&amp;h=880&amp;fit=crop&amp;ixid=eyJhcHBfaWQiOjF9" alt="CentOS7搭建ngrok服务器">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/13/MySQL的5种时间类型的比较/" title="MySQL的5种时间类型的比较">
+								MySQL的5种时间类型的比较			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 13日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+
+
+日期时间类型
+占用空间
+日期格式
+最小值
+最大值
+零值表示
+
+
+
+
+DATETIME
+8 bytes
+YYYY-MM-DD HH:MM:SS
+1000-01-01 00:00:00
+9999-12-31 23:59:59
+000...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/13/MySQL的5种时间类型的比较/" title="MySQL的5种时间类型的比较">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1551928692-6954104dee5a?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="MySQL的5种时间类型的比较">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/13/MySQL在CentOS上执行自动备份/" title="MySql在CentOS上执行自动备份">
+								MySql在CentOS上执行自动备份			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 13日, 2019				
+							</p>
+							<p class="relate-post-content">
+								​    开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：版本控制
+​    很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/13/MySQL在CentOS上执行自动备份/" title="MySql在CentOS上执行自动备份">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1486748609709-34286e9eaadb?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="MySql在CentOS上执行自动备份">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/14/Python自动更换壁纸爬虫与tkinter结合/" title="Python自动更换壁纸爬虫与tkinter结合">
+								Python自动更换壁纸爬虫与tkinter结合			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 14日, 2019				
+							</p>
+							<p class="relate-post-content">
+								直接上代码
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/14/Python自动更换壁纸爬虫与tkinter结合/" title="Python自动更换壁纸爬虫与tkinter结合">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1457877916676-133b53113613?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="Python自动更换壁纸爬虫与tkinter结合">
+							</a>
+						</div>
+					</li>											
+			
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/10/11/python拆分excel/" title="python拆分excel">
+								python拆分excel			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								十月 11日, 2019				
+							</p>
+							<p class="relate-post-content">
+								根据某一列，拆分成几个不同的EXCEL文件操作方法：将EXCEL文件拖至EXE文件上，根据提示操作。
+
+12345678910111213141516171819202122232425262728293031323334353637...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/10/11/python拆分excel/" title="python拆分excel">				
+								
+								<img class="lazy" src="/img/placeholder.jpg" data-src="https://images.unsplash.com/photo-1519109679804-798766d15fd2?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=eyJhcHBfaWQiOjF9&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1360" alt="python拆分excel">
+							</a>
+						</div>
+					</li>											
+			
+			
+		</ul>
+	
+</div>	
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-comment">
+
+	
+
+		
+
+			<!-- gitalk comment -->
+			<!-- show gitalk comment -->
+<div id="gitalk-container"></div>
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//Thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//Remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//Create gitalk
+	var gitalk = new Gitalk({
+		clientID: '5008a761435512ea3979',
+		clientSecret: '7df7311c248582d1b31aa362810f6e6770b7a6bb',
+		//id: window.location.pathname,
+		//id: decodeURI(window.location.pathname),
+		//id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: decodeURI( md5( location.href.trimEnd('#.*$,\\?.*$,index.html$') ) ),
+		repo: 'Blog-Comment-Repo',
+		owner: 'alterem',
+		admin: 'alterem',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+
+		
+		
+	
+
+</div>
+			</div>
+			<div class="investment-content-list">
+				<div class="layout-share">
+	
+	
+</div>
+
+
+			</div>
+		</div>	
+	</div>
+	</div>
+</div>
+
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+
+<!-- show math formula -->
+
+
+
+	
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+	var titleID = $('.article-title a'),
+		imageID = $('.article-content img'),
+		videoID = $('.article-content video');
+
+	var postTitle = titleID.text() ? titleID.text() : "No post title!";
+
+	imageID.each(function() {
+		var imgPath = $(this).attr('src'),
+			imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox="gallery" data-caption=" 《 ' + postTitle + ' 》 ' + imgTitle + ' "  href=" ' + imgPath + ' "> </a>');
+	});
+
+	videoID.each(function() {
+		var videoPath = $(this).attr('src');
+
+		//给每个匹配的<img>元素打包, 即添加父元素<a>
+		$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+	});
+	//TODO：支持html5 video
+
+	if($('#layout-post').length) {
+		$('[data-fancybox="gallery"]').fancybox({
+			loop: true,
+			buttons: [
+				"zoom",
+				"share",
+				"slideShow",
+				"fullScreen",
+				//"download",
+				"thumbs",
+				"close"
+			],
+			protect: false
+		});
+	}
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div class="social">
+		<ul>
+	
+		<li>
+			<a href="http://github.com/alterem" target="_blank">
+				<i class="fa fa-github"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="mailto:13027991217@163.com" target="_blank">
+				<i class="fa fa-envelope"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="https://gitee.com/alterem" target="_blank">
+				<i class="fa fa-git-square"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-instagram"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<i class="fa fa-twitter"></i>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<i class="fa fa-rss"></i>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+		
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2019, content by Alterem. All Rights Reserved.
+			
+			
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+		
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+
+		<span id="busuanzi_container_page_pv">
+	  		本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		</span>
+
+	
+
+
+
+
+		</p>
+		<p>
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+	</div>
+</footer>
+		
+	<!-- set '1' to show motto in all pages! -->
+
+	<script src="/plugin/motto/motto.js"></script>
+	
+	<script type="text/javascript">
+		$(".motto").html( getMingYanContent() );
+	</script>	
+
+
+
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup">
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/plugin/search/search.js"></script>
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
+
+
+<!-- love effect -->
+
+	<script src="/plugin/love/love.js"></script>
+
+
+<!-- back to top -->
+
+	
+	<div id="totop">
+  		<a href="javascript:;" name="TOTOP" class="fa fa-arrow-up"></a>
+	</div>
+
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<script src="/plugin/vibrant/vibrant.js"></script>
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imgLazyLoader/yall.min.js"></script>
+<script src="/plugin/imgResize/jquery.resizeimagetoparent.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/js/resizediv.js"></script>
+<script src="/js/main.js"></script>
+	</body>	
+</html>
