@@ -280,9 +280,9 @@
       <category term="SonarQube" scheme="http://blog.alterem.top/categories/Sonar/SonarQube/"/>
     
     
-      <category term="SonarQube" scheme="http://blog.alterem.top/tags/SonarQube/"/>
-    
       <category term="Sonar" scheme="http://blog.alterem.top/tags/Sonar/"/>
+    
+      <category term="SonarQube" scheme="http://blog.alterem.top/tags/SonarQube/"/>
     
   </entry>
   
