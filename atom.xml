@@ -280,9 +280,9 @@
       <category term="SonarQube" scheme="http://blog.alterem.top/categories/Sonar/SonarQube/"/>
     
     
-      <category term="Sonar" scheme="http://blog.alterem.top/tags/Sonar/"/>
-    
       <category term="SonarQube" scheme="http://blog.alterem.top/tags/SonarQube/"/>
+    
+      <category term="Sonar" scheme="http://blog.alterem.top/tags/Sonar/"/>
     
   </entry>
   
@@ -407,9 +407,9 @@
       <category term="Ticket" scheme="http://blog.alterem.top/categories/Cas/Redis/Ticket/"/>
     
     
-      <category term="Cas" scheme="http://blog.alterem.top/tags/Cas/"/>
-    
       <category term="Redis" scheme="http://blog.alterem.top/tags/Redis/"/>
+    
+      <category term="Cas" scheme="http://blog.alterem.top/tags/Cas/"/>
     
       <category term="Ticket" scheme="http://blog.alterem.top/tags/Ticket/"/>
     
