@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>10招强化Linux安全的技能 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2018-09-14 17:52">
+                    2018年9月14日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.3k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    17
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="1-找出不必要的服务"><a href="#1-找出不必要的服务" class="headerlink" title="1.找出不必要的服务"></a>1.找出不必要的服务</h3><p>很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。</p>
+<p>查询运行在<strong>runlevel 3</strong>的服务列表：</p>
+<pre><code class="hljs plain">[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &#39;3:on&#39;</code></pre>
+
+<a id="more"></a>
+
+<p>关闭指定的服务：</p>
+<pre><code class="hljs plain">[alter@alter ~]# chkconfig ip6tables off</code></pre>
+
+<hr>
+<p>疑问：为什么查询<strong>runlevel 3</strong>的服务？<br>Linux系统有7个运行级别(runlevel)，分别如下：<br>runlevel 0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动；<br>runlevel 1：单用户工作状态，root权限，用于系统维护，禁止远程登陆；<br>runlevel 2：多用户状态(没有NFS)；<br>runlevel 3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式。这个运行级别的服务会启动httpd，系统提供web server服务，所以主要查看这个运行级别的服务；<br>runlevel 4：系统未使用，保留；<br>runlevel 5：X11控制台，登陆后进入图形GUI模式；<br>runlevel 6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动；</p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrkisisj30eq0q6ajx.jpg" srcset="/img/loading.gif" alt="img"></p>
+<h3 id="2-检查监听的网络端口"><a href="#2-检查监听的网络端口" class="headerlink" title="2.检查监听的网络端口"></a>2.检查监听的网络端口</h3><p>通过netstat命名能够看到所有已经打开的端口，并且可以看到是哪些程序打开的。如果发现某些是必须要的，建议关掉：</p>
+<pre><code class="hljs plain">[alter@alter~]# netstat -tulpn
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address  Foreign Address  State   PID&#x2F;Program name   
+tcp        0      0 0.0.0.0:2181   0.0.0.0:*        LISTEN  48983&#x2F;java          
+tcp        0      0 0.0.0.0:2182   0.0.0.0:*        LISTEN  49051&#x2F;java</code></pre>
+
+<h3 id="3-优化CRON任务"><a href="#3-优化CRON任务" class="headerlink" title="3.优化CRON任务"></a>3.优化CRON任务</h3><p>linux的cron可以执行一些定时任务。并且还可以通过/etc/cron.allow 和 /etc/cron.deny 控制哪些用户可以运行JOB，哪位用户禁止运行JOB。例如:<br>允许用户alter允许JOB，执行如下命令：</p>
+<pre><code class="hljs plain">echo alter &gt;&gt; &#x2F;etc&#x2F;cron.allow</code></pre>
+
+<p>禁止所有用户访问JOB，执行如下命令：</p>
+<pre><code class="hljs plain">echo ALL &gt;&gt;&#x2F;etc&#x2F;cron.deny</code></pre>
+
+<h3 id="4-限制用户使用旧密码"><a href="#4-限制用户使用旧密码" class="headerlink" title="4.限制用户使用旧密码"></a>4.限制用户使用旧密码</h3><p>linux用户的旧密码保存在文件/etc/security/opasswd中：</p>
+<pre><code class="hljs plain">[root@LAPP-V1159 ~]# cat &#x2F;etc&#x2F;security&#x2F;opasswd
+alter:504:4:$1$MVAi&#x2F;EpJ$iXXkV5r3Hjc8AaK2b5KyQ&#x2F;,$1$AbpFPYaD$ZKj12lK6qaYUqgQnEdocd0,$1$POabjmzY$F4Cp6aTwN6RRk1KjZWm8A&#x2F;,$1$LoHe5GHY$QjkLGqABANpLmlQsRB4WE.</code></pre>
+
+<p>检查是否有开启限制使用旧密码，在RHEL / CentOS / Fedora系统中，查看文件：/etc/pam.d/system-auth。在Ubuntu/Debian/Linux Mint系统中，查看文件：/etc/pam.d/common-password，需要下面两行关键内容，其中remember=4，表示不能使用最后4次密码，否则会报错：Password has been already used. Choose another.：</p>
+<pre><code class="hljs plain">auth        sufficient    pam_unix.so nullok try_first_pass
+password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember&#x3D;4</code></pre>
+
+<h3 id="5-检查密码过期"><a href="#5-检查密码过期" class="headerlink" title="5.检查密码过期"></a>5.检查密码过期</h3><p>密码的过期属性可以通过如下命令查看：</p>
+<pre><code class="hljs plain">[root@root ~]# chage -l alter
+Last password change                    : Sep 14, 2018
+Password expires                    : Nov 13, 2018
+Password inactive                    : never
+Account expires                        : never
+Minimum number of days between password change        : 0
+Maximum number of days between password change        : 60
+Number of days of warning before password expires    : 7</code></pre>
+
+<p>修改密码的过期属性可以执行如下命令：</p>
+<pre><code class="hljs plain">chage -M 60 -W 7  alter
+说明：
+-M 60表示密码最大有效期是60天。
+-W 7 表示密码还有7天过期时给出告警提醒。</code></pre>
+
+<h3 id="6-检查密码为空的用户"><a href="#6-检查密码为空的用户" class="headerlink" title="6.检查密码为空的用户"></a>6.检查密码为空的用户</h3><p>密码为空意味着只要知道用户名就能访问，这非常危险。因为用户与密码信息保存在文件/etc/shadow中，且格式如下：</p>
+<pre><code class="hljs plain">admin:$6$YTSkre3DLd4SAZ$Jy9piv&#x2F;gPezhLrLzMMeUleV8F5DNjP:17765:0:99:5:::
+alter:$6$.vMcyE9ss96$YNk2Q5qiS&#x2F;SAeGCcyEFsmspkC5dr3OXfnN:17788:0:60:7:::</code></pre>
+
+<blockquote>
+<p>后面的几个数字是密码过期等属性信息，上面已经提及。</p>
+</blockquote>
+<p>所以，检查密码为空的用户，只需要执行如下命令即可，如果发现有这样的用户，通过root用户执行<code>passwd username</code>强行修改它的密码：</p>
+<pre><code class="hljs plain">cat &#x2F;etc&#x2F;shadow | awk -F: &#39;($2&#x3D;&#x3D;&quot;&quot;)&#123;print $1&#125;&#39;</code></pre>
+
+<h3 id="7-锁定-amp-解锁用户"><a href="#7-锁定-amp-解锁用户" class="headerlink" title="7.锁定&amp;解锁用户"></a>7.锁定&amp;解锁用户</h3><p>和删除用户账户不一样，这个只是限制用户登录。只需要执行如下密码即可锁定&amp;解锁用户：</p>
+<pre><code class="hljs plain">[root@root ~]# passwd -l alter
+Locking password for user alter.
+passwd: Success
+[root@root ~]# passwd -u alter
+Unlocking password for user alter.
+passwd: Success</code></pre>
+
+<p>说明：</p>
+<ul>
+<li>参数l表示lock，即锁定用户密码；</li>
+<li>参数u表示unlock，即解锁用户密码；</li>
+</ul>
+<h3 id="8-关闭IPv6"><a href="#8-关闭IPv6" class="headerlink" title="8.关闭IPv6"></a>8.关闭IPv6</h3><p>现在IPv6基本上没有实际使用，所以我们可以关掉它，在文件/etc/sysconfig/network中增加如下两行内容即可：</p>
+<pre><code class="hljs plain">NETWORKING_IPV6&#x3D;no
+IPV6INIT&#x3D;no</code></pre>
+
+<h3 id="9-复查日志"><a href="#9-复查日志" class="headerlink" title="9.复查日志"></a>9.复查日志</h3><p>Linux服务器上很多的行为都会有记录相应的日志，简单列举一些如下，如果有一些非法操作，就能从这些日志中造成蛛丝马迹，例如非法登陆，非法定时任务等：</p>
+<ul>
+<li>/var/log/message – Where whole system logs or current activity logs are available.</li>
+<li>/var/log/auth.log – Authentication logs.</li>
+<li>/var/log/kern.log – Kernel logs.</li>
+<li>/var/log/cron.log – Crond logs (cron job).</li>
+<li>/var/log/maillog – Mail server logs.</li>
+<li>/var/log/boot.log – System boot log.</li>
+<li>/var/log/mysqld.log – MySQL database server log file.</li>
+<li>/var/log/secure – Authentication log.</li>
+<li>/var/log/utmp or /var/log/wtmp : Login records file.</li>
+<li>/var/log/yum.log: Yum log files.</li>
+</ul>
+<h3 id="10-保持系统更新"><a href="#10-保持系统更新" class="headerlink" title="10.保持系统更新"></a>10.保持系统更新</h3><p>总是让系统更新最新发行的补丁包，因为这些补丁包会修复一些BUG：</p>
+<pre><code class="hljs plain">sudo apt-get upgrade
+
+yum check-update
+yum upgrade</code></pre>
+
+
+
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/10/09/%E5%B9%82%E7%AD%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">幂等</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2018/09/14/SpringCloud%E7%9A%84%E7%89%88%E6%9C%AC/">
+                        <span class="hidden-mobile">SpringCloud的版本</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "10招强化Linux安全的技能&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

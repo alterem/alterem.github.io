@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>Kotlin-基本数据类型 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-03-15 11:19">
+                    2019年3月15日 上午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.6k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    20
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h5 id="Kotlin-基本数据类型"><a href="#Kotlin-基本数据类型" class="headerlink" title="Kotlin 基本数据类型"></a>Kotlin 基本数据类型</h5><blockquote>
+<p>Kotlin 的基本数值类型包括 Byte、Short、Int、Long、Float、Double 等。不同于Java的是，字符不属于数值类型，是一个独立的数据类型。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>位宽度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Double</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Int</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Short</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Byte</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<h5 id="字面常量"><a href="#字面常量" class="headerlink" title="字面常量"></a>字面常量</h5><p>下面是所有类型的字面常量：</p>
+<ul>
+<li>十进制：123</li>
+<li>长整型以大写的 L 结尾：123L</li>
+<li>16 进制以 0x 开头：0x0F</li>
+<li>2 进制以 0b 开头：0b00001011</li>
+<li>注意：8进制不支持</li>
+</ul>
+<p>Kotlin 同时也支持传统符号表示的浮点数值：</p>
+<ul>
+<li>Doubles 默认写法: <code>123.5</code>, <code>123.5e10</code></li>
+<li>Floats 使用 f 或者 F 后缀：<code>123.5f</code></li>
+</ul>
+<p>你可以使用下划线使数字常量更易读：</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> oneMillion = <span class="hljs-number">1_000_000</span>
+<span class="hljs-keyword">val</span> creditCardNumber = <span class="hljs-number">1234_5678_9012_3456L</span>
+<span class="hljs-keyword">val</span> socialSecurityNumber = <span class="hljs-number">999_99_9999L</span>
+<span class="hljs-keyword">val</span> hexBytes = <span class="hljs-number">0xFF_EC_DE_5E</span>
+<span class="hljs-keyword">val</span> bytes = <span class="hljs-number">0b11010010_01101001_10010100_10010010</span></code></pre>
+
+<h5 id="比较两个数字"><a href="#比较两个数字" class="headerlink" title="比较两个数字"></a>比较两个数字</h5><p>Kotlin 中没有基础数据类型，只有封装的数字类型，你每定义的一个变量，其实 Kotlin 帮你封装了一个对象，这样可以保证不会出现空指针。数字类型也一样，所有在比较两个数字的时候，就有比较数据大小和比较两个对象是否相同的区别了。</p>
+<p>在 Kotlin 中，三个等号 === 表示比较对象地址，两个 == 表示比较两个值大小。</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-keyword">val</span> a: <span class="hljs-built_in">Int</span> = <span class="hljs-number">10000</span>
+    println(a === a) <span class="hljs-comment">// true，值相等，对象地址相等</span>
+
+    <span class="hljs-comment">//经过了装箱，创建了两个不同的对象</span>
+    <span class="hljs-keyword">val</span> boxedA: <span class="hljs-built_in">Int</span>? = a
+    <span class="hljs-keyword">val</span> anotherBoxedA: <span class="hljs-built_in">Int</span>? = a
+
+    <span class="hljs-comment">//虽然经过了装箱，但是值是相等的，都是10000</span>
+    println(boxedA === anotherBoxedA) <span class="hljs-comment">//  false，值相等，对象地址不一样</span>
+    println(boxedA == anotherBoxedA) <span class="hljs-comment">// true，值相等</span>
+&#125;</code></pre>
+
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>由于不同的表示方式，较小类型并不是较大类型的子类型，较小的类型不能隐式转换为较大的类型。 这意味着在不进行显式转换的情况下我们不能把 Byte 型值赋给一个 Int 变量。</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> b: <span class="hljs-built_in">Byte</span> = <span class="hljs-number">1</span> <span class="hljs-comment">// OK, 字面值是静态检测的</span>
+<span class="hljs-keyword">val</span> i: <span class="hljs-built_in">Int</span> = b <span class="hljs-comment">// 错误</span></code></pre>
+
+<p>我们可以代用其toInt()方法。</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> b: <span class="hljs-built_in">Byte</span> = <span class="hljs-number">1</span> <span class="hljs-comment">// OK, 字面值是静态检测的</span>
+<span class="hljs-keyword">val</span> i: <span class="hljs-built_in">Int</span> = b.toInt() <span class="hljs-comment">// OK</span></code></pre>
+
+<p>每种数据类型都有下面的这些方法，可以转化为其它的类型：</p>
+<pre><code class="hljs kotlin">toByte(): <span class="hljs-built_in">Byte</span>
+toShort(): <span class="hljs-built_in">Short</span>
+toInt(): <span class="hljs-built_in">Int</span>
+toLong(): <span class="hljs-built_in">Long</span>
+toFloat(): <span class="hljs-built_in">Float</span>
+toDouble(): <span class="hljs-built_in">Double</span>
+toChar(): <span class="hljs-built_in">Char</span></code></pre>
+
+<p>有些情况下也是可以使用自动类型转化的，前提是可以根据上下文环境推断出正确的数据类型而且数学操作符会做相应的重载。例如下面是正确的：</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> l = <span class="hljs-number">1L</span> + <span class="hljs-number">3</span> <span class="hljs-comment">// Long + Int =&gt; Long</span></code></pre>
+
+<h5 id="位操作符"><a href="#位操作符" class="headerlink" title="位操作符"></a>位操作符</h5><p>对于Int和Long类型，还有一系列的位操作符可以使用，分别是：</p>
+<pre><code class="hljs kotlin">shl(bits) – 左移位 (Java’s &lt;&lt;)
+shr(bits) – 右移位 (Java’s &gt;&gt;)
+ushr(bits) – 无符号右移位 (Java’s &gt;&gt;&gt;)
+and(bits) – 与
+or(bits) – 或
+xor(bits) – 异或
+inv() – 反向</code></pre>
+
+<h5 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h5><p>和 Java 不一样，Kotlin 中的 Char 不能直接和数字操作，Char 必需是单引号 <strong>‘</strong> 包含起来的。比如普通字符 ‘0’，’a’。</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">check</span><span class="hljs-params">(c: <span class="hljs-type">Char</span>)</span></span> &#123;
+    <span class="hljs-keyword">if</span> (c == <span class="hljs-number">1</span>) &#123; <span class="hljs-comment">// 错误：类型不兼容</span>
+        <span class="hljs-comment">// ……</span>
+    &#125;
+&#125;</code></pre>
+
+<p>字符字面值用单引号括起来: ‘1’。 特殊字符可以用反斜杠转义。 支持这几个转义序列：\t、 \b、\n、\r、&#39;、&quot;、\ 和 $。 编码其他字符要用 Unicode 转义序列语法：’\uFF00’。</p>
+<p>我们可以显式把字符转换为 Int 数字：</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">decimalDigitValue</span><span class="hljs-params">(c: <span class="hljs-type">Char</span>)</span></span>: <span class="hljs-built_in">Int</span> &#123;
+    <span class="hljs-keyword">if</span> (c !<span class="hljs-keyword">in</span> <span class="hljs-string">'0'</span>..<span class="hljs-string">'9'</span>)
+        <span class="hljs-keyword">throw</span> IllegalArgumentException(<span class="hljs-string">"Out of range"</span>)
+    <span class="hljs-keyword">return</span> c.toInt() - <span class="hljs-string">'0'</span>.toInt() <span class="hljs-comment">// 显式转换为数字</span>
+&#125;</code></pre>
+
+<p>当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性。</p>
+<h5 id="布尔"><a href="#布尔" class="headerlink" title="布尔"></a>布尔</h5><p>布尔用 Boolean 类型表示，它有两个值：true 和 false。</p>
+<p>若需要可空引用布尔会被装箱。</p>
+<p>内置的布尔运算有：</p>
+<pre><code class="hljs kotlin">|| – 短路逻辑或
+&amp;&amp; – 短路逻辑与
+! - 逻辑非</code></pre>
+
+<h5 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h5><p>数组用类 Array 实现，并且还有一个 size 属性及 get 和 set 方法，由于使用 [] 重载了 get 和 set 方法，所以我们可以通过下标很方便的获取或者设置数组对应位置的值。</p>
+<p>数组的创建两种方式：一种是使用函数arrayOf()；另外一种是使用工厂函数。如下所示，我们分别是两种方式创建了两个数组：</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-comment">//[1,2,3]</span>
+    <span class="hljs-keyword">val</span> a = arrayOf(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    <span class="hljs-comment">//[0,2,4]</span>
+    <span class="hljs-keyword">val</span> b = Array(<span class="hljs-number">3</span>, &#123; i -&gt; (i * <span class="hljs-number">2</span>) &#125;)
+
+    <span class="hljs-comment">//读取数组内容</span>
+    println(a[<span class="hljs-number">0</span>])    <span class="hljs-comment">// 输出结果：1</span>
+    println(b[<span class="hljs-number">1</span>])    <span class="hljs-comment">// 输出结果：2</span>
+&#125;</code></pre>
+
+<p>如上所述，[] 运算符代表调用成员函数 get() 和 set()。</p>
+<p>注意: 与 Java 不同的是，Kotlin 中数组是不型变的（invariant）。</p>
+<p>除了类Array，还有ByteArray, ShortArray, IntArray，用来表示各个类型的数组，省去了装箱操作，因此效率更高，其用法同Array一样：</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> x: IntArray = intArrayOf(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+x[<span class="hljs-number">0</span>] = x[<span class="hljs-number">1</span>] + x[<span class="hljs-number">2</span>]</code></pre>
+
+<h5 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h5><p>和 Java 一样，String 是不可变的。方括号 [] 语法可以很方便的获取字符串中的某个字符，也可以通过 for 循环来遍历：</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">for</span> (c <span class="hljs-keyword">in</span> str) &#123;
+    println(c)
+&#125;</code></pre>
+
+<p>Kotlin 支持三个引号 “”” 扩起来的字符串，支持多行字符串，比如：</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-keyword">val</span> text = <span class="hljs-string">"""</span>
+<span class="hljs-string">    多行字符串</span>
+<span class="hljs-string">    多行字符串</span>
+<span class="hljs-string">    """</span>
+<span class="hljs-string">    println(text)   // 输出有一些前置空格</span>
+<span class="hljs-string">&#125;</span></code></pre>
+
+<p>String 可以通过 trimMargin() 方法来删除多余的空白。</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-keyword">val</span> text = <span class="hljs-string">"""</span>
+<span class="hljs-string">    |多行字符串</span>
+<span class="hljs-string">    |Kotlin教程</span>
+<span class="hljs-string">    |多行字符串</span>
+<span class="hljs-string">    |Kotlin</span>
+<span class="hljs-string">    """</span>.trimMargin()
+    println(text)    <span class="hljs-comment">// 前置空格删除了</span>
+&#125;</code></pre>
+
+<p>默认 | 用作边界前缀，但你可以选择其他字符并作为参数传入，比如 trimMargin(“&gt;”)。</p>
+<h5 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h5><p>字符串可以包含模板表达式 ，即一些小段代码，会求值并把结果合并到字符串中。 模板表达式以美元符（$）开头，由一个简单的名字构成:</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-keyword">val</span> i = <span class="hljs-number">10</span>
+    <span class="hljs-keyword">val</span> s = <span class="hljs-string">"i = <span class="hljs-variable">$i</span>"</span> <span class="hljs-comment">// 求值结果为 "i = 10"</span>
+    println(s)
+&#125;</code></pre>
+
+<p>或者用花括号扩起来的任意表达式:</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-keyword">val</span> s = <span class="hljs-string">"kotlin"</span>
+    <span class="hljs-keyword">val</span> str = <span class="hljs-string">"<span class="hljs-variable">$s</span>.length is <span class="hljs-subst">$&#123;s.length&#125;</span>"</span> <span class="hljs-comment">// 求值结果为 "kotlin.length is 6"</span>
+    println(str)
+&#125;</code></pre>
+
+<p>原生字符串和转义字符串内部都支持模板。 如果你需要在原生字符串中表示字面值 $ 字符（它不支持反斜杠转义），你可以用下列语法：</p>
+<pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-keyword">val</span> price = <span class="hljs-string">"""</span>
+<span class="hljs-string">    <span class="hljs-subst">$&#123;<span class="hljs-string">'$'</span>&#125;</span>9.99</span>
+<span class="hljs-string">    """</span>
+<span class="hljs-string">    println(price)  // 求值结果为 $9.99</span>
+<span class="hljs-string">&#125;</span></code></pre>
+
+
+
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Kotlin/">Kotlin</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Kotlin/">Kotlin</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CentOS下安装FreeTDS</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/03/14/Kotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+                        <span class="hidden-mobile">Kotlin-基础语法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Kotlin-基本数据类型&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

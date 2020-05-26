@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>使用BigDecimal进行精确运算 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-06-12 12:57">
+                    2019年6月12日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    785 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    10
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>首先我们先来看如下代码示例： </p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test_1</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        System.out.println(<span class="hljs-number">0.06</span>+<span class="hljs-number">0.01</span>);
+        System.out.println(<span class="hljs-number">1.0</span>-<span class="hljs-number">0.42</span>);
+        System.out.println(<span class="hljs-number">4.015</span>*<span class="hljs-number">100</span>);
+        System.out.println(<span class="hljs-number">303.1</span>/<span class="hljs-number">1000</span>);
+    &#125;
+    
+&#125;</code></pre>
+
+<p>运行结果如下。         </p>
+<p>​         0.06999999999999999         </p>
+<p>​         0.5800000000000001         </p>
+<p>​         401.49999999999994         </p>
+<p>​         0.30310000000000004         </p>
+<p>​         你认为你看错了，但结果却是是这样的。问题在哪里呢？原因在于我们的计算机是二进制的。浮点数没有办法是用二进制进行精确表示。我们的CPU表示浮点数由两个部分组成：指数和尾数，这样的表示方法一般都会失去一定的精确度，有些浮点数运算也会产生一定的误差。如：2.4的二进制表示并非就是精确的2.4。反而最为接近的二进制表示是 2.3999999999999999。浮点数的值实际上是由一个特定的数学公式计算得到的。         </p>
+<a id="more"></a>
+
+<p>​          其实java的float只能用来进行科学计算或工程计算，在大多数的商业计算中，一般采用java.math.BigDecimal类来进行精确计算。         </p>
+<p>​          在使用BigDecimal类来进行计算的时候，主要分为以下步骤：         </p>
+<p>​             1、用float或者double变量构建BigDecimal对象。         </p>
+<p>​             2、通过调用BigDecimal的加，减，乘，除等相应的方法进行算术运算。         </p>
+<p>​             3、把BigDecimal对象转换成float，double，int等类型。         </p>
+<p>​          一般来说，可以使用BigDecimal的构造方法或者静态方法的valueOf()方法把基本类型的变量构建成BigDecimal对象。         </p>
+<pre><code class="hljs java">BigDecimal b1 = <span class="hljs-keyword">new</span> BigDecimal(Double.toString(<span class="hljs-number">0.48</span>));
+BigDecimal b2 = BigDecimal.valueOf(<span class="hljs-number">0.48</span>);</code></pre>
+
+<p>   对于常用的加，减，乘，除，BigDecimal类提供了相应的成员方法。         </p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> BigDecimal <span class="hljs-title">add</span><span class="hljs-params">(BigDecimal value)</span></span>;                        <span class="hljs-comment">//加法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> BigDecimal <span class="hljs-title">subtract</span><span class="hljs-params">(BigDecimal value)</span></span>;                   <span class="hljs-comment">//减法 </span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> BigDecimal <span class="hljs-title">multiply</span><span class="hljs-params">(BigDecimal value)</span></span>;                   <span class="hljs-comment">//乘法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> BigDecimal <span class="hljs-title">divide</span><span class="hljs-params">(BigDecimal value)</span></span>;                     <span class="hljs-comment">//除法</span></code></pre>
+
+<p> 进行相应的计算后，我们可能需要将BigDecimal对象转换成相应的基本数据类型的变量，可以使用floatValue()，doubleValue()等方法。                 </p>
+<p>​          下面是一个工具类，该工具类提供加，减，乘，除运算。 </p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Arith</span> </span>&#123;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 提供精确加法计算的add方法</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value1 被加数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value2 加数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 两个参数的和</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">double</span> value1,<span class="hljs-keyword">double</span> value2)</span></span>&#123;
+        BigDecimal b1 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value1));
+        BigDecimal b2 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value2));
+        <span class="hljs-keyword">return</span> b1.add(b2).doubleValue();
+    &#125;
+    
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 提供精确减法运算的sub方法</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value1 被减数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value2 减数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 两个参数的差</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">sub</span><span class="hljs-params">(<span class="hljs-keyword">double</span> value1,<span class="hljs-keyword">double</span> value2)</span></span>&#123;
+        BigDecimal b1 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value1));
+        BigDecimal b2 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value2));
+        <span class="hljs-keyword">return</span> b1.subtract(b2).doubleValue();
+    &#125;
+    
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 提供精确乘法运算的mul方法</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value1 被乘数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value2 乘数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 两个参数的积</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-keyword">double</span> value1,<span class="hljs-keyword">double</span> value2)</span></span>&#123;
+        BigDecimal b1 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value1));
+        BigDecimal b2 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value2));
+        <span class="hljs-keyword">return</span> b1.multiply(b2).doubleValue();
+    &#125;
+    
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 提供精确的除法运算方法div</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value1 被除数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value2 除数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> scale 精确范围</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 两个参数的商</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> IllegalAccessException</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">div</span><span class="hljs-params">(<span class="hljs-keyword">double</span> value1,<span class="hljs-keyword">double</span> value2,<span class="hljs-keyword">int</span> scale)</span> <span class="hljs-keyword">throws</span> IllegalAccessException</span>&#123;
+        <span class="hljs-comment">//如果精确范围小于0，抛出异常信息</span>
+        <span class="hljs-keyword">if</span>(scale&lt;<span class="hljs-number">0</span>)&#123;         
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalAccessException(<span class="hljs-string">"精确度不能小于0"</span>);
+        &#125;
+        BigDecimal b1 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value1));
+        BigDecimal b2 = <span class="hljs-keyword">new</span> BigDecimal(Double.valueOf(value2));
+        <span class="hljs-keyword">return</span> b1.divide(b2, scale).doubleValue();    
+    &#125;
+&#125;</code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/12/String%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C%E2%80%9D-%E2%80%9D%E7%9A%84%E4%BC%98%E5%8C%96/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">String拼接操作”+”的优化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/06/12/Java%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E6%9C%80%E5%B8%B8%E7%8A%AF%E7%9A%8410%E4%B8%AA%E9%94%99%E8%AF%AF/">
+                        <span class="hidden-mobile">Java开发人员最常犯的10个错误</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "使用BigDecimal进行精确运算&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>CAS4.0分布式部署以及使用Redis缓存共享ticket - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-06-12 22:14">
+                    2019年6月12日 晚上
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    961 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    17
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>CAS4.0分布式部署以及使用Redis缓存共享ticket </p>
+<p>当业务不断拓展，系统用户在不断增加时，我们的平台统一登录认证服务无法承受当前压力。此时，我们需要分布式部署我们的统一登录认证服务。 </p>
+<p>CAS的分布式部署，除了注意session共享，通过nginx或者apache反向代理外，还需要注意票据ticket的存储共享。 在ticketRegistry.xml文件中，配置ticket相关的信息。</p>
+<a id="more"></a>
+
+<p>主要配置：1.注册ticket存储，2.定时清除过期ticket。 </p>
+<p>由于我们使用的Redis缓存Key设置了过期时间，因此可以注释掉清除过期ticket的定时器及相关类。</p>
+<p>编写新的ticket存储类需要继承类AbstractDistributedTicketRegistry。代码如下： </p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> cas.ticket;  
+  
+<span class="hljs-keyword">import</span> java.io.ByteArrayInputStream;  
+<span class="hljs-keyword">import</span> java.io.ByteArrayOutputStream;  
+<span class="hljs-keyword">import</span> java.io.ObjectInputStream;  
+<span class="hljs-keyword">import</span> java.io.ObjectOutputStream;  
+<span class="hljs-keyword">import</span> java.util.Collection;  
+  
+<span class="hljs-keyword">import</span> org.jasig.cas.ticket.Ticket;  
+<span class="hljs-keyword">import</span> org.jasig.cas.ticket.TicketGrantingTicket;  
+<span class="hljs-keyword">import</span> org.jasig.cas.ticket.registry.AbstractDistributedTicketRegistry;  
+  
+<span class="hljs-keyword">import</span> cn.net.xinyi.util.SysPropertiesUtil;  
+<span class="hljs-keyword">import</span> redis.clients.jedis.Jedis;  
+<span class="hljs-keyword">import</span> redis.clients.jedis.JedisPool;  
+<span class="hljs-keyword">import</span> redis.clients.jedis.JedisPoolConfig;  
+  
+<span class="hljs-comment">/** </span>
+<span class="hljs-comment"> * 使用Redis存储Ticket </span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> XIVA </span>
+<span class="hljs-comment"> */</span>  
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisTicketRegistry</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractDistributedTicketRegistry</span>  </span>
+<span class="hljs-class"></span>&#123;  
+  
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> redisDatabaseNum;  
+  
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String hosts;  
+      
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> port;  
+      
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> connTimeout;  
+      
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String redisPassword;  
+  
+    <span class="hljs-comment">/** </span>
+<span class="hljs-comment">     * ST最大空闲时间 </span>
+<span class="hljs-comment">     */</span>  
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> st_time;  
+  
+    <span class="hljs-comment">/** </span>
+<span class="hljs-comment">     * TGT最大空闲时间 </span>
+<span class="hljs-comment">     */</span>  
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> tgt_time;  
+  
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> JedisPool cachePool;  
+  
+    <span class="hljs-keyword">static</span>  
+    &#123;  
+        redisDatabaseNum = SysPropertiesUtil.getPropertyInt(<span class="hljs-string">"redis_database_num"</span>);  
+  
+        hosts = SysPropertiesUtil.getProperty(<span class="hljs-string">"redis_hosts"</span>);  
+          
+        port = SysPropertiesUtil.getPropertyInt(<span class="hljs-string">"redis_port"</span>);  
+  
+        connTimeout = SysPropertiesUtil.getPropertyInt(<span class="hljs-string">"redis_conn_timeout"</span>);  
+          
+        redisPassword = SysPropertiesUtil.getProperty(<span class="hljs-string">"redis_password"</span>);  
+  
+        st_time = SysPropertiesUtil.getPropertyInt(<span class="hljs-string">"st_time"</span>);  
+  
+        tgt_time = SysPropertiesUtil.getPropertyInt(<span class="hljs-string">"tgt_time"</span>);  
+  
+        cachePool = <span class="hljs-keyword">new</span> JedisPool(<span class="hljs-keyword">new</span> JedisPoolConfig(), hosts, port, connTimeout, redisPassword);  
+    &#125;  
+  
+    <span class="hljs-meta">@Override</span>  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addTicket</span><span class="hljs-params">(Ticket ticket)</span>  </span>
+<span class="hljs-function">    </span>&#123;  
+        Jedis jedis = cachePool.getResource();  
+  
+        jedis.select(redisDatabaseNum);  
+  
+        <span class="hljs-keyword">int</span> seconds = <span class="hljs-number">0</span>;  
+  
+        String key = ticket.getId();  
+  
+        <span class="hljs-keyword">if</span> (ticket <span class="hljs-keyword">instanceof</span> TicketGrantingTicket)  
+        &#123;  
+            seconds = tgt_time / <span class="hljs-number">1000</span>;  
+        &#125;  
+        <span class="hljs-keyword">else</span>  
+        &#123;  
+            seconds = st_time / <span class="hljs-number">1000</span>;  
+        &#125;  
+  
+        ByteArrayOutputStream bos = <span class="hljs-keyword">new</span> ByteArrayOutputStream();  
+        ObjectOutputStream oos = <span class="hljs-keyword">null</span>;  
+  
+        <span class="hljs-keyword">try</span>  
+        &#123;  
+  
+            oos = <span class="hljs-keyword">new</span> ObjectOutputStream(bos);  
+  
+            oos.writeObject(ticket);  
+  
+        &#125;  
+        <span class="hljs-keyword">catch</span> (Exception e)  
+        &#123;  
+            logger.error(<span class="hljs-string">"adding ticket to redis error."</span>);  
+        &#125;  
+        <span class="hljs-keyword">finally</span>  
+        &#123;  
+            <span class="hljs-keyword">try</span>  
+            &#123;  
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> != oos)  
+                    oos.close();  
+  
+            &#125;  
+            <span class="hljs-keyword">catch</span> (Exception e)  
+            &#123;  
+                logger.error(<span class="hljs-string">"oos closing error when adding ticket to redis."</span>);  
+            &#125;  
+        &#125;  
+  
+        jedis.set(key.getBytes(), bos.toByteArray());  
+        jedis.expire(key.getBytes(), seconds);  
+        jedis.close();  
+  
+    &#125;  
+  
+    <span class="hljs-meta">@Override</span>  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">deleteTicket</span><span class="hljs-params">(String ticketId)</span>  </span>
+<span class="hljs-function">    </span>&#123;  
+        <span class="hljs-keyword">if</span> (ticketId == <span class="hljs-keyword">null</span>)  
+        &#123;  
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;  
+        &#125;  
+  
+        Jedis jedis = cachePool.getResource();  
+        jedis.select(redisDatabaseNum);  
+          
+        jedis.del(ticketId.getBytes());  
+        jedis.close();  
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;  
+    &#125;  
+  
+    <span class="hljs-meta">@Override</span>  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Ticket <span class="hljs-title">getTicket</span><span class="hljs-params">(String ticketId)</span>  </span>
+<span class="hljs-function">    </span>&#123;  
+        <span class="hljs-keyword">return</span> getProxiedTicketInstance(getRawTicket(ticketId));  
+    &#125;  
+  
+    <span class="hljs-function"><span class="hljs-keyword">private</span> Ticket <span class="hljs-title">getRawTicket</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String ticketId)</span>  </span>
+<span class="hljs-function">    </span>&#123;  
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> == ticketId)  
+        &#123;  
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;  
+        &#125;  
+  
+        Jedis jedis = cachePool.getResource();  
+        jedis.select(redisDatabaseNum);  
+        Ticket ticket = <span class="hljs-keyword">null</span>;  
+        <span class="hljs-keyword">byte</span>[] bytes = jedis.get(ticketId.getBytes());  
+        <span class="hljs-keyword">if</span> (bytes == <span class="hljs-keyword">null</span> || bytes.length &lt; <span class="hljs-number">1</span>)  
+        &#123;  
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;  
+        &#125;  
+        ByteArrayInputStream bais = <span class="hljs-keyword">new</span> ByteArrayInputStream(bytes);  
+        ObjectInputStream ois = <span class="hljs-keyword">null</span>;  
+  
+        <span class="hljs-keyword">try</span>  
+        &#123;  
+            ois = <span class="hljs-keyword">new</span> ObjectInputStream(bais);  
+            ticket = (Ticket) ois.readObject();  
+        &#125;  
+        <span class="hljs-keyword">catch</span> (Exception e)  
+        &#123;  
+            e.printStackTrace();  
+            logger.error(<span class="hljs-string">"getting ticket to redis error."</span>);  
+        &#125;  
+        <span class="hljs-keyword">finally</span>  
+        &#123;  
+            <span class="hljs-keyword">try</span>  
+            &#123;  
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> != ois)  
+                &#123;  
+                    ois.close();  
+                &#125;  
+            &#125;  
+            <span class="hljs-keyword">catch</span> (Exception e)  
+            &#123;  
+                e.printStackTrace();  
+                logger.error(<span class="hljs-string">"ois closing error when getting ticket to redis."</span>);  
+            &#125;  
+        &#125;  
+  
+        jedis.close();  
+        <span class="hljs-keyword">return</span> ticket;  
+    &#125;  
+  
+    <span class="hljs-meta">@Override</span>  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Collection&lt;Ticket&gt; <span class="hljs-title">getTickets</span><span class="hljs-params">()</span>  </span>
+<span class="hljs-function">    </span>&#123;  
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException(<span class="hljs-string">"GetTickets not supported."</span>);    
+    &#125;  
+  
+    <span class="hljs-meta">@Override</span>  
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">needsCallback</span><span class="hljs-params">()</span>  </span>
+<span class="hljs-function">    </span>&#123;  
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;  
+    &#125;  
+  
+    <span class="hljs-meta">@Override</span>  
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateTicket</span><span class="hljs-params">(Ticket ticket)</span>  </span>
+<span class="hljs-function">    </span>&#123;  
+        <span class="hljs-keyword">this</span>.addTicket(ticket);    
+    &#125;  
+  
+&#125;</code></pre>
+
+<p>变更后的ticketRegistry.xml代码如下：</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>  
+<span class="hljs-comment">&lt;!--  </span>
+<span class="hljs-comment">  </span>
+<span class="hljs-comment">    Licensed to Jasig under one or more contributor license  </span>
+<span class="hljs-comment">    agreements. See the NOTICE file distributed with this work  </span>
+<span class="hljs-comment">    for additional information regarding copyright ownership.  </span>
+<span class="hljs-comment">    Jasig licenses this file to you under the Apache License,  </span>
+<span class="hljs-comment">    Version 2.0 (the "License"); you may not use this file  </span>
+<span class="hljs-comment">    except in compliance with the License.  You may obtain a  </span>
+<span class="hljs-comment">    copy of the License at the following location:  </span>
+<span class="hljs-comment">  </span>
+<span class="hljs-comment">      http://www.apache.org/licenses/LICENSE-2.0  </span>
+<span class="hljs-comment">  </span>
+<span class="hljs-comment">    Unless required by applicable law or agreed to in writing,  </span>
+<span class="hljs-comment">    software distributed under the License is distributed on an  </span>
+<span class="hljs-comment">    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY  </span>
+<span class="hljs-comment">    KIND, either express or implied.  See the License for the  </span>
+<span class="hljs-comment">    specific language governing permissions and limitations  </span>
+<span class="hljs-comment">    under the License.  </span>
+<span class="hljs-comment">  </span>
+<span class="hljs-comment">--&gt;</span>  
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>  </span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:p</span>=<span class="hljs-string">"http://www.springframework.org/schema/p"</span>  </span>
+<span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>  
+    <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>  
+        Configuration for the default TicketRegistry which stores the tickets in-memory and cleans them out as specified intervals.  
+    <span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span>  
+         
+  <span class="hljs-comment">&lt;!-- Ticket Registry   </span>
+<span class="hljs-comment">  &lt;bean id="ticketRegistry" class="org.jasig.cas.ticket.registry.DefaultTicketRegistry" /&gt;  </span>
+<span class="hljs-comment">  --&gt;</span>  
+    
+  <span class="hljs-comment">&lt;!-- ticket store on redis db  --&gt;</span>  
+  <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ticketRegistry"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"cas.ticket.RedisTicketRegistry"</span> /&gt;</span>  
+    
+    <span class="hljs-comment">&lt;!--Quartz --&gt;</span>  
+    <span class="hljs-comment">&lt;!-- TICKET REGISTRY CLEANER   </span>
+<span class="hljs-comment">    &lt;bean id="ticketRegistryCleaner" class="org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner"  </span>
+<span class="hljs-comment">        p:ticketRegistry-ref="ticketRegistry"  </span>
+<span class="hljs-comment">        p:logoutManager-ref="logoutManager" /&gt;  </span>
+<span class="hljs-comment">      </span>
+<span class="hljs-comment">    &lt;bean id="jobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"  </span>
+<span class="hljs-comment">        p:targetObject-ref="ticketRegistryCleaner"  </span>
+<span class="hljs-comment">        p:targetMethod="clean" /&gt;  </span>
+<span class="hljs-comment">      </span>
+<span class="hljs-comment">    &lt;bean id="triggerJobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.SimpleTriggerBean"  </span>
+<span class="hljs-comment">        p:jobDetail-ref="jobDetailTicketRegistryCleaner"  </span>
+<span class="hljs-comment">        p:startDelay="20000"  </span>
+<span class="hljs-comment">        p:repeatInterval="5000000" /&gt; --&gt;</span>  
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Cas/">Cas</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Cas/Redis/">Redis</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Cas/Redis/Ticket/">Ticket</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Cas/">Cas</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Ticket/">Ticket</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/13/MyBatis%E5%9C%A8Spring%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MyBatis在Spring环境下的事务管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/06/12/Spring%E6%9E%81%E9%80%9F%E9%9B%86%E6%88%90%E6%B3%A8%E8%A7%A3Redis%E5%AE%9E%E8%B7%B5/">
+                        <span class="hidden-mobile">Spring极速集成注解Redis实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "CAS4.0分布式部署以及使用Redis缓存共享ticket&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

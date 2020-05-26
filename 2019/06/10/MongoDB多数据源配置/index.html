@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>MongoDB多数据源配置 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-06-10 17:06">
+                    2019年6月10日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    939 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    15
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>SpringBoot对常用的数据库支持外，对NoSQL 数据库也进行了封装自动化。<br>这一篇主要讲springboot与mongo多数据源相关的配置</p>
+<h3 id="1、mongo的介绍"><a href="#1、mongo的介绍" class="headerlink" title="1、mongo的介绍"></a>1、mongo的介绍</h3><p>MongoDB是一个高性能，开源，无模式的文档型数据库，是当前NoSql数据库中比较热门的一种。它在许多场景下可用于替代传统的关系型数据库或键/值存储方式,这里不再多做说明。详细介绍参考<br><a href="http://blog.csdn.net/liusong0605/article/details/10554395" target="_blank" rel="noopener">mongo入门</a></p>
+<a id="more"></a>
+
+<h3 id="2、项目构建"><a href="#2、项目构建" class="headerlink" title="2、项目构建"></a>2、项目构建</h3><p>添加pom文件</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-mongodb<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<h3 id="3、在application-properties中添加配置"><a href="#3、在application-properties中添加配置" class="headerlink" title="3、在application.properties中添加配置"></a>3、在application.properties中添加配置</h3><pre><code class="hljs properties"><span class="hljs-comment">##start mongodb for basic</span>
+<span class="hljs-comment">#----------------------------------------------</span>
+<span class="hljs-meta">basic.mongodb.host</span>= <span class="hljs-string">127.0.0.1</span>
+<span class="hljs-meta">basic.mongodb.port</span>= <span class="hljs-string">27017</span>
+<span class="hljs-meta">basic.mongodb.database</span>= <span class="hljs-string">basic</span>
+<span class="hljs-comment">#----------------------------------------------</span>
+<span class="hljs-comment">##end mongodb for spirit</span>
+
+<span class="hljs-comment">##start mongodb for basic</span>
+<span class="hljs-comment">#----------------------------------------------</span>
+<span class="hljs-meta">order.mongodb.host</span>= <span class="hljs-string">127.0.0.2</span>
+<span class="hljs-meta">order.mongodb.port</span>= <span class="hljs-string">27017</span>
+<span class="hljs-meta">order.mongodb.database</span>= <span class="hljs-string">order</span>
+<span class="hljs-comment">#----------------------------------------------</span>
+<span class="hljs-comment">##end mongodb for spirit</span></code></pre>
+
+<h3 id="4、配置相应的数据源"><a href="#4、配置相应的数据源" class="headerlink" title="4、配置相应的数据源"></a>4、配置相应的数据源</h3><p>这里我们采用mongoTemplate这种模式去做mongo的相关操作</p>
+<p>先写一个基础的抽象类</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractMongoConfigure</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> String host, database;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> port;
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">       * Method that creates MongoDbFactory</span>
+<span class="hljs-comment">       * Common to both of the MongoDb connections</span>
+<span class="hljs-comment">       */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoDbFactory <span class="hljs-title">mongoDbFactory</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleMongoDbFactory(<span class="hljs-keyword">new</span> MongoClient(host, port), database);
+    &#125;
+
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">     * Factory method to create the MongoTemplate</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getHost</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> host;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setHost</span><span class="hljs-params">(String host)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.host = host;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDatabase</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> database;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDatabase</span><span class="hljs-params">(String database)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.database = database;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getPort</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> port;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> port)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.port = port;
+    &#125;
+&#125;</code></pre>
+
+<h3 id="3-1-接下来第一个库的封装"><a href="#3-1-接下来第一个库的封装" class="headerlink" title="3.1)接下来第一个库的封装"></a>3.1)接下来第一个库的封装</h3><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@EnableMongoRepositories</span>(basePackages = &#123;<span class="hljs-string">"com.sunliangliang.service.basic"</span>&#125;, mongoTemplateRef = <span class="hljs-string">"basicMongoTemplate"</span>)
+<span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"basic.mongodb"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BasicMongoConfigure</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMongoConfigure</span> </span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"basicMongoTemplate"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MongoTemplate(mongoDbFactory());
+    &#125;
+&#125;</code></pre>
+
+<p>其中 basePackages 的值是该库应用于相应的基础包，prefix即为相应的applications中的配置值</p>
+<h4 id="3-2-接下来第两个库的封装"><a href="#3-2-接下来第两个库的封装" class="headerlink" title="3.2)接下来第两个库的封装"></a>3.2)接下来第两个库的封装</h4><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@EnableMongoRepositories</span>(basePackages = &#123;<span class="hljs-string">"com.sunliangliang.service.order"</span>&#125;, mongoTemplateRef = <span class="hljs-string">"orderMongoTemplate"</span>)
+<span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"order.mongodb"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderMongoConfigure</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMongoConfigure</span></span>&#123;
+    <span class="hljs-meta">@Primary</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"orderMongoTemplate"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MongoTemplate(mongoDbFactory());
+    &#125;
+&#125;</code></pre>
+
+<p>封装完成后接下来进行相应实体的配置</p>
+<h3 id="4、创建数据实体"><a href="#4、创建数据实体" class="headerlink" title="4、创建数据实体"></a>4、创建数据实体</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> id;
+    <span class="hljs-keyword">private</span> String username;
+    <span class="hljs-keyword">private</span> String password;
+    <span class="hljs-keyword">private</span> String nickname;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> id;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">long</span> id)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.id = id;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> username;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUsername</span><span class="hljs-params">(String username)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.username = username;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPassword</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> password;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPassword</span><span class="hljs-params">(String password)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.password = password;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getNickname</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> nickname;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setNickname</span><span class="hljs-params">(String nickname)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.nickname = nickname;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> age;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.age = age;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+&#125;</code></pre>
+
+<h3 id="4、添加对实体的操作"><a href="#4、添加对实体的操作" class="headerlink" title="4、添加对实体的操作"></a>4、添加对实体的操作</h3><p>在这里我写了一个公用的接口用于基础的增删改查</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BaseService</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;
+    <span class="hljs-function">Boolean <span class="hljs-title">save</span><span class="hljs-params">(T entity)</span></span>;
+
+    <span class="hljs-function">Boolean <span class="hljs-title">update</span><span class="hljs-params">(T entity)</span></span>;
+
+    <span class="hljs-function">Boolean <span class="hljs-title">delete</span><span class="hljs-params">(Long id)</span></span>;
+
+    <span class="hljs-function">T <span class="hljs-title">getById</span><span class="hljs-params">(Long id)</span></span>;
+
+    <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listAll</span><span class="hljs-params">(T entity)</span></span>;
+&#125;</code></pre>
+
+<p>接下来接口的实现</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfoService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BaseService</span>&lt;<span class="hljs-title">UserInfo</span>&gt;</span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-meta">@Qualifier</span>(<span class="hljs-string">"basicMongoTemplate"</span>)
+    <span class="hljs-keyword">private</span> MongoTemplate mongoTemplate;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">save</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;
+        mongoTemplate.save(entity);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">update</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">delete</span><span class="hljs-params">(Long id)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> UserInfo <span class="hljs-title">getById</span><span class="hljs-params">(Long id)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> mongoTemplate.findAll(UserInfo<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title">listAll</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>注意此处@Qualifier(“basicMongoTemplate”)中即为相应的具体实现类。</p>
+<p>这里只写了添加和查询列表的实现，其他的查询相应的api即可</p>
+<pre><code class="hljs java"><span class="hljs-meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>
+<span class="hljs-class">@<span class="hljs-title">SpringBootTest</span></span>
+<span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">UserInfoServiceTest</span> </span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> UserInfoService userInfoService;
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+        UserInfo userInfo = <span class="hljs-keyword">new</span> UserInfo();
+        userInfo.setAge(<span class="hljs-number">23</span>);
+        userInfo.setId(<span class="hljs-number">1000l</span>);
+        userInfo.setName(<span class="hljs-string">"管理员"</span>);
+        userInfo.setNickname(<span class="hljs-string">"hehe"</span>);
+        userInfo.setPassword(<span class="hljs-string">"123456"</span>);
+        userInfo.setUsername(<span class="hljs-string">"admin"</span>);
+        userInfoService.save(userInfo);
+    &#125;
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">listAll</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+        userInfoService.listAll();
+    &#125;
+&#125;</code></pre>
+
+<p>若库不存在，会自动生成相应的库和文档</p>
+<p>另一个order相关库的配置就不再这里写了</p>
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/MongoDB/">MongoDB</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MongoDB/">MongoDB</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/10/HTTP%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HTTP协议状态码详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/06/10/JAVA%E6%93%8D%E4%BD%9CMongoDB%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%88%86%E4%BA%AB/">
+                        <span class="hidden-mobile">JAVA操作MongoDB工具类分享</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "MongoDB多数据源配置&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

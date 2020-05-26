@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>JAVA操作MongoDB工具类分享 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-06-10 17:01">
+                    2019年6月10日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    3.4k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    57
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>最近做了个用MongoDB存储的项目，由于MongoDB对开发人员不开放，由DBA统一管理。因此，自己抽时间写了个MongoDB的查询机。便于查询项目中的数据，方便维护和分析问题。总结了一些java操作MongoDB的方法。本文没有使用spring-data来操作MongoDB。而是直接使用MongoDB for java的原始API。现在介绍一下工具类。 </p>
+<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h1><p>MongoDB的安装，不多做介绍。 </p>
+<p>MongoDB的java驱动 </p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mongodb<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mongo-java-driver<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.11.3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<a id="more"></a>
+
+<h1 id="2-封装实体介绍"><a href="#2-封装实体介绍" class="headerlink" title="2.封装实体介绍"></a>2.封装实体介绍</h1><ul>
+<li><p>MongoDBCursor——MongoDB条件查询封装实体（支持limit，skip，sort）     </p>
+</li>
+<li><p>MongoDBEntity——MongoDB集合封装实体     </p>
+</li>
+<li><p>MongoDBUpdate——MongoDB更新封装实体 </p>
+<p>​    </p>
+</li>
+</ul>
+<p>MongoDBCursor </p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> com.mongodb.BasicDBObject;
+<span class="hljs-keyword">import</span> com.mongodb.DBObject;
+ 
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">import</span> java.util.LinkedHashMap;
+<span class="hljs-keyword">import</span> java.util.Map;
+ 
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * MongoDB条件查询封装实体（支持limit，skip，sort）</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: alex</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@time</span>: 14-1-21 下午5:00</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span>: 1.0</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MongoDBCursor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MongoDBEntity</span> </span>&#123;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * skip属性</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> skip;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * limit属性</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> limit = <span class="hljs-number">100</span>;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 排序属性</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; sort = <span class="hljs-keyword">new</span> LinkedHashMap&lt;String, Object&gt;();
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 自定义查询字段属性</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; customFieldMap = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSkip</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> skip;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSkip</span><span class="hljs-params">(<span class="hljs-keyword">int</span> skip)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.skip = skip;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getLimit</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> limit;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLimit</span><span class="hljs-params">(<span class="hljs-keyword">int</span> limit)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.limit = limit;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">getSort</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> sort;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSort</span><span class="hljs-params">(Map&lt;String, Object&gt; sort)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.sort = sort;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> DBObject <span class="hljs-title">getSortObject</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.sort == <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        &#125;
+        DBObject dbo = <span class="hljs-keyword">new</span> BasicDBObject();
+        <span class="hljs-keyword">for</span> (String k : sort.keySet()) &#123;
+            dbo.put(k, Integer.valueOf(sort.get(k).toString()));
+        &#125;
+        <span class="hljs-keyword">return</span> dbo;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">getCustomFieldMap</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> customFieldMap;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setCustomFieldMap</span><span class="hljs-params">(Map&lt;String, Object&gt; customFieldMap)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.customFieldMap = customFieldMap;
+    &#125;
+&#125;</code></pre>
+
+
+
+<p> MongoDBEntity </p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> com.mongodb.DB;
+ 
+<span class="hljs-keyword">import</span> java.util.Map;
+ 
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * MongoDB集合封装实体</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: alex</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@time</span>: 14-1-20 下午2:57</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span>: 1.0</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MongoDBEntity</span> </span>&#123;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * mongo数据库</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> DB db;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 集合名字</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> String collectionName;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 字段封装Map</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> Map&lt;String,Object&gt; fieldMap;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> DB <span class="hljs-title">getDb</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> db;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDb</span><span class="hljs-params">(DB db)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.db = db;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getCollectionName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> collectionName;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setCollectionName</span><span class="hljs-params">(String collectionName)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.collectionName = collectionName;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">getFieldMap</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> fieldMap;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFieldMap</span><span class="hljs-params">(Map&lt;String, Object&gt; fieldMap)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.fieldMap = fieldMap;
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>MongoDBUpdate  </p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Map;
+ 
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * MongoDB更新封装实体</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: alex</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@time</span>: 14-1-21 下午5:00</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span>: 1.0</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MongoDBUpdate</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">MongoDBEntity</span> </span>&#123;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * where查询Map</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; whereMap;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * value查询Map</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; valueMap;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">getWhereMap</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> whereMap;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setWhereMap</span><span class="hljs-params">(Map&lt;String, Object&gt; whereMap)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.whereMap = whereMap;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">getValueMap</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> valueMap;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setValueMap</span><span class="hljs-params">(Map&lt;String, Object&gt; valueMap)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.valueMap = valueMap;
+    &#125;
+&#125;</code></pre>
+
+
+
+<h1 id="3-MongoDB操作类"><a href="#3-MongoDB操作类" class="headerlink" title="3.MongoDB操作类"></a>3.MongoDB操作类</h1><ul>
+<li>MongoDBCommonUtil——MongoDB集合操作工作类     </li>
+<li>MongoDBUtil——MongoDBCRUD操作封装工具类     </li>
+</ul>
+<p>MongoDBCommonUtil </p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> com.mongodb.*;
+<span class="hljs-keyword">import</span> org.bson.types.BasicBSONList;
+<span class="hljs-keyword">import</span> org.bson.types.ObjectId;
+ 
+<span class="hljs-keyword">import</span> java.util.*;
+ 
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * MongoDBCRUD操作封装工具类</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: alex</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@time</span>: 14-1-21 下午3:16</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span>: 1.0</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MongoDBUtil</span> </span>&#123;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 按主键查询单个实体</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id            主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> DBObject</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DBObject <span class="hljs-title">findById</span><span class="hljs-params">(MongoDBCursor mongoDBCursor, String id)</span> </span>&#123;
+        Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+        map.put(<span class="hljs-string">"_id"</span>, <span class="hljs-keyword">new</span> ObjectId(id));
+        mongoDBCursor.setFieldMap(map);
+        <span class="hljs-keyword">return</span> findOne(mongoDBCursor);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 按条件查询单个</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> DBObject</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DBObject <span class="hljs-title">findOne</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        DBObject dbObject = getMapped(mongoDBCursor.getFieldMap());
+        <span class="hljs-keyword">return</span> MongoDBCommonUtil.getCollection(mongoDBCursor).findOne(dbObject);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询全部</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">findAll</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        mongoDBCursor.setFieldMap(<span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;());
+        <span class="hljs-keyword">return</span> find(mongoDBCursor);
+    &#125;
+ 
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 按条件查询</span>
+<span class="hljs-comment">     * 支持skip，limit,sort</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">find</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        DBObject dbObject = getMapped(mongoDBCursor.getFieldMap());
+        BasicDBObjectBuilder customField = <span class="hljs-keyword">null</span>;
+        <span class="hljs-comment">//自定义查询字段</span>
+        <span class="hljs-keyword">if</span>(mongoDBCursor.getCustomFieldMap() != <span class="hljs-keyword">null</span> &amp;&amp; mongoDBCursor.getCustomFieldMap().size() &gt; <span class="hljs-number">0</span>) &#123;
+            customField = <span class="hljs-keyword">new</span> BasicDBObjectBuilder();
+            <span class="hljs-keyword">for</span>(Map.Entry&lt;String, Object&gt; field : mongoDBCursor.getCustomFieldMap().entrySet()) &#123;
+                customField.add(field.getKey(),field.getValue());
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> find(mongoDBCursor, dbObject, customField);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询（私有方法,检查是否含有skip，limit，sort）</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> dbObject      查询条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">final</span> MongoDBCursor mongoDBCursor, DBObject dbObject,BasicDBObjectBuilder customField)</span> </span>&#123;
+        MongoDBCursorPreparer cursorPreparer = mongoDBCursor == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">null</span> : <span class="hljs-keyword">new</span> MongoDBCursorPreparer() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBCursor <span class="hljs-title">prepare</span><span class="hljs-params">(DBCursor dbCursor)</span> </span>&#123;
+                <span class="hljs-keyword">if</span> (mongoDBCursor == <span class="hljs-keyword">null</span>) &#123;
+                    <span class="hljs-keyword">return</span> dbCursor;
+                &#125;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getLimit() &lt;= <span class="hljs-number">0</span> &amp;&amp; mongoDBCursor.getSkip() &lt;= <span class="hljs-number">0</span> &amp;&amp; mongoDBCursor.getSortObject() == <span class="hljs-keyword">null</span>) &#123;
+                    <span class="hljs-keyword">return</span> dbCursor;
+                &#125;
+                DBCursor cursorToUse = dbCursor;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getSkip() &gt; <span class="hljs-number">0</span>) &#123;
+                    cursorToUse = cursorToUse.skip(mongoDBCursor.getSkip());
+                &#125;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getLimit() &gt; <span class="hljs-number">0</span>) &#123;
+                    cursorToUse = cursorToUse.limit(mongoDBCursor.getLimit());
+                &#125;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getSortObject() != <span class="hljs-keyword">null</span>) &#123;
+                    cursorToUse = cursorToUse.sort(mongoDBCursor.getSortObject());
+                &#125;
+                <span class="hljs-keyword">return</span> cursorToUse;
+            &#125;
+        &#125;;
+        <span class="hljs-keyword">return</span> find(mongoDBCursor, dbObject, cursorPreparer,customField);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询（私有方法，真正的查询操作）</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> query       查询条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor  查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> cursorPreparer 查询转换接口</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">find</span><span class="hljs-params">(MongoDBCursor mongoDBCursor, DBObject query, MongoDBCursorPreparer cursorPreparer,BasicDBObjectBuilder customField)</span> </span>&#123;
+        DBCursor dbCursor = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">if</span>(customField == <span class="hljs-keyword">null</span>) &#123;
+            dbCursor = MongoDBCommonUtil.getCollection(mongoDBCursor).find(query);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            dbCursor = MongoDBCommonUtil.getCollection(mongoDBCursor).find(query,customField.get());
+        &#125;
+        <span class="hljs-keyword">if</span> (cursorPreparer != <span class="hljs-keyword">null</span>) &#123;
+            dbCursor = cursorPreparer.prepare(dbCursor);
+        &#125;
+        <span class="hljs-keyword">return</span> dbCursor.toArray();
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Count查询</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 总数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> <span class="hljs-title">count</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        DBObject dbObject = getMapped(mongoDBCursor.getFieldMap());
+        <span class="hljs-keyword">return</span> MongoDBCommonUtil.getCollection(mongoDBCursor).count(dbObject);
+ 
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 把参数Map转换DBObject</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> map 查询条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> DBObject</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DBObject <span class="hljs-title">getMapped</span><span class="hljs-params">(Map&lt;String, Object&gt; map)</span> </span>&#123;
+        DBObject dbObject = <span class="hljs-keyword">new</span> BasicDBObject();
+        Iterator&lt;Map.Entry&lt;String, Object&gt;&gt; iterable = map.entrySet().iterator();
+        <span class="hljs-keyword">while</span> (iterable.hasNext()) &#123;
+            Map.Entry&lt;String, Object&gt; entry = iterable.next();
+            Object value = entry.getValue();
+            String key = entry.getKey();
+            <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">"$"</span>) &amp;&amp; value <span class="hljs-keyword">instanceof</span> Map) &#123;
+                BasicBSONList basicBSONList = <span class="hljs-keyword">new</span> BasicBSONList();
+                Map&lt;String, Object&gt; conditionsMap = ((Map) value);
+<span class="hljs-comment">//                Set&lt;String&gt; keys = conditionsMap.keySet();</span>
+                <span class="hljs-keyword">for</span> (String k : conditionsMap.keySet()) &#123;
+                    Object conditionsValue = conditionsMap.get(k);
+                    <span class="hljs-keyword">if</span> (conditionsValue <span class="hljs-keyword">instanceof</span> Collection) &#123;
+                        conditionsValue = convertArray(conditionsValue);
+                    &#125;
+                    DBObject dbObject2 = <span class="hljs-keyword">new</span> BasicDBObject(k, conditionsValue);
+                    basicBSONList.add(dbObject2);
+                &#125;
+                value = basicBSONList;
+            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> Collection) &#123;
+                value = convertArray(value);
+            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!key.startsWith(<span class="hljs-string">"$"</span>) &amp;&amp; value <span class="hljs-keyword">instanceof</span> Map) &#123;
+                value = getMapped(((Map) value));
+            &#125;
+            dbObject.put(key, value);
+        &#125;
+        <span class="hljs-keyword">return</span> dbObject;
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 转换成Object[]</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value 待转换实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> Object[]</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Object[] convertArray(Object value) &#123;
+        Object[] values = ((Collection) value).toArray();
+        <span class="hljs-keyword">return</span> values;
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 添加操作</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(MongoDBEntity mongoDBEntity)</span> </span>&#123;
+        DBObject dbObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBEntity.getFieldMap());
+        MongoDBCommonUtil.getCollection(mongoDBEntity).insert(dbObject);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 批量处理添加操作</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list          批量字段数据</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(MongoDBEntity mongoDBEntity, List&lt;Map&lt;String, Object&gt;&gt; list)</span> </span>&#123;
+        <span class="hljs-keyword">for</span> (Map&lt;String, Object&gt; map : list) &#123;
+            mongoDBEntity.setFieldMap(map);
+            add(mongoDBEntity);
+        &#125;
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 删除操作</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(MongoDBEntity mongoDBEntity)</span> </span>&#123;
+        DBObject dbObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBEntity.getFieldMap());
+        MongoDBCommonUtil.getCollection(mongoDBEntity).remove(dbObject);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 删除操作,根据主键</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id            主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(MongoDBEntity mongoDBEntity, String id)</span> </span>&#123;
+        Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+        map.put(<span class="hljs-string">"_id"</span>, <span class="hljs-keyword">new</span> ObjectId(id));
+        mongoDBEntity.setFieldMap(map);
+        delete(mongoDBEntity);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 删除全部</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteAll</span><span class="hljs-params">(MongoDBEntity mongoDBEntity)</span> </span>&#123;
+        MongoDBCommonUtil.getCollection(mongoDBEntity).drop();
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改操作</span>
+<span class="hljs-comment">     * 会用一个新文档替换现有文档,文档key结构会发生改变</span>
+<span class="hljs-comment">     * 比如原文档&#123;"_id":"123","name":"zhangsan","age":12&#125;当根据_id修改age</span>
+<span class="hljs-comment">     * value为&#123;"age":12&#125;新建的文档name值会没有,结构发生了改变</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate 更新实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate)</span> </span>&#123;
+        executeUpdate(mongoDBUpdate, <span class="hljs-keyword">new</span> UpdateCallback() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBObject <span class="hljs-title">doCallback</span><span class="hljs-params">(DBObject valueDBObject)</span> </span>&#123;
+                <span class="hljs-keyword">return</span> valueDBObject;
+            &#125;
+        &#125;);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改操作,使用$set修改器</span>
+<span class="hljs-comment">     * 用来指定一个键值,如果键不存在,则自动创建,会更新原来文档, 不会生成新的, 结构不会发生改变</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate 更新实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateSet</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate)</span> </span>&#123;
+        executeUpdate(mongoDBUpdate, <span class="hljs-keyword">new</span> UpdateCallback() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBObject <span class="hljs-title">doCallback</span><span class="hljs-params">(DBObject valueDBObject)</span> </span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">"$set"</span>, valueDBObject);
+            &#125;
+        &#125;);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改操作,使用$inc修改器</span>
+<span class="hljs-comment">     * 修改器键的值必须为数字</span>
+<span class="hljs-comment">     * 如果键存在增加或减少键的值, 如果不存在创建键</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate 更新实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateInc</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate)</span> </span>&#123;
+        executeUpdate(mongoDBUpdate, <span class="hljs-keyword">new</span> UpdateCallback() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBObject <span class="hljs-title">doCallback</span><span class="hljs-params">(DBObject valueDBObject)</span> </span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">"$inc"</span>, valueDBObject);
+            &#125;
+        &#125;);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改(私有方法)</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate  更新实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> updateCallback 更新回调</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">executeUpdate</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate, UpdateCallback updateCallback)</span> </span>&#123;
+        DBObject whereDBObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBUpdate.getWhereMap());
+        DBObject valueDBObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBUpdate.getValueMap());
+        valueDBObject = updateCallback.doCallback(valueDBObject);
+        MongoDBCommonUtil.getCollection(mongoDBUpdate).update(whereDBObject, valueDBObject);
+    &#125;
+ 
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">try</span> &#123;
+            <span class="hljs-comment">//获取操作DB</span>
+            DB db = MongoDBCommonUtil.getDB(<span class="hljs-string">"192.168.227.170"</span>, <span class="hljs-number">20011</span>,<span class="hljs-string">"lagd"</span>,<span class="hljs-string">"lagd_rw"</span>,<span class="hljs-string">"lagd_pwd"</span>);
+            MongoDBCursor mongoDBCursor = <span class="hljs-keyword">new</span> MongoDBCursor();
+            mongoDBCursor.setDb(db);     <span class="hljs-comment">//赋值DB</span>
+            mongoDBCursor.setCollectionName(<span class="hljs-string">"lagd_data_dictionary"</span>);   <span class="hljs-comment">//赋值集合名</span>
+            <span class="hljs-comment">//封装查询条件</span>
+            Map&lt;String, Object&gt; fieldMap = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+            fieldMap.put(<span class="hljs-string">"type"</span>,<span class="hljs-string">"dataSource"</span>);
+            mongoDBCursor.setFieldMap(fieldMap);
+            <span class="hljs-comment">//赋值skip</span>
+            mongoDBCursor.setSkip(<span class="hljs-number">1</span>);
+            <span class="hljs-comment">//赋值limit</span>
+            mongoDBCursor.setLimit(<span class="hljs-number">1</span>);
+            <span class="hljs-comment">//封装Sort</span>
+            Map&lt;String, Object&gt; sortMap = <span class="hljs-keyword">new</span> LinkedHashMap&lt;String, Object&gt;();
+            sortMap.put(<span class="hljs-string">"key"</span>,<span class="hljs-number">1</span>);
+            mongoDBCursor.setSort(sortMap);
+            <span class="hljs-comment">//查询</span>
+            List&lt;DBObject&gt; result = MongoDBUtil.find(mongoDBCursor);
+            <span class="hljs-keyword">for</span>(DBObject dbObject : result)&#123;
+                <span class="hljs-keyword">for</span>(String key : dbObject.keySet())&#123;
+                    System.out.println(<span class="hljs-string">"key="</span> + key + <span class="hljs-string">";  value="</span> + dbObject.get(key));
+                &#125;
+            &#125;
+        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+
+<p> MongoDBUtil </p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> com.mongodb.*;
+<span class="hljs-keyword">import</span> org.bson.types.BasicBSONList;
+<span class="hljs-keyword">import</span> org.bson.types.ObjectId;
+ 
+<span class="hljs-keyword">import</span> java.util.*;
+ 
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * MongoDBCRUD操作封装工具类</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: alex</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@time</span>: 14-1-21 下午3:16</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span>: 1.0</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MongoDBUtil</span> </span>&#123;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 按主键查询单个实体</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id            主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> DBObject</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DBObject <span class="hljs-title">findById</span><span class="hljs-params">(MongoDBCursor mongoDBCursor, String id)</span> </span>&#123;
+        Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+        map.put(<span class="hljs-string">"_id"</span>, <span class="hljs-keyword">new</span> ObjectId(id));
+        mongoDBCursor.setFieldMap(map);
+        <span class="hljs-keyword">return</span> findOne(mongoDBCursor);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 按条件查询单个</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> DBObject</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DBObject <span class="hljs-title">findOne</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        DBObject dbObject = getMapped(mongoDBCursor.getFieldMap());
+        <span class="hljs-keyword">return</span> MongoDBCommonUtil.getCollection(mongoDBCursor).findOne(dbObject);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询全部</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">findAll</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        mongoDBCursor.setFieldMap(<span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;());
+        <span class="hljs-keyword">return</span> find(mongoDBCursor);
+    &#125;
+ 
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 按条件查询</span>
+<span class="hljs-comment">     * 支持skip，limit,sort</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">find</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        DBObject dbObject = getMapped(mongoDBCursor.getFieldMap());
+        BasicDBObjectBuilder customField = <span class="hljs-keyword">null</span>;
+        <span class="hljs-comment">//自定义查询字段</span>
+        <span class="hljs-keyword">if</span>(mongoDBCursor.getCustomFieldMap() != <span class="hljs-keyword">null</span> &amp;&amp; mongoDBCursor.getCustomFieldMap().size() &gt; <span class="hljs-number">0</span>) &#123;
+            customField = <span class="hljs-keyword">new</span> BasicDBObjectBuilder();
+            <span class="hljs-keyword">for</span>(Map.Entry&lt;String, Object&gt; field : mongoDBCursor.getCustomFieldMap().entrySet()) &#123;
+                customField.add(field.getKey(),field.getValue());
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> find(mongoDBCursor, dbObject, customField);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询（私有方法,检查是否含有skip，limit，sort）</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> dbObject      查询条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">final</span> MongoDBCursor mongoDBCursor, DBObject dbObject,BasicDBObjectBuilder customField)</span> </span>&#123;
+        MongoDBCursorPreparer cursorPreparer = mongoDBCursor == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">null</span> : <span class="hljs-keyword">new</span> MongoDBCursorPreparer() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBCursor <span class="hljs-title">prepare</span><span class="hljs-params">(DBCursor dbCursor)</span> </span>&#123;
+                <span class="hljs-keyword">if</span> (mongoDBCursor == <span class="hljs-keyword">null</span>) &#123;
+                    <span class="hljs-keyword">return</span> dbCursor;
+                &#125;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getLimit() &lt;= <span class="hljs-number">0</span> &amp;&amp; mongoDBCursor.getSkip() &lt;= <span class="hljs-number">0</span> &amp;&amp; mongoDBCursor.getSortObject() == <span class="hljs-keyword">null</span>) &#123;
+                    <span class="hljs-keyword">return</span> dbCursor;
+                &#125;
+                DBCursor cursorToUse = dbCursor;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getSkip() &gt; <span class="hljs-number">0</span>) &#123;
+                    cursorToUse = cursorToUse.skip(mongoDBCursor.getSkip());
+                &#125;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getLimit() &gt; <span class="hljs-number">0</span>) &#123;
+                    cursorToUse = cursorToUse.limit(mongoDBCursor.getLimit());
+                &#125;
+                <span class="hljs-keyword">if</span> (mongoDBCursor.getSortObject() != <span class="hljs-keyword">null</span>) &#123;
+                    cursorToUse = cursorToUse.sort(mongoDBCursor.getSortObject());
+                &#125;
+                <span class="hljs-keyword">return</span> cursorToUse;
+            &#125;
+        &#125;;
+        <span class="hljs-keyword">return</span> find(mongoDBCursor, dbObject, cursorPreparer,customField);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 查询（私有方法，真正的查询操作）</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> query       查询条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor  查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> cursorPreparer 查询转换接口</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> List&lt;DBObject&gt; <span class="hljs-title">find</span><span class="hljs-params">(MongoDBCursor mongoDBCursor, DBObject query, MongoDBCursorPreparer cursorPreparer,BasicDBObjectBuilder customField)</span> </span>&#123;
+        DBCursor dbCursor = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">if</span>(customField == <span class="hljs-keyword">null</span>) &#123;
+            dbCursor = MongoDBCommonUtil.getCollection(mongoDBCursor).find(query);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            dbCursor = MongoDBCommonUtil.getCollection(mongoDBCursor).find(query,customField.get());
+        &#125;
+        <span class="hljs-keyword">if</span> (cursorPreparer != <span class="hljs-keyword">null</span>) &#123;
+            dbCursor = cursorPreparer.prepare(dbCursor);
+        &#125;
+        <span class="hljs-keyword">return</span> dbCursor.toArray();
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Count查询</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBCursor 查询实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 总数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> <span class="hljs-title">count</span><span class="hljs-params">(MongoDBCursor mongoDBCursor)</span> </span>&#123;
+        DBObject dbObject = getMapped(mongoDBCursor.getFieldMap());
+        <span class="hljs-keyword">return</span> MongoDBCommonUtil.getCollection(mongoDBCursor).count(dbObject);
+ 
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 把参数Map转换DBObject</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> map 查询条件</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> DBObject</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DBObject <span class="hljs-title">getMapped</span><span class="hljs-params">(Map&lt;String, Object&gt; map)</span> </span>&#123;
+        DBObject dbObject = <span class="hljs-keyword">new</span> BasicDBObject();
+        Iterator&lt;Map.Entry&lt;String, Object&gt;&gt; iterable = map.entrySet().iterator();
+        <span class="hljs-keyword">while</span> (iterable.hasNext()) &#123;
+            Map.Entry&lt;String, Object&gt; entry = iterable.next();
+            Object value = entry.getValue();
+            String key = entry.getKey();
+            <span class="hljs-keyword">if</span> (key.startsWith(<span class="hljs-string">"$"</span>) &amp;&amp; value <span class="hljs-keyword">instanceof</span> Map) &#123;
+                BasicBSONList basicBSONList = <span class="hljs-keyword">new</span> BasicBSONList();
+                Map&lt;String, Object&gt; conditionsMap = ((Map) value);
+<span class="hljs-comment">//                Set&lt;String&gt; keys = conditionsMap.keySet();</span>
+                <span class="hljs-keyword">for</span> (String k : conditionsMap.keySet()) &#123;
+                    Object conditionsValue = conditionsMap.get(k);
+                    <span class="hljs-keyword">if</span> (conditionsValue <span class="hljs-keyword">instanceof</span> Collection) &#123;
+                        conditionsValue = convertArray(conditionsValue);
+                    &#125;
+                    DBObject dbObject2 = <span class="hljs-keyword">new</span> BasicDBObject(k, conditionsValue);
+                    basicBSONList.add(dbObject2);
+                &#125;
+                value = basicBSONList;
+            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> Collection) &#123;
+                value = convertArray(value);
+            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!key.startsWith(<span class="hljs-string">"$"</span>) &amp;&amp; value <span class="hljs-keyword">instanceof</span> Map) &#123;
+                value = getMapped(((Map) value));
+            &#125;
+            dbObject.put(key, value);
+        &#125;
+        <span class="hljs-keyword">return</span> dbObject;
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 转换成Object[]</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> value 待转换实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> Object[]</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Object[] convertArray(Object value) &#123;
+        Object[] values = ((Collection) value).toArray();
+        <span class="hljs-keyword">return</span> values;
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 添加操作</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(MongoDBEntity mongoDBEntity)</span> </span>&#123;
+        DBObject dbObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBEntity.getFieldMap());
+        MongoDBCommonUtil.getCollection(mongoDBEntity).insert(dbObject);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 批量处理添加操作</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> list          批量字段数据</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(MongoDBEntity mongoDBEntity, List&lt;Map&lt;String, Object&gt;&gt; list)</span> </span>&#123;
+        <span class="hljs-keyword">for</span> (Map&lt;String, Object&gt; map : list) &#123;
+            mongoDBEntity.setFieldMap(map);
+            add(mongoDBEntity);
+        &#125;
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 删除操作</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(MongoDBEntity mongoDBEntity)</span> </span>&#123;
+        DBObject dbObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBEntity.getFieldMap());
+        MongoDBCommonUtil.getCollection(mongoDBEntity).remove(dbObject);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 删除操作,根据主键</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> id            主键</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(MongoDBEntity mongoDBEntity, String id)</span> </span>&#123;
+        Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+        map.put(<span class="hljs-string">"_id"</span>, <span class="hljs-keyword">new</span> ObjectId(id));
+        mongoDBEntity.setFieldMap(map);
+        delete(mongoDBEntity);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 删除全部</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBEntity 实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteAll</span><span class="hljs-params">(MongoDBEntity mongoDBEntity)</span> </span>&#123;
+        MongoDBCommonUtil.getCollection(mongoDBEntity).drop();
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改操作</span>
+<span class="hljs-comment">     * 会用一个新文档替换现有文档,文档key结构会发生改变</span>
+<span class="hljs-comment">     * 比如原文档&#123;"_id":"123","name":"zhangsan","age":12&#125;当根据_id修改age</span>
+<span class="hljs-comment">     * value为&#123;"age":12&#125;新建的文档name值会没有,结构发生了改变</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate 更新实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate)</span> </span>&#123;
+        executeUpdate(mongoDBUpdate, <span class="hljs-keyword">new</span> UpdateCallback() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBObject <span class="hljs-title">doCallback</span><span class="hljs-params">(DBObject valueDBObject)</span> </span>&#123;
+                <span class="hljs-keyword">return</span> valueDBObject;
+            &#125;
+        &#125;);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改操作,使用$set修改器</span>
+<span class="hljs-comment">     * 用来指定一个键值,如果键不存在,则自动创建,会更新原来文档, 不会生成新的, 结构不会发生改变</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate 更新实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateSet</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate)</span> </span>&#123;
+        executeUpdate(mongoDBUpdate, <span class="hljs-keyword">new</span> UpdateCallback() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBObject <span class="hljs-title">doCallback</span><span class="hljs-params">(DBObject valueDBObject)</span> </span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">"$set"</span>, valueDBObject);
+            &#125;
+        &#125;);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改操作,使用$inc修改器</span>
+<span class="hljs-comment">     * 修改器键的值必须为数字</span>
+<span class="hljs-comment">     * 如果键存在增加或减少键的值, 如果不存在创建键</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate 更新实体</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateInc</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate)</span> </span>&#123;
+        executeUpdate(mongoDBUpdate, <span class="hljs-keyword">new</span> UpdateCallback() &#123;
+            <span class="hljs-function"><span class="hljs-keyword">public</span> DBObject <span class="hljs-title">doCallback</span><span class="hljs-params">(DBObject valueDBObject)</span> </span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">"$inc"</span>, valueDBObject);
+            &#125;
+        &#125;);
+    &#125;
+ 
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 修改(私有方法)</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mongoDBUpdate  更新实体</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> updateCallback 更新回调</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">executeUpdate</span><span class="hljs-params">(MongoDBUpdate mongoDBUpdate, UpdateCallback updateCallback)</span> </span>&#123;
+        DBObject whereDBObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBUpdate.getWhereMap());
+        DBObject valueDBObject = <span class="hljs-keyword">new</span> BasicDBObject(mongoDBUpdate.getValueMap());
+        valueDBObject = updateCallback.doCallback(valueDBObject);
+        MongoDBCommonUtil.getCollection(mongoDBUpdate).update(whereDBObject, valueDBObject);
+    &#125;
+ 
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">try</span> &#123;
+            <span class="hljs-comment">//获取操作DB</span>
+            DB db = MongoDBCommonUtil.getDB(<span class="hljs-string">"192.168.227.170"</span>, <span class="hljs-number">20011</span>,<span class="hljs-string">"lagd"</span>,<span class="hljs-string">"lagd_rw"</span>,<span class="hljs-string">"lagd_pwd"</span>);
+            MongoDBCursor mongoDBCursor = <span class="hljs-keyword">new</span> MongoDBCursor();
+            mongoDBCursor.setDb(db);     <span class="hljs-comment">//赋值DB</span>
+            mongoDBCursor.setCollectionName(<span class="hljs-string">"lagd_data_dictionary"</span>);   <span class="hljs-comment">//赋值集合名</span>
+            <span class="hljs-comment">//封装查询条件</span>
+            Map&lt;String, Object&gt; fieldMap = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+            fieldMap.put(<span class="hljs-string">"type"</span>,<span class="hljs-string">"dataSource"</span>);
+            mongoDBCursor.setFieldMap(fieldMap);
+            <span class="hljs-comment">//赋值skip</span>
+            mongoDBCursor.setSkip(<span class="hljs-number">1</span>);
+            <span class="hljs-comment">//赋值limit</span>
+            mongoDBCursor.setLimit(<span class="hljs-number">1</span>);
+            <span class="hljs-comment">//封装Sort</span>
+            Map&lt;String, Object&gt; sortMap = <span class="hljs-keyword">new</span> LinkedHashMap&lt;String, Object&gt;();
+            sortMap.put(<span class="hljs-string">"key"</span>,<span class="hljs-number">1</span>);
+            mongoDBCursor.setSort(sortMap);
+            <span class="hljs-comment">//自定义查询字段</span>
+            Map&lt;String, Object&gt; customFieldMap =  <span class="hljs-keyword">new</span> LinkedHashMap&lt;String, Object&gt;();
+            customFieldMap.put(<span class="hljs-string">"type"</span>,<span class="hljs-string">"1"</span>);
+            customFieldMap.put(<span class="hljs-string">"key"</span>,<span class="hljs-string">"1"</span>);
+            customFieldMap.put(<span class="hljs-string">"value"</span>,<span class="hljs-string">"1"</span>);
+            mongoDBCursor.setCustomFieldMap(customFieldMap);
+            <span class="hljs-comment">//查询</span>
+            List&lt;DBObject&gt; result = MongoDBUtil.find(mongoDBCursor);
+            <span class="hljs-keyword">for</span>(DBObject dbObject : result)&#123;
+                <span class="hljs-keyword">for</span>(String key : dbObject.keySet())&#123;
+                    System.out.println(<span class="hljs-string">"键："</span> + key + <span class="hljs-string">";  值："</span> + dbObject.get(key));
+                &#125;
+            &#125;
+        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>MongoDBCursorPreparer </p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> com.mongodb.DBCursor;
+ 
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 查询转换接口定义</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: alex</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@time</span>: 14-1-21 下午4:55</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span>: 1.0</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MongoDBCursorPreparer</span> </span>&#123;
+ 
+    <span class="hljs-function">DBCursor <span class="hljs-title">prepare</span><span class="hljs-params">(DBCursor cursor)</span></span>;
+&#125;</code></pre>
+
+
+
+<p>UpdateCallback </p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> com.mongodb.DBObject;
+ 
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * MongoDB更新操作接口定义</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span>: alex</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@time</span>: 14-1-21 下午5:25</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span>: 1.0</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UpdateCallback</span> </span>&#123;
+ 
+    <span class="hljs-function">DBObject <span class="hljs-title">doCallback</span><span class="hljs-params">(DBObject valueDBObject)</span></span>;
+&#125;</code></pre>
+
+
+
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/MongoDB/">MongoDB</a>
+                    
+                      <a class="hover-with-bg" href="/categories/MongoDB/JAVA/">JAVA</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MongoDB/">MongoDB</a>
+                    
+                      <a class="hover-with-bg" href="/tags/JAVA/">JAVA</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/10/MongoDB%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MongoDB多数据源配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/06/10/CentOS7%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                        <span class="hidden-mobile">CentOS7搭建ngrok服务器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JAVA操作MongoDB工具类分享&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>压缩20M文件从30秒到1秒的优化过程 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-11-20 10:38">
+                    2019年11月20日 上午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.5k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    31
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <blockquote>
+<p>文章来源公众号：<strong>IT牧场</strong></p>
+</blockquote>
+<p>有一个需求需要将前端传过来的10张照片，然后后端进行处理以后压缩成一个压缩包通过网络流传输出去。之前没有接触过用Java压缩文件的，所以就直接上网找了一个例子改了一下用了，改完以后也能使用，但是随着前端所传图片的大小越来越大的时候，耗费的时间也在急剧增加，最后测了一下压缩20M的文件竟然需要30秒的时间。压缩文件的代码如下。</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileNoBuffer</span><span class="hljs-params">()</span> </span>&#123;
+    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
+    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile))) &#123;
+        <span class="hljs-comment">//开始时间</span>
+        <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+            <span class="hljs-keyword">try</span> (InputStream input = <span class="hljs-keyword">new</span> FileInputStream(JPG_FILE)) &#123;
+                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(FILE_NAME + i));
+                <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">while</span> ((temp = input.read()) != -<span class="hljs-number">1</span>) &#123;
+                    zipOut.write(temp);
+                &#125;
+            &#125;
+        &#125;
+        printInfo(beginTime);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;</code></pre>
+
+<p>这里找了一张2M大小的图片，并且循环十次进行测试。打印的结果如下，时间大概是30秒。</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
+<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:29599</span></code></pre>
+
+<h2 id="第一次优化过程-从30秒到2秒"><a href="#第一次优化过程-从30秒到2秒" class="headerlink" title="第一次优化过程-从30秒到2秒"></a>第一次优化过程-从30秒到2秒</h2><p>进行优化首先想到的是利用<strong>缓冲区</strong><code>BufferInputStream</code>。在<code>FileInputStream</code>中<code>read()</code>方法每次只读取一个字节。源码中也有说明。</p>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Reads a byte of data from this input stream. This method blocks</span>
+<span class="hljs-comment"> * if no input is yet available.</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span>     the next byte of data, or &lt;code&gt;-1&lt;/code&gt; if the end of the</span>
+<span class="hljs-comment"> *             file is reached.</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@exception</span>  IOException  if an I/O error occurs.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException</span>;</code></pre>
+
+<p>这是一个调用本地方法与原生操作系统进行交互，从磁盘中读取数据。每读取一个字节的数据就调用一次本地方法与操作系统交互，是非常耗时的。例如我们现在有30000个字节的数据，如果使用<code>FileInputStream</code>那么就需要调用30000次的本地方法来获取这些数据，而如果使用缓冲区的话（这里假设初始的缓冲区大小足够放下30000字节的数据）那么只需要调用一次就行。因为缓冲区在第一次调用<code>read()</code>方法的时候会直接从磁盘中将数据直接读取到内存中。随后再一个字节一个字节的慢慢返回。</p>
+<blockquote>
+<p><code>BufferedInputStream</code>内部封装了一个byte数组用于存放数据，默认大小是8192</p>
+</blockquote>
+<p>优化过后的代码如下</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileBuffer</span><span class="hljs-params">()</span> </span>&#123;
+    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
+    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));
+            BufferedOutputStream bufferedOutputStream = <span class="hljs-keyword">new</span> BufferedOutputStream(zipOut)) &#123;
+        <span class="hljs-comment">//开始时间</span>
+        <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+            <span class="hljs-keyword">try</span> (BufferedInputStream bufferedInputStream = <span class="hljs-keyword">new</span> BufferedInputStream(<span class="hljs-keyword">new</span> FileInputStream(JPG_FILE))) &#123;
+                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(FILE_NAME + i));
+                <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">while</span> ((temp = bufferedInputStream.read()) != -<span class="hljs-number">1</span>) &#123;
+                    bufferedOutputStream.write(temp);
+                &#125;
+            &#125;
+        &#125;
+        printInfo(beginTime);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;</code></pre>
+
+<p>输出</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">------Buffer</span>
+<span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
+<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1808</span></code></pre>
+
+<p>可以看到相比较于第一次使用<code>FileInputStream</code>效率已经提升了许多了</p>
+<h2 id="第二次优化过程-从2秒到1秒"><a href="#第二次优化过程-从2秒到1秒" class="headerlink" title="第二次优化过程-从2秒到1秒"></a>第二次优化过程-从2秒到1秒</h2><p>使用缓冲区<code>buffer</code>的话已经是满足了我的需求了，但是秉着学以致用的想法，就想着用NIO中知识进行优化一下。</p>
+<h3 id="使用Channel"><a href="#使用Channel" class="headerlink" title="使用Channel"></a>使用Channel</h3><p>为什么要用<code>Channel</code>呢？因为在NIO中新出了<code>Channel</code>和<code>ByteBuffer</code>。正是因为它们的结构更加符合操作系统执行I/O的方式，所以其速度相比较于传统IO而言速度有了显著的提高。<code>Channel</code>就像一个包含着煤矿的矿藏，而<code>ByteBuffer</code>则是派送到矿藏的卡车。也就是说我们与数据的交互都是与<code>ByteBuffer</code>的交互。</p>
+<p>在NIO中能够产生<code>FileChannel</code>的有三个类。分别是<code>FileInputStream</code>、<code>FileOutputStream</code>、以及既能读又能写的<code>RandomAccessFile</code>。</p>
+<p>源码如下</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileChannel</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-comment">//开始时间</span>
+    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
+    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
+    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));
+            WritableByteChannel writableByteChannel = Channels.newChannel(zipOut)) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+            <span class="hljs-keyword">try</span> (FileChannel fileChannel = <span class="hljs-keyword">new</span> FileInputStream(JPG_FILE).getChannel()) &#123;
+                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i + SUFFIX_FILE));
+                fileChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, writableByteChannel);
+            &#125;
+        &#125;
+        printInfo(beginTime);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;</code></pre>
+
+<p>我们可以看到这里并没有使用<code>ByteBuffer</code>进行数据传输，而是使用了<code>transferTo</code>的方法。这个方法是将两个通道进行直连。</p>
+<pre><code class="hljs csharp">This method <span class="hljs-keyword">is</span> potentially much more efficient than a simple loop
+* that reads <span class="hljs-keyword">from</span> <span class="hljs-keyword">this</span> channel and writes to the target channel.  Many
+* operating systems can transfer bytes directly <span class="hljs-keyword">from</span> the filesystem cache
+* to the target channel without actually copying them.</code></pre>
+
+<p>这是源码上的描述文字，大概意思就是使用<code>transferTo</code>的效率比循环一个<code>Channel</code>读取出来然后再循环写入另一个<code>Channel</code>好。操作系统能够直接传输字节从文件系统缓存到目标的<code>Channel</code>中，而不需要实际的<code>copy</code>阶段。</p>
+<blockquote>
+<p>copy阶段就是从内核空间转到用户空间的一个过程</p>
+</blockquote>
+<p>可以看到速度相比较使用缓冲区已经有了一些的提高。</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">------Channel</span>
+<span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
+<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1416</span></code></pre>
+
+<h4 id="内核空间和用户空间"><a href="#内核空间和用户空间" class="headerlink" title="内核空间和用户空间"></a>内核空间和用户空间</h4><p>那么为什么从内核空间转向用户空间这段过程会慢呢？首先我们需了解的是什么是内核空间和用户空间。在常用的操作系统中为了保护系统中的核心资源，于是将系统设计为四个区域，越往里权限越大，所以Ring0被称之为内核空间，用来访问一些关键性的资源。Ring3被称之为用户空间。</p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-38f92e6466efaf60.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>image</p>
+<blockquote>
+<p>用户态、内核态：线程处于内核空间称之为内核态，线程处于用户空间属于用户态</p>
+</blockquote>
+<p>那么我们如果此时应用程序（应用程序是都属于用户态的）需要访问核心资源怎么办呢？那就需要调用内核中所暴露出的接口用以调用，称之为<strong>系统调用</strong>。例如此时我们应用程序需要访问磁盘上的文件。此时应用程序就会调用系统调用的接口<code>open</code>方法，然后内核去访问磁盘中的文件，将文件内容返回给应用程序。大致的流程如下</p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-53cc9499caddb485.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>image</p>
+<h4 id="直接缓冲区和非直接缓冲区"><a href="#直接缓冲区和非直接缓冲区" class="headerlink" title="直接缓冲区和非直接缓冲区"></a>直接缓冲区和非直接缓冲区</h4><p>既然我们要读取一个磁盘的文件，要废这么大的周折。有没有什么简单的方法能够使我们的应用直接操作磁盘文件，不需要内核进行中转呢？有，那就是建立直接缓冲区了。</p>
+<ul>
+<li><p>非直接缓冲区：非直接缓冲区就是我们上面所讲内核态作为中间人，每次都需要内核在中间作为中转。</p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-6bbfb5446221cb2d.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>image</p>
+</li>
+<li><p>直接缓冲区：直接缓冲区不需要内核空间作为中转copy数据，而是直接在物理内存申请一块空间，这块空间映射到内核地址空间和用户地址空间，应用程序与磁盘之间数据的存取通过这块直接申请的物理内存进行交互。</p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-92211d2b9a85215e.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>image</p>
+</li>
+</ul>
+<p>既然直接缓冲区那么快，我们为什么不都用直接缓冲区呢？其实直接缓冲区有以下的缺点。直接缓冲区的缺点：</p>
+<ol>
+<li>不安全</li>
+<li>消耗更多，因为它不是在JVM中直接开辟空间。这部分内存的回收只能依赖于垃圾回收机制，垃圾什么时候回收不受我们控制。</li>
+<li>数据写入物理内存缓冲区中，程序就丧失了对这些数据的管理，即什么时候这些数据被最终写入从磁盘只能由操作系统来决定，应用程序无法再干涉。</li>
+</ol>
+<blockquote>
+<p>综上所述，所以我们使用<code>transferTo</code>方法就是直接开辟了一段直接缓冲区。所以性能相比而言提高了许多</p>
+</blockquote>
+<h3 id="使用内存映射文件"><a href="#使用内存映射文件" class="headerlink" title="使用内存映射文件"></a>使用内存映射文件</h3><p>NIO中新出的另一个特性就是内存映射文件，内存映射文件为什么速度快呢？其实原因和上面所讲的一样，也是在内存中开辟了一段直接缓冲区。与数据直接作交互。源码如下</p>
+<pre><code class="hljs java"><span class="hljs-comment">//Version 4 使用Map映射文件</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileMap</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-comment">//开始时间</span>
+    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
+    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
+    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));
+            WritableByteChannel writableByteChannel = Channels.newChannel(zipOut)) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+
+            zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i + SUFFIX_FILE));
+
+            <span class="hljs-comment">//内存中的映射文件</span>
+            MappedByteBuffer mappedByteBuffer = <span class="hljs-keyword">new</span> RandomAccessFile(JPG_FILE_PATH, <span class="hljs-string">"r"</span>).getChannel()
+                    .map(FileChannel.MapMode.READ_ONLY, <span class="hljs-number">0</span>, FILE_SIZE);
+
+            writableByteChannel.write(mappedByteBuffer);
+        &#125;
+        printInfo(beginTime);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;</code></pre>
+
+<p>打印如下</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">---------Map</span>
+<span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
+<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1305</span></code></pre>
+
+<p>可以看到速度和使用Channel的速度差不多的。</p>
+<h3 id="使用Pipe"><a href="#使用Pipe" class="headerlink" title="使用Pipe"></a>使用Pipe</h3><p>Java NIO 管道是2个线程之间的单向数据连接。Pipe有一个source通道和一个sink通道。其中source通道用于读取数据，sink通道用于写入数据。可以看到源码中的介绍，大概意思就是写入线程会阻塞至有读线程从通道中读取数据。如果没有数据可读，读线程也会阻塞至写线程写入数据。直至通道关闭。</p>
+<pre><code class="hljs ruby">Whether <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> a thread writing bytes to a pipe will block <span class="hljs-keyword">until</span> another
+thread reads those bytes</code></pre>
+
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-3fbae68c65487c14.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>image</p>
+<p>我想要的效果是这样的。源码如下</p>
+<pre><code class="hljs java"><span class="hljs-comment">//Version 5 使用Pip</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFilePip</span><span class="hljs-params">()</span> </span>&#123;
+
+    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
+    <span class="hljs-keyword">try</span>(WritableByteChannel out = Channels.newChannel(<span class="hljs-keyword">new</span> FileOutputStream(ZIP_FILE))) &#123;
+        Pipe pipe = Pipe.open();
+        <span class="hljs-comment">//异步任务</span>
+        CompletableFuture.runAsync(()-&gt;runTask(pipe));
+
+        <span class="hljs-comment">//获取读通道</span>
+        ReadableByteChannel readableByteChannel = pipe.source();
+        ByteBuffer buffer = ByteBuffer.allocate(((<span class="hljs-keyword">int</span>) FILE_SIZE)*<span class="hljs-number">10</span>);
+        <span class="hljs-keyword">while</span> (readableByteChannel.read(buffer)&gt;= <span class="hljs-number">0</span>) &#123;
+            buffer.flip();
+            out.write(buffer);
+            buffer.clear();
+        &#125;
+    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;
+        e.printStackTrace();
+    &#125;
+    printInfo(beginTime);
+
+&#125;
+
+<span class="hljs-comment">//异步任务</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runTask</span><span class="hljs-params">(Pipe pipe)</span> </span>&#123;
+
+    <span class="hljs-keyword">try</span>(ZipOutputStream zos = <span class="hljs-keyword">new</span> ZipOutputStream(Channels.newOutputStream(pipe.sink()));
+            WritableByteChannel out = Channels.newChannel(zos)) &#123;
+        System.out.println(<span class="hljs-string">"Begin"</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+            zos.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i+SUFFIX_FILE));
+
+            FileChannel jpgChannel = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(JPG_FILE_PATH)).getChannel();
+
+            jpgChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, out);
+
+            jpgChannel.close();
+        &#125;
+    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;
+        e.printStackTrace();
+    &#125;
+&#125;</code></pre>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>生活处处都需要学习，有时候只是一个简单的优化，可以让你深入学习到各种不同的知识。所以在学习中要不求甚解，不仅要知道这个知识也要了解为什么要这么做。</li>
+<li>知行合一：学习完一个知识要尽量应用一遍。这样才能记得牢靠。</li>
+</ul>
+<h2 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h2><p><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fmodouxiansheng%2FDoraemon" target="_blank" rel="noopener">源码地址</a></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://www.jianshu.com/p/f90866dcbffc" target="_blank" rel="noopener">https://www.jianshu.com/p/f90866dcbffc</a></li>
+<li><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fjuejin.im%2Fpost%2F5af942c6f265da0b7026050c" target="_blank" rel="noopener">https://juejin.im/post/5af942c6f265da0b7026050c</a></li>
+<li><a href="https://links.jianshu.com/go?to=https%3A%2F%2Ftime.geekbang.org%2Fcolumn%2Farticle%2F90109" target="_blank" rel="noopener">趣谈Linux操作系统</a></li>
+<li><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fmy.oschina.net%2FhappyBKs%2Fblog%2F1592329" target="_blank" rel="noopener">JAVA NIO 直接缓冲区和非直接缓冲区</a></li>
+</ul>
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee-20200407103256742.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/IO/">IO</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/12/07/API-%E7%BD%91%E5%85%B3%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">API 网关从入门到放弃</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/11/04/%E9%87%8D%E6%B8%A9%E4%B9%94%E5%B8%83%E6%96%AF%E6%9C%80%E7%BB%8F%E5%85%B8%E6%BC%94%E8%AE%B2%EF%BC%9A%E6%B1%82%E7%9F%A5%E8%8B%A5%E9%A5%A5-%E8%99%9A%E5%BF%83%E8%8B%A5%E6%84%9A/">
+                        <span class="hidden-mobile">重温乔布斯最经典演讲：求知若饥 虚心若愚</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "压缩20M文件从30秒到1秒的优化过程&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

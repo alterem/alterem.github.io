@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>cola-ui的使用 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-01-11 14:54">
+                    2019年1月11日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.4k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    35
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="cola-ui"><a href="#cola-ui" class="headerlink" title="cola-ui"></a>cola-ui</h1><blockquote>
+<p>官方：<a href="http://www.cola-ui.com" target="_blank" rel="noopener">http://www.cola-ui.com</a></p>
+<p>教程位置：<a href="http://www.cola-ui.com/guide/model" target="_blank" rel="noopener">http://www.cola-ui.com/guide/model</a></p>
+<p>API: <a href="http://www.cola-ui.com/api/cola.html" target="_blank" rel="noopener">http://www.cola-ui.com/api/cola.html</a> , <a href="http://legacy.cola-ui.com" target="_blank" rel="noopener">http://legacy.cola-ui.com</a></p>
+<p>组件地址：<a href="http://www.cola-ui.com/docs/button" target="_blank" rel="noopener">http://www.cola-ui.com/docs/button</a></p>
+<p>源码地址：<a href="https://github.com/Cola-Org/cola-ui" target="_blank" rel="noopener">https://github.com/Cola-Org/cola-ui</a></p>
+</blockquote>
+<h2 id="文档修订相关"><a href="#文档修订相关" class="headerlink" title="文档修订相关"></a>文档修订相关</h2><table>
+<thead>
+<tr>
+<th align="center">版本</th>
+<th align="center">内容</th>
+<th align="center">修改人</th>
+<th align="center">修改时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">V1.0</td>
+<td align="center">初版</td>
+<td align="center">刘晓东</td>
+<td align="center">2018-12-24</td>
+</tr>
+</tbody></table>
+<h2 id="产品简介"><a href="#产品简介" class="headerlink" title="产品简介"></a>产品简介</h2><ul>
+<li>Cola UI是支持双向数据绑定的一站式前端UI框架。采用了精简的MVVM架构，在确保灵活性的同时尽可能降低对开发者的技术要求。</li>
+<li>Cola UI遵循Mobile First的策略，特别适合于移动设备应用开发。</li>
+<li>Cola UI整合了jQuery和Semantic UI，同时提供更多常用的List、Table、Tree等高级控件。</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>==以上内容都是通过cola-ui官网获得的资料，绝大多数的开发内容可以参考cola-ui官网提供的API进行查阅==</p>
+<p><strong>本文档主要针对于camsi工程中用到的功能或特性，且可能不存在于cola-ui官网提供的API进行整理和说明</strong></p>
+<h3 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h3><p>==通常要基于camsi工程在浏览器渲染出来的页面由三个部分组成，例如：simple01.jade、M.js、simple01Model.js==</p>
+<h4 id="Jade"><a href="#Jade" class="headerlink" title="Jade"></a>Jade</h4><p>==Jade 是一个高性能的模板引擎，它深受 Haml影响，它是用 JavaScript 实现的，并且可以供 <a href="http://nodejs.org/" target="_blank" rel="noopener">Node</a> 使用，你也可以<a href="http://naltatis.github.io/jade-syntax-docs/" target="_blank" rel="noopener">在此试用</a>，这里推荐<a href="http://www.nooong.com/docs/jade_chinese.htm" target="_blank" rel="noopener">Jade入门中文文档</a>==</p>
+<pre><code class="hljs jade">extends &#x2F;_page
+block body
+	v-box
+		flex-box
+			.content(style&#x3D;&quot;overflow: auto&quot;)
+				c-table(bind&#x3D;&quot;simple01s&quot; dataType&#x3D;&quot;Simple01&quot;)
+					column(property&#x3D;&quot;name&quot;)
+append scripts
+	script(src&#x3D;&quot;simple01Model.js&quot;)
+	script(src&#x3D;&quot;simple01.js&quot;)</code></pre>
+
+<p>dataType的值应该与Js中定义的dataType的值以及Model.js中定义的dataType的值相等</p>
+<h4 id="Js"><a href="#Js" class="headerlink" title="Js"></a>Js</h4><p>==不做描述==</p>
+<pre><code class="hljs javascript">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;
+	model.dataType($DataType.Simple01);
+	model.describe(<span class="hljs-string">"simple01s"</span>, &#123;
+		dataType : <span class="hljs-string">"Simple01"</span>,
+		provider : &#123;
+			url : <span class="hljs-string">"controller/simple01Service/findPagination?from=&#123;&#123;$from&#125;&#125;&amp;limit=&#123;&#123;$limit&#125;&#125;"</span>,
+			pageSize : <span class="hljs-number">10</span>,
+			sendJson : <span class="hljs-literal">true</span>,
+			loadMode: <span class="hljs-string">'manual'</span>
+		&#125;
+	&#125;);
+	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;simple01&#125;)]"</span>);
+	model.action(&#123;
+		test : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+			cola.alert(<span class="hljs-string">'test'</span>)
+		&#125;
+	&#125;);
+&#125;);</code></pre>
+
+<p>所有正规的操作包括事件都应该编写在==cola(function(model) { })==中，其中首先需要使用dataType定义当前Js中所有用到的DataType，使用==model.describe==交互后台数据到当前指定model，使用==model.set(“”, “”)==向model交互数据，页面所有用到的事件方法应该存在于==model.action({})==中。</p>
+<h4 id="Model-js"><a href="#Model-js" class="headerlink" title="Model.js"></a>Model.js</h4><p>==由cola-ui定义的前端模型==</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> $DataType = &#123;
+		Simple01: &#123;
+		name: <span class="hljs-string">"Simple01"</span>,
+		properties : &#123;
+			name : &#123;
+				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,
+				dataType : <span class="hljs-string">"string"</span>
+			&#125;
+		&#125;
+	&#125;
+&#125;;</code></pre>
+
+<p>==caption==用来标志当前字段的前端显示文本，使用==[(#{ })]==取到当前字段对应的当前语言的国际化翻译。</p>
+<h3 id="表单相关"><a href="#表单相关" class="headerlink" title="表单相关"></a>表单相关</h3><h4 id="表单对国际化的处理"><a href="#表单对国际化的处理" class="headerlink" title="表单对国际化的处理"></a>表单对国际化的处理</h4><blockquote>
+<p>在正常情况下，dataType可能会被公用，然后每个字段在每个不同的地方显示的文本标识不一样，这时候可以使用==caption==属性进行操作，例如：==caption=ll.l(“name”)==<strong>前面提到在Js中国际化使用的是==[(#{ })]==</strong></p>
+</blockquote>
+<h4 id="表单对日期格式的处理"><a href="#表单对日期格式的处理" class="headerlink" title="表单对日期格式的处理"></a>表单对日期格式的处理</h4><blockquote>
+<p>通常需要将当前日期字段进行格式化只需要下面代码即可：</p>
+</blockquote>
+<pre><code class="hljs jade">field(property&#x3D;&quot;birthday&quot;)
+	label
+	c-datepicker(displayFormat&#x3D;&quot;yyyy-MM-dd&quot; inputFormat&#x3D;&quot;yyyy-MM-dd&quot;)</code></pre>
+
+<p>将datatype类型为Date的birthday字段的文本显示和选择的日期格式调整为”yyyy-MM-dd”</p>
+<h4 id="表单对枚举值的处理"><a href="#表单对枚举值的处理" class="headerlink" title="表单对枚举值的处理"></a>表单对枚举值的处理</h4><blockquote>
+<p>我们经常会把一些常规的数据做成枚举值存放在数据库，并把页面的文本输入框改变成为下拉项</p>
+</blockquote>
+<p>页面元素</p>
+<pre><code class="hljs jade">field(property&#x3D;&quot;status&quot;)
+    label
+    c-dropdown(c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)</code></pre>
+
+<p>引入Js</p>
+<pre><code class="hljs jade">script(src&#x3D;basecodeCP + &quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;10000&quot;)</code></pre>
+
+<p>或者</p>
+<pre><code class="hljs jade">script(src&#x3D;&quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;10000&quot;)</code></pre>
+
+<p>这样页面会去加载枚举值代码为10000的对应status存放的id对应的文本显示到当前字段，并为当前字段提供下拉项</p>
+<h4 id="表单对文本域的处理"><a href="#表单对文本域的处理" class="headerlink" title="表单对文本域的处理"></a>表单对文本域的处理</h4><blockquote>
+<p>类似于备注，通常都是用文本框来显示</p>
+</blockquote>
+<pre><code class="hljs jade">fields.cols-1
+    field(property&#x3D;&quot;remark&quot;)
+        label
+        c-textarea(rows&#x3D;&quot;3&quot;)</code></pre>
+
+<p>首先定义当前字段独占一列，使用==c-textarea(rows=”3”)==表名当前字段独占三列</p>
+<h4 id="表单对只读的处理"><a href="#表单对只读的处理" class="headerlink" title="表单对只读的处理"></a>表单对只读的处理</h4><blockquote>
+<p>正常场景并不是表单中列出的所有的字段都是手动输入的，比如ID，我们可以使用==readOnly=”true”==对每个field进行只读控制，也可以将==readOnly=”true”==放在c-form属性里面来控制整个表单只读</p>
+</blockquote>
+<h4 id="表单对省市县级联的处理"><a href="#表单对省市县级联的处理" class="headerlink" title="表单对省市县级联的处理"></a>表单对省市县级联的处理</h4><p>Jade</p>
+<pre><code class="hljs jade">field(property&#x3D;&quot;country&quot;
+    label
+    c-dropdown(c-items&#x3D;&quot;dictionary(&#39;CountryCode&#39;)&quot; onSelectData&#x3D;&quot;onCountrySelect&quot;)
+(property&#x3D;&quot;province&quot; caption&#x3D;ll.l(&quot;province&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)
+    label
+    c-dropdown(c-items&#x3D;&quot;provinces&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;province&#x3D;kind&quot; onSelectData&#x3D;&quot;onProvinceSel&quot;)
+field(property&#x3D;&quot;city&quot; caption&#x3D;ll.l(&quot;city&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)
+    label
+    c-dropdown(c-items&#x3D;&quot;cities&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;city&#x3D;kind&quot; beforeOpen&#x3D;&quot;beforeCityOpen&quot; onSelectData&#x3D;&quot;onCitySel&quot;)
+field(property&#x3D;&quot;county&quot; caption&#x3D;ll.l(&quot;county&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)
+    label
+    c-dropdown(c-items&#x3D;&quot;counties&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;county&#x3D;kind&quot; beforeOpen&#x3D;&quot;beforeCountyOpen&quot;)</code></pre>
+
+<p>引入数据字典</p>
+<pre><code class="hljs jade">script(src&#x3D;&quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;CountryCode&quot;)</code></pre>
+
+<p>Js</p>
+<pre><code class="hljs javascript">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;
+	model.describe(<span class="hljs-string">"provinces"</span>, &#123;
+		provider: &#123;
+			url: <span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails"</span>,
+			parameter: &#123;
+				baseCodeId: <span class="hljs-string">"Address"</span>,
+				parentId: <span class="hljs-string">"NULL"</span>
+			&#125;
+		&#125;
+	&#125;);
+	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;simple01&#125;)]"</span>);
+	model.set(<span class="hljs-string">"queryCondition"</span>, &#123;<span class="hljs-string">"country"</span>:<span class="hljs-string">"CHN"</span>&#125;);
+	model.action(&#123;
+		beforeCityOpen: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+			<span class="hljs-keyword">var</span> province = model.get(<span class="hljs-string">"queryCondition.province"</span>);
+			$.ajax(<span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails?baseCodeId=Address&amp;parentId="</span> + province, &#123;
+				type: <span class="hljs-string">"get"</span>, <span class="hljs-attr">async</span>: <span class="hljs-literal">false</span>
+			&#125;).done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>&#123;
+				<span class="hljs-keyword">if</span> (result) &#123;
+					model.set(<span class="hljs-string">"cities"</span>, result);
+				&#125;
+			&#125;);
+		&#125;,
+		beforeCountyOpen: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+			<span class="hljs-keyword">var</span> city = model.get(<span class="hljs-string">"queryCondition.city"</span>);
+			$.ajax(<span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails?baseCodeId=Address&amp;parentId="</span> + city, &#123;
+				type: <span class="hljs-string">"get"</span>, <span class="hljs-attr">async</span>: <span class="hljs-literal">false</span>
+			&#125;).done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>&#123;
+				<span class="hljs-keyword">if</span> (result) &#123;
+					model.set(<span class="hljs-string">"counties"</span>, result);
+				&#125;
+			&#125;);
+		&#125;,
+		onProvinceSel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;
+			<span class="hljs-keyword">var</span> queryCondition = model.get(<span class="hljs-string">"queryCondition"</span>);
+			<span class="hljs-keyword">if</span>(queryCondition.get(<span class="hljs-string">"province"</span>) != arg.data.get(<span class="hljs-string">"kind"</span>))&#123;
+				queryCondition.set(<span class="hljs-string">"city"</span>, <span class="hljs-string">""</span>);
+				queryCondition.set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);
+			&#125;
+		&#125;,
+		onCitySel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;
+			<span class="hljs-keyword">var</span> queryCondition = model.get(<span class="hljs-string">"queryCondition"</span>);
+			<span class="hljs-keyword">if</span>(queryCondition.get(<span class="hljs-string">"city"</span>) != arg.data.get(<span class="hljs-string">"kind"</span>))&#123;
+				queryCondition.set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);
+			&#125;
+		&#125;,
+		onCountrySelect: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;
+			<span class="hljs-keyword">var</span> selectedItem = arg.data;
+			<span class="hljs-keyword">if</span>(<span class="hljs-string">"CHN"</span> != selectedItem.key) &#123;
+				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"province"</span>, <span class="hljs-string">""</span>);
+				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"city"</span>, <span class="hljs-string">""</span>);
+				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);
+			&#125;
+		&#125;
+	&#125;);
+&#125;);</code></pre>
+
+
+
+
+
+
+
+
+
+<h3 id="表格相关"><a href="#表格相关" class="headerlink" title="表格相关"></a>表格相关</h3><h4 id="表格对枚举值的处理"><a href="#表格对枚举值的处理" class="headerlink" title="表格对枚举值的处理"></a>表格对枚举值的处理</h4><blockquote>
+<p>通常我们都是在表单录入数据，在表格中进行简约展示，所以在表单中录入的下拉枚举值我们需要在表格中使用的时候必须使用获取到的枚举值进行翻译</p>
+</blockquote>
+<pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)
+    template
+    div(c-bind&#x3D;&quot;translate(&#39;10000&#39;,$default)&quot;)</code></pre>
+
+<h4 id="表格对行内编辑的处理"><a href="#表格对行内编辑的处理" class="headerlink" title="表格对行内编辑的处理"></a>表格对行内编辑的处理</h4><blockquote>
+<p>在对于处理一些简单数据的时候我们可以不需要弹出一个复杂的编辑框对当前行的数据进行编辑处理，可以直接在表格进行行内编辑</p>
+</blockquote>
+<pre><code class="hljs jade">c-table(bind&#x3D;&quot;simple01s&quot; dataType&#x3D;&quot;Simple01&quot; readOnly&#x3D;&quot;false&quot;)</code></pre>
+
+<h5 id="表格行编辑对下拉项的处理"><a href="#表格行编辑对下拉项的处理" class="headerlink" title="表格行编辑对下拉项的处理"></a>表格行编辑对下拉项的处理</h5><blockquote>
+<p>在表单编辑我们可以去选择一个下拉项做为数据值，当然在表格行编辑也可以</p>
+</blockquote>
+<pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)
+    template(name&#x3D;&quot;edit&quot;)
+        c-dropdown(bind&#x3D;&quot;$default&quot; c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)</code></pre>
+
+<p>最后代码整理为</p>
+<pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)
+    template(name&#x3D;&quot;edit&quot;)
+    	c-dropdown(bind&#x3D;&quot;$default&quot; c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)
+    template
+    	div(c-bind&#x3D;&quot;translate(&#39;10000&#39;,$default)&quot;)</code></pre>
+
+<h4 id="表格添加操作列的处理"><a href="#表格添加操作列的处理" class="headerlink" title="表格添加操作列的处理"></a>表格添加操作列的处理</h4><blockquote>
+<p>通常我们需要在表格的最后一列添加一行操作列来处理当前行的数据</p>
+</blockquote>
+<pre><code class="hljs jade">c-table(bind&#x3D;&quot;simple in simple01s&quot; dataType&#x3D;&quot;Simple01&quot;)
+    column(caption&#x3D;ll.l(&quot;operation&quot;))
+        template
+            div
+                a.cell-link(c-onclick&#x3D;&quot;view(simple)&quot;)&#x3D;ll.l(&quot;view&quot;)</code></pre>
+
+<h4 id="表格联动的处理"><a href="#表格联动的处理" class="headerlink" title="表格联动的处理"></a>表格联动的处理</h4><blockquote>
+<p>很多场景下，我们的数据和数据都是有关联关系，比如一本书对应书籍的出版社的详细信息，这时候针对不同的书本信息联动到出版社的详细信息</p>
+</blockquote>
+<p>因为此处是两个表的关联，所以需要定义两个dataType</p>
+<p>cModel.js</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> $DataType = &#123;
+	A: &#123;
+		name: <span class="hljs-string">"A"</span>,
+		properties : &#123;
+			name : &#123;
+				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,
+				dataType : <span class="hljs-string">"string"</span>,
+			&#125;
+		&#125;
+	&#125;,
+	B : &#123;
+		name : <span class="hljs-string">"B"</span>,
+		properties : &#123;
+			name : &#123;
+				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,
+				dataType : <span class="hljs-string">"string"</span>
+			&#125;
+		&#125;
+	&#125;
+&#125;;</code></pre>
+
+<p>c.jade</p>
+<pre><code class="hljs jade">c-table(bind&#x3D;&quot;as&quot; dataType&#x3D;&quot;a&quot;)
+	column(property&#x3D;&quot;name&quot;)
+c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
+	column(property&#x3D;&quot;name&quot;)</code></pre>
+
+<p>c.js</p>
+<pre><code class="hljs js">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;
+	model.dataType($DataType.B);
+	$DataType.A.properties.bs = &#123;
+		dataType: <span class="hljs-string">"B"</span>,
+		aggregated: <span class="hljs-literal">true</span>,
+		provider: &#123;
+			url: <span class="hljs-string">"controller/B/find"</span>,
+			sendJson: <span class="hljs-literal">true</span>,
+			parameter: &#123;
+				<span class="hljs-string">"name"</span>: <span class="hljs-string">"&#123;&#123;@name&#125;&#125;"</span>
+			&#125;
+		&#125;
+	&#125;
+	model.dataType($DataType.A);
+	model.describe(<span class="hljs-string">"as"</span>, &#123;
+		dataType : <span class="hljs-string">"A"</span>,
+		provider : &#123;
+			url : <span class="hljs-string">"controller/C/findPagination?from=&#123;&#123;$from&#125;&#125;&amp;limit=&#123;&#123;$limit&#125;&#125;"</span>,
+			pageSize : <span class="hljs-number">10</span>,
+			sendJson : <span class="hljs-literal">true</span>,
+			loadMode: <span class="hljs-string">'manual'</span>
+		&#125;
+	&#125;);
+	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;C&#125;)]"</span>);
+	model.action(&#123;
+	&#125;);
+&#125;);</code></pre>
+
+<p>在关联中可以使用==parameter:{“name”:”“}==方式拿到父表中当前选中行的name的值</p>
+<h4 id="表格数据加载的处理"><a href="#表格数据加载的处理" class="headerlink" title="表格数据加载的处理"></a>表格数据加载的处理</h4><blockquote>
+<p>在某些场景下我们可以让表格数据直接加载到页面，也可以使用事件来触发加载数据</p>
+</blockquote>
+<pre><code class="hljs javascript">loadMode: <span class="hljs-string">'manual'</span></code></pre>
+
+<p>可以通过loadMode来控制表单是否在页面加载的时候加载数据到页面：manual手工加载，注释掉loadMode缺省自动加载数据</p>
+<h3 id="面板Panel-相关"><a href="#面板Panel-相关" class="headerlink" title="面板Panel 相关"></a>面板Panel 相关</h3><h4 id="在panel头位置添加按钮"><a href="#在panel头位置添加按钮" class="headerlink" title="在panel头位置添加按钮"></a>在panel头位置添加按钮</h4><pre><code class="hljs jade">c-panel#panelDemo(caption&#x3D;ll.l(&quot;panel&quot;))
+    template(name&#x3D;&quot;tools&quot;)
+       div
+          c-button.primary(caption&#x3D;ll.l(&quot;add&quot;) click&#x3D;&quot;add&quot;)</code></pre>
+
+
+
+
+
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><h4 id="预加载处理"><a href="#预加载处理" class="headerlink" title="预加载处理"></a>预加载处理</h4><blockquote>
+<p>通常我们会在页面加载完成的时候自动触发一部分方法或者set一部分数据值到指定属性</p>
+</blockquote>
+<pre><code class="hljs javas">cola.ready(function() &#123;
+	cola.widget(&quot;panelDemo&quot;).collapse(); &#x2F;&#x2F; 在加载完页面之后 折叠id为panelDemo的面板
+&#125;);</code></pre>
+
+<p>代码应该放在==cola(function (model) { })==</p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web/">Web</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Web/Ui/">Ui</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/cola-ui/">cola-ui</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/01/14/%E6%88%90%E4%BA%BA%E6%BC%AB%E7%94%BB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">成人漫画</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2018/10/09/%E5%B9%82%E7%AD%89/">
+                        <span class="hidden-mobile">幂等</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "cola-ui的使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

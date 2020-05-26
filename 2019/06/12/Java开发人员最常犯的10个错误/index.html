@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>Java开发人员最常犯的10个错误 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-06-12 12:53">
+                    2019年6月12日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.3k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    26
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="一、把数组转成-ArrayList"><a href="#一、把数组转成-ArrayList" class="headerlink" title="一、把数组转成     ArrayList"></a>一、把数组转成     <code>ArrayList</code></h2><p>为了将数组转换为ArrayList，开发者经常会这样做： </p>
+<pre><code class="hljs java">List&lt;String&gt; list = Arrays.asList(arr);</code></pre>
+
+<p>使用     <code>Arrays.asList()</code>方法可以得到一个ArrayList，但是得到这个     <code>ArrayList</code>其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和     <code>java.util.ArrayList</code>同名，但是并不是同一个类。     <code>java.util.Arrays.ArrayList</code>类中实现了     <code>set()</code>,      <code>get()</code>,      <code>contains()</code>等方法，但是并没有定义向其中增加元素的方法。也就是说通过     <code>Arrays.asList()</code>得到的ArrayList的大小是固定的。 </p>
+<p>如果在开发过程中，想得到一个真正的ArrayList对象（     <code>java.util.ArrayList</code>的实例），可以通过以下方式： </p>
+<pre><code class="hljs java">ArrayList&lt;String&gt; arrayList = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(Arrays.asList(arr));</code></pre>
+
+<pre><code>`  java.util.ArrayList`中包含一个可以接受集合类型参数的构造函数。因为     `  java.util.Arrays.ArrayList`这个内部类继承了AbstractList类，所以，该类也是Collection的子类。 </code></pre><a id="more"></a>
+
+<h2 id="二、判断一个数组是否包含某个值"><a href="#二、判断一个数组是否包含某个值" class="headerlink" title="二、判断一个数组是否包含某个值"></a>二、判断一个数组是否包含某个值</h2><p>在判断一个数组中是否包含某个值的时候，开发者经常这样做： </p>
+<pre><code class="hljs java">Set&lt;String&gt; set = <span class="hljs-keyword">new</span> HashSet&lt;String&gt;(Arrays.asList(arr));
+<span class="hljs-keyword">return</span> set.contains(targetValue);</code></pre>
+
+<p>在<a href="http://www.hollischuang.com/archives/1269" target="_blank" rel="noopener">在Java中如何高效的判断数组中是否包含某个元素</a>一文中，深入分析过，以上方式虽然可以实现功能，但是效率却比较低。因为将数组压入Collection类型中，首先要将数组元素遍历一遍，然后再使用集合类做其他操作。 </p>
+<p>在判断一个数组是否包含某个值的时候，推荐使用for循环遍历的形式或者使用Apache Commons类库中提供的     <code>ArrayUtils</code>类的     <code>contains</code>方法。 </p>
+<h2 id="三、在循环中删除列表中的元素"><a href="#三、在循环中删除列表中的元素" class="headerlink" title="三、在循环中删除列表中的元素"></a>三、在循环中删除列表中的元素</h2><p>在讨论这个问题之前，先考虑以下代码的输出结果： </p>
+<pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(Arrays.asList(<span class="hljs-string">"a"</span>,<span class="hljs-string">"b"</span>,<span class="hljs-string">"c"</span>,<span class="hljs-string">"d"</span>));
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;list.size();i++)&#123;
+    list.remove(i);
+&#125;
+System.out.println(list);</code></pre>
+
+<p>输出结果： </p>
+<pre><code class="hljs bash">[b,d]</code></pre>
+
+<p>以上代码的目的是想遍历删除list中所有元素，但是结果却没有成功。原因是忽略了一个关键的问题：当一个元素被删除时，列表的大小缩小并且下标也会随之变化，所以当你想要在一个循环中用下标删除多个元素的时候，它并不会正常的生效。 </p>
+<p>也有些人知道以上代码的问题就由于数组下标变换引起的。所以，他们想到使用增强for循环的形式： </p>
+<pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(Arrays.asList(<span class="hljs-string">"a"</span>,<span class="hljs-string">"b"</span>,<span class="hljs-string">"c"</span>,<span class="hljs-string">"d"</span>));
+<span class="hljs-keyword">for</span>(String s:list)&#123;
+    <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"a"</span>))&#123;
+        list.remove(s);
+    &#125;
+&#125;</code></pre>
+
+<p>但是，很不幸的是，以上代码会抛出     <code>ConcurrentModificationException</code>，有趣的是，如果在remove操作后增加一个break，代码就不会报错： </p>
+<pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(Arrays.asList(<span class="hljs-string">"a"</span>,<span class="hljs-string">"b"</span>,<span class="hljs-string">"c"</span>,<span class="hljs-string">"d"</span>));
+<span class="hljs-keyword">for</span>(String s:list)&#123;
+    <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"a"</span>))&#123;
+        list.remove(s);
+        <span class="hljs-keyword">break</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>在<a href="http://www.hollischuang.com/archives/33" target="_blank" rel="noopener">Java中的fail-fast机制</a>一文中，深入分析了几种在遍历数组的同时删除其中元素的方法以及各种方法存在的问题。其中就介绍了上面的代码出错的原因。 </p>
+<blockquote>
+<p>迭代器（Iterator）是工作在一个独立的线程中，并且拥有一个 mutex 锁。 迭代器被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则 迭代器会马上抛出         <code>java.util.ConcurrentModificationException</code> 异常。     </p>
+</blockquote>
+<p>所以，正确的在遍历过程中删除元素的方法应该是使用Iterator： </p>
+<pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(Arrays.asList(<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>, <span class="hljs-string">"d"</span>));
+Iterator&lt;String&gt; iter = list.iterator();
+<span class="hljs-keyword">while</span> (iter.hasNext()) &#123;
+    String s = iter.next();
+
+    <span class="hljs-keyword">if</span> (s.equals(<span class="hljs-string">"a"</span>)) &#123;
+        iter.remove();
+    &#125;
+&#125;</code></pre>
+
+<pre><code>`  next()`方法必须在调用     `  remove()`方法之前调用。如果在循环过程中先调用     `  remove()`，再调用     `  next()`，就会导致异常     `  ConcurrentModificationException`。原因如上。 </code></pre><h2 id="四、HashTable-和-HashMap-的选择"><a href="#四、HashTable-和-HashMap-的选择" class="headerlink" title="四、HashTable 和 HashMap 的选择"></a>四、HashTable 和 HashMap 的选择</h2><p>了解算法的人可能对HashTable比较熟悉，因为他是一个数据结构的名字。但在Java里边，用HashMap来表示这样的数据结构。Hashtable和 HashMap的一个关键性的不同是，HashTable是同步的，而HashMap不是。所以通常不需要HashTable，HashMap用的更多。 </p>
+<p><a href="http://www.hollischuang.com/archives/82" target="_blank" rel="noopener">HashMap完全解读</a>、<a href="http://www.hollischuang.com/archives/442" target="_blank" rel="noopener">Java中常见亲属比较</a>等文章中介绍了他们的区别和如何选择。 </p>
+<h2 id="五、使用原始集合类型"><a href="#五、使用原始集合类型" class="headerlink" title="五、使用原始集合类型"></a>五、使用原始集合类型</h2><p>在Java里边，原始类型和无界通配符类型很容易混合在一起。以Set为例，Set是一个原始类型，而Set&lt; ? &gt;是一个无界通配符类型。 （可以把原始类型理解为没有使用泛型约束的类型） </p>
+<p>考虑下面使用原始类型List作为参数的代码： </p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(List list, Object o)</span></span>&#123;
+    list.add(o);
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;
+    List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();
+    add(list, <span class="hljs-number">10</span>);
+    String s = list.get(<span class="hljs-number">0</span>);
+&#125;</code></pre>
+
+<p>上面的代码将会抛出异常： </p>
+<pre><code>`  java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String` </code></pre><p>使用原始集合类型是很危险的，因为原始集合类型跳过了泛型类型检查，是不安全的。Set、Set&lt; ? &gt;和Set&lt; Object &gt;之间有很大差别。关于泛型，可以参考下列文章：<a href="http://www.hollischuang.com/archives/1182" target="_blank" rel="noopener">《成神之路-基础篇》Java基础知识——泛型</a> </p>
+<h2 id="六、访问级别"><a href="#六、访问级别" class="headerlink" title="六、访问级别"></a>六、访问级别</h2><p>程序员们经常使用     <code>public</code>作为类中的字段的修饰符，因为这样可以很简单的通过引用得到值，但这并不是好的设计，按照经验，分配给成员变量的访问级别应该尽可能的低。参考<a href="http://www.hollischuang.com/archives/1334" target="_blank" rel="noopener">Java中的四种访问级别</a> </p>
+<h2 id="七、-ArrayList与-LinkedList的选择"><a href="#七、-ArrayList与-LinkedList的选择" class="headerlink" title="七、     ArrayList与     LinkedList的选择"></a>七、     <code>ArrayList</code>与     <code>LinkedList</code>的选择</h2><p>当程序员们不知道     <code>ArrayList</code>与     <code>LinkedList</code>的区别时，他们经常使用ArrayList，因为它看起来比较熟悉。然而，它们之前有巨大的性能差别。在<a href="http://www.hollischuang.com/archives/1349" target="_blank" rel="noopener">ArrayList vs LinkedList vs Vector 区别</a>、<a href="http://www.hollischuang.com/archives/442" target="_blank" rel="noopener">Java中常见亲属比较</a>等文章中介绍过，简而言之，如果有大量的增加删除操作并且没有很多的随机访问元素的操作，应该首先     <code>LinkedList</code>。（     <code>LinkedList</code>更适合从中间插入或者删除（链表的特性）） </p>
+<h2 id="八、可变与不可变"><a href="#八、可变与不可变" class="headerlink" title="八、可变与不可变"></a>八、可变与不可变</h2><p>在<a href="http://www.hollischuang.com/archives/1246" target="_blank" rel="noopener">为什么Java要把字符串设计成不可变的</a>一文中介绍过，不可变对象有许多的优点，比如简单，安全等等。同时，也有人提出疑问：既然不可变有这么多好处，为什么不把所有类都搞成不可变的呢？ </p>
+<p>通常情况下，可变对象可以用来避免产生过多的中间对象。一个经典的实例就是连接大量的字符串，如果使用不可变的字符串，将会产生大量的需要进行垃圾回收的对象。这会浪费CPU大量的时间，使用可变对象才是正确的方案(比如     <code>StringBuilder</code>)。 </p>
+<pre><code class="hljs java">String result=<span class="hljs-string">""</span>;
+<span class="hljs-keyword">for</span>(String s: arr)&#123;
+    result = result + s;
+&#125;</code></pre>
+
+<p><a href="http://stackoverflow.com/questions/23616211/why-we-need-mutable-classes" target="_blank" rel="noopener">StackOverflow</a>中也有关于这个的讨论。 </p>
+<h2 id="九、父类和子类的构造函数"><a href="#九、父类和子类的构造函数" class="headerlink" title="九、父类和子类的构造函数"></a>九、父类和子类的构造函数</h2><p>上图的代码中有两处编译时错误，原因其实很简单，主要和构造函数有关。首先，我们都知道： </p>
+<blockquote>
+<p>如果一个类没有定义构造函数，编译器将会插入一个无参数的默认构造函数。     </p>
+<p>如果一个类中定义了一个带参数的构造函数，那么编译器就不会再帮我们创建无参的构造函数。 </p>
+</blockquote>
+<p>上面的Super类中定义了一个带参数的构造函数。编译器将不会插入默认的无参数构造函数。 </p>
+<p>我们还应该知道： </p>
+<blockquote>
+<p>子类的所有构造函数（无论是有参还是无参）在执行时，都会调用父类的无参构造函数。     </p>
+</blockquote>
+<p>所以，编译器试图调用Super类中的无参构造函数。但是父类默认的构造函数未定义，编译器就会报出这个错误信息。 </p>
+<p>要解决这个问题，可以简单的通过 </p>
+<ul>
+<li><p>1)在父类中添加一个Super()构造方法，就像这样：         </p>
+<p>public Super(){}         </p>
+</li>
+<li><p>2)移除自定义的父类构造函数         </p>
+</li>
+<li><p>3)在子类的构造函数中调用父类的super(value)。         </p>
+</li>
+</ul>
+<h2 id="十、””还是构造函数"><a href="#十、””还是构造函数" class="headerlink" title="十、””还是构造函数"></a>十、””还是构造函数</h2><p>关于这个问题，也是程序员经常出现困惑的地方，在<a href="http://www.hollischuang.com/archives/1249" target="_blank" rel="noopener">该如何创建字符串，使用” “还是构造函数？</a>中也介绍过. </p>
+<blockquote>
+<p>如果你只需要创建一个字符串，你可以使用双引号的方式，如果你需要在堆中创建一个新的对象，你可以选择构造函数的方式。     </p>
+</blockquote>
+<p>在     <code>String d = new String(&quot;abcd&quot;)</code>时，因为字面值“abcd”已经是字符串类型，那么使用构造函数方式只会创建一个额外没有用处的对象。 </p>
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/12/%E4%BD%BF%E7%94%A8BigDecimal%E8%BF%9B%E8%A1%8C%E7%B2%BE%E7%A1%AE%E8%BF%90%E7%AE%97/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用BigDecimal进行精确运算</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/06/12/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">
+                        <span class="hidden-mobile">Redis分布式锁的正确实现方式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java开发人员最常犯的10个错误&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

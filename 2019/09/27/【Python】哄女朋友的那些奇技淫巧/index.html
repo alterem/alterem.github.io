@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>【Python】哄女朋友的那些奇技淫巧 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://tva1.sinaimg.cn/large/006y8mN6gy1g7duo28cdkj311s0og77j.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-09-27 10:00">
+                    2019年9月27日 上午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.4k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    17
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <blockquote>
+<p>本文来源公众号： <strong>Python乱炖</strong></p>
+<img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=MzU1NDcwNTE2OA==&mid=2247486190&idx=1&sn=a1707f91b23d437f758131818d73dda4&send_time=" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+</blockquote>
+<h3 id="Python里面的奇技淫巧"><a href="#Python里面的奇技淫巧" class="headerlink" title="Python里面的奇技淫巧"></a>Python里面的奇技淫巧</h3><blockquote>
+<p><strong>声明</strong></p>
+<p><strong>“以下所有模块均可</strong></p>
+<p><strong>使用pip直接安装”</strong></p>
+</blockquote>
+<p><strong>说python是</strong></p>
+<p><strong>所有编程语言里面</strong></p>
+<p><strong>最奇葩的语言</strong></p>
+<p><strong>这肯定是没错了</strong></p>
+<p><strong>它可以做</strong></p>
+<p><strong>自动化，爬虫，数据，AI，机器学习</strong></p>
+<p><strong>这些我们暂且不说</strong></p>
+<p><strong>可是它竟然还可以</strong></p>
+<p><strong>撩妹</strong></p>
+<p><strong>撩到妹</strong></p>
+<p><strong>定位女朋友</strong></p>
+<p><strong>和女朋友聊天</strong></p>
+<p><strong>天天和女朋友早晚安</strong></p>
+<p><strong>给女朋友打电话</strong></p>
+<p><strong>讨女朋友开心</strong></p>
+<p><strong>让女朋友崇拜你</strong></p>
+<p><strong>………</strong></p>
+<p><strong>怎么样？</strong></p>
+<p><strong>够厉害吧</strong></p>
+<p><strong>赶紧跟着狗哥</strong></p>
+<p><strong>来看看python里面的奇技淫巧吧！</strong></p>
+<h3 id="pinyin"><a href="#pinyin" class="headerlink" title="pinyin"></a>pinyin</h3><p><strong>第一个就是我们的pinyin模块了，这个模块骚就骚在可以直接把中文汉字转化成中文的汉语拼音，甚至连第几声发音都可以给你搞出来，具体使用很简单，导入后直接使用get方法即可：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> pinyin
+transf = pinyin.get(<span class="hljs-string">"狗哥"</span>)
+trans2 = pinyin.get(<span class="hljs-string">"狗哥"</span>, format=<span class="hljs-string">"strip"</span>)</code></pre>
+
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoss66zj30q70g7q3p.jpg" srcset="/img/loading.gif" alt="img"></p>
+<h3 id="qrcode"><a href="#qrcode" class="headerlink" title="qrcode"></a>qrcode</h3><p><strong>下面这个是我们的二维码生成器，可以将文字，号码，网址存放在二维码中，只需要只用make方法去生成二维码，如何使用save方法保存二维码图片即可。很简单的两部搞定！下面我们来看一个栗子：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> qrcode
+words=<span class="hljs-string">'https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzU1NDcwNTE2OA==&amp;scene=126#wechat_redirect'</span>
+img = qrcode.make(words)
+img.save(<span class="hljs-string">'test.png'</span>)
+img.show()</code></pre>
+
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymou71fqj30u00g70ts.jpg" srcset="/img/loading.gif" alt="img"></p>
+<h3 id="myqr"><a href="#myqr" class="headerlink" title="myqr"></a>myqr</h3><p><strong>如果说刚刚的qrcode已经足够神奇了的话，那这个将会更加神奇，因为它可以以图片为背景来生成二维码，背景图片可以是动态gif也可以是静态jpg，png，整个生成二维码的步骤也要比上面简单许多，你甚至都不需要敲代码就可以享受到动态二维码的美好，可以直接在终端（cmd）敲一句口令即可生成二维码！（需要安装好myqr）</strong></p>
+<pre><code class="hljs bash">myqr <span class="hljs-string">"https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzU1NDcwNTE2OA==&amp;scene=126#wechat_redirect"</span> -v 1 -l Q -n <span class="hljs-string">"s_qr.gif"</span> -p s.gif -con 1.2 -bri 1.2 -c</code></pre>
+
+<p><strong>整个口令你需要修改的就是：</strong></p>
+<p><strong>url网址修改成你需要的</strong></p>
+<p><strong>s.gif修改成你自己图片的地址</strong></p>
+<p><strong>其他的参数你不知道什么意思均可以不动</strong></p>
+<p><strong>如果想了解具体参数是什么意思，可参考狗哥公众号内python生成二维码那片文章。</strong></p>
+<p><strong>效果如下：</strong></p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymow2exxg30e90e9qk3.gif" srcset="/img/loading.gif" alt="img"></p>
+<h3 id="jieba"><a href="#jieba" class="headerlink" title="jieba"></a>jieba</h3><p><strong>jieba，真的就是结巴的意思，主要是用来进行分词的。</strong></p>
+<p><strong>jieba 可以**</strong>把一句话拆分成多个词。**</p>
+<p><strong>从一句话（一段话）中提取最重要的几个关键词。</strong></p>
+<p><strong>最常用的功能应该就是这些吧，分词之后结合 TF-IDF，就可以做搜索工具和相关推荐了。</strong></p>
+<p><strong>狗哥推荐：结合本次推荐的这些模块，使用结巴工具来和女朋友聊天，是个不错的主意！</strong></p>
+<p>下面看看切割示范：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> jieba
+string = <span class="hljs-string">"大家都说狗哥好，狗哥帅气人又好"</span>
+sl = jieba.cut(string, cut_all=<span class="hljs-literal">True</span>)
+print(<span class="hljs-string">'全的模式:'</span>, list(sl))
+sl = jieba.cut(string, cut_all=<span class="hljs-literal">False</span>)
+print(<span class="hljs-string">"精确模式:"</span>, list(sl))
+sl = jieba.cut(string)
+print(<span class="hljs-string">'搜索模式:'</span>, list(sl))</code></pre>
+
+<p><strong>结巴还有很多高级的方法，希望大家多多发掘，如果实在懒，在狗哥的公众号里面搜一下也就找到了。</strong></p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymowyfkmj30u0042dgw.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><strong>itchat/wxpy</strong></p>
+<p><strong>itchat和wxpy这两个模块功能都差不多，都是用于微信聊天的，可以用来获取朋友圈好友的数据，也可以用来和好友聊天自动回复等等。（接上图灵机器人也是无敌了）</strong></p>
+<p><strong>使用itchat很简单，导入模块后调用login方法便可以直接扫码登陆了：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> itchat
+itchat.login()</code></pre>
+
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoxyhxhj30u00h0ac1.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><strong>登陆了之后可以通过get_friends方法获取到所有的微信好友</strong></p>
+<pre><code class="hljs python">friends = itchat.get_friends(update=<span class="hljs-literal">True</span>)[<span class="hljs-number">0</span>:]</code></pre>
+
+<p><strong>至于获取微信好友要干啥，那就随你了，狗哥直接教你发送消息吧，直接使用send方法指明发送对象即可：</strong></p>
+<pre><code class="hljs python">users = itchat.search_friends(<span class="hljs-string">"亲爱的"</span>)userName = users[<span class="hljs-number">0</span>][<span class="hljs-string">'UserName'</span>]print(userName)itchat.send(<span class="hljs-string">'亲爱的，送你一个杨树林要不要？'</span>, toUserName=userName)</code></pre>
+
+<p><strong>这边狗哥直接选择了一个用户直接发送消息</strong></p>
+<p><strong>当然，我们除了发送消息，还可以设置自动回复：</strong></p>
+<p><strong>定义几个方法，调用itchat自带的装饰器即可：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> itchat.content <span class="hljs-keyword">import</span> *
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reply</span><span class="hljs-params">(msg)</span>:</span>
+   itchat.send((<span class="hljs-string">'23333'</span>), msg[<span class="hljs-string">'FromUserName'</span>])
+<span class="hljs-meta">@itchat.msg_register([PICTURE])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pic_replay</span><span class="hljs-params">(msg)</span>:</span>
+   itchat.send((<span class="hljs-string">'最近又漂亮了'</span>),
+           msg[<span class="hljs-string">'FromUserName'</span>])
+
+<span class="hljs-meta">@itchat.msg_register([RECORDING])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rec_replay</span><span class="hljs-params">(msg)</span>:</span>
+   itchat.send((<span class="hljs-string">'连声音都是这么迷人'</span>),
+           msg[<span class="hljs-string">'FromUserName'</span>])
+
+<span class="hljs-meta">@itchat.msg_register([VIDEO,])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">video_replay</span><span class="hljs-params">(msg)</span>:</span>
+   itchat.send((<span class="hljs-string">'我没流量了，视频打不开啊'</span>),
+           msg[<span class="hljs-string">'FromUserName'</span>])
+
+<span class="hljs-meta">@itchat.msg_register([SHARING])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">share_replay</span><span class="hljs-params">(msg)</span>:</span>
+   itchat.send((<span class="hljs-string">'这链接我这么怎么点不进去啊'</span>),
+           msg[<span class="hljs-string">'FromUserName'</span>])</code></pre>
+
+<p><strong>没错定义好回复的对象，只要登陆上了，这些回复就会生效了！</strong></p>
+<p><strong>狗哥测试的一个例子：</strong></p>
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymozpmrzj30a20ftdg9.jpg" srcset="/img/loading.gif" alt="img"></p>
+<h3 id="wordcloud"><a href="#wordcloud" class="headerlink" title="wordcloud"></a>wordcloud</h3><p><strong>下面这个看起来比较鬼畜，但是其实在数据可视化里面它的用处还是比较强大的。</strong></p>
+<p><strong>词云这个东西一般与numpy，matplotlib，jieba，pillow连用，用起来也是挺麻烦的</strong></p>
+<p><strong>狗哥这里整理了一个简单的版本供大家参考：</strong></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">import</span> re
+<span class="hljs-keyword">import</span> jieba
+<span class="hljs-keyword">from</span> wordcloud <span class="hljs-keyword">import</span> WordCloud,\
+   ImageColorGenerator,\
+   STOPWORDS
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">'content.txt'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:
+   word = (f.read())
+   f.close()
+
+<span class="hljs-comment"># 图片模板和字体</span>
+image = np.array(Image.open(<span class="hljs-string">'ditu.jpg'</span>))
+font = <span class="hljs-string">r'C:\\Windows\\fonts\\msyh.ttf'</span>
+
+<span class="hljs-comment"># 去掉英文，保留中文</span>
+resultword = re.sub(<span class="hljs-string">"[A-Za-z0-9\[\`\~\!\@\#\$\^\&amp;\*\(\)\=\|\&#123;\&#125;"</span>
+                   <span class="hljs-string">"\'\:\;\'\,\[\]\.\&lt;\&gt;\/\?\~\。\@\#\\\&amp;\*\%]"</span>,
+                   <span class="hljs-string">""</span>, word)
+wordlist_after_jieba = jieba.cut(resultword)
+wl_space_split = <span class="hljs-string">" "</span>.join(wordlist_after_jieba)
+
+<span class="hljs-comment"># 设置停用词</span>
+sw = set(STOPWORDS)
+
+<span class="hljs-comment"># 关键一步</span>
+my_wordcloud = WordCloud(scale=<span class="hljs-number">4</span>,
+                        font_path=font,
+                        mask=image,
+                        stopwords=sw,
+                        background_color=<span class="hljs-string">'white'</span>,
+                        max_words=<span class="hljs-number">100</span>,
+                        max_font_size=<span class="hljs-number">60</span>,
+                        random_state=<span class="hljs-number">20</span>).\
+   generate(wl_space_split)
+
+<span class="hljs-comment"># 显示生成的词云</span>
+plt.imshow(my_wordcloud)
+plt.axis(<span class="hljs-string">"off"</span>)
+plt.show()
+
+<span class="hljs-comment"># 保存生成的图片</span>
+my_wordcloud.to_file(<span class="hljs-string">'result.jpg'</span>)</code></pre>
+
+<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymp0rpdnj30oo0e1n02.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>欢迎关注微信公众号​：</p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/python/">python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/29/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%90%86%E8%A7%A3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">高可用的一些思考和理解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-%E5%9C%A8idea&amp;eclipse%E4%B8%AD%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8sonarlint/">
+                        <span class="hidden-mobile">SonarQube的使用-在idea&eclipse中安装与使用sonarlint</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "【Python】哄女朋友的那些奇技淫巧&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

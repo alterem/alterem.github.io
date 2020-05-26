@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>CentOS下安装环境文档 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2018-09-11 15:01">
+                    2018年9月11日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.5k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    42
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <hr>
+<p>【JDK1.7安装】</p>
+<hr>
+<p>1)登录Sun的JDK官方下载网 址:<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html</a></p>
+<p>2)下载jdk-7u67-linux-x64.rpm文件</p>
+<p>》删除系统自带OpenJDK</p>
+<p>CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默认安装了一个openjdk1.7版本</p>
+<a id="more"></a>
+
+<pre><code class="hljs plain"># java -version
+
+java version &quot;1.7.0&quot;
+
+OpenJDK  Runtime Environment (build 1.7.0-b09)
+
+OpenJDK Client VM (build 1.7.0-b09, mixed mode)</code></pre>
+
+<blockquote>
+<p>备注：</p>
+<p>无须删除原有的openjdk;否则，与之相关的openoffice等软件，也会自动随之删除；</p>
+</blockquote>
+<p>如果直接”应用程序-添加/删除软件–基本系统–java“删除其他相关软件也会自动删除，所以删除前，最好安装配置好新的JDK环境</p>
+<p> 1) 删除原有的JDK：</p>
+<pre><code class="hljs plain"># rpm -qa|grep jdk</code></pre>
+
+<p>查看安装的JDK，会显示多个java-1.7.0-openjdk-1.7.0相关的程序，在以下一一卸载。直到删完为止，如下：</p>
+<pre><code class="hljs plain"># rpm -e --nodeps java-1.7.0-openjdk-1.7.0.65-2.5.1.2.el6_5.x86_64
+# rpm -e --nodeps java-1.7.0-openjdk-devel-1.7.0.65-2.5.1.2.el6_5.x86_64
+# rpm -e --nodeps java-1.7.0-openjdk-demo-1.7.0.65-2.5.1.2.el6_5.x86_64</code></pre>
+
+<p>……</p>
+<pre><code class="hljs plain"># rpm -qa|grep java</code></pre>
+
+<p>查看安装的JAVA关联程序，在以下一一卸载。直到删完为止，如下：</p>
+<pre><code class="hljs plain"># rpm -e --nodeps tzdata-java-2014h-1.el6.noarch</code></pre>
+
+<p>……</p>
+<p>》配置新的JDK环境</p>
+<p>1）把安装文件文件保存在/usr/java/tools下 ,并切换到root用户</p>
+<pre><code class="hljs plain"># mkdir &#x2F;usr&#x2F;java  &#x2F;&#x2F;创建&#x2F;urs&#x2F;java目录
+# cd &#x2F;usr&#x2F;java&#x2F;
+# rpm -ivh .&#x2F;tools&#x2F;jdk-7u67-linux-x64.rpm</code></pre>
+
+<p>》配置jdk1.6.0_22环境变量</p>
+ <pre><code class="hljs plain"># vi &#x2F;etc&#x2F;profile
+
+JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_79
+JRE_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_79&#x2F;jre
+PATH&#x3D;PATH:JAVA_HOME&#x2F;bin:$JRE_HOME&#x2F;bin
+CLASSPATH&#x3D;:JAVA_HOME&#x2F;lib&#x2F;dt.jar:JAVA_HOME&#x2F;lib&#x2F;tools.jar:$JRE_HOME&#x2F;lib
+export JAVA_HOME JRE_HOME PATH CLASSPATH</code></pre>
+
+<p>》使环境变量生效：</p>
+<pre><code class="hljs plain">#source &#x2F;etc&#x2F;profile</code></pre>
+
+<p>》测试安装</p>
+<p>   1)查看版本号</p>
+<pre><code class="hljs plain"># java -version
+
+java version &quot;1.7.0_67&quot;
+Java(TM) SE Runtime Environment (build 1.7.0_67-b01)
+Java HotSpot(TM) 64-Bit Server VM (build 24.65-b04, mixed mode)
+Java HotSpot(TM) Client VM (build 17.1-b03, mixed mode, sharing)</code></pre>
+
+<p>说明成功了。</p>
+<hr>
+<p>【MYSQL5.5的安装】</p>
+<hr>
+<p>安装方式分为rpm和源码编译安装两种，本文是采用mysql源码编译方式，编译器使用Cmake。软件需要mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz，请自行下载。</p>
+<p>》下载地址：</p>
+<p><a href="http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.40.tar.gz" target="_blank" rel="noopener">http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.40.tar.gz</a></p>
+<p><a href="http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz" target="_blank" rel="noopener">http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz</a></p>
+<p>其中mysql使用最新的稳定版本，即最新试用版的上一个版本，且非rc或者alpha的版本，Cmake直接用的最新版。</p>
+<p> 》上传mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz到/usr/java/tools文件夹下。</p>
+<p> 》CentOS安装g++和ncurses-devel</p>
+ <pre><code class="hljs plain"># yum install gcc-c++
+# yum install ncurses-devel</code></pre>
+
+<p>》cmake的安装</p>
+<pre><code class="hljs plain"># mkdir -p &#x2F;usr&#x2F;java&#x2F;make
+# cd &#x2F;usr&#x2F;java&#x2F;make
+# mv ..&#x2F;tools&#x2F;cmake-2.8.10.2.tar.gz .&#x2F;
+# tar -zxv -f cmake-2.8.10.2.tar.gz
+# cd cmake-2.8.10.2
+# .&#x2F;configure
+# make
+# make install</code></pre>
+
+<p>》将cmake永久加入系统环境变量</p>
+<p>》用vi在文件/etc/profile文件中增加变量，使其永久有效，</p>
+<pre><code class="hljs plain"># vi &#x2F;etc&#x2F;profile</code></pre>
+
+<p>》在文件PATH中加入MAKE_PATH环境变量：</p>
+<pre><code class="hljs plain">JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_67
+JRE_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_67&#x2F;jre
+MAKE_PATH&#x3D;&#x2F;usr&#x2F;java&#x2F;cmake&#x2F;cmake-2.8.10.2&#x2F;bin
+PATH&#x3D;MAKE_PATH:PATH:JAVA_HOME&#x2F;bin:JRE_HOME&#x2F;bin
+CLASSPATH&#x3D;:JAVA_HOME&#x2F;lib&#x2F;dt.jar:JAVA_HOME&#x2F;lib&#x2F;tools.jar:$JRE_HOME&#x2F;lib
+export JAVA_HOME JRE_HOME PATH CLASSPATH</code></pre>
+
+<p>》执行以下代码使刚才的修改生效：</p>
+<pre><code class="hljs plain"># source &#x2F;etc&#x2F;profile</code></pre>
+
+<p>》用 export 命令查看PATH值</p>
+<pre><code class="hljs plain"># echo $PATH</code></pre>
+
+<p>》创建mysql的安装目录及数据库存放目录</p>
+ <pre><code class="hljs plain"># mkdir -p &#x2F;usr&#x2F;java&#x2F;mysql &#x2F;&#x2F;安装mysql
+# mkdir -p &#x2F;usr&#x2F;java&#x2F;mysql&#x2F;data &#x2F;&#x2F;存放数据库</code></pre>
+
+<p>》创建mysql用户及用户组</p>
+<pre><code class="hljs plain"># groupadd mysql
+# useradd -r -g mysql mysql</code></pre>
+
+<p>》编译安装mysql</p>
+<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;java&#x2F;mysql
+# tar zxvf ..&#x2F;tools&#x2F;mysql-5.5.40.tar.gz
+# cd mysql-5.5.40&#x2F;
+# cmake -DCMAKE_INSTALL_PREFIX&#x3D;&#x2F;usr&#x2F;java&#x2F;mysql \
+-DMYSQL_UNIX_ADDR&#x3D;&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;mysql.sock \
+-DDEFAULT_CHARSET&#x3D;utf8 \
+-DDEFAULT_COLLATION&#x3D;utf8_general_ci \
+-DWITH_MYISAM_STORAGE_ENGINE&#x3D;1 \
+-DWITH_INNOBASE_STORAGE_ENGINE&#x3D;1 \
+-DWITH_MEMORY_STORAGE_ENGINE&#x3D;1 \
+-DWITH_READLINE&#x3D;1 \
+-DENABLED_LOCAL_INFILE&#x3D;1 \
+-DMYSQL_DATADIR&#x3D;&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;data \
+-DMYSQL_USER&#x3D;mysql \
+-DMYSQL_TCP_PORT&#x3D;6666
+# make
+# make install</code></pre>
+
+<p>》检验是否安装成功</p>
+ <pre><code class="hljs plain"># cd  &#x2F;usr&#x2F;java&#x2F;mysql
+[root@fiona mysql]# ls
+bin      data  include         lib  mysql-5.5.40  mysql-test  scripts  sql-bench
+COPYING  docs  INSTALL-BINARY  man  mysql.sock    README      share    support-files</code></pre>
+
+<p> 有bin等以上文件的话，恭喜你已经成功安装了mysql。</p>
+<p> 》配置mysql</p>
+<p> 》设置mysql目录权限</p>
+<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;java&#x2F;mysql &#x2F;&#x2F;把当前目录中所有文件的所有者设为root，所属组为mysql
+# chown -R root:mysql .
+# chown -R mysql:mysql data</code></pre>
+
+<p>》将mysql的启动服务添加到系统服务中</p>
+<pre><code class="hljs plain"># cp support-files&#x2F;my-medium.cnf &#x2F;etc&#x2F;my.cnf
+cp：是否覆盖&quot;&#x2F;etc&#x2F;my.cnf&quot;？ y</code></pre>
+
+<p>》创建系统数据库的表</p>
+<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;java&#x2F;mysql
+# scripts&#x2F;mysql_install_db --user&#x3D;mysql</code></pre>
+
+<p>》设置环境变量</p>
+<pre><code class="hljs plain"># vi &#x2F;root&#x2F;.bash_profile</code></pre>
+
+<p>在修改PATH=$PATH:$HOME/bin为：</p>
+<pre><code class="hljs plain">PATH&#x3D;PATH:HOME&#x2F;bin:&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;bin:&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;lib
+# source &#x2F;root&#x2F;.bash_profile &#x2F;&#x2F;使刚才的修改生效</code></pre>
+
+<p>》手动启动mysql</p>
+<pre><code class="hljs plain"># .&#x2F;bin&#x2F;mysqld_safe --user&#x3D;mysql &amp; &#x2F;&#x2F;启动MySQL，但不能停止
+mysqladmin -u root -p shutdown &#x2F;&#x2F;此时root还没密码，所以为空值，提示输入密码时，直接回车即可。</code></pre>
+
+<p>》将mysql的启动服务添加到系统服务中</p>
+<pre><code class="hljs plain"># cp support-files&#x2F;mysql.server &#x2F;etc&#x2F;init.d&#x2F;mysql</code></pre>
+
+<p>》启动mysql</p>
+<pre><code class="hljs plain"># service mysql start
+Starting MySQL... ERROR! The server quit without updating PID file (&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;data&#x2F;localhost.localdomain.pid).</code></pre>
+
+<p>》启动失败：</p>
+<p>》我这里是权限问题，先改变权限</p>
+<pre><code class="hljs plain"># chown -R mysql:mysql &#x2F;usr&#x2F;java&#x2F;mysql</code></pre>
+
+<p>》接着启动服务器</p>
+<pre><code class="hljs plain"># &#x2F;etc&#x2F;init.d&#x2F;mysql start</code></pre>
+
+<p>》修改MySQL的root用户的密码以及打开远程连接</p>
+<pre><code class="hljs plain"># mysql -u root mysql
+mysql&gt; use mysql;
+mysql&gt; desc user;
+mysql&gt; GRANT ALL PRIVILEGES ON . TO root@&quot;%&quot; IDENTIFIED BY &quot;root&quot;; &#x2F;&#x2F;为root添加远程连接的能力
+mysql&gt; update user set Password &#x3D; password(&#39;x123456.&#39;) where User&#x3D;&#39;root&#39;; &#x2F;&#x2F;设置root用户密码
+mysql&gt; select Host,User,Password from user where User&#x3D;&#39;root&#39;;
+mysql&gt; flush privileges;
+mysql&gt; exit</code></pre>
+
+<p>》重新登录</p>
+<pre><code class="hljs plain"># mysql -u root -p
+enter password:x123456.000</code></pre>
+
+<p>》若还不能进行远程连接，关闭防火墙</p>
+<pre><code class="hljs plain">[root@localhost]# &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;iptables stop</code></pre>
+
+<p>用远程工具连接上了表示成功了。</p>
+<hr>
+<p>【TOMCAT7.0的安装】</p>
+<hr>
+<p>》先下载apache-tomcat-7.0.56.tar.gz</p>
+<p>》下载地下：<a href="http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz</a></p>
+<pre><code class="hljs plain">
+# cd &#x2F;usr&#x2F;java
+# tar -zxvf .&#x2F;tools&#x2F;apache-tomcat-7.0.56.tar.gz
+# cd &#x2F;etc&#x2F;rc.d&#x2F;init.d
+# vi tomcat
+#----------输入以下信息---------------------
+
+#
+# chkconfig: 345 80 15
+# description: Tomcat is a Servlet+JSP Engine.
+# Enter the jdk installation directory
+jdk_File&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_67
+# Enter the tomcat installation directory
+tomcat_File&#x3D;&#x2F;usr&#x2F;java&#x2F;apache-tomcat-7.0.56
+export JAVA_HOME&#x3D;$jdk_File
+# Source function library.
+. &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;functions
+start()&#123;
+if [ -z $(&#x2F;sbin&#x2F;pidof java) ]; then
+echo &quot;Starting tomcat&quot;
+$tomcat_File&#x2F;bin&#x2F;startup.sh
+touch &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;tomcat
+else
+echo &quot;tomcat allready running&quot;
+fi
+&#125;
+stop()&#123;
+if [ ! -z $(&#x2F;sbin&#x2F;pidof java) ]; then
+echo &quot;Shutting down tomcat&quot;
+$tomcat_File&#x2F;bin&#x2F;shutdown.sh
+until [ -z $(&#x2F;sbin&#x2F;pidof java) ]; do :; done
+rm -f &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;tomcat
+else
+echo &quot;tomcat not running&quot;
+fi
+&#125;
+case &quot;$1&quot; in
+start)
+start
+;;
+stop)
+stop
+;;
+restart)
+stop
+start
+;;
+status)
+$tomcat_File&#x2F;bin&#x2F;catalina.sh version
+;;
+*)
+echo &quot;Usage: $0 &#123;start|stop|restart|status&#125;&quot;
+esac
+exit 0
+#----------输入以下信息---------------------
+
+:wq! #保存退出 
+# chmod 755 &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;tomcat #添加执行权限
+# chkconfig --add tomcat #添加服务
+# chkconfig tomcat on #设置开机启动
+# service tomcat stop #停止
+# service tomcat start #启动
+# service tomcat restart #重启
+# service tomcat status #查看状态信息</code></pre>
+
+
+
+<hr>
+<p>【nginx-1.7.6.tar.gz的安装】</p>
+<hr>
+<p>》先下载nginx-1.7.6.tar.gz</p>
+<p>》下载URL:<a href="http://nginx.org/download/nginx-1.7.6.tar.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.7.6.tar.gz</a></p>
+<p>》把nginx-1.7.6.tar.gz放到/usr/java/tools目录下</p>
+<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;local&#x2F;
+# tar -zxvf &#x2F;usr&#x2F;java&#x2F;tools&#x2F;nginx-1.7.5.tar.gz
+# cd nginx-1.7.6&#x2F;
+# yum -y install pcre-devel
+# yum install -y zlib-devel
+# .&#x2F;configure
+# make &amp;&amp; make install
+# cd &#x2F;usr&#x2F;local&#x2F;nginx
+# cd sbin
+# .&#x2F;nginx
+# &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;iptables stop</code></pre>
+
+<p>》配置服务器启动方式</p>
+<pre><code class="hljs plain"># vi &#x2F;etc&#x2F;init.d&#x2F;nginx
+#---------输入以下信息------------------
+
+# nginx Startup script for the Nginx HTTP Server
+# it is v.0.0.2 version.
+# chkconfig: - 85 15
+# description: Nginx is a high-performance web and proxy server.
+# It has a lot of features, but it&#39;s not for everyone.
+# processname: nginx
+# pidfile: &#x2F;software&#x2F;nginx&#x2F;logs&#x2F;nginx.pid
+# config: &#x2F;software&#x2F;nginx&#x2F;conf&#x2F;nginx.conf
+nginxd&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx
+nginx_config&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf
+nginx_pid&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid
+RETVAL&#x3D;0
+prog&#x3D;&quot;nginx&quot;
+# Source function library.
+. &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;functions
+# Source networking configuration.
+. &#x2F;etc&#x2F;sysconfig&#x2F;network
+# Check that networking is up.
+[ $&#123;NETWORKING&#125; &#x3D; &quot;no&quot; ] &amp;&amp; exit 0
+[ -x $nginxd ] || exit 0
+# Start nginx daemons functions.
+start() &#123;
+if [ -e $nginx_pid ];then
+echo &quot;nginx already running....&quot;
+exit 1
+fi
+echo -n &quot;Starting prog: &quot;
+daemon nginxd -c &#123;nginx_config&#125;
+RETVAL&#x3D;$?
+echo
+[ $RETVAL &#x3D; 0 ] &amp;&amp; touch &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;nginx
+return $RETVAL
+&#125;
+# Stop nginx daemons functions.
+stop() &#123;
+echo -n &quot;Stopping prog: &quot;
+killproc $nginxd
+RETVAL&#x3D;$?
+echo
+[ $RETVAL &#x3D; 0 ] &amp;&amp; rm -f &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;nginx &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid
+&#125;
+reload() &#123;
+echo -n &quot;Reloading prog: &quot;
+#kill -HUP cat $&#123;nginx_pid&#125;
+killproc $nginxd -HUP
+RETVAL&#x3D;$?
+echo
+&#125;
+# See how we were called.
+case &quot;$1&quot; in
+start)
+start
+;;
+stop)
+stop
+;;
+reload)
+reload
+;;
+restart)
+stop
+start
+;;
+status)
+status $prog
+RETVAL&#x3D;$?
+;;
+*)
+echo &quot;Usage: prog &#123;start|stop|restart|reload|status|help&#125;&quot;
+exit 1
+esac
+exit $RETVAL
+#---------输入以下信息------------------
+
+# chmod 755 &#x2F;etc&#x2F;init.d&#x2F;nginx &amp;&amp; chkconfig nginx on
+# service nginx start
+# service nginx stop
+# service nginx restart
+# ps -ef | grep nginx
+# netstat -pant | grep 80</code></pre>
+
+<p>》测试在浏览器中输入广域网IP看看能不能看到欢迎界面，如果能就表示成功了。</p>
+<hr>
+<p>【配置规则】</p>
+<hr>
+<pre><code class="hljs plain"># vi &#x2F;etc&#x2F;sysconfig&#x2F;iptables</code></pre>
+
+<p>增加如下配置:</p>
+<blockquote>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT</p>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 8888 -j ACCEPT</p>
+<p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 6666 -j ACCEPT</p>
+</blockquote>
+<pre><code class="hljs plain"># service iptables restart</code></pre>
+
+<p>》系统启动的方式为自启动</p>
+<pre><code class="hljs plain"># chkconfig mysql on
+# chkconfig nginx on
+# chkconfig tomcat on</code></pre>
+
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/Server/">Server</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
+                    
+                      <a class="hover-with-bg" href="/tags/JDK/">JDK</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Tomcat/">Tomcat</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Nginx/">Nginx</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/09/11/%E7%94%A8JAVA%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E9%98%B2%E7%AF%A1%E6%94%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">用JAVA写一个简易图片防篡改</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2018/09/11/CentOS-7-%E5%AE%89%E8%A3%85-Apache-MySQL-PHP-%E6%8C%87%E5%8D%97/">
+                        <span class="hidden-mobile">CentOS 7 安装 Apache, MySQL, PHP 指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "CentOS下安装环境文档&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

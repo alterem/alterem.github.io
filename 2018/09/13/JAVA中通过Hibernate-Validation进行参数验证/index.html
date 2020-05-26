@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>JAVA中通过Hibernate-Validation进行参数验证 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2018-09-13 13:46">
+                    2018年9月13日 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    827 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    10
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>在开发JAVA服务器端代码时，我们会遇到对外部传来的参数合法性进行验证，而hibernate-validator提供了一些常用的参数校验注解，我们可以拿来使用。<br><strong>1.maven中引入hibernate-validator对应的jar：</strong></p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.hibernate<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hibernate-validator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.3.1.Final<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span> 
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<a id="more"></a>
+
+<p>2.在Model中定义要校验的字段（即该字段不能为空，并且最大长度为14）：**</p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> javax.validation.constraints.Pattern;
+<span class="hljs-keyword">import</span> javax.validation.constraints.Size;
+<span class="hljs-keyword">import</span> org.hibernate.validator.constraints.NotEmpty;
+ 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PayRequestDto</span> </span>&#123;
+     
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 支付完成时间</span>
+<span class="hljs-comment">     **/</span>
+    <span class="hljs-meta">@NotEmpty</span>(message=<span class="hljs-string">"支付完成时间不能空"</span>)
+    <span class="hljs-meta">@Size</span>(max=<span class="hljs-number">14</span>,message=<span class="hljs-string">"支付完成时间长度不能超过&#123;max&#125;位"</span>)
+    <span class="hljs-keyword">private</span> String payTime;
+     
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 状态</span>
+<span class="hljs-comment">     **/</span>
+    <span class="hljs-meta">@Pattern</span>(regexp = <span class="hljs-string">"0[0123]"</span>, message = <span class="hljs-string">"状态只能为00或01或02或03"</span>)
+    <span class="hljs-keyword">private</span> String status;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPayTime</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> payTime;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPayTime</span><span class="hljs-params">(String payTime)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.payTime = payTime;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getStatus</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> status;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStatus</span><span class="hljs-params">(String status)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.status = status;
+    &#125;
+&#125;</code></pre>
+
+<p><strong>3.定义Validation工具类：</strong></p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Set;
+
+<span class="hljs-keyword">import</span> javax.validation.ConstraintViolation;
+<span class="hljs-keyword">import</span> javax.validation.Validation;
+<span class="hljs-keyword">import</span> javax.validation.Validator;
+
+<span class="hljs-keyword">import</span> org.hibernate.validator.HibernateValidator;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ValidationUtils</span> </span>&#123;
+    
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 使用hibernate的注解来进行验证</span>
+<span class="hljs-comment">     * </span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Validator validator = Validation
+            .byProvider(HibernateValidator<span class="hljs-class">.<span class="hljs-keyword">class</span>).<span class="hljs-title">configure</span>().<span class="hljs-title">failFast</span>(<span class="hljs-title">true</span>).<span class="hljs-title">buildValidatorFactory</span>().<span class="hljs-title">getValidator</span>()</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 功能描述: &lt;br&gt;</span>
+<span class="hljs-comment">     * 〈注解验证参数〉</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> obj</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@see</span> [相关类/方法](可选)</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@since</span> [产品/模块版本](可选)</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">validate</span><span class="hljs-params">(T obj)</span> </span>&#123;
+        Set&lt;ConstraintViolation&lt;T&gt;&gt; constraintViolations = validator.validate(obj);
+        <span class="hljs-comment">// 抛出检验异常</span>
+        <span class="hljs-keyword">if</span> (constraintViolations.size() &gt; <span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(String.format(<span class="hljs-string">"参数校验失败:%s"</span>, constraintViolations.iterator().next().getMessage()));
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<p><strong>4.在代码中调用工具类进行参数校验：</strong></p>
+<pre><code class="hljs java">ValidationUtils.validate(requestDto);</code></pre>
+
+<p><strong>以下是对hibernate-validator中部分注解进行描述：</strong></p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@AssertTrue</td>
+<td>用于boolean字段，该字段只能为true</td>
+</tr>
+<tr>
+<td>@AssertFalse</td>
+<td>该字段的值只能为false</td>
+</tr>
+<tr>
+<td>@CreditCardNumber</td>
+<td>对信用卡号进行一个大致的验证</td>
+</tr>
+<tr>
+<td>@DecimalMax</td>
+<td>只能小于或等于该值</td>
+</tr>
+<tr>
+<td>@DecimalMin</td>
+<td>只能大于或等于该值</td>
+</tr>
+<tr>
+<td>@Digits(integer=,fraction=)</td>
+<td>检查是否是一种数字的整数、分数,小数位数的数字</td>
+</tr>
+<tr>
+<td>@Email</td>
+<td>检查是否是一个有效的email地址</td>
+</tr>
+<tr>
+<td>@Future</td>
+<td>检查该字段的日期是否是属于将来的日期</td>
+</tr>
+<tr>
+<td>@Length(min=,max=)</td>
+<td>检查所属的字段的长度是否在min和max之间,只能用于字符串</td>
+</tr>
+<tr>
+<td>@Max</td>
+<td>该字段的值只能小于或等于该值</td>
+</tr>
+<tr>
+<td>@Min</td>
+<td>该字段的值只能大于或等于该值</td>
+</tr>
+<tr>
+<td>@NotNull</td>
+<td>不能为null</td>
+</tr>
+<tr>
+<td>@NotBlank</td>
+<td>不能为空，检查时会将空格忽略</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td>不能为空，这里的空是指空字符串</td>
+</tr>
+<tr>
+<td>@Null</td>
+<td>检查该字段为空</td>
+</tr>
+<tr>
+<td>@Past</td>
+<td>检查该字段的日期是在过去</td>
+</tr>
+<tr>
+<td>@Pattern(regex=,flag=)</td>
+<td>被注释的元素必须符合指定的正则表达式</td>
+</tr>
+<tr>
+<td>@Range(min=,max=,message=)</td>
+<td>被注释的元素必须在合适的范围内</td>
+</tr>
+<tr>
+<td>@Size(min=, max=)</td>
+<td>检查该字段的size是否在min和max之间，可以是字符串、数组、集合、Map等</td>
+</tr>
+<tr>
+<td>@URL(protocol=,host,port)</td>
+<td>检查是否是一个有效的URL，如果提供了protocol，host等，则该URL还需满足提供的条件</td>
+</tr>
+<tr>
+<td>@Valid</td>
+<td>该注解主要用于字段为一个包含其他对象的集合或map或数组的字段，或该字段直接为一个其他对象的引用，这样在检查当前对象的同时也会检查该字段所引用的对象</td>
+</tr>
+</tbody></table>
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Hibernate/">Hibernate</a>
+                    
+                      <a class="hover-with-bg" href="/tags/validation/">validation</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/09/14/SpringCloud%E7%9A%84%E7%89%88%E6%9C%AC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringCloud的版本</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2018/09/11/%E7%94%A8JAVA%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E9%98%B2%E7%AF%A1%E6%94%B9/">
+                        <span class="hidden-mobile">用JAVA写一个简易图片防篡改</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JAVA中通过Hibernate-Validation进行参数验证&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

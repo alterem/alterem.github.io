@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>Shadowsocks-Go一键安装脚本 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-06-11 11:01">
+                    2019年6月11日 上午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.2k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    40
+                     分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>本脚本适用环境：<br>系统支持：CentOS，Debian，Ubuntu<br>内存要求：≥128M </p>
+<p>关于本脚本：<br>一键安装 Go 版的 shadowsocks 最新版本 1.1.5。据说 go 版本有 buff 。与 <a href="http://lib.csdn.net/base/python" target="_blank" rel="noopener">Python</a> 版不同的是，其客户端程序能使用多个服务端配置，本脚本安装的是服务端程序。作者默认推荐 aes-128-cfb 加密，基于一致性，脚本使用了 aes-256-cfb 加密方式</p>
+<a id="more"></a>
+
+<p>默认配置：<br>服务器端口：自己设定（如不设定，默认为 8989）<br>客户端端口：1080<br>密码：自己设定（如不设定，默认为teddysun.com）<br>客户端下载：<br><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-windows/releases</a><br>使用方法：<br>使用root用户登录，运行以下命令：<br>wget –no-check-certificate <a href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go.sh</a><br>chmod +x shadowsocks-go.sh<br>./shadowsocks-go.sh 2&gt;&amp;1 | tee shadowsocks-go.log </p>
+<p>安装完成后，脚本提示如下：<br>Congratulations, shadowsocks-go install completed!<br>Your Server IP:your_server_ip<br>Your Server Port:your_server_port<br>Your Password:your_password<br>Your Local Port:1080<br>Your Encryption Method:aes-256-cfb </p>
+<p>Welcome to visit:<a href="https://teddysun.com/392.html" target="_blank" rel="noopener">https://teddysun.com/392.html</a><br>Enjoy it! </p>
+<p>卸载方法：<br>使用 root 用户登录，运行以下命令：<br>./shadowsocks-go.sh uninstall </p>
+<p>其他事项：<br>客户端配置的参考链接：<a href="https://teddysun.com/339.html" target="_blank" rel="noopener">https://teddysun.com/339.html</a><br>安装完成后即已后台启动 shadowsocks-go ，运行：<br>/etc/init.d/shadowsocks status </p>
+<p>可以查看 shadowsocks-go 进程是否已经启动。<br>本脚本安装完成后，已将 shadowsocks-go 加入开机自启动。<br>统一回复：<br>在 Bandwagonhost 的 VPS 上出现 Trace/breakpoint trap 现象的，初步认为是 Bandwagonhost 的系统问题。<br>经过<a href="http://lib.csdn.net/base/softwaretest" target="_blank" rel="noopener">测试</a>发现，和版本升级无关，唯独在 Bandwagonhost 才会出现这个现象。建议换成 libev 版，或者将系统换为 CentOS 7 可以解决该问题。<br>本人不是 Shadowsocks Go 作者，安装程序均来自于这里。<br>使用命令：<br>启动：/etc/init.d/shadowsocks start<br>停止：/etc/init.d/shadowsocks stop<br>重启：/etc/init.d/shadowsocks restart<br>状态：/etc/init.d/shadowsocks status<br>多用户多端口配置文件 sample（2015年01月08日）：<br>配置文件路径：/etc/shadowsocks/config.json<br>{<br>“port_password”:{<br>“8989”:”password0”,<br>“9001”:”password1”,<br>“9002”:”password2”,<br>“9003”:”password3”,<br>“9004”:”password4”<br>},<br>“method”:”aes-256-cfb”,<br>“timeout”:600<br>} </p>
+<p>官方版本的 sample ，详见这里。<br>更多版本 Shadowsocks 服务端一键安装脚本：<br>ShadowsocksR 版一键安装脚本（CentOS，Debian，Ubuntu）<br>Shadowsocks Python 版一键安装脚本（CentOS，Debian，Ubuntu）<br>CentOS 下 shadowsocks-libev 一键安装脚本<br>Debian 下 shadowsocks-libev 一键安装脚本 </p>
+<p>附：</p>
+<pre><code class="hljs go">## <span class="hljs-keyword">go</span>一键安装脚本 #######################################################################
+
+#!/usr/bin/env bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+#=================================================================#
+#  System Required:  CentOS, Debian, Ubuntu                      #
+#  Description: One click Install Shadowsocks-<span class="hljs-keyword">go</span> server          #
+#  Author: Teddysun &lt;i@teddysun.com&gt;                            #
+#  Thanks: @cyfdecyf &lt;https:<span class="hljs-comment">//twitter.com/cyfdecyf&gt;              #</span>
+#  Intro:  https:<span class="hljs-comment">//teddysun.com/392.html                        #</span>
+#==================================================================
+
+clear
+echo
+echo <span class="hljs-string">"#############################################################"</span>
+echo <span class="hljs-string">"# One click Install Shadowsocks-go server                  #"</span>
+echo <span class="hljs-string">"# Intro: https://teddysun.com/392.html                      #"</span>
+echo <span class="hljs-string">"# Author: Teddysun &lt;i@teddysun.com&gt;                        #"</span>
+echo <span class="hljs-string">"# Github: https://github.com/shadowsocks/shadowsocks-go    #"</span>
+echo <span class="hljs-string">"#############################################################"</span>
+echo
+
+#Current folder
+cur_dir=<span class="hljs-string">`pwd`</span>
+
+# Make sure only root can run our script
+rootness()&#123;
+    <span class="hljs-keyword">if</span> [[ $EUID -ne <span class="hljs-number">0</span> ]]; then
+      echo <span class="hljs-string">"Error:This script must be run as root!"</span> <span class="hljs-number">1</span>&gt;&amp;<span class="hljs-number">2</span>
+      exit <span class="hljs-number">1</span>
+    fi
+&#125;
+
+#Check system
+check_sys()&#123;
+    local checkType=$<span class="hljs-number">1</span>
+    local value=$<span class="hljs-number">2</span>
+
+    local release=<span class="hljs-string">''</span>
+    local systemPackage=<span class="hljs-string">''</span>
+
+    <span class="hljs-keyword">if</span> [[ -f /etc/redhat-release ]]; then
+        release=<span class="hljs-string">"centos"</span>
+        systemPackage=<span class="hljs-string">"yum"</span>
+    elif cat /etc/issue | grep -q -E -i <span class="hljs-string">"debian"</span>; then
+        release=<span class="hljs-string">"debian"</span>
+        systemPackage=<span class="hljs-string">"apt"</span>
+    elif cat /etc/issue | grep -q -E -i <span class="hljs-string">"ubuntu"</span>; then
+        release=<span class="hljs-string">"ubuntu"</span>
+        systemPackage=<span class="hljs-string">"apt"</span>
+    elif cat /etc/issue | grep -q -E -i <span class="hljs-string">"centos|red hat|redhat"</span>; then
+        release=<span class="hljs-string">"centos"</span>
+        systemPackage=<span class="hljs-string">"yum"</span>
+    elif cat /proc/version | grep -q -E -i <span class="hljs-string">"debian"</span>; then
+        release=<span class="hljs-string">"debian"</span>
+        systemPackage=<span class="hljs-string">"apt"</span>
+    elif cat /proc/version | grep -q -E -i <span class="hljs-string">"ubuntu"</span>; then
+        release=<span class="hljs-string">"ubuntu"</span>
+        systemPackage=<span class="hljs-string">"apt"</span>
+    elif cat /proc/version | grep -q -E -i <span class="hljs-string">"centos|red hat|redhat"</span>; then
+        release=<span class="hljs-string">"centos"</span>
+        systemPackage=<span class="hljs-string">"yum"</span>
+    fi
+
+    <span class="hljs-keyword">if</span> [[ $&#123;checkType&#125; == <span class="hljs-string">"sysRelease"</span> ]]; then
+        <span class="hljs-keyword">if</span> [ <span class="hljs-string">"$value"</span> == <span class="hljs-string">"$release"</span> ]; then
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+        fi
+    elif [[ $&#123;checkType&#125; == <span class="hljs-string">"packageManager"</span> ]]; then
+        <span class="hljs-keyword">if</span> [ <span class="hljs-string">"$value"</span> == <span class="hljs-string">"$systemPackage"</span> ]; then
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+        fi
+    fi
+&#125;
+
+# Get version
+getversion()&#123;
+    <span class="hljs-keyword">if</span> [[ -s /etc/redhat-release ]]; then
+        grep -oE  <span class="hljs-string">"[0-9.]+"</span> /etc/redhat-release
+    <span class="hljs-keyword">else</span>
+        grep -oE  <span class="hljs-string">"[0-9.]+"</span> /etc/issue
+    fi
+&#125;
+
+# CentOS version
+centosversion()&#123;
+    <span class="hljs-keyword">if</span> check_sys sysRelease centos; then
+        local code=$<span class="hljs-number">1</span>
+        local version=<span class="hljs-string">"$(getversion)"</span>
+        local main_ver=$&#123;version%%.*&#125;
+        <span class="hljs-keyword">if</span> [ <span class="hljs-string">"$main_ver"</span> == <span class="hljs-string">"$code"</span> ]; then
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+        fi
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    fi
+&#125;
+
+# is <span class="hljs-number">64</span>bit or not
+is_64bit()&#123;
+    <span class="hljs-keyword">if</span> [ <span class="hljs-string">`getconf WORD_BIT`</span> = <span class="hljs-string">'32'</span> ] &amp;&amp; [ <span class="hljs-string">`getconf LONG_BIT`</span> = <span class="hljs-string">'64'</span> ] ; then
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    fi
+&#125;
+
+# Disable selinux
+disable_selinux()&#123;
+    <span class="hljs-keyword">if</span> [ -s /etc/selinux/config ] &amp;&amp; grep <span class="hljs-string">'SELINUX=enforcing'</span> /etc/selinux/config; then
+        sed -i <span class="hljs-string">'s/SELINUX=enforcing/SELINUX=disabled/g'</span> /etc/selinux/config
+        setenforce <span class="hljs-number">0</span>
+    fi
+&#125;
+
+get_ip()&#123;
+    local IP=$( ip addr | egrep -o <span class="hljs-string">'[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;'</span> | egrep -v <span class="hljs-string">"^192\.168|^172\.1[6-9]\.|^172\.2[0-9]\.|^172\.3[0-2]\.|^10\.|^127\.|^255\.|^0\."</span> | head -n <span class="hljs-number">1</span> )
+    [ -z $&#123;IP&#125; ] &amp;&amp; IP=$( wget -qO- -t1 -T2 ipv4.icanhazip.com )
+    [ -z $&#123;IP&#125; ] &amp;&amp; IP=$( wget -qO- -t1 -T2 ipinfo.io/ip )
+    [ ! -z $&#123;IP&#125; ] &amp;&amp; echo $&#123;IP&#125; || echo
+&#125;
+
+# Pre-installation settings
+pre_install()&#123;
+    <span class="hljs-keyword">if</span> ! check_sys packageManager yum &amp;&amp; ! check_sys packageManager apt; then
+        echo <span class="hljs-string">"Error: Your OS is not supported. please change OS to CentOS/Debian/Ubuntu and try again."</span>
+        exit <span class="hljs-number">1</span>
+    fi
+    # Set shadowsocks-<span class="hljs-keyword">go</span> config password
+    echo <span class="hljs-string">"Please input password for shadowsocks-go:"</span>
+    read -p <span class="hljs-string">"(Default password: teddysun.com):"</span> shadowsockspwd
+    [ -z <span class="hljs-string">"$&#123;shadowsockspwd&#125;"</span> ] &amp;&amp; shadowsockspwd=<span class="hljs-string">"teddysun.com"</span>
+    echo
+    echo <span class="hljs-string">"---------------------------"</span>
+    echo <span class="hljs-string">"password = $&#123;shadowsockspwd&#125;"</span>
+    echo <span class="hljs-string">"---------------------------"</span>
+    echo
+    # Set shadowsocks-<span class="hljs-keyword">go</span> config port
+    while <span class="hljs-literal">true</span>
+    do
+    echo -e <span class="hljs-string">"Please input port for shadowsocks-go [1-65535]:"</span>
+    read -p <span class="hljs-string">"(Default port: 8989):"</span> shadowsocksport
+    [ -z <span class="hljs-string">"$&#123;shadowsocksport&#125;"</span> ] &amp;&amp; shadowsocksport=<span class="hljs-string">"8989"</span>
+    expr $&#123;shadowsocksport&#125; + <span class="hljs-number">0</span> &amp;&gt;/dev/null
+    <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+        <span class="hljs-keyword">if</span> [ $&#123;shadowsocksport&#125; -ge <span class="hljs-number">1</span> ] &amp;&amp; [ $&#123;shadowsocksport&#125; -le <span class="hljs-number">65535</span> ]; then
+            echo
+            echo <span class="hljs-string">"---------------------------"</span>
+            echo <span class="hljs-string">"port = $&#123;shadowsocksport&#125;"</span>
+            echo <span class="hljs-string">"---------------------------"</span>
+            echo
+            <span class="hljs-keyword">break</span>
+        <span class="hljs-keyword">else</span>
+            echo <span class="hljs-string">"Input error, please input correct number"</span>
+        fi
+    <span class="hljs-keyword">else</span>
+        echo <span class="hljs-string">"Input error, please input correct number"</span>
+    fi
+    done
+    get_char()&#123;
+        SAVEDSTTY=<span class="hljs-string">`stty -g`</span>
+        stty -echo
+        stty cbreak
+        dd <span class="hljs-keyword">if</span>=/dev/tty bs=<span class="hljs-number">1</span> count=<span class="hljs-number">1</span> <span class="hljs-number">2</span>&gt; /dev/null
+        stty -raw
+        stty echo
+        stty $SAVEDSTTY
+    &#125;
+    echo
+    echo <span class="hljs-string">"Press any key to start...or Press Ctrl+C to cancel"</span>
+    char=<span class="hljs-string">`get_char`</span>
+    #Install necessary dependencies
+    <span class="hljs-keyword">if</span> check_sys packageManager yum; then
+        yum install -y wget unzip gzip curl
+    elif check_sys packageManager apt; then
+        apt-get -y update
+        apt-get install -y wget unzip gzip curl
+    fi
+    echo
+
+&#125;
+
+# Download shadowsocks-<span class="hljs-keyword">go</span>
+download_files()&#123;
+    cd $&#123;cur_dir&#125;
+    <span class="hljs-keyword">if</span> is_64bit; then
+        <span class="hljs-keyword">if</span> ! wget --no-check-certificate -c https:<span class="hljs-comment">//github.com/shadowsocks/shadowsocks-go/releases/download/1.1.5/shadowsocks-server-linux64-1.1.5.gz; then</span>
+            echo <span class="hljs-string">"Failed to download shadowsocks-server-linux64-1.1.5.gz"</span>
+            exit <span class="hljs-number">1</span>
+        fi
+        gzip -d shadowsocks-server-linux64<span class="hljs-number">-1.1</span><span class="hljs-number">.5</span>.gz
+        <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+            echo <span class="hljs-string">"Decompress shadowsocks-server-linux64-1.1.5.gz success."</span>
+        <span class="hljs-keyword">else</span>
+            echo <span class="hljs-string">"Decompress shadowsocks-server-linux64-1.1.5.gz failed! Please check gzip command."</span>
+            exit <span class="hljs-number">1</span>
+        fi
+        mv -f shadowsocks-server-linux64<span class="hljs-number">-1.1</span><span class="hljs-number">.5</span> /usr/bin/shadowsocks-server
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">if</span> ! wget --no-check-certificate -c https:<span class="hljs-comment">//github.com/shadowsocks/shadowsocks-go/releases/download/1.1.5/shadowsocks-server-linux32-1.1.5.gz; then</span>
+            echo <span class="hljs-string">"Failed to download shadowsocks-server-linux32-1.1.5.gz"</span>
+            exit <span class="hljs-number">1</span>
+        fi
+        gzip -d shadowsocks-server-linux32<span class="hljs-number">-1.1</span><span class="hljs-number">.5</span>.gz
+        <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+            echo <span class="hljs-string">"Decompress shadowsocks-server-linux32-1.1.5.gz success."</span>
+        <span class="hljs-keyword">else</span>
+            echo <span class="hljs-string">"Decompress shadowsocks-server-linux32-1.1.5.gz failed! Please check gzip command."</span>
+            exit <span class="hljs-number">1</span>
+        fi
+        mv -f shadowsocks-server-linux32<span class="hljs-number">-1.1</span><span class="hljs-number">.5</span> /usr/bin/shadowsocks-server
+    fi
+
+    # Download start script
+    <span class="hljs-keyword">if</span> check_sys packageManager yum; then
+        <span class="hljs-keyword">if</span> ! wget --no-check-certificate -O /etc/init.d/shadowsocks https:<span class="hljs-comment">//raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go; then</span>
+            echo <span class="hljs-string">"Failed to download shadowsocks-go auto start script!"</span>
+            exit <span class="hljs-number">1</span>
+        fi
+    elif check_sys packageManager apt; then
+        <span class="hljs-keyword">if</span> ! wget --no-check-certificate -O /etc/init.d/shadowsocks https:<span class="hljs-comment">//raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go-debian; then</span>
+            echo <span class="hljs-string">"Failed to download shadowsocks-go auto start script!"</span>
+            exit <span class="hljs-number">1</span>
+        fi
+    fi
+&#125;
+
+# Config shadowsocks
+config_shadowsocks()&#123;
+    <span class="hljs-keyword">if</span> [ ! -d /etc/shadowsocks ]; then
+        mkdir -p /etc/shadowsocks
+    fi
+    cat &gt; /etc/shadowsocks/config.json&lt;&lt;-EOF
+&#123;
+    <span class="hljs-string">"server"</span>:<span class="hljs-string">"0.0.0.0"</span>,
+    <span class="hljs-string">"server_port"</span>:$&#123;shadowsocksport&#125;,
+    <span class="hljs-string">"local_port"</span>:<span class="hljs-number">1080</span>,
+    <span class="hljs-string">"password"</span>:<span class="hljs-string">"$&#123;shadowsockspwd&#125;"</span>,
+    <span class="hljs-string">"method"</span>:<span class="hljs-string">"aes-256-cfb"</span>,
+    <span class="hljs-string">"timeout"</span>:<span class="hljs-number">600</span>
+&#125;
+EOF
+&#125;
+
+# Firewall set
+firewall_set()&#123;
+    echo <span class="hljs-string">"firewall set start..."</span>
+    <span class="hljs-keyword">if</span> centosversion <span class="hljs-number">6</span>; then
+        /etc/init.d/iptables status &gt; /dev/null <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+            iptables -L -n | grep -i $&#123;shadowsocksport&#125; &gt; /dev/null <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
+            <span class="hljs-keyword">if</span> [ $? -ne <span class="hljs-number">0</span> ]; then
+                iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport $&#123;shadowsocksport&#125; -j ACCEPT
+                iptables -I INPUT -m state --state NEW -m udp -p udp --dport $&#123;shadowsocksport&#125; -j ACCEPT
+                /etc/init.d/iptables save
+                /etc/init.d/iptables restart
+            <span class="hljs-keyword">else</span>
+                echo <span class="hljs-string">"port $&#123;shadowsocksport&#125; has been set up."</span>
+            fi
+        <span class="hljs-keyword">else</span>
+            echo <span class="hljs-string">"WARNING: iptables looks like shutdown or not installed, please manually set it if necessary."</span>
+        fi
+    elif centosversion <span class="hljs-number">7</span>; then
+        systemctl status firewalld &gt; /dev/null <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+            firewall-cmd --permanent --zone=public --add-port=$&#123;shadowsocksport&#125;/tcp
+            firewall-cmd --permanent --zone=public --add-port=$&#123;shadowsocksport&#125;/udp
+            firewall-cmd --reload
+        <span class="hljs-keyword">else</span>
+            echo <span class="hljs-string">"Firewalld looks like not running, try to start..."</span>
+            systemctl start firewalld
+            <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+                firewall-cmd --permanent --zone=public --add-port=$&#123;shadowsocksport&#125;/tcp
+                firewall-cmd --permanent --zone=public --add-port=$&#123;shadowsocksport&#125;/udp
+                firewall-cmd --reload
+            <span class="hljs-keyword">else</span>
+                echo <span class="hljs-string">"WARNING: Try to start firewalld failed. please enable port $&#123;shadowsocksport&#125; manually if necessary."</span>
+            fi
+        fi
+    fi
+    echo <span class="hljs-string">"firewall set completed..."</span>
+&#125;
+
+# Install Shadowsocks-<span class="hljs-keyword">go</span>
+install()&#123;
+
+    <span class="hljs-keyword">if</span> [ -s /usr/bin/shadowsocks-server ]; then
+        echo <span class="hljs-string">"shadowsocks-go install success!"</span>
+        chmod +x /usr/bin/shadowsocks-server
+        chmod +x /etc/init.d/shadowsocks
+
+        <span class="hljs-keyword">if</span> check_sys packageManager yum; then
+            chkconfig --add shadowsocks
+            chkconfig shadowsocks on
+        elif check_sys packageManager apt; then
+            update-rc.d -f shadowsocks defaults
+        fi
+
+        /etc/init.d/shadowsocks start
+        <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+            echo <span class="hljs-string">"Shadowsocks-go start success!"</span>
+        <span class="hljs-keyword">else</span>
+            echo <span class="hljs-string">"Shadowsocks-go start failed!"</span>
+        fi
+    <span class="hljs-keyword">else</span>
+        echo
+        echo <span class="hljs-string">"Shadowsocks-go install failed!"</span>
+        exit <span class="hljs-number">1</span>
+    fi
+
+    clear
+    echo
+    echo <span class="hljs-string">"Congratulations, Shadowsocks-go install completed!"</span>
+    echo -e <span class="hljs-string">"Your Server IP: \033[41;37m $(get_ip) \033[0m"</span>
+    echo -e <span class="hljs-string">"Your Server Port: \033[41;37m $&#123;shadowsocksport&#125; \033[0m"</span>
+    echo -e <span class="hljs-string">"Your Password: \033[41;37m $&#123;shadowsockspwd&#125; \033[0m"</span>
+    echo -e <span class="hljs-string">"Your Local Port: \033[41;37m 1080 \033[0m"</span>
+    echo -e <span class="hljs-string">"Your Encryption Method: \033[41;37m aes-256-cfb \033[0m"</span>
+    echo
+    echo <span class="hljs-string">"Welcome to visit:https://teddysun.com/392.html"</span>
+    echo <span class="hljs-string">"Enjoy it!"</span>
+    echo
+&#125;
+
+# Uninstall Shadowsocks-<span class="hljs-keyword">go</span>
+uninstall_shadowsocks_go()&#123;
+    printf <span class="hljs-string">"Are you sure uninstall shadowsocks-go? (y/n) "</span>
+    printf <span class="hljs-string">"\n"</span>
+    read -p <span class="hljs-string">"(Default: n):"</span> answer
+    [ -z $&#123;answer&#125; ] &amp;&amp; answer=<span class="hljs-string">"n"</span>
+    <span class="hljs-keyword">if</span> [ <span class="hljs-string">"$&#123;answer&#125;"</span> == <span class="hljs-string">"y"</span> ] || [ <span class="hljs-string">"$&#123;answer&#125;"</span> == <span class="hljs-string">"Y"</span> ]; then
+        ps -ef | grep -v grep | grep -i <span class="hljs-string">"shadowsocks-server"</span> &gt; /dev/null <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> [ $? -eq <span class="hljs-number">0</span> ]; then
+            /etc/init.d/shadowsocks stop
+        fi
+        <span class="hljs-keyword">if</span> check_sys packageManager yum; then
+            chkconfig --del shadowsocks
+        elif check_sys packageManager apt; then
+            update-rc.d -f shadowsocks remove
+        fi
+        # <span class="hljs-built_in">delete</span> config file
+        rm -rf /etc/shadowsocks
+        # <span class="hljs-built_in">delete</span> shadowsocks
+        rm -f /etc/init.d/shadowsocks
+        rm -f /usr/bin/shadowsocks-server
+        echo <span class="hljs-string">"Shadowsocks-go uninstall success!"</span>
+    <span class="hljs-keyword">else</span>
+        echo
+        echo <span class="hljs-string">"Uninstall cancelled, nothing to do..."</span>
+        echo
+    fi
+&#125;
+
+# Install Shadowsocks-<span class="hljs-keyword">go</span>
+install_shadowsocks_go()&#123;
+    rootness
+    disable_selinux
+    pre_install
+    download_files
+    config_shadowsocks
+    <span class="hljs-keyword">if</span> check_sys packageManager yum; then
+        firewall_set
+    fi
+    install
+&#125;
+
+# Initialization step
+action=$<span class="hljs-number">1</span>
+[ -z $<span class="hljs-number">1</span> ] &amp;&amp; action=install
+<span class="hljs-keyword">case</span> <span class="hljs-string">"$action"</span> in
+    install|uninstall)
+    $&#123;action&#125;_shadowsocks_go
+    ;;
+    *)
+    echo <span class="hljs-string">"Arguments error! [$&#123;action&#125;]"</span>
+    echo <span class="hljs-string">"Usage: `basename $0` &#123;install|uninstall&#125;"</span>
+    ;;
+esac</code></pre>
+
+
+
+
+
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Shadowsocks/">Shadowsocks</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Shadowsocks/">Shadowsocks</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/12/brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">brew安装常用软件</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/06/10/Java%E6%A0%B9%E6%8D%AEURL%E5%B0%86%E7%BD%91%E9%A1%B5%E8%BD%AC%E5%AD%98%E4%B8%BAPDF%E6%96%87%E4%BB%B6/">
+                        <span class="hidden-mobile">Java根据URL将网页转存为PDF文件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Shadowsocks-Go一键安装脚本&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>(function (i, s, o, g, r, a, m) {
+      i['DaoVoiceObject'] = r;
+      i[r] = i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        };
+      i[r].l = 1 * new Date();
+      a = s.createElement(o);
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.charset = 'utf-8';
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
+    daovoice('init', {
+      app_id: "f4bf9f58",
+    });
+    daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
