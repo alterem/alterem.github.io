@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Linux下清空用户登录记录和命令历史的方法</title>
+    <link href="/2020/05/28/Linux%E4%B8%8B%E6%B8%85%E7%A9%BA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E8%AE%B0%E5%BD%95%E5%92%8C%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <url>/2020/05/28/Linux%E4%B8%8B%E6%B8%85%E7%A9%BA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E8%AE%B0%E5%BD%95%E5%92%8C%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/05/28/Mid%20Ocean.jpg" srcset="/img/loading.gif" alt="imng"></p><p><strong>清除登陆系统成功的记录</strong>，也就是last命令看到的记录</p><p>[root@localhost root]# echo &gt; /var/log/wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息</p><p>[root@localhost root]# echo &gt;/var/log/wtmp<br>[root@localhost root]# last</p><p>此时即看不到用户登录信息</p><p><strong>清除登陆系统失败的记录</strong>，也就是lastb命令看到的记录<br>[root@localhost root]# echo &gt; /var/log/btmp 此文件默认打开时乱码的</p><p>[root@localhost root]# echo &gt; /var/log/btmp<br>[root@localhost root]# lastb</p><p>此时就没有结果输出了</p><p><strong>清除历史执行命令</strong></p><p>[root@localhost root]# history -c </p><p>或者，清空用户目录下的这个文件即可</p><p>[root@localhost root]# echo &gt; ./.bash_history</p><p><a href="http://www.linuxidc.com/" target="_blank" rel="noopener"></a></p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Redis 配置文件主要参数解析参考</title>
     <link href="/2020/05/26/Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%8F%82%E8%80%83/"/>
     <url>/2020/05/26/Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%8F%82%E8%80%83/</url>
