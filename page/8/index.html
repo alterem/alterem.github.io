@@ -297,7 +297,7 @@ API: http://www.cola-ui.com/api/cola.html , http://legacy.cola-ui.com
           
           1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。
 查询运行在runlevel 3的服务列表：
-[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &#39;3:on&#39;
+[alter@alter ~]# /sbin/chkconfig --list |grep '3:on'
         </a>
       </p>
 

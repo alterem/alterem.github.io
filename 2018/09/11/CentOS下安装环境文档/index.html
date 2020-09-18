@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      2.2k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      42
+      35
        分钟
     </span>
   
@@ -245,13 +245,13 @@
 <p>CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默认安装了一个openjdk1.7版本</p>
 <a id="more"></a>
 
-<pre><code class="hljs plain"># java -version
+<pre><code class="hljs routeros"><span class="hljs-comment"># java -version</span>
 
-java version &quot;1.7.0&quot;
+java version <span class="hljs-string">"1.7.0"</span>
 
 OpenJDK  Runtime Environment (build 1.7.0-b09)
 
-OpenJDK Client VM (build 1.7.0-b09, mixed mode)</code></pre>
+OpenJDK<span class="hljs-built_in"> Client </span>VM (build 1.7.0-b09, mixed mode)</code></pre>
 
 <blockquote>
 <p>备注：</p>
@@ -259,46 +259,46 @@ OpenJDK Client VM (build 1.7.0-b09, mixed mode)</code></pre>
 </blockquote>
 <p>如果直接”应用程序-添加/删除软件–基本系统–java“删除其他相关软件也会自动删除，所以删除前，最好安装配置好新的JDK环境</p>
 <p> 1) 删除原有的JDK：</p>
-<pre><code class="hljs plain"># rpm -qa|grep jdk</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># rpm -qa|grep jdk</span></code></pre>
 
 <p>查看安装的JDK，会显示多个java-1.7.0-openjdk-1.7.0相关的程序，在以下一一卸载。直到删完为止，如下：</p>
-<pre><code class="hljs plain"># rpm -e --nodeps java-1.7.0-openjdk-1.7.0.65-2.5.1.2.el6_5.x86_64
-# rpm -e --nodeps java-1.7.0-openjdk-devel-1.7.0.65-2.5.1.2.el6_5.x86_64
-# rpm -e --nodeps java-1.7.0-openjdk-demo-1.7.0.65-2.5.1.2.el6_5.x86_64</code></pre>
+<pre><code class="hljs css"># <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span>
+# <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-devel-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span>
+# <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-demo-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span></code></pre>
 
 <p>……</p>
-<pre><code class="hljs plain"># rpm -qa|grep java</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># rpm -qa|grep java</span></code></pre>
 
 <p>查看安装的JAVA关联程序，在以下一一卸载。直到删完为止，如下：</p>
-<pre><code class="hljs plain"># rpm -e --nodeps tzdata-java-2014h-1.el6.noarch</code></pre>
+<pre><code class="hljs angelscript"># rpm -e --nodeps tzdata-java<span class="hljs-number">-2014</span>h<span class="hljs-number">-1.</span>el6.noarch</code></pre>
 
 <p>……</p>
 <p>》配置新的JDK环境</p>
 <p>1）把安装文件文件保存在/usr/java/tools下 ,并切换到root用户</p>
-<pre><code class="hljs plain"># mkdir &#x2F;usr&#x2F;java  &#x2F;&#x2F;创建&#x2F;urs&#x2F;java目录
-# cd &#x2F;usr&#x2F;java&#x2F;
-# rpm -ivh .&#x2F;tools&#x2F;jdk-7u67-linux-x64.rpm</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># mkdir /usr/java  //创建/urs/java目录</span>
+<span class="hljs-meta"># cd /usr/java/</span>
+<span class="hljs-meta"># rpm -ivh ./tools/jdk-7u67-linux-x64.rpm</span></code></pre>
 
 <p>》配置jdk1.6.0_22环境变量</p>
- <pre><code class="hljs plain"># vi &#x2F;etc&#x2F;profile
+ <pre><code class="hljs crystal"><span class="hljs-comment"># vi /etc/profile</span>
 
-JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_79
-JRE_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_79&#x2F;jre
-PATH&#x3D;PATH:JAVA_HOME&#x2F;bin:$JRE_HOME&#x2F;bin
-CLASSPATH&#x3D;:JAVA_HOME&#x2F;lib&#x2F;dt.jar:JAVA_HOME&#x2F;lib&#x2F;tools.jar:$JRE_HOME&#x2F;lib
+JAVA_HOME=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/jdk1.7.0_79</span>
+<span class="hljs-regexp">JRE_HOME=/usr</span><span class="hljs-regexp">/java/jdk</span>1.<span class="hljs-number">7.0_79</span>/jre
+PATH=<span class="hljs-symbol">PATH:</span>JAVA_HOME/<span class="hljs-symbol">bin:</span>$JRE_HOME/bin
+CLASSPATH=:JAVA_HOME/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">dt</span>.<span class="hljs-title">jar</span>:<span class="hljs-title">JAVA_HOME</span>/<span class="hljs-title">lib</span>/<span class="hljs-title">tools</span>.<span class="hljs-title">jar</span>:$<span class="hljs-title">JRE_HOME</span>/<span class="hljs-title">lib</span></span>
 export JAVA_HOME JRE_HOME PATH CLASSPATH</code></pre>
 
 <p>》使环境变量生效：</p>
-<pre><code class="hljs plain">#source &#x2F;etc&#x2F;profile</code></pre>
+<pre><code class="hljs gradle">#<span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile</code></pre>
 
 <p>》测试安装</p>
 <p>   1)查看版本号</p>
-<pre><code class="hljs plain"># java -version
+<pre><code class="hljs routeros"><span class="hljs-comment"># java -version</span>
 
-java version &quot;1.7.0_67&quot;
+java version <span class="hljs-string">"1.7.0_67"</span>
 Java(TM) SE Runtime Environment (build 1.7.0_67-b01)
-Java HotSpot(TM) 64-Bit Server VM (build 24.65-b04, mixed mode)
-Java HotSpot(TM) Client VM (build 17.1-b03, mixed mode, sharing)</code></pre>
+Java HotSpot(TM) 64-Bit<span class="hljs-built_in"> Server </span>VM (build 24.65-b04, mixed mode)
+Java HotSpot(TM)<span class="hljs-built_in"> Client </span>VM (build 17.1-b03, mixed mode, sharing)</code></pre>
 
 <p>说明成功了。</p>
 <hr>
@@ -311,126 +311,126 @@ Java HotSpot(TM) Client VM (build 17.1-b03, mixed mode, sharing)</code></pre>
 <p>其中mysql使用最新的稳定版本，即最新试用版的上一个版本，且非rc或者alpha的版本，Cmake直接用的最新版。</p>
 <p> 》上传mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz到/usr/java/tools文件夹下。</p>
 <p> 》CentOS安装g++和ncurses-devel</p>
- <pre><code class="hljs plain"># yum install gcc-c++
-# yum install ncurses-devel</code></pre>
+ <pre><code class="hljs vala"><span class="hljs-meta"># yum install gcc-c++</span>
+<span class="hljs-meta"># yum install ncurses-devel</span></code></pre>
 
 <p>》cmake的安装</p>
-<pre><code class="hljs plain"># mkdir -p &#x2F;usr&#x2F;java&#x2F;make
-# cd &#x2F;usr&#x2F;java&#x2F;make
-# mv ..&#x2F;tools&#x2F;cmake-2.8.10.2.tar.gz .&#x2F;
-# tar -zxv -f cmake-2.8.10.2.tar.gz
-# cd cmake-2.8.10.2
-# .&#x2F;configure
-# make
-# make install</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># mkdir -p /usr/java/make</span>
+<span class="hljs-meta"># cd /usr/java/make</span>
+<span class="hljs-meta"># mv ../tools/cmake-2.8.10.2.tar.gz ./</span>
+<span class="hljs-meta"># tar -zxv -f cmake-2.8.10.2.tar.gz</span>
+<span class="hljs-meta"># cd cmake-2.8.10.2</span>
+<span class="hljs-meta"># ./configure</span>
+<span class="hljs-meta"># make</span>
+<span class="hljs-meta"># make install</span></code></pre>
 
 <p>》将cmake永久加入系统环境变量</p>
 <p>》用vi在文件/etc/profile文件中增加变量，使其永久有效，</p>
-<pre><code class="hljs plain"># vi &#x2F;etc&#x2F;profile</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># vi /etc/profile</span></code></pre>
 
 <p>》在文件PATH中加入MAKE_PATH环境变量：</p>
-<pre><code class="hljs plain">JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_67
-JRE_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_67&#x2F;jre
-MAKE_PATH&#x3D;&#x2F;usr&#x2F;java&#x2F;cmake&#x2F;cmake-2.8.10.2&#x2F;bin
-PATH&#x3D;MAKE_PATH:PATH:JAVA_HOME&#x2F;bin:JRE_HOME&#x2F;bin
-CLASSPATH&#x3D;:JAVA_HOME&#x2F;lib&#x2F;dt.jar:JAVA_HOME&#x2F;lib&#x2F;tools.jar:$JRE_HOME&#x2F;lib
+<pre><code class="hljs crystal">JAVA_HOME=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/jdk1.7.0_67</span>
+<span class="hljs-regexp">JRE_HOME=/usr</span><span class="hljs-regexp">/java/jdk</span>1.<span class="hljs-number">7.0_67</span>/jre
+MAKE_PATH=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/cmake/cmake</span>-<span class="hljs-number">2.8</span>.<span class="hljs-number">10.2</span>/bin
+PATH=<span class="hljs-symbol">MAKE_PATH:</span><span class="hljs-symbol">PATH:</span>JAVA_HOME/<span class="hljs-symbol">bin:</span>JRE_HOME/bin
+CLASSPATH=:JAVA_HOME/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">dt</span>.<span class="hljs-title">jar</span>:<span class="hljs-title">JAVA_HOME</span>/<span class="hljs-title">lib</span>/<span class="hljs-title">tools</span>.<span class="hljs-title">jar</span>:$<span class="hljs-title">JRE_HOME</span>/<span class="hljs-title">lib</span></span>
 export JAVA_HOME JRE_HOME PATH CLASSPATH</code></pre>
 
 <p>》执行以下代码使刚才的修改生效：</p>
-<pre><code class="hljs plain"># source &#x2F;etc&#x2F;profile</code></pre>
+<pre><code class="hljs gradle"># <span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile</code></pre>
 
 <p>》用 export 命令查看PATH值</p>
-<pre><code class="hljs plain"># echo $PATH</code></pre>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span></span></code></pre>
 
 <p>》创建mysql的安装目录及数据库存放目录</p>
- <pre><code class="hljs plain"># mkdir -p &#x2F;usr&#x2F;java&#x2F;mysql &#x2F;&#x2F;安装mysql
-# mkdir -p &#x2F;usr&#x2F;java&#x2F;mysql&#x2F;data &#x2F;&#x2F;存放数据库</code></pre>
+ <pre><code class="hljs 1c"><span class="hljs-meta"># mkdir -p /usr/java/mysql <span class="hljs-comment">//安装mysql</span></span>
+<span class="hljs-meta"># mkdir -p /usr/java/mysql/data <span class="hljs-comment">//存放数据库</span></span></code></pre>
 
 <p>》创建mysql用户及用户组</p>
-<pre><code class="hljs plain"># groupadd mysql
-# useradd -r -g mysql mysql</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># groupadd mysql</span>
+<span class="hljs-meta"># useradd -r -g mysql mysql</span></code></pre>
 
 <p>》编译安装mysql</p>
-<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;java&#x2F;mysql
-# tar zxvf ..&#x2F;tools&#x2F;mysql-5.5.40.tar.gz
-# cd mysql-5.5.40&#x2F;
-# cmake -DCMAKE_INSTALL_PREFIX&#x3D;&#x2F;usr&#x2F;java&#x2F;mysql \
--DMYSQL_UNIX_ADDR&#x3D;&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;mysql.sock \
--DDEFAULT_CHARSET&#x3D;utf8 \
--DDEFAULT_COLLATION&#x3D;utf8_general_ci \
--DWITH_MYISAM_STORAGE_ENGINE&#x3D;1 \
--DWITH_INNOBASE_STORAGE_ENGINE&#x3D;1 \
--DWITH_MEMORY_STORAGE_ENGINE&#x3D;1 \
--DWITH_READLINE&#x3D;1 \
--DENABLED_LOCAL_INFILE&#x3D;1 \
--DMYSQL_DATADIR&#x3D;&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;data \
--DMYSQL_USER&#x3D;mysql \
--DMYSQL_TCP_PORT&#x3D;6666
-# make
-# make install</code></pre>
+<pre><code class="hljs ini"><span class="hljs-comment"># cd /usr/java/mysql</span>
+<span class="hljs-comment"># tar zxvf ../tools/mysql-5.5.40.tar.gz</span>
+<span class="hljs-comment"># cd mysql-5.5.40/</span>
+<span class="hljs-comment"># cmake -DCMAKE_INSTALL_PREFIX=/usr/java/mysql \</span>
+<span class="hljs-attr">-DMYSQL_UNIX_ADDR</span>=/usr/java/mysql/mysql.sock \
+<span class="hljs-attr">-DDEFAULT_CHARSET</span>=utf8 \
+<span class="hljs-attr">-DDEFAULT_COLLATION</span>=utf8_general_ci \
+<span class="hljs-attr">-DWITH_MYISAM_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \
+<span class="hljs-attr">-DWITH_INNOBASE_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \
+<span class="hljs-attr">-DWITH_MEMORY_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \
+<span class="hljs-attr">-DWITH_READLINE</span>=<span class="hljs-number">1</span> \
+<span class="hljs-attr">-DENABLED_LOCAL_INFILE</span>=<span class="hljs-number">1</span> \
+<span class="hljs-attr">-DMYSQL_DATADIR</span>=/usr/java/mysql/data \
+<span class="hljs-attr">-DMYSQL_USER</span>=mysql \
+<span class="hljs-attr">-DMYSQL_TCP_PORT</span>=<span class="hljs-number">6666</span>
+<span class="hljs-comment"># make</span>
+<span class="hljs-comment"># make install</span></code></pre>
 
 <p>》检验是否安装成功</p>
- <pre><code class="hljs plain"># cd  &#x2F;usr&#x2F;java&#x2F;mysql
-[root@fiona mysql]# ls
-bin      data  include         lib  mysql-5.5.40  mysql-test  scripts  sql-bench
+ <pre><code class="hljs crystal"><span class="hljs-comment"># cd  /usr/java/mysql</span>
+[root@fiona mysql]<span class="hljs-comment"># ls</span>
+bin      data  <span class="hljs-keyword">include</span>         <span class="hljs-class"><span class="hljs-keyword">lib</span>  <span class="hljs-title">mysql</span>-5.5.40  <span class="hljs-title">mysql</span>-<span class="hljs-title">test</span>  <span class="hljs-title">scripts</span>  <span class="hljs-title">sql</span>-<span class="hljs-title">bench</span></span>
 COPYING  docs  INSTALL-BINARY  man  mysql.sock    README      share    support-files</code></pre>
 
 <p> 有bin等以上文件的话，恭喜你已经成功安装了mysql。</p>
 <p> 》配置mysql</p>
 <p> 》设置mysql目录权限</p>
-<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;java&#x2F;mysql &#x2F;&#x2F;把当前目录中所有文件的所有者设为root，所属组为mysql
-# chown -R root:mysql .
-# chown -R mysql:mysql data</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/java/mysql //把当前目录中所有文件的所有者设为root，所属组为mysql</span>
+<span class="hljs-meta"># chown -R root:mysql .</span>
+<span class="hljs-meta"># chown -R mysql:mysql data</span></code></pre>
 
 <p>》将mysql的启动服务添加到系统服务中</p>
-<pre><code class="hljs plain"># cp support-files&#x2F;my-medium.cnf &#x2F;etc&#x2F;my.cnf
-cp：是否覆盖&quot;&#x2F;etc&#x2F;my.cnf&quot;？ y</code></pre>
+<pre><code class="hljs vim"># <span class="hljs-keyword">cp</span> support-<span class="hljs-keyword">files</span>/my-medium.<span class="hljs-keyword">cnf</span> /etc/my.<span class="hljs-keyword">cnf</span>
+<span class="hljs-keyword">cp</span>：是否覆盖<span class="hljs-string">"/etc/my.cnf"</span>？ <span class="hljs-keyword">y</span></code></pre>
 
 <p>》创建系统数据库的表</p>
-<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;java&#x2F;mysql
-# scripts&#x2F;mysql_install_db --user&#x3D;mysql</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/java/mysql</span>
+<span class="hljs-meta"># scripts/mysql_install_db --user=mysql</span></code></pre>
 
 <p>》设置环境变量</p>
-<pre><code class="hljs plain"># vi &#x2F;root&#x2F;.bash_profile</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># vi /root/.bash_profile</span></code></pre>
 
 <p>在修改PATH=$PATH:$HOME/bin为：</p>
-<pre><code class="hljs plain">PATH&#x3D;PATH:HOME&#x2F;bin:&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;bin:&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;lib
-# source &#x2F;root&#x2F;.bash_profile &#x2F;&#x2F;使刚才的修改生效</code></pre>
+<pre><code class="hljs crystal">PATH=<span class="hljs-symbol">PATH:</span>HOME/<span class="hljs-symbol">bin:</span>/usr/java/mysql/<span class="hljs-symbol">bin:</span>/usr/java/mysql/<span class="hljs-class"><span class="hljs-keyword">lib</span></span>
+<span class="hljs-comment"># source /root/.bash_profile //使刚才的修改生效</span></code></pre>
 
 <p>》手动启动mysql</p>
-<pre><code class="hljs plain"># .&#x2F;bin&#x2F;mysqld_safe --user&#x3D;mysql &amp; &#x2F;&#x2F;启动MySQL，但不能停止
-mysqladmin -u root -p shutdown &#x2F;&#x2F;此时root还没密码，所以为空值，提示输入密码时，直接回车即可。</code></pre>
+<pre><code class="hljs 1c"><span class="hljs-meta"># ./bin/mysqld_safe --user=mysql &amp; <span class="hljs-comment">//启动MySQL，但不能停止</span></span>
+mysqladmin -u root -p shutdown <span class="hljs-comment">//此时root还没密码，所以为空值，提示输入密码时，直接回车即可。</span></code></pre>
 
 <p>》将mysql的启动服务添加到系统服务中</p>
-<pre><code class="hljs plain"># cp support-files&#x2F;mysql.server &#x2F;etc&#x2F;init.d&#x2F;mysql</code></pre>
+<pre><code class="hljs elm"># cp sup<span class="hljs-keyword">port</span>-files/mysql.server /etc/init.d/mysql</code></pre>
 
 <p>》启动mysql</p>
-<pre><code class="hljs plain"># service mysql start
-Starting MySQL... ERROR! The server quit without updating PID file (&#x2F;usr&#x2F;java&#x2F;mysql&#x2F;data&#x2F;localhost.localdomain.pid).</code></pre>
+<pre><code class="hljs routeros"><span class="hljs-comment"># service mysql start</span>
+Starting MySQL<span class="hljs-built_in">..</span>. ERROR! The<span class="hljs-built_in"> server </span>quit without updating PID file (/usr/java/mysql/data/localhost.localdomain.pid).</code></pre>
 
 <p>》启动失败：</p>
 <p>》我这里是权限问题，先改变权限</p>
-<pre><code class="hljs plain"># chown -R mysql:mysql &#x2F;usr&#x2F;java&#x2F;mysql</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># chown -R mysql:mysql /usr/java/mysql</span></code></pre>
 
 <p>》接着启动服务器</p>
-<pre><code class="hljs plain"># &#x2F;etc&#x2F;init.d&#x2F;mysql start</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># /etc/init.d/mysql start</span></code></pre>
 
 <p>》修改MySQL的root用户的密码以及打开远程连接</p>
-<pre><code class="hljs plain"># mysql -u root mysql
+<pre><code class="hljs pgsql"># mysql -u root mysql
 mysql&gt; use mysql;
-mysql&gt; desc user;
-mysql&gt; GRANT ALL PRIVILEGES ON . TO root@&quot;%&quot; IDENTIFIED BY &quot;root&quot;; &#x2F;&#x2F;为root添加远程连接的能力
-mysql&gt; update user set Password &#x3D; password(&#39;x123456.&#39;) where User&#x3D;&#39;root&#39;; &#x2F;&#x2F;设置root用户密码
-mysql&gt; select Host,User,Password from user where User&#x3D;&#39;root&#39;;
-mysql&gt; flush privileges;
-mysql&gt; exit</code></pre>
+mysql&gt; <span class="hljs-keyword">desc</span> <span class="hljs-keyword">user</span>;
+mysql&gt; <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">PRIVILEGES</span> <span class="hljs-keyword">ON</span> . <span class="hljs-keyword">TO</span> root@"%" IDENTIFIED <span class="hljs-keyword">BY</span> "root"; //为root添加远程连接的能力
+mysql&gt; <span class="hljs-keyword">update</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">set</span> <span class="hljs-keyword">Password</span> = <span class="hljs-keyword">password</span>(<span class="hljs-string">'x123456.'</span>) <span class="hljs-keyword">where</span> <span class="hljs-keyword">User</span>=<span class="hljs-string">'root'</span>; //设置root用户密码
+mysql&gt; <span class="hljs-keyword">select</span> Host,<span class="hljs-keyword">User</span>,<span class="hljs-keyword">Password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">User</span>=<span class="hljs-string">'root'</span>;
+mysql&gt; flush <span class="hljs-keyword">privileges</span>;
+mysql&gt; <span class="hljs-keyword">exit</span></code></pre>
 
 <p>》重新登录</p>
-<pre><code class="hljs plain"># mysql -u root -p
-enter password:x123456.000</code></pre>
+<pre><code class="hljs nginx"><span class="hljs-comment"># mysql -u root -p</span>
+<span class="hljs-attribute">enter</span> password:x123456.<span class="hljs-number">000</span></code></pre>
 
 <p>》若还不能进行远程连接，关闭防火墙</p>
-<pre><code class="hljs plain">[root@localhost]# &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;iptables stop</code></pre>
+<pre><code class="hljs autoit">[root<span class="hljs-symbol">@localhost]</span><span class="hljs-meta"># /etc/rc.d/init.d/iptables stop</span></code></pre>
 
 <p>用远程工具连接上了表示成功了。</p>
 <hr>
@@ -438,43 +438,43 @@ enter password:x123456.000</code></pre>
 <hr>
 <p>》先下载apache-tomcat-7.0.56.tar.gz</p>
 <p>》下载地下：<a href="http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz</a></p>
-<pre><code class="hljs plain">
-# cd &#x2F;usr&#x2F;java
-# tar -zxvf .&#x2F;tools&#x2F;apache-tomcat-7.0.56.tar.gz
-# cd &#x2F;etc&#x2F;rc.d&#x2F;init.d
-# vi tomcat
-#----------输入以下信息---------------------
+<pre><code class="hljs bash">
+<span class="hljs-comment"># cd /usr/java</span>
+<span class="hljs-comment"># tar -zxvf ./tools/apache-tomcat-7.0.56.tar.gz</span>
+<span class="hljs-comment"># cd /etc/rc.d/init.d</span>
+<span class="hljs-comment"># vi tomcat</span>
+<span class="hljs-comment">#----------输入以下信息---------------------</span>
 
-#
-# chkconfig: 345 80 15
-# description: Tomcat is a Servlet+JSP Engine.
-# Enter the jdk installation directory
-jdk_File&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.7.0_67
-# Enter the tomcat installation directory
-tomcat_File&#x3D;&#x2F;usr&#x2F;java&#x2F;apache-tomcat-7.0.56
-export JAVA_HOME&#x3D;$jdk_File
-# Source function library.
-. &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;functions
-start()&#123;
-if [ -z $(&#x2F;sbin&#x2F;pidof java) ]; then
-echo &quot;Starting tomcat&quot;
-$tomcat_File&#x2F;bin&#x2F;startup.sh
-touch &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;tomcat
-else
-echo &quot;tomcat allready running&quot;
-fi
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># chkconfig: 345 80 15</span>
+<span class="hljs-comment"># description: Tomcat is a Servlet+JSP Engine.</span>
+<span class="hljs-comment"># Enter the jdk installation directory</span>
+jdk_File=/usr/java/jdk1.7.0_67
+<span class="hljs-comment"># Enter the tomcat installation directory</span>
+tomcat_File=/usr/java/apache-tomcat-7.0.56
+<span class="hljs-built_in">export</span> JAVA_HOME=<span class="hljs-variable">$jdk_File</span>
+<span class="hljs-comment"># Source function library.</span>
+. /etc/rc.d/init.d/<span class="hljs-built_in">functions</span>
+<span class="hljs-function"><span class="hljs-title">start</span></span>()&#123;
+<span class="hljs-keyword">if</span> [ -z $(/sbin/pidof java) ]; <span class="hljs-keyword">then</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Starting tomcat"</span>
+<span class="hljs-variable">$tomcat_File</span>/bin/startup.sh
+touch /var/lock/subsys/tomcat
+<span class="hljs-keyword">else</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"tomcat allready running"</span>
+<span class="hljs-keyword">fi</span>
 &#125;
-stop()&#123;
-if [ ! -z $(&#x2F;sbin&#x2F;pidof java) ]; then
-echo &quot;Shutting down tomcat&quot;
-$tomcat_File&#x2F;bin&#x2F;shutdown.sh
-until [ -z $(&#x2F;sbin&#x2F;pidof java) ]; do :; done
-rm -f &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;tomcat
-else
-echo &quot;tomcat not running&quot;
-fi
+<span class="hljs-function"><span class="hljs-title">stop</span></span>()&#123;
+<span class="hljs-keyword">if</span> [ ! -z $(/sbin/pidof java) ]; <span class="hljs-keyword">then</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Shutting down tomcat"</span>
+<span class="hljs-variable">$tomcat_File</span>/bin/shutdown.sh
+until [ -z $(/sbin/pidof java) ]; <span class="hljs-keyword">do</span> :; <span class="hljs-keyword">done</span>
+rm -f /var/lock/subsys/tomcat
+<span class="hljs-keyword">else</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"tomcat not running"</span>
+<span class="hljs-keyword">fi</span>
 &#125;
-case &quot;$1&quot; in
+<span class="hljs-keyword">case</span> <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> <span class="hljs-keyword">in</span>
 start)
 start
 ;;
@@ -486,22 +486,22 @@ stop
 start
 ;;
 status)
-$tomcat_File&#x2F;bin&#x2F;catalina.sh version
+<span class="hljs-variable">$tomcat_File</span>/bin/catalina.sh version
 ;;
 *)
-echo &quot;Usage: $0 &#123;start|stop|restart|status&#125;&quot;
-esac
-exit 0
-#----------输入以下信息---------------------
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Usage: <span class="hljs-variable">$0</span> &#123;start|stop|restart|status&#125;"</span>
+<span class="hljs-keyword">esac</span>
+<span class="hljs-built_in">exit</span> 0
+<span class="hljs-comment">#----------输入以下信息---------------------</span>
 
-:wq! #保存退出 
-# chmod 755 &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;tomcat #添加执行权限
-# chkconfig --add tomcat #添加服务
-# chkconfig tomcat on #设置开机启动
-# service tomcat stop #停止
-# service tomcat start #启动
-# service tomcat restart #重启
-# service tomcat status #查看状态信息</code></pre>
+:wq! <span class="hljs-comment">#保存退出 </span>
+<span class="hljs-comment"># chmod 755 /etc/rc.d/init.d/tomcat #添加执行权限</span>
+<span class="hljs-comment"># chkconfig --add tomcat #添加服务</span>
+<span class="hljs-comment"># chkconfig tomcat on #设置开机启动</span>
+<span class="hljs-comment"># service tomcat stop #停止</span>
+<span class="hljs-comment"># service tomcat start #启动</span>
+<span class="hljs-comment"># service tomcat restart #重启</span>
+<span class="hljs-comment"># service tomcat status #查看状态信息</span></code></pre>
 
 
 
@@ -511,72 +511,72 @@ exit 0
 <p>》先下载nginx-1.7.6.tar.gz</p>
 <p>》下载URL:<a href="http://nginx.org/download/nginx-1.7.6.tar.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.7.6.tar.gz</a></p>
 <p>》把nginx-1.7.6.tar.gz放到/usr/java/tools目录下</p>
-<pre><code class="hljs plain"># cd &#x2F;usr&#x2F;local&#x2F;
-# tar -zxvf &#x2F;usr&#x2F;java&#x2F;tools&#x2F;nginx-1.7.5.tar.gz
-# cd nginx-1.7.6&#x2F;
-# yum -y install pcre-devel
-# yum install -y zlib-devel
-# .&#x2F;configure
-# make &amp;&amp; make install
-# cd &#x2F;usr&#x2F;local&#x2F;nginx
-# cd sbin
-# .&#x2F;nginx
-# &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;iptables stop</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/local/</span>
+<span class="hljs-meta"># tar -zxvf /usr/java/tools/nginx-1.7.5.tar.gz</span>
+<span class="hljs-meta"># cd nginx-1.7.6/</span>
+<span class="hljs-meta"># yum -y install pcre-devel</span>
+<span class="hljs-meta"># yum install -y zlib-devel</span>
+<span class="hljs-meta"># ./configure</span>
+<span class="hljs-meta"># make &amp;&amp; make install</span>
+<span class="hljs-meta"># cd /usr/local/nginx</span>
+<span class="hljs-meta"># cd sbin</span>
+<span class="hljs-meta"># ./nginx</span>
+<span class="hljs-meta"># /etc/rc.d/init.d/iptables stop</span></code></pre>
 
 <p>》配置服务器启动方式</p>
-<pre><code class="hljs plain"># vi &#x2F;etc&#x2F;init.d&#x2F;nginx
-#---------输入以下信息------------------
+<pre><code class="hljs routeros"><span class="hljs-comment"># vi /etc/init.d/nginx</span>
+<span class="hljs-comment">#---------输入以下信息------------------</span>
 
-# nginx Startup script for the Nginx HTTP Server
-# it is v.0.0.2 version.
-# chkconfig: - 85 15
-# description: Nginx is a high-performance web and proxy server.
-# It has a lot of features, but it&#39;s not for everyone.
-# processname: nginx
-# pidfile: &#x2F;software&#x2F;nginx&#x2F;logs&#x2F;nginx.pid
-# config: &#x2F;software&#x2F;nginx&#x2F;conf&#x2F;nginx.conf
-nginxd&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx
-nginx_config&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf
-nginx_pid&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid
-RETVAL&#x3D;0
-prog&#x3D;&quot;nginx&quot;
-# Source function library.
-. &#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;functions
-# Source networking configuration.
-. &#x2F;etc&#x2F;sysconfig&#x2F;network
-# Check that networking is up.
-[ $&#123;NETWORKING&#125; &#x3D; &quot;no&quot; ] &amp;&amp; exit 0
-[ -x $nginxd ] || exit 0
-# Start nginx daemons functions.
+<span class="hljs-comment"># nginx Startup script for the Nginx HTTP Server</span>
+<span class="hljs-comment"># it is v.0.0.2 version.</span>
+<span class="hljs-comment"># chkconfig: - 85 15</span>
+<span class="hljs-comment"># description: Nginx is a high-performance web and proxy server.</span>
+<span class="hljs-comment"># It has a lot of features, but it's not for everyone.</span>
+<span class="hljs-comment"># processname: nginx</span>
+<span class="hljs-comment"># pidfile: /software/nginx/logs/nginx.pid</span>
+<span class="hljs-comment"># config: /software/nginx/conf/nginx.conf</span>
+<span class="hljs-attribute">nginxd</span>=/usr/local/nginx/sbin/nginx
+<span class="hljs-attribute">nginx_config</span>=/usr/local/nginx/conf/nginx.conf
+<span class="hljs-attribute">nginx_pid</span>=/usr/local/nginx/logs/nginx.pid
+<span class="hljs-attribute">RETVAL</span>=0
+<span class="hljs-attribute">prog</span>=<span class="hljs-string">"nginx"</span>
+<span class="hljs-comment"># Source function library.</span>
+. /etc/rc.d/init.d/functions
+<span class="hljs-comment"># Source networking configuration.</span>
+. /etc/sysconfig/network
+<span class="hljs-comment"># Check that networking is up.</span>
+[ <span class="hljs-variable">$&#123;NETWORKING&#125;</span> = <span class="hljs-string">"no"</span> ] &amp;&amp; exit 0
+[ -x <span class="hljs-variable">$nginxd</span> ] || exit 0
+<span class="hljs-comment"># Start nginx daemons functions.</span>
 start() &#123;
-if [ -e $nginx_pid ];then
-echo &quot;nginx already running....&quot;
+<span class="hljs-keyword">if</span> [ -e <span class="hljs-variable">$nginx_pid</span> ];then
+echo <span class="hljs-string">"nginx already running...."</span>
 exit 1
 fi
-echo -n &quot;Starting prog: &quot;
+echo -n <span class="hljs-string">"Starting prog: "</span>
 daemon nginxd -c &#123;nginx_config&#125;
-RETVAL&#x3D;$?
+<span class="hljs-attribute">RETVAL</span>=$?
 echo
-[ $RETVAL &#x3D; 0 ] &amp;&amp; touch &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;nginx
-return $RETVAL
+[ <span class="hljs-variable">$RETVAL</span> = 0 ] &amp;&amp; touch /var/lock/subsys/nginx
+return <span class="hljs-variable">$RETVAL</span>
 &#125;
-# Stop nginx daemons functions.
+<span class="hljs-comment"># Stop nginx daemons functions.</span>
 stop() &#123;
-echo -n &quot;Stopping prog: &quot;
-killproc $nginxd
-RETVAL&#x3D;$?
+echo -n <span class="hljs-string">"Stopping prog: "</span>
+killproc <span class="hljs-variable">$nginxd</span>
+<span class="hljs-attribute">RETVAL</span>=$?
 echo
-[ $RETVAL &#x3D; 0 ] &amp;&amp; rm -f &#x2F;var&#x2F;lock&#x2F;subsys&#x2F;nginx &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid
+[ <span class="hljs-variable">$RETVAL</span> = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /usr/local/nginx/logs/nginx.pid
 &#125;
 reload() &#123;
-echo -n &quot;Reloading prog: &quot;
-#kill -HUP cat $&#123;nginx_pid&#125;
-killproc $nginxd -HUP
-RETVAL&#x3D;$?
+echo -n <span class="hljs-string">"Reloading prog: "</span>
+<span class="hljs-comment">#kill -HUP cat $&#123;nginx_pid&#125;</span>
+killproc <span class="hljs-variable">$nginxd</span> -HUP
+<span class="hljs-attribute">RETVAL</span>=$?
 echo
 &#125;
-# See how we were called.
-case &quot;$1&quot; in
+<span class="hljs-comment"># See how we were called.</span>
+case <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> <span class="hljs-keyword">in</span>
 start)
 start
 ;;
@@ -591,28 +591,28 @@ stop
 start
 ;;
 status)
-status $prog
-RETVAL&#x3D;$?
+status <span class="hljs-variable">$prog</span>
+<span class="hljs-attribute">RETVAL</span>=$?
 ;;
 *)
-echo &quot;Usage: prog &#123;start|stop|restart|reload|status|help&#125;&quot;
+echo <span class="hljs-string">"Usage: prog &#123;start|stop|restart|reload|status|help&#125;"</span>
 exit 1
 esac
-exit $RETVAL
-#---------输入以下信息------------------
+exit <span class="hljs-variable">$RETVAL</span>
+<span class="hljs-comment">#---------输入以下信息------------------</span>
 
-# chmod 755 &#x2F;etc&#x2F;init.d&#x2F;nginx &amp;&amp; chkconfig nginx on
-# service nginx start
-# service nginx stop
-# service nginx restart
-# ps -ef | grep nginx
-# netstat -pant | grep 80</code></pre>
+<span class="hljs-comment"># chmod 755 /etc/init.d/nginx &amp;&amp; chkconfig nginx on</span>
+<span class="hljs-comment"># service nginx start</span>
+<span class="hljs-comment"># service nginx stop</span>
+<span class="hljs-comment"># service nginx restart</span>
+<span class="hljs-comment"># ps -ef | grep nginx</span>
+<span class="hljs-comment"># netstat -pant | grep 80</span></code></pre>
 
 <p>》测试在浏览器中输入广域网IP看看能不能看到欢迎界面，如果能就表示成功了。</p>
 <hr>
 <p>【配置规则】</p>
 <hr>
-<pre><code class="hljs plain"># vi &#x2F;etc&#x2F;sysconfig&#x2F;iptables</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># vi /etc/sysconfig/iptables</span></code></pre>
 
 <p>增加如下配置:</p>
 <blockquote>
@@ -620,12 +620,12 @@ exit $RETVAL
 <p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 8888 -j ACCEPT</p>
 <p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 6666 -j ACCEPT</p>
 </blockquote>
-<pre><code class="hljs plain"># service iptables restart</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># service iptables restart</span></code></pre>
 
 <p>》系统启动的方式为自启动</p>
-<pre><code class="hljs plain"># chkconfig mysql on
-# chkconfig nginx on
-# chkconfig tomcat on</code></pre>
+<pre><code class="hljs vala"><span class="hljs-meta"># chkconfig mysql on</span>
+<span class="hljs-meta"># chkconfig nginx on</span>
+<span class="hljs-meta"># chkconfig tomcat on</span></code></pre>
 
 <img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>

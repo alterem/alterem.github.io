@@ -245,77 +245,77 @@
 <p>然后执行：</p>
 <a id="more"></a>
 
-<pre><code class="hljs plain">service sshd restart</code></pre>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">service sshd restart</span></code></pre>
 
 <p>这个时候可能还要重新配置一下防火墙，开放50000端口，具体如何配置也可以参考<a href="https://blog.csdn.net/ul646691993/article/details/52104082" target="_blank" rel="noopener">这里</a>的后半部分。但是目前，阿里云的服务器实测是不需要再配置防火墙的，但是需要去登陆到网页后台修改安全组。</p>
 <p>之后就可以通过这样的方式登录了：(注意登录方式一定要写对)</p>
-<pre><code class="hljs plain">ssh root@115.29.102.81 -p 50000</code></pre>
+<pre><code class="hljs angelscript">ssh <span class="hljs-symbol">root@</span><span class="hljs-number">115.29</span><span class="hljs-number">.102</span><span class="hljs-number">.81</span> -p <span class="hljs-number">50000</span></code></pre>
 
 <h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p>这个时候我们还是用root进行操作，所以我们接下来要给自己创建一个账户，比如创建一个如下的用户：</p>
-<pre><code class="hljs plain">useradd xiaotao
-passwd xiaotao</code></pre>
+<pre><code class="hljs properties"><span class="hljs-attr">useradd</span> <span class="hljs-string">xiaotao</span>
+<span class="hljs-attr">passwd</span> <span class="hljs-string">xiaotao</span></code></pre>
 
 <p>可以用`ls -al /home/``查看一下账户</p>
 <p>对创建的这个用户增加sudo权限： 相关配置文件/etc/sudoers中，但是这个文件是只读的，所以要更改一下权限</p>
-<pre><code class="hljs plain">chmod u+w sudoers</code></pre>
+<pre><code class="hljs perl"><span class="hljs-keyword">chmod</span> u+w sudoers</code></pre>
 
 <p>然后进入这个文件在这里进行更改：</p>
-<pre><code class="hljs plain">root    ALL&#x3D;(ALL)       ALL
-xiaotao  ALL&#x3D;(ALL)       ALL</code></pre>
+<pre><code class="hljs ada">root    <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>)       <span class="hljs-keyword">ALL</span>
+xiaotao  <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>)       <span class="hljs-keyword">ALL</span></code></pre>
 
 <p>然后再改回权限：</p>
-<pre><code class="hljs plain">chmod u-w sudoers</code></pre>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">chmod u-w sudoers</span></code></pre>
 
 <p>注意一点，CentOS 7预设容许任何帐号透过ssh登入（也就是说自己根本不用改改，直接新建帐号登录即可），包括根和一般帐号，为了不受根帐号被黑客暴力入侵，我们必须禁止 root帐号的ssh功能，事实上root也没有必要ssh登入伺服器，因为只要使用su或sudo（当然需要输入root的密码）普通帐号便可以拥有root的权限。使用vim（或任何文本编辑器）开启的/ etc/ SSH/ sshd_config中，寻找：</p>
-<pre><code class="hljs plain">＃PermitRootLogin yes</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-string">＃PermitRootLogin</span> <span class="hljs-literal">yes</span></code></pre>
 
 <p>修改：</p>
-<pre><code class="hljs plain">PermitRootLogin no</code></pre>
+<pre><code class="hljs nginx"><span class="hljs-attribute">PermitRootLogin</span> <span class="hljs-literal">no</span></code></pre>
 
 <h3 id="配置公私钥加密登录"><a href="#配置公私钥加密登录" class="headerlink" title="配置公私钥加密登录"></a>配置公私钥加密登录</h3><p><strong>这一步骤要切换到自己新建的用户，不能再用 root 用户了，否则可能无法正常登陆。</strong></p>
 <p>很多时候以上所说的还是不够安全，为了更加安全方便，我们采用公私钥对称加密登录，简单的讲做法就是再客户端生成一把私钥一把公钥，私钥是在客户端的，公钥上传到服务端，对称加密进行登录。</p>
 <p>在客户端先进到这个目录：</p>
-<pre><code class="hljs plain">cd ~&#x2F;.ssh</code></pre>
+<pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span></code></pre>
 
 <p>生成公钥和私钥（实际上如果之前有的话就不用重新生成了）</p>
-<pre><code class="hljs plain">ssh-keygen -t rsa</code></pre>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">ssh-keygen -t rsa</span></code></pre>
 
 <p>接下来把公钥上传到服务端</p>
-<pre><code class="hljs plain">scp ~&#x2F;.ssh&#x2F;id_rsa.pub xiaotao@&lt;ssh_server_ip&gt;:~</code></pre>
+<pre><code class="hljs angelscript">scp ~/.ssh/id_rsa.pub <span class="hljs-symbol">xiaotao@<span class="hljs-keyword">&lt;ssh_server_ip&gt;</span></span>:~</code></pre>
 
 <p>在服务端执行以下命令(如果没有相关的文件和文件夹要先进行创建，注意不要使用 sudo )</p>
-<pre><code class="hljs plain">cat  id_rsa.pub &gt;&gt; ～&#x2F;.ssh&#x2F;authorized_keys</code></pre>
+<pre><code class="hljs awk">cat  id_rsa.pub &gt;&gt; ～<span class="hljs-regexp">/.ssh/</span>authorized_keys</code></pre>
 
 <p>配置服务器的/etc/ssh/sshd_config，下面是一些建议的配置：</p>
-<pre><code class="hljs plain">vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config
-# 禁用root账户登录，非必要，但为了安全性，请配置
-PermitRootLogin no
+<pre><code class="hljs yaml"><span class="hljs-string">vim</span> <span class="hljs-string">/etc/ssh/sshd_config</span>
+<span class="hljs-comment"># 禁用root账户登录，非必要，但为了安全性，请配置</span>
+<span class="hljs-string">PermitRootLogin</span> <span class="hljs-literal">no</span>
 
-# 是否让 sshd 去检查用户家目录或相关档案的权限数据，
-# 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。
-# 例如使用者的 ~.ssh&#x2F; 权限设错时，某些特殊情况下会不许用户登入
-StrictModes no
+<span class="hljs-comment"># 是否让 sshd 去检查用户家目录或相关档案的权限数据，</span>
+<span class="hljs-comment"># 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。</span>
+<span class="hljs-comment"># 例如使用者的 ~.ssh/ 权限设错时，某些特殊情况下会不许用户登入</span>
+<span class="hljs-string">StrictModes</span> <span class="hljs-literal">no</span>
 
-# 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。
-# 至于自制的公钥数据就放置于用户家目录下的 .ssh&#x2F;authorized_keys 内
-RSAAuthentication yes
-PubkeyAuthentication yes
-AuthorizedKeysFile      %h&#x2F;.ssh&#x2F;authorized_keys
+<span class="hljs-comment"># 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。</span>
+<span class="hljs-comment"># 至于自制的公钥数据就放置于用户家目录下的 .ssh/authorized_keys 内</span>
+<span class="hljs-string">RSAAuthentication</span> <span class="hljs-literal">yes</span>
+<span class="hljs-string">PubkeyAuthentication</span> <span class="hljs-literal">yes</span>
+<span class="hljs-string">AuthorizedKeysFile</span>      <span class="hljs-string">%h/.ssh/authorized_keys</span>
 
-#有了证书登录了，就禁用密码登录吧，安全要紧
-PasswordAuthentication no</code></pre>
+<span class="hljs-comment">#有了证书登录了，就禁用密码登录吧，安全要紧</span>
+<span class="hljs-string">PasswordAuthentication</span> <span class="hljs-literal">no</span></code></pre>
 
 <p>然后不要忘记 <code>sudo service sshd restart</code></p>
 <p>一般来讲，这样就算是成功了，我们可以在客户端尝试：</p>
-<pre><code class="hljs plain">ssh -i ~&#x2F;.ssh&#x2F;id_rsa remote_username@remote_ip</code></pre>
+<pre><code class="hljs elixir">ssh -i ~<span class="hljs-regexp">/.ssh/id</span>_rsa remote_username<span class="hljs-variable">@remote_ip</span></code></pre>
 
 <p>如果不行，可能是服务端或客户端相关 <code>.ssh</code> 文件权限不对，可以进行如下尝试：</p>
-<pre><code class="hljs plain">服务端
-chown -R 0700  ~&#x2F;.ssh
-chown -R 0644  ~&#x2F;.ssh&#x2F;authorized_keys
+<pre><code class="hljs angelscript">服务端
+chown -R <span class="hljs-number">0700</span>  ~/.ssh
+chown -R <span class="hljs-number">0644</span>  ~/.ssh/authorized_keys
 
 客户端改一下
-chmod 600 id_rsa</code></pre>
+chmod <span class="hljs-number">600</span> id_rsa</code></pre>
 
 
 

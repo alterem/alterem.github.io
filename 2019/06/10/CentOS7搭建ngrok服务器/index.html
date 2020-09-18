@@ -457,8 +457,8 @@ trust_host_root_certs: <span class="hljs-literal">false</span></code></pre>
 
 
 <p>或者为了方便，在<code>ngrok.exe</code>所在的目录中新建一个<code>run.bat</code>文件，内容如下：</p>
-<pre><code class="hljs plain">@echo off
-ngrok.exe -config&#x3D;ngrok.cfg -subdomain&#x3D;demo -log&#x3D;log.txt 8092</code></pre>
+<pre><code class="hljs arduino">@echo off
+ngrok.exe -<span class="hljs-built_in">config</span>=ngrok.cfg -subdomain=demo -<span class="hljs-built_in">log</span>=<span class="hljs-built_in">log</span>.txt <span class="hljs-number">8092</span></code></pre>
 
 <p>上面的subdomain是你想去访问域名前缀，后面的端口是你本机应用启动端口。</p>
 <p>看到下面的结果表示成功了：</p>
@@ -494,9 +494,9 @@ ngrok.exe -config&#x3D;ngrok.cfg -subdomain&#x3D;demo -log&#x3D;log.txt 8092</co
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
-                    
                       <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
                     
                       <a class="hover-with-bg" href="/tags/Ngrok/">Ngrok</a>
                     

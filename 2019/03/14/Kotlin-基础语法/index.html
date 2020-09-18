@@ -302,10 +302,10 @@
 &#125;</code></pre>
 
 <h6 id="lambda-匿名函数"><a href="#lambda-匿名函数" class="headerlink" title="lambda(匿名函数)"></a>lambda(匿名函数)</h6><p>lambda表达式使用实例：</p>
-<pre><code class="hljs plain">&#x2F;&#x2F; 测试
-fun main(args: Array&lt;String&gt;) &#123;
-    val sumLambda: (Int, Int) -&gt; Int &#x3D; &#123;x,y -&gt; x+y&#125;
-    println(sumLambda(1,2))  &#x2F;&#x2F; 输出 3
+<pre><code class="hljs kotlin"><span class="hljs-comment">// 测试</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args: <span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;
+    <span class="hljs-keyword">val</span> sumLambda: (<span class="hljs-built_in">Int</span>, <span class="hljs-built_in">Int</span>) -&gt; <span class="hljs-built_in">Int</span> = &#123;x,y -&gt; x+y&#125;
+    println(sumLambda(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))  <span class="hljs-comment">// 输出 3</span>
 &#125;</code></pre>
 
 <h5 id="定义常量与变量"><a href="#定义常量与变量" class="headerlink" title="定义常量与变量"></a>定义常量与变量</h5><p>可变变量定义：var 关键字</p>
