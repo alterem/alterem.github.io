@@ -1,7 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -20,21 +20,16 @@
   <title>归档 - Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/googlecode.min.css" />
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -42,6 +37,8 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -65,52 +62,73 @@
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              <i class="iconfont icon-home-fill"></i>
-              首页</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">
-              <i class="iconfont icon-archive-fill"></i>
-              归档</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">
-              <i class="iconfont icon-category-fill"></i>
-              分类</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">
-              <i class="iconfont icon-tags-fill"></i>
-              标签</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">
-              <i class="iconfont icon-user-fill"></i>
-              关于</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -118,16 +136,24 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner intro-2" id="background" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
-
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = ' 🚀 ' + data.hitokoto
+                }).catch(console.error)
+            </script>
             
           </div>
 
@@ -158,67 +184,67 @@
     
     <a href="/2019/06/10/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">实现多线程的两种方式</span>
-      <span style="float: right;">06-10</span>
+      <time style="float: right;">06-10</time>
     </a>
   
     
     <a href="/2019/06/10/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E5%AE%9E%E4%BE%8B/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">接口文档实例</span>
-      <span style="float: right;">06-10</span>
+      <time style="float: right;">06-10</time>
     </a>
   
     
     <a href="/2019/06/10/Mac%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">mac资源共享</span>
-      <span style="float: right;">06-10</span>
+      <time style="float: right;">06-10</time>
     </a>
   
     
     <a href="/2019/03/27/%E9%9A%8F%E8%B0%882/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">随谈2</span>
-      <span style="float: right;">03-27</span>
+      <time style="float: right;">03-27</time>
     </a>
   
     
     <a href="/2019/03/27/%E9%9A%8F%E8%B0%88/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">随谈</span>
-      <span style="float: right;">03-27</span>
+      <time style="float: right;">03-27</time>
     </a>
   
     
     <a href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">CentOS下安装FreeTDS</span>
-      <span style="float: right;">03-15</span>
+      <time style="float: right;">03-15</time>
     </a>
   
     
     <a href="/2019/03/15/Kotlin-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Kotlin-基本数据类型</span>
-      <span style="float: right;">03-15</span>
+      <time style="float: right;">03-15</time>
     </a>
   
     
     <a href="/2019/03/14/Kotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Kotlin-基础语法</span>
-      <span style="float: right;">03-14</span>
+      <time style="float: right;">03-14</time>
     </a>
   
     
     <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Kotlin-环境安装</span>
-      <span style="float: right;">03-14</span>
+      <time style="float: right;">03-14</time>
     </a>
   
     
     <a href="/2019/01/14/%E6%88%90%E4%BA%BA%E6%BC%AB%E7%94%BB/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">成人漫画</span>
-      <span style="float: right;">01-14</span>
+      <time style="float: right;">01-14</time>
     </a>
   
     
     <a href="/2019/01/11/Cola-ui%E7%9A%84%E4%BD%BF%E7%94%A8/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">cola-ui的使用</span>
-      <span style="float: right;">01-11</span>
+      <time style="float: right;">01-11</time>
     </a>
   
     
@@ -227,25 +253,25 @@
     
     <a href="/2018/10/09/%E5%B9%82%E7%AD%89/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">幂等</span>
-      <span style="float: right;">10-09</span>
+      <time style="float: right;">10-09</time>
     </a>
   
     
     <a href="/2018/09/14/10%E6%8B%9B%E5%BC%BA%E5%8C%96Linux%E5%AE%89%E5%85%A8%E7%9A%84%E6%8A%80%E8%83%BD/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">10招强化Linux安全的技能</span>
-      <span style="float: right;">09-14</span>
+      <time style="float: right;">09-14</time>
     </a>
   
     
     <a href="/2018/09/14/SpringCloud%E7%9A%84%E7%89%88%E6%9C%AC/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">SpringCloud的版本</span>
-      <span style="float: right;">09-14</span>
+      <time style="float: right;">09-14</time>
     </a>
   
     
     <a href="/2018/09/13/JAVA%E4%B8%AD%E9%80%9A%E8%BF%87Hibernate-Validation%E8%BF%9B%E8%A1%8C%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">JAVA中通过Hibernate-Validation进行参数验证</span>
-      <span style="float: right;">09-13</span>
+      <time style="float: right;">09-13</time>
     </a>
   
 </div>
@@ -338,20 +364,27 @@
         <span>Fluid</span></a>
     </div>
     
-  <div>
+  <div class="statistics">
     
-      <!-- 不蒜子统计PV -->
+    
+
+    
       
-      <span id="busuanzi_container_site_pv" style="display: none">
-      总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    </span>
-    
-    
-      <!-- 不蒜子统计UV -->
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
       
-      <span id="busuanzi_container_site_uv" style="display: none">
-      总访客数 <span id="busuanzi_value_site_uv"></span> 人
-    </span>
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
 
@@ -365,12 +398,19 @@
 <!-- SCRIPTS -->
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
 <script  src="/js/main.js" ></script>
 
+<!-- Plugins -->
 
-  <script  src="/js/lazyload.js" ></script>
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
 
 
+
+  
 
 
 
@@ -384,7 +424,6 @@
 
 
 
-<!-- Plugins -->
 
 
 
@@ -407,21 +446,6 @@
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
 
@@ -464,6 +488,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

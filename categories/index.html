@@ -1,7 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -20,21 +20,16 @@
   <title>分类 - Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/googlecode.min.css" />
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -42,6 +37,8 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -65,52 +62,73 @@
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              <i class="iconfont icon-home-fill"></i>
-              首页</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">
-              <i class="iconfont icon-archive-fill"></i>
-              归档</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">
-              <i class="iconfont icon-category-fill"></i>
-              分类</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">
-              <i class="iconfont icon-tags-fill"></i>
-              标签</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">
-              <i class="iconfont icon-user-fill"></i>
-              关于</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -118,16 +136,24 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner intro-2" id="background" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
-
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = ' 🚀 ' + data.hitokoto
+                }).catch(console.error)
+            </script>
             
           </div>
 
@@ -148,7 +174,2206 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<ul class="category-tree-list"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/API/">API</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Cas/">Cas</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Cas/Redis/">Redis</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Cas/Redis/Ticket/">Ticket</a><span class="category-tree-list-count">1</span></li></ul></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/CentOS/">CentOS</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/CentOS/Linux/">Linux</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/CentOS/Linux/Ngrok/">Ngrok</a><span class="category-tree-list-count">1</span></li></ul></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/DNS/">DNS</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/EBook/">EBook</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Eureka/">Eureka</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/FreeTDS/">FreeTDS</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Git/">Git</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/HIkariCP/">HIkariCP</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/HIkariCP/dataSource/">dataSource</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Hexo/">Hexo</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Hexo/Blog/">Blog</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Http/">Http</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Http/Status/">Status</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/JAVA/">JAVA</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Java/">Java</a><span class="category-tree-list-count">17</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Java/Id/">Id</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Java/Spring/">Spring</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Java/Spring/Redis/">Redis</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Java/String/">String</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Java/Thread/">Thread</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/JavaDoc/">JavaDoc</a><span class="category-tree-list-count">2</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Javascript/">Javascript</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Jenkins/">Jenkins</a><span class="category-tree-list-count">6</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-tree-list-count">3</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Linux/">Linux</a><span class="category-tree-list-count">7</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Linux/Server/">Server</a><span class="category-tree-list-count">4</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Mac/">Mac</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Mac/Homebrew/">Homebrew</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/MongoDB/">MongoDB</a><span class="category-tree-list-count">2</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/MongoDB/JAVA/">JAVA</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/MyBatis/">MyBatis</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/MyBatis/Spring/">Spring</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/MySQL/">MySQL</a><span class="category-tree-list-count">2</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Other/">Other</a><span class="category-tree-list-count">8</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Python/">Python</a><span class="category-tree-list-count">2</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Redis/">Redis</a><span class="category-tree-list-count">2</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Restful/">Restful</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Restful/Java/">Java</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Shadowsocks/">Shadowsocks</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Sonar/">Sonar</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Sonar/SonarQube/">SonarQube</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/SonarQube/">SonarQube</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/SonarQube/SonarLint/">SonarLint</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Sql/">Sql</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Web/">Web</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/Web/Ui/">Ui</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/gateway/">gateway</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/python/">python</a><span class="category-tree-list-count">2</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/springCloud/">springCloud</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a><span class="category-tree-list-count">1</span></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/%E7%BA%BF%E7%A8%8B/">线程</a><span class="category-tree-list-count">1</span><ul class="category-tree-list-child"><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/%E7%BA%BF%E7%A8%8B/JAVA/">JAVA</a><span class="category-tree-list-count">1</span></li></ul></li><li class="category-tree-list-item"><a class="category-tree-list-link" href="/categories/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a><span class="category-tree-list-count">1</span></li></ul>
+
+
+
+
+
+
+<div class="category-list">
+  
+  
+  
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5tb002f47047cqsdcd0" role="tab" data-toggle="collapse" href="#collapse-ckanaz5tb002f47047cqsdcd0"
+        aria-expanded="false"
+      >
+        Java
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Java/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>17</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5tb002f47047cqsdcd0" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5tb002f47047cqsdcd0">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5v1006p47044879dw5g" role="tab" data-toggle="collapse" href="#collapse-ckanaz5v1006p47044879dw5g"
+        aria-expanded="false"
+      >
+        Id
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Java/Id/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5v1006p47044879dw5g" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5v1006p47044879dw5g">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/ID%E7%94%9F%E6%88%90%E5%99%A8-Twitter%E7%9A%84%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/" class="list-group-item list-group-item-action">
+          <span class="category-post">ID生成器-Twitter的雪花算法</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5ve00804704fl7s6zup" role="tab" data-toggle="collapse" href="#collapse-ckanaz5ve00804704fl7s6zup"
+        aria-expanded="false"
+      >
+        String
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Java/String/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5ve00804704fl7s6zup" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5ve00804704fl7s6zup">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/String%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C%E2%80%9D-%E2%80%9D%E7%9A%84%E4%BC%98%E5%8C%96/" class="list-group-item list-group-item-action">
+          <span class="category-post">String拼接操作”+”的优化</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vg0089470413gp4rvl" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vg0089470413gp4rvl"
+        aria-expanded="false"
+      >
+        Spring
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Java/Spring/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vg0089470413gp4rvl" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vg0089470413gp4rvl">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w100b047046egmd9gj" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w100b047046egmd9gj"
+        aria-expanded="false"
+      >
+        Redis
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Java/Spring/Redis/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w100b047046egmd9gj" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w100b047046egmd9gj">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/Spring%E6%9E%81%E9%80%9F%E9%9B%86%E6%88%90%E6%B3%A8%E8%A7%A3Redis%E5%AE%9E%E8%B7%B5/" class="list-group-item list-group-item-action">
+          <span class="category-post">Spring极速集成注解Redis实践</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vu009x47041jvf6lqi" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vu009x47041jvf6lqi"
+        aria-expanded="false"
+      >
+        Thread
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Java/Thread/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vu009x47041jvf6lqi" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vu009x47041jvf6lqi">
+    
+    
+    
+      
+      
+        <a href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/" class="list-group-item list-group-item-action">
+          <span class="category-post">使用线程</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckb5wgcxi0002di04fq8x70zg" role="tab" data-toggle="collapse" href="#collapse-ckb5wgcxi0002di04fq8x70zg"
+        aria-expanded="false"
+      >
+        Other
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Other/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>8</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckb5wgcxi0002di04fq8x70zg" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckb5wgcxi0002di04fq8x70zg">
+    
+    
+    
+      
+      
+        <a href="/2020/06/27/%E5%B8%AE%E5%8A%A9%E4%B9%94%E5%B8%83%E6%96%AF%E5%86%99%E5%87%BA%E6%96%AF%E5%9D%A6%E7%A6%8F%E6%BC%94%E8%AE%B2%E7%A8%BF%E7%9A%84%E4%BA%BA%E8%B5%B0%E4%BA%86/" class="list-group-item list-group-item-action">
+          <span class="category-post">帮助乔布斯写出斯坦福演讲稿的人走了</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/06/24/%E7%A7%81%E4%BA%BA%E7%8F%8D%E8%97%8F%E7%BD%91%E7%AB%99/" class="list-group-item list-group-item-action">
+          <span class="category-post">私人珍藏网站</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/06/08/%E5%88%86%E8%BA%AB%E6%9C%89%E6%9C%AFPro%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B/" class="list-group-item list-group-item-action">
+          <span class="category-post">分身有术Pro破解教程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/06/08/%E8%BD%BB%E9%A2%9C%E7%9B%B8%E6%9C%BA%E4%BF%AE%E6%94%B9%E5%85%8D%E7%99%BB%E5%BD%95%E6%B0%B8%E4%B9%85%E4%BC%9A%E5%91%98%E5%8A%A0%E5%8E%BB%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%96%B0%E6%95%99%E7%A8%8B/" class="list-group-item list-group-item-action">
+          <span class="category-post">轻颜相机修改免登录永久会员加去强制更新教程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/06/10/Mac%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" class="list-group-item list-group-item-action">
+          <span class="category-post">mac资源共享</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/03/27/%E9%9A%8F%E8%B0%882/" class="list-group-item list-group-item-action">
+          <span class="category-post">随谈2</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/03/27/%E9%9A%8F%E8%B0%88/" class="list-group-item list-group-item-action">
+          <span class="category-post">随谈</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/01/14/%E6%88%90%E4%BA%BA%E6%BC%AB%E7%94%BB/" class="list-group-item list-group-item-action">
+          <span class="category-post">成人漫画</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5s9000f47049dn53gb6" role="tab" data-toggle="collapse" href="#collapse-ckanaz5s9000f47049dn53gb6"
+        aria-expanded="false"
+      >
+        Linux
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Linux/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>7</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5s9000f47049dn53gb6" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5s9000f47049dn53gb6">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5sv001a4704be1l514e" role="tab" data-toggle="collapse" href="#collapse-ckanaz5sv001a4704be1l514e"
+        aria-expanded="false"
+      >
+        Server
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Linux/Server/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>4</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5sv001a4704be1l514e" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5sv001a4704be1l514e">
+    
+    
+    
+      
+      
+        <a href="/2018/09/11/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E6%96%87%E6%A1%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">CentOS下安装环境文档</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2018/09/11/CentOS-7-%E5%AE%89%E8%A3%85-Apache-MySQL-PHP-%E6%8C%87%E5%8D%97/" class="list-group-item list-group-item-action">
+          <span class="category-post">CentOS 7 安装 Apache, MySQL, PHP 指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2018/09/11/CentOS7%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEredis/" class="list-group-item list-group-item-action">
+          <span class="category-post">CentOS7下安装和配置redis</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2018/09/11/CentOS%E5%AE%89%E8%A3%85node8-x%E7%89%88%E6%9C%AC/" class="list-group-item list-group-item-action">
+          <span class="category-post">CentOS安装node8.x版本</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5u2004b4704hngc9fdz" role="tab" data-toggle="collapse" href="#collapse-ckanaz5u2004b4704hngc9fdz"
+        aria-expanded="false"
+      >
+        Jenkins
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Jenkins/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>6</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5u2004b4704hngc9fdz" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5u2004b4704hngc9fdz">
+    
+    
+    
+      
+      
+        <a href="/2019/11/03/Jenkins%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E9%9B%86%E6%88%90/" class="list-group-item list-group-item-action">
+          <span class="category-post">Jenkins构建工具集成</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%88%E6%9D%83%E7%AE%A1%E7%90%86/" class="list-group-item list-group-item-action">
+          <span class="category-post">Jenkins用户权限授权管理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/11/03/Jenkins%E9%A1%B9%E7%9B%AE%E3%80%81%E8%A7%86%E5%9B%BE%E3%80%81%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86/" class="list-group-item list-group-item-action">
+          <span class="category-post">Jenkins项目、视图、插件管理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E3%80%81%E5%87%AD%E6%8D%AE%E3%80%81%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" class="list-group-item list-group-item-action">
+          <span class="category-post">Jenkins用户、凭据、权限管理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/11/03/Jenkins%E5%AE%89%E8%A3%85/" class="list-group-item list-group-item-action">
+          <span class="category-post">Jenkins安装</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/11/03/Jenkins%E7%AE%80%E4%BB%8B/" class="list-group-item list-group-item-action">
+          <span class="category-post">Jenkins简介</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5up005k47045b37bpae" role="tab" data-toggle="collapse" href="#collapse-ckanaz5up005k47045b37bpae"
+        aria-expanded="false"
+      >
+        Kotlin
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Kotlin/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>3</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5up005k47045b37bpae" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5up005k47045b37bpae">
+    
+    
+    
+      
+      
+        <a href="/2019/03/15/Kotlin-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="list-group-item list-group-item-action">
+          <span class="category-post">Kotlin-基本数据类型</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/03/14/Kotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="list-group-item list-group-item-action">
+          <span class="category-post">Kotlin-基础语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
+          <span class="category-post">Kotlin-环境安装</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5ti00304704hf7r3wka" role="tab" data-toggle="collapse" href="#collapse-ckanaz5ti00304704hf7r3wka"
+        aria-expanded="false"
+      >
+        JavaDoc
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/JavaDoc/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5ti00304704hf7r3wka" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5ti00304704hf7r3wka">
+    
+    
+    
+      
+      
+        <a href="/2020/04/09/Java-IDE%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%BD%9C%E8%80%85%E6%97%A5%E6%9C%9F%E7%AD%89Javadoc%E6%B3%A8%E9%87%8A%E4%BF%A1%E6%81%AF/" class="list-group-item list-group-item-action">
+          <span class="category-post">Java IDE中设置作者日期等Javadoc注释信息</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/04/09/IntelliJIDEA%E7%94%9F%E6%88%90JavaDoc/" class="list-group-item list-group-item-action">
+          <span class="category-post">IntelliJIDEA生成JavaDoc</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5tp003d4704dxdhahlq" role="tab" data-toggle="collapse" href="#collapse-ckanaz5tp003d4704dxdhahlq"
+        aria-expanded="false"
+      >
+        MongoDB
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/MongoDB/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5tp003d4704dxdhahlq" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5tp003d4704dxdhahlq">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5ve008347043adm4cg7" role="tab" data-toggle="collapse" href="#collapse-ckanaz5ve008347043adm4cg7"
+        aria-expanded="false"
+      >
+        JAVA
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/MongoDB/JAVA/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5ve008347043adm4cg7" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5ve008347043adm4cg7">
+    
+    
+    
+      
+      
+        <a href="/2019/06/10/JAVA%E6%93%8D%E4%BD%9CMongoDB%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%88%86%E4%BA%AB/" class="list-group-item list-group-item-action">
+          <span class="category-post">JAVA操作MongoDB工具类分享</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5uz006g4704hwnk1hkv" role="tab" data-toggle="collapse" href="#collapse-ckanaz5uz006g4704hwnk1hkv"
+        aria-expanded="false"
+      >
+        MySQL
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/MySQL/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5uz006g4704hwnk1hkv" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5uz006g4704hwnk1hkv">
+    
+    
+    
+      
+      
+        <a href="/2019/10/13/MySQL%E7%9A%845%E7%A7%8D%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83/" class="list-group-item list-group-item-action">
+          <span class="category-post">MySQL的5种时间类型的比较</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/10/13/MySQL%E5%9C%A8CentOS%E4%B8%8A%E6%89%A7%E8%A1%8C%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD/" class="list-group-item list-group-item-action">
+          <span class="category-post">MySql在CentOS上执行自动备份</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5v50077470406oc8scj" role="tab" data-toggle="collapse" href="#collapse-ckanaz5v50077470406oc8scj"
+        aria-expanded="false"
+      >
+        Python
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Python/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5v50077470406oc8scj" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5v50077470406oc8scj">
+    
+    
+    
+      
+      
+        <a href="/2019/10/22/Python%E7%88%AC%E5%8F%96%E6%9F%90%E9%9F%B3%E4%B9%90%E7%BD%91%E7%AB%99%E9%87%8C%E9%9D%A2%E7%9A%84%E6%9F%90%E6%9D%BF%E5%9D%97/" class="list-group-item list-group-item-action">
+          <span class="category-post">Python爬取某音乐网站里面的某板块</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/10/14/Python%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%88%AC%E8%99%AB%E4%B8%8Etkinter%E7%BB%93%E5%90%88/" class="list-group-item list-group-item-action">
+          <span class="category-post">Python自动更换壁纸爬虫与tkinter结合</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5v6007c4704euxp7uo9" role="tab" data-toggle="collapse" href="#collapse-ckanaz5v6007c4704euxp7uo9"
+        aria-expanded="false"
+      >
+        Redis
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Redis/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5v6007c4704euxp7uo9" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5v6007c4704euxp7uo9">
+    
+    
+    
+      
+      
+        <a href="/2020/05/26/Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%8F%82%E8%80%83/" class="list-group-item list-group-item-action">
+          <span class="category-post">Redis 配置文件主要参数解析参考</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/06/12/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" class="list-group-item list-group-item-action">
+          <span class="category-post">Redis分布式锁的正确实现方式</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vl008w4704ezei072f" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vl008w4704ezei072f"
+        aria-expanded="false"
+      >
+        python
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/python/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vl008w4704ezei072f" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vl008w4704ezei072f">
+    
+    
+    
+      
+      
+        <a href="/2019/10/11/python%E6%8B%86%E5%88%86excel/" class="list-group-item list-group-item-action">
+          <span class="category-post">python拆分excel</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/09/27/%E3%80%90Python%E3%80%91%E5%93%84%E5%A5%B3%E6%9C%8B%E5%8F%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" class="list-group-item list-group-item-action">
+          <span class="category-post">【Python】哄女朋友的那些奇技淫巧</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5s000054704hg5p09wj" role="tab" data-toggle="collapse" href="#collapse-ckanaz5s000054704hg5p09wj"
+        aria-expanded="false"
+      >
+        Cas
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Cas/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5s000054704hg5p09wj" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5s000054704hg5p09wj">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5sh000q4704467v3l08" role="tab" data-toggle="collapse" href="#collapse-ckanaz5sh000q4704467v3l08"
+        aria-expanded="false"
+      >
+        Redis
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Cas/Redis/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5sh000q4704467v3l08" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5sh000q4704467v3l08">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5tg002u47044frn7omz" role="tab" data-toggle="collapse" href="#collapse-ckanaz5tg002u47044frn7omz"
+        aria-expanded="false"
+      >
+        Ticket
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Cas/Redis/Ticket/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5tg002u47044frn7omz" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5tg002u47044frn7omz">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/CAS4-0%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8Redis%E7%BC%93%E5%AD%98%E5%85%B1%E4%BA%ABticket/" class="list-group-item list-group-item-action">
+          <span class="category-post">CAS4.0分布式部署以及使用Redis缓存共享ticket</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5s6000b4704f8km9mtf" role="tab" data-toggle="collapse" href="#collapse-ckanaz5s6000b4704f8km9mtf"
+        aria-expanded="false"
+      >
+        gateway
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/gateway/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5s6000b4704f8km9mtf" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5s6000b4704f8km9mtf">
+    
+    
+    
+      
+      
+        <a href="/2019/12/07/API-%E7%BD%91%E5%85%B3%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" class="list-group-item list-group-item-action">
+          <span class="category-post">API 网关从入门到放弃</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5sp001047048izt6bm4" role="tab" data-toggle="collapse" href="#collapse-ckanaz5sp001047048izt6bm4"
+        aria-expanded="false"
+      >
+        CentOS
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/CentOS/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5sp001047048izt6bm4" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5sp001047048izt6bm4">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5tu003q4704ba7eelcg" role="tab" data-toggle="collapse" href="#collapse-ckanaz5tu003q4704ba7eelcg"
+        aria-expanded="false"
+      >
+        Linux
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/CentOS/Linux/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5tu003q4704ba7eelcg" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5tu003q4704ba7eelcg">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vi008l4704h5grhpwe" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vi008l4704h5grhpwe"
+        aria-expanded="false"
+      >
+        Ngrok
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/CentOS/Linux/Ngrok/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vi008l4704h5grhpwe" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vi008l4704h5grhpwe">
+    
+    
+    
+      
+      
+        <a href="/2019/06/10/CentOS7%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="list-group-item list-group-item-action">
+          <span class="category-post">CentOS7搭建ngrok服务器</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5sr0016470450ud48ch" role="tab" data-toggle="collapse" href="#collapse-ckanaz5sr0016470450ud48ch"
+        aria-expanded="false"
+      >
+        FreeTDS
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/FreeTDS/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5sr0016470450ud48ch" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5sr0016470450ud48ch">
+    
+    
+    
+      
+      
+        <a href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/" class="list-group-item list-group-item-action">
+          <span class="category-post">CentOS下安装FreeTDS</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5t3001u4704hmkof43o" role="tab" data-toggle="collapse" href="#collapse-ckanaz5t3001u4704hmkof43o"
+        aria-expanded="false"
+      >
+        Eureka
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Eureka/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5t3001u4704hmkof43o" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5t3001u4704hmkof43o">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/EurekaClient%E6%B3%A8%E5%86%8C%E5%88%B0EurekaServer%E7%9A%84%E7%A7%98%E5%AF%86/" class="list-group-item list-group-item-action">
+          <span class="category-post">EurekaClient注册到EurekaServer的秘密</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5t80028470461jvducf" role="tab" data-toggle="collapse" href="#collapse-ckanaz5t80028470461jvducf"
+        aria-expanded="false"
+      >
+        Eclipse
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Eclipse/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5t80028470461jvducf" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5t80028470461jvducf">
+    
+    
+    
+      
+      
+        <a href="/2018/09/11/Eclipse%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E5%8D%95%E8%AF%8D/" class="list-group-item list-group-item-action">
+          <span class="category-post">Eclipse中常用的操作单词</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5te002n47041rhf1vom" role="tab" data-toggle="collapse" href="#collapse-ckanaz5te002n47041rhf1vom"
+        aria-expanded="false"
+      >
+        Http
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Http/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5te002n47041rhf1vom" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5te002n47041rhf1vom">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5v4007347040n72bkvs" role="tab" data-toggle="collapse" href="#collapse-ckanaz5v4007347040n72bkvs"
+        aria-expanded="false"
+      >
+        Status
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Http/Status/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5v4007347040n72bkvs" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5v4007347040n72bkvs">
+    
+    
+    
+      
+      
+        <a href="/2019/06/10/HTTP%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">HTTP协议状态码详解</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5tx003x4704d92b3icz" role="tab" data-toggle="collapse" href="#collapse-ckanaz5tx003x4704d92b3icz"
+        aria-expanded="false"
+      >
+        JAVA
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/JAVA/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5tx003x4704d92b3icz" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5tx003x4704d92b3icz">
+    
+    
+    
+      
+      
+        <a href="/2019/06/10/Java%E6%A0%B9%E6%8D%AEURL%E5%B0%86%E7%BD%91%E9%A1%B5%E8%BD%AC%E5%AD%98%E4%B8%BAPDF%E6%96%87%E4%BB%B6/" class="list-group-item list-group-item-action">
+          <span class="category-post">Java根据URL将网页转存为PDF文件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5v2006v47042sduh8g6" role="tab" data-toggle="collapse" href="#collapse-ckanaz5v2006v47042sduh8g6"
+        aria-expanded="false"
+      >
+        MyBatis
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/MyBatis/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5v2006v47042sduh8g6" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5v2006v47042sduh8g6">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vy00am4704a1i7aodr" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vy00am4704a1i7aodr"
+        aria-expanded="false"
+      >
+        Spring
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/MyBatis/Spring/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vy00am4704a1i7aodr" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vy00am4704a1i7aodr">
+    
+    
+    
+      
+      
+        <a href="/2019/06/13/MyBatis%E5%9C%A8Spring%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" class="list-group-item list-group-item-action">
+          <span class="category-post">MyBatis在Spring环境下的事务管理</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5v3006z470420yo2iqz" role="tab" data-toggle="collapse" href="#collapse-ckanaz5v3006z470420yo2iqz"
+        aria-expanded="false"
+      >
+        Sql
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Sql/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5v3006z470420yo2iqz" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5v3006z470420yo2iqz">
+    
+    
+    
+      
+      
+        <a href="/2018/09/11/Postgresql-9-4-0-1-x64-win7-%E8%A7%A3%E5%8E%8B%E7%89%88%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" class="list-group-item list-group-item-action">
+          <span class="category-post">Postgresql 9.4.0-1 x64 win7 解压版安装步骤</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vb007k470448p16e7b" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vb007k470448p16e7b"
+        aria-expanded="false"
+      >
+        Sonar
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Sonar/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vb007k470448p16e7b" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vb007k470448p16e7b">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vz00ar47042q8hecul" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vz00ar47042q8hecul"
+        aria-expanded="false"
+      >
+        SonarQube
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Sonar/SonarQube/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vz00ar47042q8hecul" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vz00ar47042q8hecul">
+    
+    
+    
+      
+      
+        <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-SonarQube%E5%AE%89%E8%A3%85/" class="list-group-item list-group-item-action">
+          <span class="category-post">[SonarQube的使用] SonarQube安装</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vc007p47046qeffn4r" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vc007p47046qeffn4r"
+        aria-expanded="false"
+      >
+        Shadowsocks
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Shadowsocks/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vc007p47046qeffn4r" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vc007p47046qeffn4r">
+    
+    
+    
+      
+      
+        <a href="/2019/06/11/Shadowsocks-Go%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/" class="list-group-item list-group-item-action">
+          <span class="category-post">Shadowsocks-Go一键安装脚本</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vc007s4704g6gafxel" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vc007s4704g6gafxel"
+        aria-expanded="false"
+      >
+        springCloud
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/springCloud/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vc007s4704g6gafxel" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vc007s4704g6gafxel">
+    
+    
+    
+      
+      
+        <a href="/2019/12/24/Spring-Cloud-Feign%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/" class="list-group-item list-group-item-action">
+          <span class="category-post">Spring Cloud Feign设计原理</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vd007w4704c9wr28l8" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vd007w4704c9wr28l8"
+        aria-expanded="false"
+      >
+        SonarQube
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/SonarQube/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vd007w4704c9wr28l8" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vd007w4704c9wr28l8">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w000av47046t9ehvww" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w000av47046t9ehvww"
+        aria-expanded="false"
+      >
+        SonarLint
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/SonarQube/SonarLint/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w000av47046t9ehvww" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w000av47046t9ehvww">
+    
+    
+    
+      
+      
+        <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-%E5%9C%A8idea&eclipse%E4%B8%AD%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8sonarlint/" class="list-group-item list-group-item-action">
+          <span class="category-post">SonarQube的使用-在idea&amp;eclipse中安装与使用sonarlint</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vh008e47045nlc3s2k" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vh008e47045nlc3s2k"
+        aria-expanded="false"
+      >
+        Mac
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Mac/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vh008e47045nlc3s2k" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vh008e47045nlc3s2k">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w200b5470411jv9vxw" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w200b5470411jv9vxw"
+        aria-expanded="false"
+      >
+        Homebrew
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Mac/Homebrew/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w200b5470411jv9vxw" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w200b5470411jv9vxw">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" class="list-group-item list-group-item-action">
+          <span class="category-post">Brew安装常用软件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vh008h47046u7d602h" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vh008h47046u7d602h"
+        aria-expanded="false"
+      >
+        Web
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Web/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vh008h47046u7d602h" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vh008h47046u7d602h">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w300bb4704ghnl3fw9" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w300bb4704ghnl3fw9"
+        aria-expanded="false"
+      >
+        Ui
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Web/Ui/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w300bb4704ghnl3fw9" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w300bb4704ghnl3fw9">
+    
+    
+    
+      
+      
+        <a href="/2019/01/11/Cola-ui%E7%9A%84%E4%BD%BF%E7%94%A8/" class="list-group-item list-group-item-action">
+          <span class="category-post">cola-ui的使用</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vj008n4704h2f026tp" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vj008n4704h2f026tp"
+        aria-expanded="false"
+      >
+        JavaScript
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/JavaScript/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vj008n4704h2f026tp" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vj008n4704h2f026tp">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/Js%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84ID%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9B%E5%8C%96%E4%B9%8B%E8%B7%AF/" class="list-group-item list-group-item-action">
+          <span class="category-post">Js生成一个不重复的ID的函数的进化之路</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vn00914704huhwc6bv" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vn00914704huhwc6bv"
+        aria-expanded="false"
+      >
+        EBook
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/EBook/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vn00914704huhwc6bv" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vn00914704huhwc6bv">
+    
+    
+    
+      
+      
+        <a href="/2020/01/18/%E4%B8%80%E4%BA%9B%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%86%E4%BA%AB/" class="list-group-item list-group-item-action">
+          <span class="category-post">一些电子书分享</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vo00954704botjd923" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vo00954704botjd923"
+        aria-expanded="false"
+      >
+        Restful
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Restful/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vo00954704botjd923" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vo00954704botjd923">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w400bk47040qboa6up" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w400bk47040qboa6up"
+        aria-expanded="false"
+      >
+        Java
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Restful/Java/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w400bk47040qboa6up" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w400bk47040qboa6up">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/Restful%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
+          <span class="category-post">restful接口设计规范总结</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vq009c4704145l079y" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vq009c4704145l079y"
+        aria-expanded="false"
+      >
+        Hexo
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Hexo/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vq009c4704145l079y" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vq009c4704145l079y">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w500bp4704axy896t4" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w500bp4704axy896t4"
+        aria-expanded="false"
+      >
+        Blog
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Hexo/Blog/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w500bp4704axy896t4" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w500bp4704axy896t4">
+    
+    
+    
+      
+      
+        <a href="/2019/06/12/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="list-group-item list-group-item-action">
+          <span class="category-post">使用hexo搭建个人博客</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vr009g47049gam04ia" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vr009g47049gam04ia"
+        aria-expanded="false"
+      >
+        DNS
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/DNS/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vr009g47049gam04ia" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vr009g47049gam04ia">
+    
+    
+    
+      
+      
+        <a href="/2019/10/21/%E5%85%AC%E5%85%B1DNS%E6%80%A7%E8%83%BD%E5%A4%A7%E6%AF%94%E6%8B%BC/" class="list-group-item list-group-item-action">
+          <span class="category-post">公共DNS性能大比拼</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vr009i4704e31q9hpj" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vr009i4704e31q9hpj"
+        aria-expanded="false"
+      >
+        Git
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Git/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vr009i4704e31q9hpj" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vr009i4704e31q9hpj">
+    
+    
+    
+      
+      
+        <a href="/2019/11/01/%E5%87%A0%E4%B8%AAGit%E4%BB%93%E5%BA%93%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%AF%94%E8%BE%83/" class="list-group-item list-group-item-action">
+          <span class="category-post">几个Git仓库开源软件的比较</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vs009n4704a4x4gygz" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vs009n4704a4x4gygz"
+        aria-expanded="false"
+      >
+        线程
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/%E7%BA%BF%E7%A8%8B/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vs009n4704a4x4gygz" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vs009n4704a4x4gygz">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w600bv4704hkhbh09m" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w600bv4704hkhbh09m"
+        aria-expanded="false"
+      >
+        JAVA
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/%E7%BA%BF%E7%A8%8B/JAVA/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w600bv4704hkhbh09m" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w600bv4704hkhbh09m">
+    
+    
+    
+      
+      
+        <a href="/2019/06/10/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%8A%9E%E6%B3%95/" class="list-group-item list-group-item-action">
+          <span class="category-post">创建线程池的两种办法</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vt009r47048m11bx8r" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vt009r47048m11bx8r"
+        aria-expanded="false"
+      >
+        HIkariCP
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/HIkariCP/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vt009r47048m11bx8r" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckanaz5vt009r47048m11bx8r">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5w600c04704do2h90p7" role="tab" data-toggle="collapse" href="#collapse-ckanaz5w600c04704do2h90p7"
+        aria-expanded="false"
+      >
+        dataSource
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/HIkariCP/dataSource/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5w600c04704do2h90p7" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5w600c04704do2h90p7">
+    
+    
+    
+      
+      
+        <a href="/2019/06/24/%E5%9C%A8SpringMVC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8HIkariCP/" class="list-group-item list-group-item-action">
+          <span class="category-post">在SpringMVC项目中使用HIkariCP</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vt009t4704bg976zjw" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vt009t4704bg976zjw"
+        aria-expanded="false"
+      >
+        多线程
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vt009t4704bg976zjw" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vt009t4704bg976zjw">
+    
+    
+    
+      
+      
+        <a href="/2019/06/10/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="list-group-item list-group-item-action">
+          <span class="category-post">实现多线程的两种方式</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vu00a04704c9i77cqt" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vu00a04704c9i77cqt"
+        aria-expanded="false"
+      >
+        Javascript
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Javascript/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vu00a04704c9i77cqt" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vu00a04704c9i77cqt">
+    
+    
+    
+      
+      
+        <a href="/2019/09/24/%E6%95%99%E7%A8%8B-%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84%E5%A4%B4%E5%83%8F%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BD%E6%97%97/" class="list-group-item list-group-item-action">
+          <span class="category-post">教程|教你如何给你的头像添加一个好看的国旗</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckanaz5vx00ae47046o3787qz" role="tab" data-toggle="collapse" href="#collapse-ckanaz5vx00ae47046o3787qz"
+        aria-expanded="false"
+      >
+        高可用
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/%E9%AB%98%E5%8F%AF%E7%94%A8/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckanaz5vx00ae47046o3787qz" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckanaz5vx00ae47046o3787qz">
+    
+    
+    
+      
+      
+        <a href="/2019/09/29/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%90%86%E8%A7%A3/" class="list-group-item list-group-item-action">
+          <span class="category-post">高可用的一些思考和理解</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckbv3ek3v0001xc04gp3i8me1" role="tab" data-toggle="collapse" href="#collapse-ckbv3ek3v0001xc04gp3i8me1"
+        aria-expanded="false"
+      >
+        API
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/API/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckbv3ek3v0001xc04gp3i8me1" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbv3ek3v0001xc04gp3i8me1">
+    
+    
+    
+      
+      
+        <a href="/2019/06/10/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E5%AE%9E%E4%BE%8B/" class="list-group-item list-group-item-action">
+          <span class="category-post">接口文档实例</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
 
               </div>
             </div>
@@ -224,20 +2449,27 @@
         <span>Fluid</span></a>
     </div>
     
-  <div>
+  <div class="statistics">
     
-      <!-- 不蒜子统计PV -->
+    
+
+    
       
-      <span id="busuanzi_container_site_pv" style="display: none">
-      总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    </span>
-    
-    
-      <!-- 不蒜子统计UV -->
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
       
-      <span id="busuanzi_container_site_uv" style="display: none">
-      总访客数 <span id="busuanzi_value_site_uv"></span> 人
-    </span>
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
 
@@ -251,12 +2483,19 @@
 <!-- SCRIPTS -->
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
 <script  src="/js/main.js" ></script>
 
+<!-- Plugins -->
 
-  <script  src="/js/lazyload.js" ></script>
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
 
 
+
+  
 
 
 
@@ -270,7 +2509,6 @@
 
 
 
-<!-- Plugins -->
 
 
 
@@ -293,21 +2531,6 @@
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
 
@@ -350,6 +2573,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

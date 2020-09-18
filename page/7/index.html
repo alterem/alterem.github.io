@@ -1,7 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -20,21 +20,16 @@
   <title>Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/googlecode.min.css" />
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -42,6 +37,8 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -65,52 +62,73 @@
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              <i class="iconfont icon-home-fill"></i>
-              首页</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">
-              <i class="iconfont icon-archive-fill"></i>
-              归档</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">
-              <i class="iconfont icon-category-fill"></i>
-              分类</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">
-              <i class="iconfont icon-tags-fill"></i>
-              标签</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">
-              <i class="iconfont icon-user-fill"></i>
-              关于</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -118,16 +136,24 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner intro-2" id="background" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
-
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = ' 🚀 ' + data.hitokoto
+                }).catch(console.error)
+            </script>
             
           </div>
 
@@ -156,25 +182,32 @@
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/06/10/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/">实现多线程的两种方式</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/10/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/">实现多线程的两种方式</a>
+      </h1>
 
-      <a href="/2019/06/10/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/06/10/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/">
           
-        
-        <div>Thread类：
+          
+            
+          
+          Thread类：
 Thread是程序中的执行线程。java虚拟机允许应用程序并发地的运行多个执行线程。
 1.进程与线程的关系进程：进程指正在运行的程序。确切的来说，当一个程序进入内存运行，即变成一个进程，进程是处于运行过程中的程序，并且具有一定独立功能。
 线程：线程是进程中的一个执行单元，负责当前进程中程序的执行，一个进程中至少有一个线程。一个进程中是可以有多个线程的，
-　　　这个应用程序也可以称</div>
-      </a>
+　　　这个应用程序也可以称
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-06-10
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-10 14:58" pubdate>
+              2019-06-10
+            </time>
           </div>
         
         
@@ -196,7 +229,7 @@ Thread是程序中的执行线程。java虚拟机允许应用程序并发地的�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
@@ -208,15 +241,18 @@ Thread是程序中的执行线程。java虚拟机允许应用程序并发地的�
         </a>
       </div>
     
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2019/06/10/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E5%AE%9E%E4%BE%8B/">接口文档实例</a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/10/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E5%AE%9E%E4%BE%8B/">接口文档实例</a>
+      </h1>
 
-      <a href="/2019/06/10/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E5%AE%9E%E4%BE%8B/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/06/10/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E5%AE%9E%E4%BE%8B/">
           
-        
-        <div>接口文档实例
+          
+            
+          
+          接口文档实例
 简介：接口文档实例
 HOST: 192.168.1.250:9527
 联系人: alterem
@@ -226,13 +262,17 @@ sys-job-controller[TOC]
 jobSave接口描述:新增保存调度
 接口地址:/quartz/job/add
 请求方式：POST
-consumes:[&quot;applic</div>
-      </a>
+consumes:[&quot;applic
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-06-10
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-10 14:50" pubdate>
+              2019-06-10
+            </time>
           </div>
         
         
@@ -252,7 +292,7 @@ consumes:[&quot;applic</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
@@ -264,28 +304,35 @@ consumes:[&quot;applic</div>
         </a>
       </div>
     
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2019/06/10/Mac%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">mac资源共享</a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/10/Mac%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">mac资源共享</a>
+      </h1>
 
-      <a href="/2019/06/10/Mac%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/06/10/Mac%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/">
           
-        
-        <div>PDFelement Pro For Mac强大的PDF编辑工具V6.8.0软件介绍：
+          
+            
+          
+          PDFelement Pro For Mac强大的PDF编辑工具V6.8.0软件介绍：
 Wondershare PDFelement Pro（PDFelement 6 Pro ）是一款安全强大，简单好用的PDF解决方案。拥有您使用PDF所需的一切。
 功能介绍：
 特性：
 PDF编辑器
 编辑，删除，剪切，复制，粘贴和插入PDF文本和图像。
 改变字体属性（类型，大小和风格，对齐）。
-插入，更新或删除自定</div>
-      </a>
+插入，更新或删除自定
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-06-10
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-10 14:50" pubdate>
+              2019-06-10
+            </time>
           </div>
         
         
@@ -305,7 +352,7 @@ PDF编辑器
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
@@ -317,26 +364,33 @@ PDF编辑器
         </a>
       </div>
     
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2019/03/27/%E9%9A%8F%E8%B0%882/">随谈2</a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/27/%E9%9A%8F%E8%B0%882/">随谈2</a>
+      </h1>
 
-      <a href="/2019/03/27/%E9%9A%8F%E8%B0%882/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/03/27/%E9%9A%8F%E8%B0%882/">
           
-        
-        <div>年轻时总是逢人就说自己的理想 
+          
+            
+          
+          年轻时总是逢人就说自己的理想 
 那个时候没有顾忌 
 随心所欲的可以高谈阔论 
 没有任何束缚 
 总觉得凭借自己的一腔热血 
-梦想这东西并不是遥不可及 </div>
-      </a>
+梦想这东西并不是遥不可及 
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-03-27
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-27 12:48" pubdate>
+              2019-03-27
+            </time>
           </div>
         
         
@@ -356,7 +410,7 @@ PDF编辑器
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
@@ -368,23 +422,30 @@ PDF编辑器
         </a>
       </div>
     
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2019/03/27/%E9%9A%8F%E8%B0%88/">随谈</a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/27/%E9%9A%8F%E8%B0%88/">随谈</a>
+      </h1>
 
-      <a href="/2019/03/27/%E9%9A%8F%E8%B0%88/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/03/27/%E9%9A%8F%E8%B0%88/">
           
-        
-        <div>曾经我也坐在工位笑别人， 
+          
+            
+          
+          曾经我也坐在工位笑别人， 
 那个人那么傻， 不就是被辞职了么，为什么要跳楼？
-笑他傻，笑他看不懂，笑他想不开， 笑他不配做一个合格的丈夫， 不配为人之父…</div>
-      </a>
+笑他傻，笑他看不懂，笑他想不开， 笑他不配做一个合格的丈夫， 不配为人之父…
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-03-27
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-27 12:43" pubdate>
+              2019-03-27
+            </time>
           </div>
         
         
@@ -404,34 +465,41 @@ PDF编辑器
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/">CentOS下安装FreeTDS</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/">CentOS下安装FreeTDS</a>
+      </h1>
 
-      <a href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/">
           
-        
-        <div>导读
+          
+            
+          
+          导读
 官方网站：http://www.freetds.org
 下载地址：http://ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-stable.tgz
 这个软件能够用Linux和Unix连接MS SQLServer和Sybase数据库
 
 安装与配置
 首先下载FreeTDS安装包到服务器
-wget -c http://ibiblio.org/</div>
-      </a>
+wget -c http://ibiblio.org/
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-03-15
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-15 21:58" pubdate>
+              2019-03-15
+            </time>
           </div>
         
         
@@ -451,21 +519,24 @@ wget -c http://ibiblio.org/</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/03/15/Kotlin-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Kotlin-基本数据类型</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/15/Kotlin-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Kotlin-基本数据类型</a>
+      </h1>
 
-      <a href="/2019/03/15/Kotlin-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/03/15/Kotlin-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
           
-        
-        <div>Kotlin 基本数据类型
+          
+            
+          
+          Kotlin 基本数据类型
 Kotlin 的基本数值类型包括 Byte、Short、Int、Long、Float、Double 等。不同于Java的是，字符不属于数值类型，是一个独立的数据类型。
 
 
@@ -499,13 +570,17 @@ Short
 Byte
 8
 
-</div>
-      </a>
+
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-03-15
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-15 11:19" pubdate>
+              2019-03-15
+            </time>
           </div>
         
         
@@ -525,21 +600,24 @@ Byte
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/03/14/Kotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">Kotlin-基础语法</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/14/Kotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">Kotlin-基础语法</a>
+      </h1>
 
-      <a href="/2019/03/14/Kotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/03/14/Kotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
           
-        
-        <div>Kotlin基础语法Kotlin文件以.kt为后缀
+          
+            
+          
+          Kotlin基础语法Kotlin文件以.kt为后缀
 Kotlin包声明代码文件的开头一般为包的声明
 package com.kotlin01.main
 
@@ -548,13 +626,17 @@ import java.util.*
 fun test() &#123;&#125;
 class Kotlin01 &#123;&#125;
 
-kotlin源文件不需要相匹配的目录和包，源文件可以放在任何文件目录。</div>
-      </a>
+kotlin源文件不需要相匹配的目录和包，源文件可以放在任何文件目录。
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-03-14
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-14 15:13" pubdate>
+              2019-03-14
+            </time>
           </div>
         
         
@@ -574,31 +656,38 @@ kotlin源文件不需要相匹配的目录和包，源文件可以放在任何�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Kotlin-环境安装</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Kotlin-环境安装</a>
+      </h1>
 
-      <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
           
-        
-        <div>Kotlin是什么？
+          
+            
+          
+          Kotlin是什么？
 Kotlin 是一个用于现代多平台应用的静态编程语言，由 JetBrains 开发。
 Kotlin可以编译成Java字节码，也可以编译成JavaScript，方便在没有JVM的设备上运行。
 Kotlin已正式成为Android官方支持开发语言。
-</div>
-      </a>
+
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-03-14
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-14 14:31" pubdate>
+              2019-03-14
+            </time>
           </div>
         
         
@@ -618,7 +707,7 @@ Kotlin已正式成为Android官方支持开发语言。
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
@@ -630,23 +719,30 @@ Kotlin已正式成为Android官方支持开发语言。
         </a>
       </div>
     
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2019/01/14/%E6%88%90%E4%BA%BA%E6%BC%AB%E7%94%BB/">成人漫画</a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/01/14/%E6%88%90%E4%BA%BA%E6%BC%AB%E7%94%BB/">成人漫画</a>
+      </h1>
 
-      <a href="/2019/01/14/%E6%88%90%E4%BA%BA%E6%BC%AB%E7%94%BB/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/01/14/%E6%88%90%E4%BA%BA%E6%BC%AB%E7%94%BB/">
           
-        
-        <div>欢迎来到 成人世界一份
+          
+            
+          
+          欢迎来到 成人世界一份
 成年人生存指南
-送给你</div>
-      </a>
+送给你
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-01-14
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-01-14 14:04" pubdate>
+              2019-01-14
+            </time>
           </div>
         
         
@@ -666,7 +762,7 @@ Kotlin已正式成为Android官方支持开发语言。
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
@@ -759,20 +855,27 @@ Kotlin已正式成为Android官方支持开发语言。
         <span>Fluid</span></a>
     </div>
     
-  <div>
+  <div class="statistics">
     
-      <!-- 不蒜子统计PV -->
+    
+
+    
       
-      <span id="busuanzi_container_site_pv" style="display: none">
-      总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    </span>
-    
-    
-      <!-- 不蒜子统计UV -->
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
       
-      <span id="busuanzi_container_site_uv" style="display: none">
-      总访客数 <span id="busuanzi_value_site_uv"></span> 人
-    </span>
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
 
@@ -786,12 +889,19 @@ Kotlin已正式成为Android官方支持开发语言。
 <!-- SCRIPTS -->
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
 <script  src="/js/main.js" ></script>
 
+<!-- Plugins -->
 
-  <script  src="/js/lazyload.js" ></script>
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
 
 
+
+  
 
 
 
@@ -805,7 +915,6 @@ Kotlin已正式成为Android官方支持开发语言。
 
 
 
-<!-- Plugins -->
 
 
 
@@ -828,21 +937,6 @@ Kotlin已正式成为Android官方支持开发语言。
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
 
@@ -885,6 +979,7 @@ Kotlin已正式成为Android官方支持开发语言。
     });
     daovoice('update');
   </script>
+
 
 
 

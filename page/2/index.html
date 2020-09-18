@@ -1,7 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -20,21 +20,16 @@
   <title>Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/googlecode.min.css" />
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -42,6 +37,8 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -65,52 +62,73 @@
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              <i class="iconfont icon-home-fill"></i>
-              首页</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">
-              <i class="iconfont icon-archive-fill"></i>
-              归档</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">
-              <i class="iconfont icon-category-fill"></i>
-              分类</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">
-              <i class="iconfont icon-tags-fill"></i>
-              标签</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">
-              <i class="iconfont icon-user-fill"></i>
-              关于</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -118,16 +136,24 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner intro-2" id="background" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
-
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = ' 🚀 ' + data.hitokoto
+                }).catch(console.error)
+            </script>
             
           </div>
 
@@ -162,15 +188,18 @@
         </a>
       </div>
     
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/">使用线程</a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/">使用线程</a>
+      </h1>
 
-      <a href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/">
           
-        
-        <div>一、使用线程有三种使用线程的方法：
+          
+            
+          
+          一、使用线程有三种使用线程的方法：
 
 实现 Runnable 接口；
 实现 Callable 接口；
@@ -178,13 +207,17 @@
 
 实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。
 实现 Runnable 接口需要实现接口中的 run() 方法。
-publ</div>
-      </a>
+publ
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-04-02
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-02 16:27" pubdate>
+              2020-04-02
+            </time>
           </div>
         
         
@@ -208,21 +241,24 @@ publ</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/01/18/%E4%B8%80%E4%BA%9B%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%86%E4%BA%AB/">一些电子书分享</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/01/18/%E4%B8%80%E4%BA%9B%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%86%E4%BA%AB/">一些电子书分享</a>
+      </h1>
 
-      <a href="/2020/01/18/%E4%B8%80%E4%BA%9B%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%86%E4%BA%AB/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2020/01/18/%E4%B8%80%E4%BA%9B%E7%94%B5%E5%AD%90%E4%B9%A6%E5%88%86%E4%BA%AB/">
           
-        
-        <div>
+          
+            
+          
+          
 中国古代文学发展史 上中下
 
 链接：https://pan.baidu.com/s/1JcLg7z33-QCgH4XGtcXoEg 
@@ -233,13 +269,17 @@ publ</div>
 链接：https://pan.baidu.com/s/1kEQHdIFkbq6vd-4uR7Zr-g 
 提取码：GwR1
 
-11718143_</div>
-      </a>
+11718143_
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-01-18
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-01-18 16:17" pubdate>
+              2020-01-18
+            </time>
           </div>
         
         
@@ -261,27 +301,34 @@ publ</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/24/Spring-Cloud-Feign%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">Spring Cloud Feign设计原理</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/12/24/Spring-Cloud-Feign%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">Spring Cloud Feign设计原理</a>
+      </h1>
 
-      <a href="/2019/12/24/Spring-Cloud-Feign%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/24/Spring-Cloud-Feign%E8%AE%BE%E8%AE%A1%E5%8E%9F%E7%90%86/">
           
-        
-        <div>什么是Feign？Feign 的英文表意为“假装，伪装，变形”， 是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，而不用像Java中通过封装HTTP请求报文的方式直接调用。Feign通过处理注解，将请求模板化，当实际调用的时候，传入参数，根据参数再应用到请求上，进而转化成真正的请求，这种请求相对而言比较直观。Feign被广泛应用在Spring Cloud 的解决方</div>
-      </a>
+          
+            
+          
+          什么是Feign？Feign 的英文表意为“假装，伪装，变形”， 是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，而不用像Java中通过封装HTTP请求报文的方式直接调用。Feign通过处理注解，将请求模板化，当实际调用的时候，传入参数，根据参数再应用到请求上，进而转化成真正的请求，这种请求相对而言比较直观。Feign被广泛应用在Spring Cloud 的解决方
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-24
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-24 14:05" pubdate>
+              2019-12-24
+            </time>
           </div>
         
         
@@ -303,32 +350,39 @@ publ</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/14/Fastjson-%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json%E9%81%BF%E5%85%8D/">[fastjson]把对象转化成json避免</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/12/14/Fastjson-%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json%E9%81%BF%E5%85%8D/">[fastjson]把对象转化成json避免</a>
+      </h1>
 
-      <a href="/2019/12/14/Fastjson-%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json%E9%81%BF%E5%85%8D/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/14/Fastjson-%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json%E9%81%BF%E5%85%8D/">
           
-        
-        <div>DisableCircularReferenceDetect来禁止循环引用检测：
+          
+            
+          
+          DisableCircularReferenceDetect来禁止循环引用检测：
 JSON.toJSONString(…, SerializerFeature.DisableCircularReferenceDetect)
 当进行toJSONString的时候，默认如果重用对象的话，会使用引用的方式进行引用对象。
 "颜色": [  
       &#123;  
-        "$ref": "</div>
-      </a>
+        "$ref": "
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-14
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-14 10:11" pubdate>
+              2019-12-14
+            </time>
           </div>
         
         
@@ -350,21 +404,24 @@ JSON.toJSONString(…, SerializerFeature.DisableCircularReferenceDetect)
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/14/Fastjson-SerializerFeature%E8%AF%A6%E8%A7%A3/">[fastjson]SerializerFeature详解</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/12/14/Fastjson-SerializerFeature%E8%AF%A6%E8%A7%A3/">[fastjson]SerializerFeature详解</a>
+      </h1>
 
-      <a href="/2019/12/14/Fastjson-SerializerFeature%E8%AF%A6%E8%A7%A3/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/14/Fastjson-SerializerFeature%E8%AF%A6%E8%A7%A3/">
           
-        
-        <div>SerializerFeature属性
+          
+            
+          
+          SerializerFeature属性
 
 
 名称
@@ -389,13 +446,17 @@ WriteMapNullValue
 
 
 WriteEnumUsingToString
-Enum输出name()或者orig</div>
-      </a>
+Enum输出name()或者orig
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-14
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-14 10:07" pubdate>
+              2019-12-14
+            </time>
           </div>
         
         
@@ -417,32 +478,39 @@ Enum输出name()或者orig</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/12/07/API-%E7%BD%91%E5%85%B3%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/">API 网关从入门到放弃</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/12/07/API-%E7%BD%91%E5%85%B3%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/">API 网关从入门到放弃</a>
+      </h1>
 
-      <a href="/2019/12/07/API-%E7%BD%91%E5%85%B3%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/12/07/API-%E7%BD%91%E5%85%B3%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/">
           
-        
-        <div>
+          
+            
+          
+          
 来源：匠心零度http://www.jiangxinlingdu.com/thought/2019/09/12/gateway.html
 
 前言假设你正在开发一个电商网站，那么这里会涉及到很多后端的微服务，比如会员、商品、推荐服务等等。
 
-那么这里就会遇到一个问题，APP/Browser怎么去访问这些后端的服务? 如果业务比较简单的话，可以给每个业务都分配一个独立的域名(https://serv</div>
-      </a>
+那么这里就会遇到一个问题，APP/Browser怎么去访问这些后端的服务? 如果业务比较简单的话，可以给每个业务都分配一个独立的域名(https://serv
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-12-07
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-12-07 15:03" pubdate>
+              2019-12-07
+            </time>
           </div>
         
         
@@ -462,31 +530,38 @@ Enum输出name()或者orig</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/11/20/%E5%8E%8B%E7%BC%A920M%E6%96%87%E4%BB%B6%E4%BB%8E30%E7%A7%92%E5%88%B01%E7%A7%92%E7%9A%84%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/">压缩20M文件从30秒到1秒的优化过程</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/11/20/%E5%8E%8B%E7%BC%A920M%E6%96%87%E4%BB%B6%E4%BB%8E30%E7%A7%92%E5%88%B01%E7%A7%92%E7%9A%84%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/">压缩20M文件从30秒到1秒的优化过程</a>
+      </h1>
 
-      <a href="/2019/11/20/%E5%8E%8B%E7%BC%A920M%E6%96%87%E4%BB%B6%E4%BB%8E30%E7%A7%92%E5%88%B01%E7%A7%92%E7%9A%84%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/11/20/%E5%8E%8B%E7%BC%A920M%E6%96%87%E4%BB%B6%E4%BB%8E30%E7%A7%92%E5%88%B01%E7%A7%92%E7%9A%84%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/">
           
-        
-        <div>
+          
+            
+          
+          
 文章来源公众号：IT牧场
 
 有一个需求需要将前端传过来的10张照片，然后后端进行处理以后压缩成一个压缩包通过网络流传输出去。之前没有接触过用Java压缩文件的，所以就直接上网找了一个例子改了一下用了，改完以后也能使用，但是随着前端所传图片的大小越来越大的时候，耗费的时间也在急剧增加，最后测了一下压缩20M的文件竟然需要30秒的时间。压缩文件的代码如下。
-public static void zi</div>
-      </a>
+public static void zi
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-11-20
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-20 10:38" pubdate>
+              2019-11-20
+            </time>
           </div>
         
         
@@ -508,28 +583,35 @@ public static void zi</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/11/04/%E9%87%8D%E6%B8%A9%E4%B9%94%E5%B8%83%E6%96%AF%E6%9C%80%E7%BB%8F%E5%85%B8%E6%BC%94%E8%AE%B2%EF%BC%9A%E6%B1%82%E7%9F%A5%E8%8B%A5%E9%A5%A5-%E8%99%9A%E5%BF%83%E8%8B%A5%E6%84%9A/">重温乔布斯最经典演讲：求知若饥 虚心若愚</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/11/04/%E9%87%8D%E6%B8%A9%E4%B9%94%E5%B8%83%E6%96%AF%E6%9C%80%E7%BB%8F%E5%85%B8%E6%BC%94%E8%AE%B2%EF%BC%9A%E6%B1%82%E7%9F%A5%E8%8B%A5%E9%A5%A5-%E8%99%9A%E5%BF%83%E8%8B%A5%E6%84%9A/">重温乔布斯最经典演讲：求知若饥 虚心若愚</a>
+      </h1>
 
-      <a href="/2019/11/04/%E9%87%8D%E6%B8%A9%E4%B9%94%E5%B8%83%E6%96%AF%E6%9C%80%E7%BB%8F%E5%85%B8%E6%BC%94%E8%AE%B2%EF%BC%9A%E6%B1%82%E7%9F%A5%E8%8B%A5%E9%A5%A5-%E8%99%9A%E5%BF%83%E8%8B%A5%E6%84%9A/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/11/04/%E9%87%8D%E6%B8%A9%E4%B9%94%E5%B8%83%E6%96%AF%E6%9C%80%E7%BB%8F%E5%85%B8%E6%BC%94%E8%AE%B2%EF%BC%9A%E6%B1%82%E7%9F%A5%E8%8B%A5%E9%A5%A5-%E8%99%9A%E5%BF%83%E8%8B%A5%E6%84%9A/">
           
-        
-        <div>
-　　Thank you. I am honored to be with you today at your commencement from one of the finest universities in the world. Truth be told, I never graduated from college. This is the closest I’ve ever gott</div>
-      </a>
+          
+            
+          
+          
+　　Thank you. I am honored to be with you today at your commencement from one of the finest universities in the world. Truth be told, I never graduated from college. This is the closest I’ve ever gott
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-11-04
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-04 16:29" pubdate>
+              2019-11-04
+            </time>
           </div>
         
         
@@ -544,21 +626,24 @@ public static void zi</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/11/03/Jenkins%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E9%9B%86%E6%88%90/">Jenkins构建工具集成</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/11/03/Jenkins%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E9%9B%86%E6%88%90/">Jenkins构建工具集成</a>
+      </h1>
 
-      <a href="/2019/11/03/Jenkins%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E9%9B%86%E6%88%90/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/11/03/Jenkins%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E9%9B%86%E6%88%90/">
           
-        
-        <div>
+          
+            
+          
+          
 来源公众号： DevOps持续集成
 
 1. 集成maven1.1 先决条件
@@ -567,13 +652,17 @@ JDK：在maven3.3 以上的版本需要JDK版本1.7+。内存：没有最低限�
 下载maven Download
 
 1.2 安装maventar zxf apache-maven-3.6.0-bin.tar.gz -C /usr/local/
-#设置全局变量（/etc/</div>
-      </a>
+#设置全局变量（/etc/
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-11-03
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-03 16:24" pubdate>
+              2019-11-03
+            </time>
           </div>
         
         
@@ -593,21 +682,24 @@ JDK：在maven3.3 以上的版本需要JDK版本1.7+。内存：没有最低限�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%88%E6%9D%83%E7%AE%A1%E7%90%86/">Jenkins用户权限授权管理</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%88%E6%9D%83%E7%AE%A1%E7%90%86/">Jenkins用户权限授权管理</a>
+      </h1>
 
-      <a href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%88%E6%9D%83%E7%AE%A1%E7%90%86/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%88%E6%9D%83%E7%AE%A1%E7%90%86/">
           
-        
-        <div>
+          
+            
+          
+          
 来源公众号： DevOps持续集成
 
 1.创建role
@@ -617,13 +709,17 @@ JDK：在maven3.3 以上的版本需要JDK版本1.7+。内存：没有最低限�
 2.授权插件API
 创建用户method:POST
 url: http://demo.com:8080/securityRealm/createAccountByAdmin
-data: &#123;"username": userName, "password1": '123456', "password2": '123456', "</div>
-      </a>
+data: &#123;"username": userName, "password1": '123456', "password2": '123456', "
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-11-03
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-03 16:21" pubdate>
+              2019-11-03
+            </time>
           </div>
         
         
@@ -643,7 +739,7 @@ data: &#123;"username": userName, "password1": '123456', "password2": '123456', 
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
@@ -736,20 +832,27 @@ data: &#123;"username": userName, "password1": '123456', "password2": '123456', 
         <span>Fluid</span></a>
     </div>
     
-  <div>
+  <div class="statistics">
     
-      <!-- 不蒜子统计PV -->
+    
+
+    
       
-      <span id="busuanzi_container_site_pv" style="display: none">
-      总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    </span>
-    
-    
-      <!-- 不蒜子统计UV -->
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
       
-      <span id="busuanzi_container_site_uv" style="display: none">
-      总访客数 <span id="busuanzi_value_site_uv"></span> 人
-    </span>
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
 
@@ -763,12 +866,19 @@ data: &#123;"username": userName, "password1": '123456', "password2": '123456', 
 <!-- SCRIPTS -->
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
 <script  src="/js/main.js" ></script>
 
+<!-- Plugins -->
 
-  <script  src="/js/lazyload.js" ></script>
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
 
 
+
+  
 
 
 
@@ -782,7 +892,6 @@ data: &#123;"username": userName, "password1": '123456', "password2": '123456', 
 
 
 
-<!-- Plugins -->
 
 
 
@@ -805,21 +914,6 @@ data: &#123;"username": userName, "password1": '123456', "password2": '123456', 
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
 
@@ -862,6 +956,7 @@ data: &#123;"username": userName, "password1": '123456', "password2": '123456', 
     });
     daovoice('update');
   </script>
+
 
 
 

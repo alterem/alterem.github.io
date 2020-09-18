@@ -1,7 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -20,21 +20,16 @@
   <title>Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/googlecode.min.css" />
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -42,6 +37,8 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
@@ -65,52 +62,73 @@
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              <i class="iconfont icon-home-fill"></i>
-              首页</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">
-              <i class="iconfont icon-archive-fill"></i>
-              归档</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">
-              <i class="iconfont icon-category-fill"></i>
-              分类</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">
-              <i class="iconfont icon-tags-fill"></i>
-              标签</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
         
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">
-              <i class="iconfont icon-user-fill"></i>
-              关于</a>
-          </li>
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -118,16 +136,24 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner intro-2" id="background" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
-
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = ' 🚀 ' + data.hitokoto
+                }).catch(console.error)
+            </script>
             
           </div>
 
@@ -156,28 +182,35 @@
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/10/11/python%E6%8B%86%E5%88%86excel/">python拆分excel</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/10/11/python%E6%8B%86%E5%88%86excel/">python拆分excel</a>
+      </h1>
 
-      <a href="/2019/10/11/python%E6%8B%86%E5%88%86excel/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/10/11/python%E6%8B%86%E5%88%86excel/">
           
-        
-        <div>根据某一列，拆分成几个不同的EXCEL文件操作方法：将EXCEL文件拖至EXE文件上，根据提示操作。
+          
+            
+          
+          根据某一列，拆分成几个不同的EXCEL文件操作方法：将EXCEL文件拖至EXE文件上，根据提示操作。
 
 import openpyxl
 from openpyxl.utils import get_column_letter
 import xlrd
 import sys, os, collections
 from pprint import pprint
-from copy import copy</div>
-      </a>
+from copy import copy
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-10-11
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-11 11:40" pubdate>
+              2019-10-11
+            </time>
           </div>
         
         
@@ -199,33 +232,40 @@ from copy import copy</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/09/30/Lombok%E4%BB%8B%E7%BB%8D%E3%80%81%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%92%8C%E6%80%BB%E7%BB%93/">Lombok介绍、使用方法和总结</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/09/30/Lombok%E4%BB%8B%E7%BB%8D%E3%80%81%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%92%8C%E6%80%BB%E7%BB%93/">Lombok介绍、使用方法和总结</a>
+      </h1>
 
-      <a href="/2019/09/30/Lombok%E4%BB%8B%E7%BB%8D%E3%80%81%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%92%8C%E6%80%BB%E7%BB%93/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/09/30/Lombok%E4%BB%8B%E7%BB%8D%E3%80%81%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%92%8C%E6%80%BB%E7%BB%93/">
           
-        
-        <div>
+          
+            
+          
+          
 文章来源公众号：猿人谷
 
 1 Lombok背景介绍官方介绍如下：
 Project Lombok makes java a spicier language by adding 'handlers' that know how to build and compile simple, boilerplate-free, not-quite-java code.
 
-大致意思是Lombok通过增加一些</div>
-      </a>
+大致意思是Lombok通过增加一些
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-09-30
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-30 10:17" pubdate>
+              2019-09-30
+            </time>
           </div>
         
         
@@ -245,21 +285,24 @@ Project Lombok makes java a spicier language by adding 'handlers' that know how 
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/09/29/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%90%86%E8%A7%A3/">高可用的一些思考和理解</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/09/29/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%90%86%E8%A7%A3/">高可用的一些思考和理解</a>
+      </h1>
 
-      <a href="/2019/09/29/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%90%86%E8%A7%A3/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/09/29/%E9%AB%98%E5%8F%AF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83%E5%92%8C%E7%90%86%E8%A7%A3/">
           
-        
-        <div>
+          
+            
+          
+          
 本文来源公众号：匠心零度
 
 
@@ -267,13 +310,17 @@ Project Lombok makes java a spicier language by adding 'handlers' that know how 
 
 系统不是7*24小时提供服务，那么用户体验就特别差了，可能用户下次不用了，留不住用户。
 当系统不可用的时候，对公司的形象是有所影响的，BAT类似这种技术都是象征的。
-最重要的一点，当系统不可用的时候，直接损失就是金钱！！！基本都是秒算损失的，依稀记得2015年5月28日携程</div>
-      </a>
+最重要的一点，当系统不可用的时候，直接损失就是金钱！！！基本都是秒算损失的，依稀记得2015年5月28日携程
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-09-29
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-29 10:30" pubdate>
+              2019-09-29
+            </time>
           </div>
         
         
@@ -293,7 +340,7 @@ Project Lombok makes java a spicier language by adding 'handlers' that know how 
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
@@ -305,15 +352,18 @@ Project Lombok makes java a spicier language by adding 'handlers' that know how 
         </a>
       </div>
     
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2019/09/27/%E3%80%90Python%E3%80%91%E5%93%84%E5%A5%B3%E6%9C%8B%E5%8F%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/">【Python】哄女朋友的那些奇技淫巧</a>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/09/27/%E3%80%90Python%E3%80%91%E5%93%84%E5%A5%B3%E6%9C%8B%E5%8F%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/">【Python】哄女朋友的那些奇技淫巧</a>
+      </h1>
 
-      <a href="/2019/09/27/%E3%80%90Python%E3%80%91%E5%93%84%E5%A5%B3%E6%9C%8B%E5%8F%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/09/27/%E3%80%90Python%E3%80%91%E5%93%84%E5%A5%B3%E6%9C%8B%E5%8F%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/">
           
-        
-        <div>
+          
+            
+          
+          
 本文来源公众号： Python乱炖
 
 
@@ -340,13 +390,17 @@ Python里面的奇技淫巧
 让女朋友崇拜你
 ………
 怎么样？
-够厉害吧</div>
-      </a>
+够厉害吧
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-09-27
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-27 10:00" pubdate>
+              2019-09-27
+            </time>
           </div>
         
         
@@ -366,28 +420,35 @@ Python里面的奇技淫巧
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-%E5%9C%A8idea&eclipse%E4%B8%AD%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8sonarlint/">SonarQube的使用-在idea&amp;eclipse中安装与使用sonarlint</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-%E5%9C%A8idea&eclipse%E4%B8%AD%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8sonarlint/">SonarQube的使用-在idea&amp;eclipse中安装与使用sonarlint</a>
+      </h1>
 
-      <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-%E5%9C%A8idea&eclipse%E4%B8%AD%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8sonarlint/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-%E5%9C%A8idea&eclipse%E4%B8%AD%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8sonarlint/">
           
-        
-        <div>介绍​        代码质量管理的开源平台，用于管理源代码的质量 通过插件形式，可以支持包括java,C#,C/C++,PL/SQL,Cobol,JavaScrip,Groovy等等二十几种编程语言的代码质量管理与检测。集成了CheckStyle，PMD，Findbugs等工具校验规则，具有重复代码发现，代码测试覆盖率，代码注释率，及所有的检测率变化追踪的功能特性。
-特点​        Son</div>
-      </a>
+          
+            
+          
+          介绍​        代码质量管理的开源平台，用于管理源代码的质量 通过插件形式，可以支持包括java,C#,C/C++,PL/SQL,Cobol,JavaScrip,Groovy等等二十几种编程语言的代码质量管理与检测。集成了CheckStyle，PMD，Findbugs等工具校验规则，具有重复代码发现，代码测试覆盖率，代码注释率，及所有的检测率变化追踪的功能特性。
+特点​        Son
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-09-26
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-26 11:24" pubdate>
+              2019-09-26
+            </time>
           </div>
         
         
@@ -411,32 +472,39 @@ Python里面的奇技淫巧
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-SonarQube%E5%AE%89%E8%A3%85/">[SonarQube的使用] SonarQube安装</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-SonarQube%E5%AE%89%E8%A3%85/">[SonarQube的使用] SonarQube安装</a>
+      </h1>
 
-      <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-SonarQube%E5%AE%89%E8%A3%85/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/09/26/SonarQube%E7%9A%84%E4%BD%BF%E7%94%A8-SonarQube%E5%AE%89%E8%A3%85/">
           
-        
-        <div>工欲善其事必先利其器一 . SonarQube代码质量检查工具简介
+          
+            
+          
+          工欲善其事必先利其器一 . SonarQube代码质量检查工具简介
 Sonar (SonarQube)是一个开源平台，用于管理源代码的质量
 Sonar 不只是一个质量数据报告工具，更是代码质量管理平台
 
 支持Java, C#, C/C++, PL/SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。
-Sonar可以从以下七个维度检测代码质量，而作为</div>
-      </a>
+Sonar可以从以下七个维度检测代码质量，而作为
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-09-26
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-26 11:15" pubdate>
+              2019-09-26
+            </time>
           </div>
         
         
@@ -460,28 +528,35 @@ Sonar可以从以下七个维度检测代码质量，而作为</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/09/24/%E6%95%99%E7%A8%8B-%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84%E5%A4%B4%E5%83%8F%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BD%E6%97%97/">教程|教你如何给你的头像添加一个好看的国旗</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/09/24/%E6%95%99%E7%A8%8B-%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84%E5%A4%B4%E5%83%8F%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BD%E6%97%97/">教程|教你如何给你的头像添加一个好看的国旗</a>
+      </h1>
 
-      <a href="/2019/09/24/%E6%95%99%E7%A8%8B-%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84%E5%A4%B4%E5%83%8F%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BD%E6%97%97/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/09/24/%E6%95%99%E7%A8%8B-%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%99%E4%BD%A0%E7%9A%84%E5%A4%B4%E5%83%8F%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%9B%BD%E6%97%97/">
           
-        
-        <div>今天朋友圈又火了，听说原因是 @腾讯官网 就能得到一顶绿色的帽子，啊呸，是一个好看的国庆节头像，可是听说没一会就502了，那么我们自己动手实现一个吧
-由于代码比较简单就不一一介绍了。</div>
-      </a>
+          
+            
+          
+          今天朋友圈又火了，听说原因是 @腾讯官网 就能得到一顶绿色的帽子，啊呸，是一个好看的国庆节头像，可是听说没一会就502了，那么我们自己动手实现一个吧
+由于代码比较简单就不一一介绍了。
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-09-24
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-24 18:10" pubdate>
+              2019-09-24
+            </time>
           </div>
         
         
@@ -501,33 +576,40 @@ Sonar可以从以下七个维度检测代码质量，而作为</div>
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/06/24/%E5%9C%A8SpringMVC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8HIkariCP/">在SpringMVC项目中使用HIkariCP</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/24/%E5%9C%A8SpringMVC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8HIkariCP/">在SpringMVC项目中使用HIkariCP</a>
+      </h1>
 
-      <a href="/2019/06/24/%E5%9C%A8SpringMVC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8HIkariCP/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/06/24/%E5%9C%A8SpringMVC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8HIkariCP/">
           
-        
-        <div>什么是HIkariCP
+          
+            
+          
+          什么是HIkariCP
 https://www.jianshu.com/p/15b846107a7c
 
 使用HikariCP数据源pom.xml&lt;dependency&gt;
   &lt;groupId&gt;com.zaxxer&lt;/groupId&gt;
   &lt;artifactId&gt;HikariCP&lt;/artifactId&gt;
-  &lt;version&gt;</div>
-      </a>
+  &lt;version&gt;
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-06-24
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-24 17:42" pubdate>
+              2019-06-24
+            </time>
           </div>
         
         
@@ -551,29 +633,36 @@ https://www.jianshu.com/p/15b846107a7c
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/06/13/MyBatis%E5%9C%A8Spring%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">MyBatis在Spring环境下的事务管理</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/13/MyBatis%E5%9C%A8Spring%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">MyBatis在Spring环境下的事务管理</a>
+      </h1>
 
-      <a href="/2019/06/13/MyBatis%E5%9C%A8Spring%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/06/13/MyBatis%E5%9C%A8Spring%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
           
-        
-        <div>MyBatis的设计思想很简单，可以看做是对JDBC的一次封装，并提供强大的动态SQL映射功能。但是由于它本身也有一些缓存、事务管理等功能，所以实际使用中还是会碰到一些问题——另外，最近接触了JFinal，其思想和Hibernate类似，但要更简洁，和MyBatis的设计思想不同，但有一点相同：都是想通过简洁的设计最大限度地简化开发和提升性能——说到性能，前段时间碰到两个问题： 
+          
+            
+          
+          MyBatis的设计思想很简单，可以看做是对JDBC的一次封装，并提供强大的动态SQL映射功能。但是由于它本身也有一些缓存、事务管理等功能，所以实际使用中还是会碰到一些问题——另外，最近接触了JFinal，其思想和Hibernate类似，但要更简洁，和MyBatis的设计思想不同，但有一点相同：都是想通过简洁的设计最大限度地简化开发和提升性能——说到性能，前段时间碰到两个问题： 
 
-在一个上层方法</div>
-      </a>
+在一个上层方法
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-06-13
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-13 13:23" pubdate>
+              2019-06-13
+            </time>
           </div>
         
         
@@ -597,29 +686,36 @@ https://www.jianshu.com/p/15b846107a7c
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
   <div class="row mx-auto index-card">
     
     
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2019/06/12/CAS4-0%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8Redis%E7%BC%93%E5%AD%98%E5%85%B1%E4%BA%ABticket/">CAS4.0分布式部署以及使用Redis缓存共享ticket</a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/12/CAS4-0%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8Redis%E7%BC%93%E5%AD%98%E5%85%B1%E4%BA%ABticket/">CAS4.0分布式部署以及使用Redis缓存共享ticket</a>
+      </h1>
 
-      <a href="/2019/06/12/CAS4-0%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8Redis%E7%BC%93%E5%AD%98%E5%85%B1%E4%BA%ABticket/" class="index-excerpt">
-        
-        
+      <p class="index-excerpt">
+        <a href="/2019/06/12/CAS4-0%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8Redis%E7%BC%93%E5%AD%98%E5%85%B1%E4%BA%ABticket/">
           
-        
-        <div>CAS4.0分布式部署以及使用Redis缓存共享ticket 
+          
+            
+          
+          CAS4.0分布式部署以及使用Redis缓存共享ticket 
 当业务不断拓展，系统用户在不断增加时，我们的平台统一登录认证服务无法承受当前压力。此时，我们需要分布式部署我们的统一登录认证服务。 
-CAS的分布式部署，除了注意session共享，通过nginx或者apache反向代理外，还需要注意票据ticket的存储共享。 在ticketRegistry.xml文件中，配置ticket相关的信息</div>
-      </a>
+CAS的分布式部署，除了注意session共享，通过nginx或者apache反向代理外，还需要注意票据ticket的存储共享。 在ticketRegistry.xml文件中，配置ticket相关的信息
+        </a>
+      </p>
 
       <div class="index-btm post-metas">
         
           <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2019-06-12
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-12 22:14" pubdate>
+              2019-06-12
+            </time>
           </div>
         
         
@@ -647,7 +743,7 @@ CAS的分布式部署，除了注意session共享，通过nginx或者apache反�
           </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
 
@@ -740,20 +836,27 @@ CAS的分布式部署，除了注意session共享，通过nginx或者apache反�
         <span>Fluid</span></a>
     </div>
     
-  <div>
+  <div class="statistics">
     
-      <!-- 不蒜子统计PV -->
+    
+
+    
       
-      <span id="busuanzi_container_site_pv" style="display: none">
-      总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    </span>
-    
-    
-      <!-- 不蒜子统计UV -->
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
       
-      <span id="busuanzi_container_site_uv" style="display: none">
-      总访客数 <span id="busuanzi_value_site_uv"></span> 人
-    </span>
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
     
   </div>
 
@@ -767,12 +870,19 @@ CAS的分布式部署，除了注意session共享，通过nginx或者apache反�
 <!-- SCRIPTS -->
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
 <script  src="/js/main.js" ></script>
 
+<!-- Plugins -->
 
-  <script  src="/js/lazyload.js" ></script>
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
 
 
+
+  
 
 
 
@@ -786,7 +896,6 @@ CAS的分布式部署，除了注意session共享，通过nginx或者apache反�
 
 
 
-<!-- Plugins -->
 
 
 
@@ -809,21 +918,6 @@ CAS的分布式部署，除了注意session共享，通过nginx或者apache反�
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
 
@@ -866,6 +960,7 @@ CAS的分布式部署，除了注意session共享，通过nginx或者apache反�
     });
     daovoice('update');
   </script>
+
 
 
 
