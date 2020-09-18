@@ -907,9 +907,9 @@
     
     <tags>
       
-      <tag>SonarQube</tag>
-      
       <tag>Sonar</tag>
+      
+      <tag>SonarQube</tag>
       
     </tags>
     
@@ -2130,9 +2130,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Redis</tag>
+      
+      <tag>CentOS</tag>
       
     </tags>
     
