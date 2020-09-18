@@ -325,9 +325,9 @@
   
   
   <entry>
-    <title>Fastjson把对象转化成json避免</title>
-    <link href="/2019/12/14/Fastjson-%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json%E9%81%BF%E5%85%8D/"/>
-    <url>/2019/12/14/Fastjson-%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json%E9%81%BF%E5%85%8D/</url>
+    <title>Fastjson把对象转化成json</title>
+    <link href="/2019/12/14/Fastjson%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json/"/>
+    <url>/2019/12/14/Fastjson%E6%8A%8A%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96%E6%88%90json/</url>
     
     <content type="html"><![CDATA[<p>DisableCircularReferenceDetect来禁止循环引用检测：</p><p>JSON.toJSONString(…, SerializerFeature.DisableCircularReferenceDetect)</p><p>当进行toJSONString的时候，默认如果重用对象的话，会使用引用的方式进行引用对象。</p><pre><code class="hljs json">"颜色": [        &#123;          <span class="hljs-attr">"$ref"</span>: <span class="hljs-string">"$.itemSkuList[0].itemSpecificationList[0]"</span>        &#125;,         &#123;          <span class="hljs-attr">"$ref"</span>: <span class="hljs-string">"$.itemSkuList[1].itemSpecificationList[0]"</span>        &#125;      ]</code></pre><h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><p>很多场景中，我们需要序列化的对象中存在循环引用，在许多的json库中，这会导致stackoverflow。在功能强大的fastjson中，你不需要担心这个问题。例如：</p><pre><code class="hljs java">A a = <span class="hljs-keyword">new</span> A();  B b = <span class="hljs-keyword">new</span> B(a);  a.setB(b);  String text = JSON.toJSONString(a); <span class="hljs-comment">//&#123;"b":&#123;"a":&#123;"$ref":".."&#125;&#125;&#125;  </span>A a1 = JSON.parseObject(text, A<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;  Assert.assertTrue(a1 == a1.getB().getA());</code></pre><p>引用是通过”$ref”来表示的</p><table><thead><tr><th align="left">引用</th><th align="left">描述</th></tr></thead><tbody><tr><td align="left"><code>&quot;$ref&quot;:&quot;..&quot;</code></td><td align="left">上一级</td></tr><tr><td align="left"><code>&quot;$ref&quot;:&quot;@&quot;</code></td><td align="left">当前对象，也就是自引用</td></tr><tr><td align="left"><code>&quot;$ref&quot;:&quot;$&quot;</code></td><td align="left">根对象</td></tr><tr><td align="left"><code>&quot;$ref&quot;:&quot;$.children.0&quot;</code></td><td align="left">基于路径的引用，相当于 root.getChildren().get(0)</td></tr></tbody></table><p><strong>欢迎关注微信公众号​：</strong></p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
     
