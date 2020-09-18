@@ -907,9 +907,9 @@
     
     <tags>
       
-      <tag>SonarQube</tag>
-      
       <tag>Sonar</tag>
+      
+      <tag>SonarQube</tag>
       
     </tags>
     
@@ -1021,9 +1021,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Cas</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Ticket</tag>
       
@@ -2130,9 +2130,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Redis</tag>
+      
+      <tag>CentOS</tag>
       
     </tags>
     
