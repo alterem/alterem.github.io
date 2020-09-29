@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
-  <title>Kafka查看topic、consumer group状态命令 - Alterem</title>
+  <title>Learn_2.1：RESTful接口与http协议状态表述 - Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -150,7 +150,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://gitee.com/alterem/picFB/raw/master/pics/2020/09/25/gRRkFv.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-25 11:41" pubdate>
-        2020年9月25日 中午
+      <time datetime="2020-09-29 18:19" pubdate>
+        2020年9月29日 晚上
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      461 字
+      1.4k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      16
        分钟
     </span>
   
@@ -233,24 +233,146 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Kafka查看topic、consumer group状态命令</h1>
+            <h1 style="display: none">Learn_2.1：RESTful接口与http协议状态表述</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/09/25/gRRkFv.jpg" srcset="/img/loading.gif" alt="1"></p>
-<p>以下命令中使用的zookeeper配置地址为127.0.0.1:2181，bootstrap–server(即broker)地址为: 127.0.0.1:9292</p>
-<p>1，查看kafka topic列表，使用–list参数</p>
-<p><code>bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 —list</code><br> __consumer_offsets<br> lx_test_topic<br> test<br> 2，查看kafka特定topic的详情，使用–topic与–describe参数</p>
-<p><code>bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --topic lx_test_topic --describe</code><br> Topic:lx_test_topic     PartitionCount:1        ReplicationFactor:1     Configs:<br> Topic: lx_test_topic    Partition: 0    Leader: 0       Replicas: 0     Isr: 0<br> 列出了lx_test_topic的parition数量、replica因子以及每个partition的leader、replica信息</p>
-<p>3，查看consumer group列表，使用–list参数</p>
-<p>查看consumer group列表有新、旧两种命令，分别查看新版(信息保存在broker中)consumer列表和老版(信息保存在zookeeper中)consumer列表，因而需要区分指定bootstrap–server和zookeeper参数：</p>
-<p><code>bin/kafka-consumer-groups.sh --new-consumer --bootstrap-server 127.0.0.1:9292 --list</code><br> lx_test<br> bin/kafka-consumer-groups.sh –zookeeper 127.0.0.1:2181 –list<br> console-consumer-86845<br> console-consumer-11967</p>
-<p>4，查看特定consumer group 详情，使用–group与–describe参数</p>
-<p>同样根据新/旧版本的consumer，分别指定bootstrap-server与zookeeper参数:</p>
-<p><code>bin/kafka-consumer-groups.sh --new-consumer --bootstrap-server 127.0.0.1:9292 --group lx_test --describe</code><br> GROUP                          TOPIC                          PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             OWNER<br> lx_test                        lx_test_topic             0          465             465             0               kafka-python-1.3.1_/127.0.0.1<br> bin/kafka-consumer-groups.sh –zookeeper 127.0.0.1:2181 –group console-consumer-11967 –describe<br> GROUP                          TOPIC                          PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             OWNER<br> Could not fetch offset from zookeeper for group console-consumer-11967 partition [lx_test_topic,0] due to missing offset data in zookeeper.<br> console-consumer-11967         lx_test_topic             0          unknown         465             unknown         console-consumer-11967_aws-lx-1513787888172-d3a91f05-0</p>
-<p> 其中依次展示group名称、消费的topic名称、partition id、consumer group最后一次提交的offset、最后提交的生产消息offset、消费offset与生产offset之间的差值、当前消费topic-partition的group成员id(不一定包含hostname)</p>
-<p>上面示例中console-consumer-11967是为了测试临时起的一个console consumer，缺少在zookeeper中保存的current_offset信息。</p>
-<p><strong>欢迎关注微信公众号 ：</strong></p>
-<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+              <div class="note note-danger">
+            <p>本文转自<a href="https://www.kancloud.cn/hanxt/springboot2/1177585" target="_blank" rel="noopener"><strong>字母哥SpringBoot2.X教程</strong></a><br>很良心的教程文档，作者很有一套，有兴趣的可以去看看</p>
+          </div>
+
+<h3 id="一、RESTful风格API的好处"><a href="#一、RESTful风格API的好处" class="headerlink" title="一、RESTful风格API的好处"></a>一、RESTful风格API的好处</h3><p>API（Application Programming Interface），顾名思义：是一组编程接口规范，客户端与服务端通过请求响应进行数据通信。<br>REST（Representational State Transfer）表述性状态传递，决定了接口的形式与规则。<br><strong>RESTful是基于http方法的API设计风格，而不是一种新的技术.</strong></p>
+<ol>
+<li>看Url就知道要什么资源</li>
+<li>看http method就知道针对资源干什么</li>
+<li>看http status code就知道结果如何</li>
+</ol>
+<p>对接口开发提供了一种可以广泛适用的规范，为前端后端交互减少了接口交流的口舌成本，是约定大于配置的体现。通过下面的设计，大家来理解一下这三句话。</p>
+<div class="note note-success">
+            <p>当然也不是所有的接口，都能用REST的形式来表述。<br>在实际工作中灵活运用，我们用RESTful风格的目的是为大家提供统一标准，避免不必要的沟通成本的浪费，形成一种通用的风格。<br>就好比大家都知道：伸出大拇指表示“你很棒“的意思，绝大部分人都明白，因为你了解了这种风格习惯。但是不排除有些地区伸出大拇指表示其他意思，就不适合使用！</p>
+          </div>
+
+<h3 id="二、RESTful-API的设计风格"><a href="#二、RESTful-API的设计风格" class="headerlink" title="二、RESTful API的设计风格"></a>二、RESTful API的设计风格</h3><h4 id="2-1、RESTful是面向资源的（名词）"><a href="#2-1、RESTful是面向资源的（名词）" class="headerlink" title="2.1、RESTful是面向资源的（名词）"></a>2.1、RESTful是面向资源的（名词）</h4><p>REST 通过 URI 暴露资源时，会强调不要在 URI 中出现动词。比如：</p>
+<table>
+<thead>
+<tr>
+<th>不符合REST的接口URI</th>
+<th>符合REST接口URI</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET /api/getDogs/{id}</td>
+<td>GET /api/dogs/{id}</td>
+<td>获取一个小狗</td>
+</tr>
+<tr>
+<td>GET /api/getDogs</td>
+<td>GET /api/dogs</td>
+<td>获取所有小狗</td>
+</tr>
+<tr>
+<td>GET /api/addDogs</td>
+<td>POST /api/dogs</td>
+<td>添加一个小狗</td>
+</tr>
+<tr>
+<td>GET /api/editDogs/{id}</td>
+<td>PUT /api/dogs/{id}</td>
+<td>修改一个小狗</td>
+</tr>
+<tr>
+<td>GET /api/deleteDogs/{id}</td>
+<td>DELETE /api/dogs/{id}</td>
+<td>删除一个小狗</td>
+</tr>
+</tbody></table>
+<h4 id="2-2、用HTTP方法体现对资源的操作（动词）"><a href="#2-2、用HTTP方法体现对资源的操作（动词）" class="headerlink" title="2.2、用HTTP方法体现对资源的操作（动词）"></a>2.2、用HTTP方法体现对资源的操作（动词）</h4><ul>
+<li>GET    ： 获取、读取资源</li>
+<li>POST   ： 添加资源</li>
+<li>PUT    ： 修改资源</li>
+<li>DELETE ： 删除资源</li>
+</ul>
+<p><img src="https://img.kancloud.cn/77/8c/778c1a6b6927d9d4d1b0b038fecf0e38_955x422.png" srcset="/img/loading.gif" alt="Http操作"></p>
+<p>实际上，这四个动词实际上就对应着增删改查四个操作，这就利用了HTTP动词来表示对资源的操作。</p>
+<h4 id="2-3-HTTP状态码"><a href="#2-3-HTTP状态码" class="headerlink" title="2.3. HTTP状态码"></a>2.3. HTTP状态码</h4><p>通过HTTP状态码体现动作的结果,不要自定义</p>
+<pre><code class="hljs basic"><span class="hljs-symbol">200 </span>OK 
+<span class="hljs-symbol">400 </span>Bad Request 
+<span class="hljs-symbol">500 </span>Internal Server <span class="hljs-keyword">Error</span></code></pre>
+
+<p>在 APP 与 API 的交互当中，其结果逃不出这三种状态：</p>
+<ul>
+<li>所有事情都按预期正确执行完毕 - 成功</li>
+<li>APP 发生了一些错误 – 客户端错误（如：校验用户输入身份证，结果输入的是军官证，就是客户端输入错误）</li>
+<li>API 发生了一些错误 – 服务器端错误（各种编码bug或服务内部自己导致的异常）</li>
+</ul>
+<p>这三种状态与上面的状态码是一一对应的。如果你觉得这三种状态，分类处理结果太宽泛，http-status code还有很多。<br>建议还是要遵循KISS(Keep It Stupid and Simple)原则，上面的三种状态码完全可以覆盖99%以上的场景。<br>这三个状态码大家都记得住，而且非常常用，多了就不一定了。</p>
+<h4 id="2-4-Get方法和查询参数不应该改变数据"><a href="#2-4-Get方法和查询参数不应该改变数据" class="headerlink" title="2.4. Get方法和查询参数不应该改变数据"></a>2.4. Get方法和查询参数不应该改变数据</h4><p>改变数据的事交给POST、PUT、DELETE</p>
+<h4 id="2-5-使用复数名词"><a href="#2-5-使用复数名词" class="headerlink" title="2.5. 使用复数名词"></a>2.5. 使用复数名词</h4><p>/dogs 而不是 /dog</p>
+<h4 id="2-6-复杂资源关系的表达"><a href="#2-6-复杂资源关系的表达" class="headerlink" title="2.6. 复杂资源关系的表达"></a>2.6. 复杂资源关系的表达</h4><p>GET /cars/711/drivers/ 返回 使用过编号711汽车的所有司机<br>GET /cars/711/drivers/4 返回 使用过编号711汽车的4号司机</p>
+<h4 id="2-7-高级用法-HATEOAS"><a href="#2-7-高级用法-HATEOAS" class="headerlink" title="2.7. 高级用法:HATEOAS"></a>2.7. 高级用法:HATEOAS</h4><p><strong>HATEOAS</strong>:Hypermedia as the Engine of Application State 超媒体作为应用状态的引擎。<br>RESTful API最好做到HATEOAS，<strong>即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。</strong><br>比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档。</p>
+<pre><code class="hljs json">&#123;<span class="hljs-attr">"link"</span>: &#123;
+  <span class="hljs-attr">"rel"</span>:   <span class="hljs-string">"collection https://www.example.com/zoos"</span>,
+  <span class="hljs-attr">"href"</span>:  <span class="hljs-string">"https://api.example.com/zoos"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"List of zoos"</span>,
+  <span class="hljs-attr">"type"</span>:  <span class="hljs-string">"application/vnd.yourformat+json"</span>
+&#125;&#125;</code></pre>
+<p>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API或者可以调用什么API了。</p>
+<h4 id="2-8-资源过滤、排序、选择和分页的表述"><a href="#2-8-资源过滤、排序、选择和分页的表述" class="headerlink" title="2.8.资源过滤、排序、选择和分页的表述"></a>2.8.资源过滤、排序、选择和分页的表述</h4><table>
+<thead>
+<tr>
+<th>资源功能表述</th>
+<th>例子</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>资源数据过滤</td>
+<td>GET /cars?color=red</td>
+<td>获取红色的汽车</td>
+</tr>
+<tr>
+<td>资源数据过滤</td>
+<td>GET /cars?seats&lt;=4</td>
+<td>获取小于四座位的汽车</td>
+</tr>
+<tr>
+<td>资源数据排序</td>
+<td>GET /cars?sort=-manufactorer,+model</td>
+<td>获取汽车资源数据，先按照生产者降序排序、再按照车架模型升序排序</td>
+</tr>
+<tr>
+<td>资源数据字段选择</td>
+<td>GET /cars?fields=manufactorer,model,id,color</td>
+<td>只选取其中一些字段，给API消费者一个选择字段的能力，这会降低网络流量</td>
+</tr>
+<tr>
+<td>资源数据分页</td>
+<td>GET /cars?offset=10&amp;limit=5</td>
+<td>使用limit和offset，实现分页、缺省</td>
+</tr>
+<tr>
+<td>#### 2.9. 版本化你的API</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>强制性增加API版本声明，不要发布无版本的API。如：/api/v1/blog</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>面向扩展开放，面向修改关闭</strong>：也就是说一个版本的接口开发完成测试上线之后，我们一般不会对接口进行修改，如果有新的需求就开发新的接口进行功能扩展。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>这样做的目的是：当你的新接口上线后，不会影响使用老接口的用户。如果新接口目的是替换老接口，也不要在v1版本原接口上修改，而是开发v2版本接口，并声明v1接口废弃！</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p>关于HTTP RESTful风格API设计的更多例子，请大家参考：<a href="http://httpbin.org/" target="_blank" rel="noopener">http://httpbin.org/</a></p>
+
             </div>
             <hr>
             <div>
@@ -259,7 +381,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Kafka/">Kafka</a>
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
                     
                   </div>
                 
@@ -267,7 +389,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Kafka/">Kafka</a>
+                      <a class="hover-with-bg" href="/tags/SpringBoot/">SpringBoot</a>
                     
                   </div>
                 
@@ -280,18 +402,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/29/LearnSpringBoot_2.1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Learn_2.1：RESTful接口与http协议状态表述</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/06/27/%E5%B8%AE%E5%8A%A9%E4%B9%94%E5%B8%83%E6%96%AF%E5%86%99%E5%87%BA%E6%96%AF%E5%9D%A6%E7%A6%8F%E6%BC%94%E8%AE%B2%E7%A8%BF%E7%9A%84%E4%BA%BA%E8%B5%B0%E4%BA%86/">
-                        <span class="hidden-mobile">帮助乔布斯写出斯坦福演讲稿的人走了</span>
+                      <a href="/2020/09/25/Kafka%E6%9F%A5%E7%9C%8Btopic%E3%80%81consumer-group%E7%8A%B6%E6%80%81%E5%91%BD%E4%BB%A4/">
+                        <span class="hidden-mobile">Kafka查看topic、consumer group状态命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -482,7 +598,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Kafka查看topic、consumer group状态命令&nbsp;",
+        "Learn_2.1：RESTful接口与http协议状态表述&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
