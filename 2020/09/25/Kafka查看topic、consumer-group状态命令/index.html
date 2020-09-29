@@ -236,7 +236,8 @@
             <h1 style="display: none">Kafka查看topic、consumer group状态命令</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>以下命令中使用的zookeeper配置地址为127.0.0.1:2181，bootstrap–server(即broker)地址为: 127.0.0.1:9292</p>
+              <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/09/25/gRRkFv.jpg" srcset="/img/loading.gif" alt="1"></p>
+<p>以下命令中使用的zookeeper配置地址为127.0.0.1:2181，bootstrap–server(即broker)地址为: 127.0.0.1:9292</p>
 <p>1，查看kafka topic列表，使用–list参数</p>
 <p><code>bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 —list</code><br> __consumer_offsets<br> lx_test_topic<br> test<br> 2，查看kafka特定topic的详情，使用–topic与–describe参数</p>
 <p><code>bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --topic lx_test_topic --describe</code><br> Topic:lx_test_topic     PartitionCount:1        ReplicationFactor:1     Configs:<br> Topic: lx_test_topic    Partition: 0    Leader: 0       Replicas: 0     Isr: 0<br> 列出了lx_test_topic的parition数量、replica因子以及每个partition的leader、replica信息</p>
