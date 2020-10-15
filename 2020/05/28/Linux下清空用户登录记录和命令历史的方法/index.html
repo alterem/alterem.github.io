@@ -236,8 +236,7 @@
             <h1 style="display: none">Linux下清空用户登录记录和命令历史的方法</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/05/28/Mid%20Ocean.jpg" srcset="/img/loading.gif" alt="imng"></p>
-<p><strong>清除登陆系统成功的记录</strong>，也就是last命令看到的记录</p>
+              <p><strong>清除登陆系统成功的记录</strong>，也就是last命令看到的记录</p>
 <p>[root@localhost root]# echo &gt; /var/log/wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息</p>
 <p>[root@localhost root]# echo &gt;/var/log/wtmp<br>[root@localhost root]# last</p>
 <p>此时即看不到用户登录信息</p>
