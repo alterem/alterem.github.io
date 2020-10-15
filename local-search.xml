@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Brew安装常用软件</title>
+    <link href="/2020/10/15/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/"/>
+    <url>/2020/10/15/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
+    
+    <content type="html"><![CDATA[<h5 id="1-安装mysql"><a href="#1-安装mysql" class="headerlink" title="1  安装mysql"></a>1  安装mysql</h5><pre><code class="hljs bash">brew install mysql</code></pre><p>安装完后会提示：</p><pre><code class="hljs bash">To have launchd start mysql now and restart at login:  brew services start mysqlOr, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span><span class="hljs-string"></span><span class="hljs-string">  mysql.server start</span></code></pre><p>根据需要选择自己要的</p><p>这样就安装完了，执行<code>mysql.server start</code>，服务就起来了，可以用</p><p><code>mysql -uroot</code> 进去看看</p><p>之前还以为要初始化mysql， 实际上是不用的，那样只是重新在别的地方安装了一个db起来而已</p><p>不过密码还是要修改一下</p><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/opt/mysql/./bin/mysql_secure_installation</code></pre><p>然后按照提示进行修改密码即可</p><h5 id="2-安装redis"><a href="#2-安装redis" class="headerlink" title="2 安装redis"></a>2 安装redis</h5><pre><code class="hljs bash">brew install redis</code></pre><pre><code class="hljs bash">To have launchd start redis now and restart at login:  brew services start redisOr, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span><span class="hljs-string"></span><span class="hljs-string">  redis-server /usr/local/etc/redis.conf</span></code></pre><p>redis 配置文件的位置<br><code>/usr/local/etc/redis.conf</code></p><h5 id="3-安装zookeeper"><a href="#3-安装zookeeper" class="headerlink" title="3 安装zookeeper"></a>3 安装zookeeper</h5><pre><code class="hljs bash">brew info zookeeperbrew install zookeeper</code></pre><p>安装完毕提示：</p><pre><code class="hljs bash">To have launchd start zookeeper now and restart at login:  brew services start zookeeperOr, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span><span class="hljs-string"></span><span class="hljs-string">  zkServer start</span></code></pre><p>配置文件地址：</p><p><code>/usr/local/etc/zookeeper/zoo.cfg</code></p><h5 id="4-安装activemq"><a href="#4-安装activemq" class="headerlink" title="4 安装activemq"></a>4 安装activemq</h5><pre><code class="hljs bash">brew install activemq</code></pre><pre><code class="hljs bash">To have launchd start activemq now and restart at login:  brew services start activemqOr, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span><span class="hljs-string"></span><span class="hljs-string">  activemq start</span></code></pre><h5 id="5-安装nginx"><a href="#5-安装nginx" class="headerlink" title="5 安装nginx"></a>5 安装nginx</h5><pre><code class="hljs bash">brew info nginxbrew install nginx</code></pre><p>装完以后提示：</p><pre><code class="hljs bash">The default port has been <span class="hljs-built_in">set</span> <span class="hljs-keyword">in</span> /usr/<span class="hljs-built_in">local</span>/etc/nginx/nginx.conf to 8080 so thatnginx can run without sudo. nginx will load all files <span class="hljs-keyword">in</span> /usr/<span class="hljs-built_in">local</span>/etc/nginx/servers/. To have launchd start nginx now and restart at login:  brew services start nginxOr, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span><span class="hljs-string"></span><span class="hljs-string">  nginx</span></code></pre><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    
+    
+    <categories>
+      
+      <category>Mac</category>
+      
+      <category>Brew</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Mac</tag>
+      
+      <tag>Brew</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>李诞说过什么精辟的话</title>
     <link href="/2020/10/12/%E6%9D%8E%E8%AF%9E%E8%AF%B4%E8%BF%87%E4%BB%80%E4%B9%88%E7%B2%BE%E8%BE%9F%E7%9A%84%E8%AF%9D/"/>
     <url>/2020/10/12/%E6%9D%8E%E8%AF%9E%E8%AF%B4%E8%BF%87%E4%BB%80%E4%B9%88%E7%B2%BE%E8%BE%9F%E7%9A%84%E8%AF%9D/</url>
@@ -1410,35 +1439,6 @@
   
   
   <entry>
-    <title>Brew安装常用软件</title>
-    <link href="/2019/06/12/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/"/>
-    <url>/2019/06/12/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
-    
-    <content type="html"><![CDATA[<p>1  安装mysql</p><p>a)  brew install mysql</p><p>安装完后会提示：</p><p>To have launchd start mysql now and restart at login:</p><p>  brew services start mysql</p><p>Or, if you don’t want/need a background service you can just run:</p><p>  mysql.server start</p><p>根据需要选择自己要的</p><p>这样就安装完了，执行mysql.server start，服务就起来了，可以用</p><p>mysql -uroot 进去看看</p> <a id="more"></a><p>之前还以为要初始化mysql， 实际上是不用的，那样只是重新在别的地方安装了一个db起来而已</p><p>不过密码还是要修改一下</p><p>cd /usr/local/opt/mysql/</p><p>./bin/mysql_secure_installation </p><p>然后按照提示进行修改密码即可</p><p>2 安装redis</p><p>brew install redis</p><p>To have launchd start redis now and restart at login:</p><p>  brew services start redis</p><p>Or, if you don’t want/need a background service you can just run:</p><p>  redis-server /usr/local/etc/redis.conf</p><p>redis 配置文件的位置<br>/usr/local/etc/redis.conf</p><p>3 安装zookeeper</p><p>brew info zookeeper</p><p>brew install zookeeper</p><p>安装完毕提示：</p><p>To have launchd start zookeeper now and restart at login:</p><p>  brew services start zookeeper</p><p>Or, if you don’t want/need a background service you can just run:</p><p>  zkServer start</p><p>配置文件地址：</p><p>/usr/local/etc/zookeeper/zoo.cfg </p><p>4 安装activemq</p><p>brew install activemq</p><p>To have launchd start activemq now and restart at login:</p><p>  brew services start activemq</p><p>Or, if you don’t want/need a background service you can just run:</p><p>  activemq start</p><p>5 安装nginx</p><p>brew info nginx</p><p>brew install nginx</p><p>装完以后提示：</p><p>The default port has been set in /usr/local/etc/nginx/nginx.conf to 8080 so that</p><p>nginx can run without sudo.</p><p>nginx will load all files in /usr/local/etc/nginx/servers/.</p><p>To have launchd start nginx now and restart at login:</p><p>  brew services start nginx</p><p>Or, if you don’t want/need a background service you can just run:</p><p>  nginx</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>Mac</category>
-      
-      <category>Homebrew</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Mac</tag>
-      
-      <tag>Homebrew</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Shadowsocks-Go一键安装脚本</title>
     <link href="/2019/06/11/Shadowsocks-Go%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/"/>
     <url>/2019/06/11/Shadowsocks-Go%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/</url>
@@ -2062,9 +2062,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>JDK</tag>
-      
       <tag>MySQL</tag>
+      
+      <tag>JDK</tag>
       
       <tag>Tomcat</tag>
       
@@ -2097,9 +2097,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>MySQL</tag>
-      
       <tag>Apache</tag>
+      
+      <tag>MySQL</tag>
       
       <tag>PHP</tag>
       

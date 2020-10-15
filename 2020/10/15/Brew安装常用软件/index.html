@@ -17,10 +17,23 @@
   <meta name="description" content="">
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
-  <title>分类 - Homebrew - Alterem</title>
+  <title>Brew安装常用软件 - Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -137,10 +150,10 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://gitee.com/alterem/picFB/raw/master/pics/2020/09/18/txy06q.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/alterem/picFB/raw/master/pics/2020/10/15/RHJmMX.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.4)">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
@@ -155,6 +168,51 @@
                 }).catch(console.error)
             </script>
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-15 17:04" pubdate>
+        2020年10月15日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      384 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -165,37 +223,194 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 1 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2019</p>
-    
-    <a href="/2019/06/12/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Brew安装常用软件</span>
-      <time style="float: right;">06-12</time>
-    </a>
-  
-</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Brew安装常用软件</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h5 id="1-安装mysql"><a href="#1-安装mysql" class="headerlink" title="1  安装mysql"></a>1  安装mysql</h5><pre><code class="hljs bash">brew install mysql</code></pre>
 
 
 
-              </div>
+<p>安装完后会提示：</p>
+<pre><code class="hljs bash">To have launchd start mysql now and restart at login:
+
+  brew services start mysql
+
+Or, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">  mysql.server start</span></code></pre>
+
+
+
+<p>根据需要选择自己要的</p>
+<p>这样就安装完了，执行<code>mysql.server start</code>，服务就起来了，可以用</p>
+<p><code>mysql -uroot</code> 进去看看</p>
+<p>之前还以为要初始化mysql， 实际上是不用的，那样只是重新在别的地方安装了一个db起来而已</p>
+<p>不过密码还是要修改一下</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/opt/mysql/
+./bin/mysql_secure_installation</code></pre>
+
+<p>然后按照提示进行修改密码即可</p>
+<h5 id="2-安装redis"><a href="#2-安装redis" class="headerlink" title="2 安装redis"></a>2 安装redis</h5><pre><code class="hljs bash">brew install redis</code></pre>
+
+
+
+<pre><code class="hljs bash">To have launchd start redis now and restart at login:
+
+  brew services start redis
+
+Or, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">  redis-server /usr/local/etc/redis.conf</span></code></pre>
+
+
+
+
+
+<p>redis 配置文件的位置<br><code>/usr/local/etc/redis.conf</code></p>
+<h5 id="3-安装zookeeper"><a href="#3-安装zookeeper" class="headerlink" title="3 安装zookeeper"></a>3 安装zookeeper</h5><pre><code class="hljs bash">brew info zookeeper
+
+brew install zookeeper</code></pre>
+
+
+
+<p>安装完毕提示：</p>
+<pre><code class="hljs bash">To have launchd start zookeeper now and restart at login:
+
+  brew services start zookeeper
+
+Or, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">  zkServer start</span></code></pre>
+
+
+
+
+
+<p>配置文件地址：</p>
+<p><code>/usr/local/etc/zookeeper/zoo.cfg</code></p>
+<h5 id="4-安装activemq"><a href="#4-安装activemq" class="headerlink" title="4 安装activemq"></a>4 安装activemq</h5><pre><code class="hljs bash">brew install activemq</code></pre>
+
+
+
+<pre><code class="hljs bash">To have launchd start activemq now and restart at login:
+
+  brew services start activemq
+
+Or, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">  activemq start</span></code></pre>
+
+
+
+<h5 id="5-安装nginx"><a href="#5-安装nginx" class="headerlink" title="5 安装nginx"></a>5 安装nginx</h5><pre><code class="hljs bash">brew info nginx
+
+brew install nginx</code></pre>
+
+
+
+<p>装完以后提示：</p>
+<pre><code class="hljs bash">The default port has been <span class="hljs-built_in">set</span> <span class="hljs-keyword">in</span> /usr/<span class="hljs-built_in">local</span>/etc/nginx/nginx.conf to 8080 so that
+
+nginx can run without sudo.
+
+ 
+
+nginx will load all files <span class="hljs-keyword">in</span> /usr/<span class="hljs-built_in">local</span>/etc/nginx/servers/.
+
+ 
+
+To have launchd start nginx now and restart at login:
+
+  brew services start nginx
+
+Or, <span class="hljs-keyword">if</span> you don<span class="hljs-string">'t want/need a background service you can just run:</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">  nginx</span></code></pre>
+
+
+
+
+
+<p><strong>欢迎关注微信公众号 ：</strong></p>
+<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Mac/">Mac</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Mac/Brew/">Brew</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Mac/">Mac</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Brew/">Brew</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/12/%E6%9D%8E%E8%AF%9E%E8%AF%B4%E8%BF%87%E4%BB%80%E4%B9%88%E7%B2%BE%E8%BE%9F%E7%9A%84%E8%AF%9D/">
+                        <span class="hidden-mobile">李诞说过什么精辟的话</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -325,6 +540,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -332,7 +572,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "分类 - Homebrew&nbsp;",
+        "Brew安装常用软件&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -347,6 +587,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -360,6 +615,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
