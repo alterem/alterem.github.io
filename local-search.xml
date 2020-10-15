@@ -1013,7 +1013,7 @@
     
     <categories>
       
-      <category>WEB</category>
+      <category>Web</category>
       
     </categories>
     
@@ -1109,9 +1109,9 @@
     
     <tags>
       
-      <tag>Cas</tag>
-      
       <tag>Redis</tag>
+      
+      <tag>Cas</tag>
       
       <tag>Ticket</tag>
       
@@ -2203,9 +2203,9 @@
       
       <tag>Linux</tag>
       
-      <tag>Redis</tag>
-      
       <tag>CentOS</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Server</tag>
       
