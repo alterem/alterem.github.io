@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -164,7 +164,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -648,13 +648,15 @@ esac</code></pre>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Shadowsocks/">Shadowsocks</a>
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
                     
                   </div>
                 
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
                     
                       <a class="hover-with-bg" href="/tags/Shadowsocks/">Shadowsocks</a>
                     
@@ -770,14 +772,11 @@ esac</code></pre>
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -803,10 +802,9 @@ esac</code></pre>
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -1007,6 +1005,7 @@ esac</code></pre>
     });
     daovoice('update');
   </script>
+
 
 
 

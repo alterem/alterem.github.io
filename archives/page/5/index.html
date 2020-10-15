@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -175,18 +175,12 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 85 篇文章</p>
+  <p class="h4">共计 84 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2019</p>
-    
-    <a href="/2019/06/10/CentOS7%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">CentOS7搭建ngrok服务器</span>
-      <time style="float: right;">06-10</time>
-    </a>
-  
     
     <a href="/2019/06/10/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%8A%9E%E6%B3%95/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">创建线程池的两种办法</span>
@@ -274,6 +268,12 @@
       <time style="float: right;">09-14</time>
     </a>
   
+    
+    <a href="/2018/09/14/SpringCloud%E7%9A%84%E7%89%88%E6%9C%AC/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">SpringCloud的版本</span>
+      <time style="float: right;">09-14</time>
+    </a>
+  
 </div>
 
   <nav aria-label="navigation">
@@ -355,14 +355,11 @@
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -388,10 +385,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -538,6 +534,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

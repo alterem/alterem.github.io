@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -175,7 +175,7 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 7 篇文章</p>
+  <p class="h4">共计 10 篇文章</p>
   <hr>
   
     
@@ -185,6 +185,27 @@
     <a href="/2020/05/28/Linux%E4%B8%8B%E6%B8%85%E7%A9%BA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E8%AE%B0%E5%BD%95%E5%92%8C%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2%E7%9A%84%E6%96%B9%E6%B3%95/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Linux下清空用户登录记录和命令历史的方法</span>
       <time style="float: right;">05-28</time>
+    </a>
+  
+    
+      
+      <p class="h5">2019</p>
+    
+    <a href="/2019/06/11/Shadowsocks-Go%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Shadowsocks-Go一键安装脚本</span>
+      <time style="float: right;">06-11</time>
+    </a>
+  
+    
+    <a href="/2019/06/10/CentOS7%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">CentOS7搭建ngrok服务器</span>
+      <time style="float: right;">06-10</time>
+    </a>
+  
+    
+    <a href="/2019/03/15/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85FreeTDS/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">CentOS下安装FreeTDS</span>
+      <time style="float: right;">03-15</time>
     </a>
   
     
@@ -295,14 +316,11 @@
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -328,10 +346,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -478,6 +495,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

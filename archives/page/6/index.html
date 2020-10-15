@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -175,18 +175,12 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 85 篇文章</p>
+  <p class="h4">共计 84 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2018</p>
-    
-    <a href="/2018/09/14/SpringCloud%E7%9A%84%E7%89%88%E6%9C%AC/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringCloud的版本</span>
-      <time style="float: right;">09-14</time>
-    </a>
-  
     
     <a href="/2018/09/13/JAVA%E4%B8%AD%E9%80%9A%E8%BF%87Hibernate-Validation%E8%BF%9B%E8%A1%8C%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">JAVA中通过Hibernate-Validation进行参数验证</span>
@@ -322,14 +316,11 @@
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -355,10 +346,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -505,6 +495,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

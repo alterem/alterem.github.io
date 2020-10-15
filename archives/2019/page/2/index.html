@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -175,18 +175,12 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 85 篇文章</p>
+  <p class="h4">共计 84 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2019</p>
-    
-    <a href="/2019/10/14/Python%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%88%AC%E8%99%AB%E4%B8%8Etkinter%E7%BB%93%E5%90%88/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Python自动更换壁纸爬虫与tkinter结合</span>
-      <time style="float: right;">10-14</time>
-    </a>
-  
     
     <a href="/2019/10/13/MySQL%E7%9A%845%E7%A7%8D%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">MySQL的5种时间类型的比较</span>
@@ -271,6 +265,12 @@
       <time style="float: right;">06-12</time>
     </a>
   
+    
+    <a href="/2019/06/12/EurekaClient%E6%B3%A8%E5%86%8C%E5%88%B0EurekaServer%E7%9A%84%E7%A7%98%E5%AF%86/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">EurekaClient注册到EurekaServer的秘密</span>
+      <time style="float: right;">06-12</time>
+    </a>
+  
 </div>
 
   <nav aria-label="navigation">
@@ -352,14 +352,11 @@
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -385,10 +382,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -535,6 +531,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

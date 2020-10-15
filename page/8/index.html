@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -178,57 +178,6 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Kotlin-环境安装</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
-          
-          
-            
-          
-          Kotlin是什么？
-Kotlin 是一个用于现代多平台应用的静态编程语言，由 JetBrains 开发。
-Kotlin可以编译成Java字节码，也可以编译成JavaScript，方便在没有JVM的设备上运行。
-Kotlin已正式成为Android官方支持开发语言。
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-03-14 14:31" pubdate>
-              2019-03-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Kotlin/">Kotlin</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Kotlin/">Kotlin</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
   <div class="row mx-auto index-card">
     
@@ -323,8 +272,6 @@ API: http://www.cola-ui.com/api/cola.html , http://legacy.cola-ui.com
             
               <a href="/categories/Web/">Web</a>
             
-              <a href="/categories/Web/Ui/">Ui</a>
-            
           </div>
         
         
@@ -378,6 +325,8 @@ API: http://www.cola-ui.com/api/cola.html , http://legacy.cola-ui.com
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/API/">API</a>
             
               <a href="/tags/%E5%B9%82%E7%AD%89/">幂等</a>
             
@@ -470,11 +419,15 @@ API: http://www.cola-ui.com/api/cola.html , http://legacy.cola-ui.com
             
               <a href="/categories/Java/">Java</a>
             
+              <a href="/categories/Java/SpringCloud/">SpringCloud</a>
+            
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
             
               <a href="/tags/SpringCloud/">SpringCloud</a>
             
@@ -632,7 +585,11 @@ CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/Linux/">Linux</a>
+            
               <a href="/tags/CentOS/">CentOS</a>
+            
+              <a href="/tags/Server/">Server</a>
             
               <a href="/tags/MySQL/">MySQL</a>
             
@@ -692,11 +649,67 @@ CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默
             
               <a href="/tags/CentOS/">CentOS</a>
             
+              <a href="/tags/Server/">Server</a>
+            
               <a href="/tags/Apache/">Apache</a>
             
               <a href="/tags/MySQL/">MySQL</a>
             
               <a href="/tags/PHP/">PHP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2018/09/11/Postgresql-9-4-0-1-x64-win7-%E8%A7%A3%E5%8E%8B%E7%89%88%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/">Postgresql 9.4.0-1 x64 win7 解压版安装步骤</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2018/09/11/Postgresql-9-4-0-1-x64-win7-%E8%A7%A3%E5%8E%8B%E7%89%88%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/">
+          
+          
+            
+          
+          1、下载
+
+32位：https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-binaries.zip
+64位：https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-x64-binaries.zip
+
+2、解压到：c:\pgsql\
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-09-11 14:55" pubdate>
+              2018-09-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/DataBase/">DataBase</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PostgreSQL/">PostgreSQL</a>
+            
+              <a href="/tags/windows/">windows</a>
             
           </div>
         
@@ -785,14 +798,11 @@ CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -818,10 +828,9 @@ CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -968,6 +977,7 @@ CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默
     });
     daovoice('update');
   </script>
+
 
 
 

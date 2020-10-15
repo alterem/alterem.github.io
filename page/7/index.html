@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -178,62 +178,6 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2019/06/10/CentOS7%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8/">CentOS7搭建ngrok服务器</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/06/10/CentOS7%E6%90%AD%E5%BB%BAngrok%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-          
-          
-            
-          
-          ngrok是一个反向代理，它能够让你本地的web服务或tcp服务通过公共的端口和外部建立一个安全的通道， 使得外网可以访问本地的计算机服务。也就是说，我们提供的服务（比如web站点）无需搭建在外部服务器， 只要通过ngrok把站点映射出去，别人即可直接访问到我们的服务。
-有做过微信公众号开发的人，对它应该不陌生。因为用户跟微信公众号产生的交互行为，微信会把用户的相关信息推送到我们自己的服务器， 如
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-06-10 16:38" pubdate>
-              2019-06-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CentOS/">CentOS</a>
-            
-              <a href="/categories/CentOS/Linux/">Linux</a>
-            
-              <a href="/categories/CentOS/Linux/Ngrok/">Ngrok</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/CentOS/">CentOS</a>
-            
-              <a href="/tags/Linux/">Linux</a>
-            
-              <a href="/tags/Ngrok/">Ngrok</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
   <div class="row mx-auto index-card">
     
@@ -276,9 +220,7 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E7%BA%BF%E7%A8%8B/">线程</a>
-            
-              <a href="/categories/%E7%BA%BF%E7%A8%8B/Java/">Java</a>
+              <a href="/categories/Java/">Java</a>
             
           </div>
         
@@ -288,7 +230,7 @@
             
               <a href="/tags/Java/">Java</a>
             
-              <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>
+              <a href="/tags/Thread/">Thread</a>
             
           </div>
         
@@ -331,7 +273,7 @@ Thread是程序中的执行线程。java虚拟机允许应用程序并发地的�
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+              <a href="/categories/Java/">Java</a>
             
           </div>
         
@@ -341,7 +283,7 @@ Thread是程序中的执行线程。java虚拟机允许应用程序并发地的�
             
               <a href="/tags/Java/">Java</a>
             
-              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+              <a href="/tags/Thread/">Thread</a>
             
           </div>
         
@@ -623,13 +565,15 @@ wget -c http://ibiblio.org/
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/FreeTDS/">FreeTDS</a>
+              <a href="/categories/Linux/">Linux</a>
             
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
             
               <a href="/tags/FreeTDS/">FreeTDS</a>
             
@@ -776,6 +720,57 @@ kotlin源文件不需要相匹配的目录和包，源文件可以放在任何�
     </article>
   </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Kotlin-环境安装</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/03/14/Kotlin-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+          
+          
+            
+          
+          Kotlin是什么？
+Kotlin 是一个用于现代多平台应用的静态编程语言，由 JetBrains 开发。
+Kotlin可以编译成Java字节码，也可以编译成JavaScript，方便在没有JVM的设备上运行。
+Kotlin已正式成为Android官方支持开发语言。
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-14 14:31" pubdate>
+              2019-03-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Kotlin/">Kotlin</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kotlin/">Kotlin</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
 
 
   <nav aria-label="navigation">
@@ -857,14 +852,11 @@ kotlin源文件不需要相匹配的目录和包，源文件可以放在任何�
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -890,10 +882,9 @@ kotlin源文件不需要相匹配的目录和包，源文件可以放在任何�
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -1040,6 +1031,7 @@ kotlin源文件不需要相匹配的目录和包，源文件可以放在任何�
     });
     daovoice('update');
   </script>
+
 
 
 

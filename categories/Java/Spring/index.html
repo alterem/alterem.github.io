@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -175,12 +175,24 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 1 篇文章</p>
+  <p class="h4">共计 3 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2019</p>
+    
+    <a href="/2019/06/24/%E5%9C%A8SpringMVC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8HIkariCP/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">在SpringMVC项目中使用HIkariCP</span>
+      <time style="float: right;">06-24</time>
+    </a>
+  
+    
+    <a href="/2019/06/13/MyBatis%E5%9C%A8Spring%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">MyBatis在Spring环境下的事务管理</span>
+      <time style="float: right;">06-13</time>
+    </a>
+  
     
     <a href="/2019/06/12/Spring%E6%9E%81%E9%80%9F%E9%9B%86%E6%88%90%E6%B3%A8%E8%A7%A3Redis%E5%AE%9E%E8%B7%B5/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Spring极速集成注解Redis实践</span>
@@ -256,14 +268,11 @@
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -289,10 +298,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -439,6 +447,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

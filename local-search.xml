@@ -13,9 +13,7 @@
     
     <categories>
       
-      <category>Mac</category>
-      
-      <category>Brew</category>
+      <category>MacOS</category>
       
     </categories>
     
@@ -69,12 +67,18 @@
       
       <category>Java</category>
       
+      <category>SpringBoot</category>
+      
     </categories>
     
     
     <tags>
       
+      <tag>Java</tag>
+      
       <tag>SpringBoot</tag>
+      
+      <tag>API</tag>
       
     </tags>
     
@@ -215,6 +219,18 @@
     <content type="html"><![CDATA[<h3 id="情况一：最后一次提交且未-push"><a href="#情况一：最后一次提交且未-push" class="headerlink" title="情况一：最后一次提交且未 push"></a>情况一：最后一次提交且未 push</h3><p>执行以下命令：</p><pre><code class="hljs bash">git commit --amend</code></pre><p>git 会打开 $EDITOR 编辑器，它会加载这次提交的日志，这样我们就可以在上面编辑，编辑后保存即完成此次的修改。</p><h3 id="情况二：最后一次提交且已-push-到服务器"><a href="#情况二：最后一次提交且已-push-到服务器" class="headerlink" title="情况二：最后一次提交且已 push 到服务器"></a>情况二：最后一次提交且已 push 到服务器</h3><p>执行以下命令：</p><pre><code class="hljs bash">git commit --amendgit push origin master --force</code></pre><p>和情况一的做法一样。使用 push 推送到远程服务器是需要加上 –force，让服务器更新历史记录。</p><p>** 需要注意的是：把修改后的日志强制 push 到 Git 服务器，如果别人本地的副本有修改，很有可能会导致他们同步不了，所以最好和他们核对下。**</p><h3 id="情况三：旧的提交且未推送"><a href="#情况三：旧的提交且未推送" class="headerlink" title="情况三：旧的提交且未推送"></a>情况三：旧的提交且未推送</h3><p>假设 commit 是倒数第 3 次提交，这个可以使用 git log 查看，</p><pre><code class="hljs bash">$ git <span class="hljs-built_in">log</span>commit b1b451d218cc23b6c769f373164f2b89cf54d0aaAuthor: clcaza &lt;clcaza@sina.cn&gt;Date:  Sat Mar 10 19:09:08 2018 +0800  添加内容 dcommit 04f0d1809d5d31cc6e930efcba47a5f3f7e93319Author: clcaza &lt;clcaza@sina.cn&gt;Date:  Sat Mar 10 19:08:24 2018 +0800  添加内容 ccommit 94fc8feb916442d56b558d5c370f18f057298921Author: clcaza &lt;clcaza@sina.cn&gt;Date:  Sat Mar 10 19:07:08 2018 +0800  添加内容 acommit fd517efa9faf6a5ec71d0eac38fbcfa0cd689f40Author: clcaza &lt;clcaza@sina.cn&gt;Date:  Sat Mar 10 19:06:21 2018 +0800  init</code></pre><p>执行 rebase</p><pre><code class="hljs bash">git rebase -i HEAD~3</code></pre><p>它会打开一个编辑器，它会把最后前 3 次的提交显示出来，类似于：</p><pre><code class="hljs bash">pick 94fc8fe 添加内容 apick 04f0d18 添加内容 cpick b1b451d 添加内容 d</code></pre><p>你会看到，它是按提交的顺序显示的，与 git log 显示的顺序相反。定位到你要编辑日志的那一行，把 pick 修改为 edit，然后保存。</p><p>接着就是修改日志内容了</p><pre><code class="hljs bash">git commit --amend</code></pre><p>完成编辑日志后，记得执行：</p><pre><code class="hljs bash">git rebase --<span class="hljs-built_in">continue</span></code></pre><p>Rebase 目的是打开提交的历史记录，让您选择要修改的内容。 Git 会让你在一个新的分支修改内容。 git rebase –continue 则是让你重新回到之前的分支。</p><h3 id="情况四：旧的提交且已-push-到服务器"><a href="#情况四：旧的提交且已-push-到服务器" class="headerlink" title="情况四：旧的提交且已 push 到服务器"></a>情况四：旧的提交且已 push 到服务器</h3><p>前面编辑日志的操作是和情况三是一样的：</p><pre><code class="hljs bash">git rebase -i HEAD~Xgit commit --amendgit rebase --<span class="hljs-built_in">continue</span></code></pre><p>X 表示倒数第几次提交。</p><p>完成编辑日志后，执行 push：</p><pre><code class="hljs bash">git push origin master --force</code></pre><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
     
     
+    <categories>
+      
+      <category>Git</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Git</tag>
+      
+    </tags>
     
   </entry>
   
@@ -255,12 +271,14 @@
     
     <categories>
       
-      <category>Redis</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>Redis</tag>
       
@@ -305,12 +323,14 @@
     
     <categories>
       
-      <category>JavaDoc</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>JavaDoc</tag>
       
@@ -330,12 +350,14 @@
     
     <categories>
       
-      <category>JavaDoc</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>JavaDoc</tag>
       
@@ -356,8 +378,6 @@
     <categories>
       
       <category>Java</category>
-      
-      <category>Thread</category>
       
     </categories>
     
@@ -384,12 +404,16 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>Java</category>
+      
+      <category>SpringCloud</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>springCloud</tag>
       
@@ -418,9 +442,9 @@
     
     <tags>
       
-      <tag>fastjson</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Fastjson</tag>
       
     </tags>
     
@@ -445,9 +469,9 @@
     
     <tags>
       
-      <tag>fastjson</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Fastjson</tag>
       
     </tags>
     
@@ -465,14 +489,16 @@
     
     <categories>
       
-      <category>gateway</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>网关</tag>
+      <tag>Java</tag>
+      
+      <tag>Gateway</tag>
       
     </tags>
     
@@ -737,31 +763,6 @@
   
   
   <entry>
-    <title>公共DNS性能大比拼</title>
-    <link href="/2019/10/21/%E5%85%AC%E5%85%B1DNS%E6%80%A7%E8%83%BD%E5%A4%A7%E6%AF%94%E6%8B%BC/"/>
-    <url>/2019/10/21/%E5%85%AC%E5%85%B1DNS%E6%80%A7%E8%83%BD%E5%A4%A7%E6%AF%94%E6%8B%BC/</url>
-    
-    <content type="html"><![CDATA[<p>​    今天中午，访问Gitee突然访问不进去，然后收到红薯通知：阿里云停止了 Gitee.com 的域名解析。</p><p>​    <img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymniewo5j30k8065mxv.jpg" srcset="/img/loading.gif" alt="msg"></p><p>​    码云官方也随后给出解决办法</p><blockquote><p>没有任何提示，没有任何提前通知，阿里云停止了 Gitee.com 的域名解析！！！</p><p>我们正在跟阿里云联系了解具体情况！</p><p>如果你访问不了请暂时在 hosts 里映射 gitee.com 域名到 IP地址 212.64.62.174</p><p>对此造成你的不便，我们深表歉意。</p></blockquote><p>​    那么先解释一下什么是DNS，百度百科说：域名系统（Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。通俗一点来说就是：我们不可能记住那么多的IP地址，但是我们可以记住域名啊，比如baidu.com，我们在地址栏输入baidu.com之后，会经过一个域名解析服务器把我们输入的域名转换为Ip。所以DNS最通俗来说就是一个域名解析服务器。</p><p>​    那么为什么阿里云hold处理之后很多用户受影响，而一少部分用户没有受影响呢？或者说为什么修改本地Hosts就可以继续正常访问呢？</p><p>​    其实所有的域名解析，会先经过一次本地HOSTS文件检索，如果本地有对应配置解析，会先走自己本地所配置的解析，如果本地没有配置，那么会继续往上解析，由于国内网络运营商为了大家网络响应速度（减少域名解析时间）并且现在绝大多数的站点都托管在阿里云云服务上，所以绝大多数运营商都会把自己的DNS服务器定向到阿里云的DNS解析器。所以只要我们避开阿里云DNS解析基本就解决了这个问题。至于其它是什么原因我们不做太多的探讨。</p><p>​    以下对DNS解析器进行一些性能上的分析。</p><p><strong>DNS解析器性能大比拼：CloudFlare vs 谷歌vs Quad9 vs OpenDNS</strong></p><p>​    几个月前，我对市面上几款顶级的免费DNS解析器的性能作了一番比较。当时恰好在Quad9发布之后，我试图搞清楚使用哪一个DNS解析器比较好，以便推荐给亲朋好友。面前有谷歌、OpenDNS和Quad9等好多选择，不过我喜欢选择。</p><p>情况在完全变得好转。CloudFlare是最了解互联网性能的公司之一，它最近推出了自己的免费DNS解析器。它在默认情况下支持基于TLS的DNS和基于HTTPS的DNS，这使得它更引人关注。</p><p>现在我们有了更有意思的比较对象：谷歌的8.8.8.8、Quad9的9.9.9.9和CloudFlare的1.1.1.1，此外还有OpenDNS的208.67.222.222和另外几家小众提供商作为可供我们使用的选择。</p><p><strong>测试的几家提供商</strong></p><p>​    不妨比较一下几家提供商，看看它们在世界各地的网速有多快。这些是我们选择评估的8家顶级的免费DNS提供商：</p><ul><li>谷歌 8.8.8.8：私密的、未经过滤的。这是最受欢迎的选择。</li><li>CloudFlare 1.1.1.1：私密的、未经过滤的。它是新玩家。</li><li>Quad 9 9.9.9.9：私密的、关注安全的。它是阻止访问恶意网站的新玩家。</li><li>OpenDNS 208.67.222.222：阻止恶意域名，并提供阻止成人内容这个选项的旧玩家。</li><li>诺顿DNS 199.85.126.20：阻止恶意域名，并与其防病毒软件集成起来的旧玩家。</li><li>CleanBrowsing 185.228.168.168：私密的、关注安全的。阻止访问成人内容的新玩家。</li><li>Yandex DNS 77.88.8.7：阻止恶意域名的旧玩家。它在俄罗斯非常受欢迎。</li><li>Comodo DNS 8.26.56.26：阻止恶意域名的旧玩家。</li></ul><p>下面这张图列出了它们在隐私选项方面的功能特性：</p><p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymnjxnv3j30m805swew.jpg" srcset="/img/loading.gif" alt=""></p><p><strong>隐私选项比较</strong></p><p>​    上面的隐私选项基于提供商的承诺：不记录日志或不共享你的DNS请求。</p><p><strong>地点</strong></p><p>​    我们从全球的18个地点进行了测试。我们主要使用VPS提供商+一些宽带位置，尝试从尽可能多的地方查询它们的DNS。它会告诉我们它们的连接有多可靠、数据中心的位置以及该地区某个用户的体验有多完善。选择的地点如下：</p><ul><li>北美：圣迭戈、洛杉矶、纽约、多伦多、蒙特利尔、亚特兰大、达拉斯、弗里蒙特和旧金山</li><li>欧洲：伦敦、巴黎、阿姆斯特丹和法兰克福</li><li>亚洲：东京、新加坡、班加罗尔（印度）、悉尼和布里斯班（澳大利亚）</li><li>南美洲：圣保罗</li></ul><p><strong>测试结果摘要</strong></p><p>​    我们的测试非常简单，我们针对不同的流行域名（谷歌、facebook、twitter和Gmail等）在一个小时内执行了70次DNS查询。我们对每个位置的所有请求求平均值，以获得每个DNS解析器的整体性能指标。</p><p><strong>长话短说/摘要</strong></p><ul><li>所有提供商（Yandex除外）在北美和欧洲都表现非常好。它们在美国、加拿大和欧洲的响应时间均小于15毫秒，这令人惊讶。实际上，你选项其中任何一家，都不会注意到几毫秒的延迟差异。然而，亚洲和南美洲在总体平均值上有所不同，因为一些提供商在那里的连接不是很好。</li><li>就所有地点中的72%而言，CloudFlare是速度最快的DNS。它在全球的平均值很低，仅为4.98毫秒，令人刮目相看。</li><li>谷歌和Quad9分别名列第二和第三。Quad9在北美和欧洲的速度比谷歌快，但在亚洲/南美洲表现欠佳。</li><li>CloudFlare在每个地方都表现不俗。谷歌和Quad9在某些地方的响应时间很长，相比之下CloudFlare在各个地方都表现出色。</li><li>Yandex仅面向俄罗斯。它不像其他提供商那样利用任播（Anycast），在每个地方都非常缓慢。</li><li>CleanBrowsing是提供成人（色情）内容过滤机制的速度最快的提供商。</li><li>我们知道自己无法一对一地比较这些提供商，因为它们都拥有可能增加一些延迟的特殊功能（比如Quad9和Comodo阻止访问恶意域名）。具体结果如下。</li></ul><p><strong>全球平均值</strong></p><p>#1 CloudFlare：4.98ms</p><p>#2 谷歌: 16.44 ms</p><p>#3 Quad9: 18.25 ms</p><p>#4 CleanBrowsing: 19.14 ms</p><p>#5 诺顿: 34.75 ms</p><p>#6 OpenDNS: 46.51 ms</p><p>#7 Comodo: 71.90</p><p>#8 Yandex: 169.91</p><p><strong>北美平均值</strong></p><p>#1 CloudFlare: 3.93 ms</p><p>#2 Quad9: 7.21 ms</p><p>#3 诺顿: 8.32 ms</p><p>#4 谷歌: 8.53 ms</p><p>#5 CleanBrowsing: 11.83 ms</p><p>#6 OpenDNS: 14.66 ms</p><p>#7 Comodo: 25.91 ms</p><p>#8 Yandex: 119.09 ms</p><p><strong>欧洲平均值</strong></p><p>#1 CloudFlare: 2.96</p><p>#2 Quad9: 4.35</p><p>#3 CleanBrowsing: 5.74</p><p>#4 谷歌: 7.17</p><p>#5 OpenDNS: 8.99</p><p>#6 诺顿: 10.35</p><p>#7 Comodo: 13.06</p><p>#8 Yandex: 35.74</p><p><strong>测试数据</strong></p><p>美国纽约</p><p>#1Quad9 1.50 ms</p><p>#2CloudFlare 1.57 ms</p><p>#4Norton_DNS 7.28 ms</p><p>#5Google_DNS 7.71 ms</p><p>#6OpenDNS 9.71 ms</p><p>#6CleanBrowsing 10.85 ms</p><p>#7Comodo_DNS 12.00 ms</p><p>#8Yandex_DNS 108.14 ms</p><p>美国圣迭戈</p><p>#1 CloudFlare 8.57 ms</p><p>#2Norton_DNS 9.00 ms</p><p>#3Google_DNS 14.28 ms</p><p>#4CleanBrowsing 19.28 ms</p><p>#5OpenDNS 19.42 ms</p><p>#6Quad9 19.42 ms</p><p>#7Comodo_DNS 40.00 ms</p><p>#8Yandex_DNS 193.57 ms</p><p>加拿大多伦多</p><p>#1 CloudFlare 3.42 ms</p><p>#2Google_DNS 9.42 ms</p><p>#3Norton_DNS 13.00 ms</p><p>#4CleanBrowsing 13.71 ms</p><p>#5Quad9 15.28 ms</p><p>#6OpenDNS 17.85 ms</p><p>#7Comodo_DNS 21.71 ms</p><p>#8Yandex_DNS 124.14 ms</p><p>加拿大蒙特利尔</p><p>#1 CleanBrowsing 15.28 ms</p><p>#2Google_DNS 16.71 ms</p><p>#3CloudFlare 17.00 ms</p><p>#4Quad9 17.71 ms</p><p>#5OpenDNS 23.42 ms</p><p>#6Norton_DNS 25.71 ms</p><p>#7Comodo_DNS 84.28 ms</p><p>#8Yandex_DNS 118.85 ms</p><p>美国亚特兰大</p><p>#1 Quad9 1.71 ms</p><p>#2CloudFlare 1.85 ms</p><p>#3Google_DNS 4.14 ms</p><p>#4CleanBrowsing 15.42 ms</p><p>#5Norton_DNS 17.00 ms</p><p>#6OpenDNS 17.14 ms</p><p>#7Comodo_DNS 18.57 ms</p><p>#8Yandex_DNS 127.57 ms</p><p>美国达拉斯</p><p>#1CloudFlare 2.10 ms</p><p>#2Norton_DNS 3.14 ms</p><p>#3Quad9 3.42 ms</p><p>#4OpenDNS 6.71 ms</p><p>#5Google_DNS 7.14 ms</p><p>#6CleanBrowsing 10.85 ms</p><p>#7Comodo_DNS 38.42 ms</p><p>#8Yandex_DNS 153.28 ms</p><p>美国弗里蒙特</p><p>#1 CloudFlare 2.00 ms</p><p>#2Norton_DNS 6.14 ms</p><p>#3Quad9 11.00 ms</p><p>#4CleanBrowsing 11.85 ms</p><p>#5Google_DNS 13.71 ms</p><p>#6Comodo_DNS 22.00 ms</p><p>#7OpenDNS 24.42 ms</p><p>#8Yandex_DNS 185.00 ms</p><p>美国旧金山</p><p>#1 Norton_DNS 2.00 ms</p><p>#2Quad9 2.14 ms</p><p>#3CloudFlare 2.85 ms</p><p>#4Google_DNS 12.28 ms</p><p>#5CleanBrowsing 21.14 ms</p><p>#6Comodo_DNS 22.14 ms</p><p>#7OpenDNS 28.00 ms</p><p>#8Yandex_DNS 180.42 ms</p><p>英国伦敦</p><p>#1 CloudFlare 1.14 ms</p><p>#2Quad9 1.85 ms</p><p>#3CleanBrowsing 2.00 ms</p><p>#4Norton_DNS 6.57 ms</p><p>#5Google_DNS 7.71 ms</p><p>#6Comodo_DNS 9.85 ms</p><p>#7OpenDNS 9.85 ms</p><p>#8Yandex_DNS 35.57 ms</p><p>法国巴黎</p><p>#1CloudFlare 5.14 ms</p><p>#2Comodo_DNS 10.00 ms</p><p>#3Google_DNS 10.14 ms</p><p>#4Quad9 12.71 ms</p><p>#5OpenDNS 13.57 ms</p><p>#7CleanBrowsing 14.85 ms</p><p>#6Norton_DNS 23.85 ms</p><p>#8Yandex_DNS 38.14 ms</p><p>荷兰阿姆斯特丹</p><p>#1CloudFlare 1.14 ms</p><p>#2CleanBrowsing 1.14 ms</p><p>#3Quad9 1.71 ms</p><p>#4Google_DNS 2.71 ms</p><p>#5OpenDNS 4.42 ms</p><p>#6Norton_DNS 9.85 ms</p><p>#7Comodo_DNS 12.85 ms</p><p>#8Yandex_DNS 40.42 ms</p><p>德国法兰克福</p><p>#1 Norton_DNS 1.14 ms</p><p>#2Quad9 1.14 ms</p><p>#3CloudFlare 4.42 ms</p><p>#4CleanBrowsing 5.00 ms</p><p>#5Google_DNS 8.14 ms</p><p>#6OpenDNS 8.14 ms</p><p>#7Comodo_DNS 19.57 ms</p><p>#8Yandex_DNS 28.85 ms</p><p>日本东京</p><p>#1CloudFlare 2.00 ms</p><p>#2CleanBrowsing 2.14 ms</p><p>#3Norton_DNS 6.14 ms</p><p>#4Google_DNS 17.28 ms</p><p>#5Quad9 40.57 ms</p><p>#6Comodo_DNS 124.14 ms</p><p>#7OpenDNS 125.71 ms</p><p>#8Yandex_DNS 283.00 ms</p><p>新加坡</p><p>#1CloudFlare 1.14 ms</p><p>#2Google_DNS 2.00 ms</p><p>#3Quad9 2.14 ms</p><p>#4CleanBrowsing 2.28 ms</p><p>#5OpenDNS 28.14 ms</p><p>#6Norton_DNS 34.14 ms</p><p>#7Comodo_DNS 203.71 ms</p><p>#8Yandex_DNS 343.00 ms</p><p>印度班加罗尔</p><p>#1CloudFlare 7.42 ms</p><p>#2Norton_DNS 21.28 ms</p><p>#3Quad9 38.85 ms</p><p>#4Google_DNS 40.71 ms</p><p>#5OpenDNS 59.42 ms</p><p>#6CleanBrowsing 138.71 ms</p><p>#7Comodo_DNS 150.57 ms</p><p>#8Yandex_DNS 171.57 ms</p><p>澳大利亚悉尼</p><p>#1CloudFlare 22.28 ms</p><p>#2Quad9 25.00 ms</p><p>#3Google_DNS 26.14 ms</p><p>#4CleanBrowsing 34.57 ms</p><p>#5OpenDNS 37.85 ms</p><p>#6Norton_DNS 164.57 ms</p><p>#7Comodo_DNS 186.28 ms</p><p>#8Yandex_DNS 352.14 ms</p><p>澳大利亚布里斯班</p><p>#1CloudFlare 3.00 ms</p><p>#2CleanBrowsing 13.57 ms</p><p>#3Quad9 17.71 ms</p><p>#4Google_DNS 66.14 ms</p><p>#5Norton_DNS 160.14 ms</p><p>#6Comodo_DNS 188.28 ms</p><p>#7OpenDNS 190.28 ms</p><p>#8Yandex_DNS 336.71 ms</p><p>巴西圣保罗</p><p>#1CloudFlare 2.71 ms</p><p>#2CleanBrowsing 12.00 ms</p><p>#3Google_DNS 29.71 ms</p><p>#4Norton_DNS 114.71 ms</p><p>#5Quad9 114.71 ms</p><p>#6Comodo_DNS 129.85 ms</p><p>#7OpenDNS 213.14 ms</p><p>#8Yandex_DNS 238.14 ms</p><p><strong>欢迎关注微信公众号​：</strong></p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee-20200407103021459.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
-    
-    
-    <categories>
-      
-      <category>DNS</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>DNS</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Python自动更换壁纸爬虫与tkinter结合</title>
     <link href="/2019/10/14/Python%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%88%AC%E8%99%AB%E4%B8%8Etkinter%E7%BB%93%E5%90%88/"/>
     <url>/2019/10/14/Python%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%88%AC%E8%99%AB%E4%B8%8Etkinter%E7%BB%93%E5%90%88/</url>
@@ -798,7 +799,7 @@
     
     <categories>
       
-      <category>MySQL</category>
+      <category>DataBase</category>
       
     </categories>
     
@@ -823,7 +824,7 @@
     
     <categories>
       
-      <category>MySQL</category>
+      <category>DataBase</category>
       
     </categories>
     
@@ -884,6 +885,8 @@
       
       <tag>Java</tag>
       
+      <tag>Lombok</tag>
+      
     </tags>
     
   </entry>
@@ -900,7 +903,7 @@
     
     <categories>
       
-      <category>高可用</category>
+      <category>Java</category>
       
     </categories>
     
@@ -908,6 +911,8 @@
     <tags>
       
       <tag>Java</tag>
+      
+      <tag>高可用</tag>
       
     </tags>
     
@@ -950,14 +955,14 @@
     
     <categories>
       
-      <category>SonarQube</category>
-      
-      <category>SonarLint</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>SonarQube</tag>
       
@@ -979,14 +984,14 @@
     
     <categories>
       
-      <category>Sonar</category>
-      
-      <category>SonarQube</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>Sonar</tag>
       
@@ -1008,12 +1013,14 @@
     
     <categories>
       
-      <category>Javascript</category>
+      <category>WEB</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Web</tag>
       
       <tag>Javascript</tag>
       
@@ -1033,18 +1040,20 @@
     
     <categories>
       
-      <category>HIkariCP</category>
+      <category>Java</category>
       
-      <category>dataSource</category>
+      <category>Spring</category>
       
     </categories>
     
     
     <tags>
       
+      <tag>Java</tag>
+      
       <tag>HIkariCP</tag>
       
-      <tag>dataSource</tag>
+      <tag>DataSource</tag>
       
     </tags>
     
@@ -1062,7 +1071,7 @@
     
     <categories>
       
-      <category>MyBatis</category>
+      <category>Java</category>
       
       <category>Spring</category>
       
@@ -1070,6 +1079,8 @@
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>MyBatis</tag>
       
@@ -1091,11 +1102,7 @@
     
     <categories>
       
-      <category>Cas</category>
-      
-      <category>Redis</category>
-      
-      <category>Ticket</category>
+      <category>Java</category>
       
     </categories>
     
@@ -1128,16 +1135,14 @@
       
       <category>Spring</category>
       
-      <category>Redis</category>
-      
     </categories>
     
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Spring</tag>
       
@@ -1182,7 +1187,9 @@
     
     <categories>
       
-      <category>Eureka</category>
+      <category>Java</category>
+      
+      <category>SpringCloud</category>
       
     </categories>
     
@@ -1190,6 +1197,8 @@
     <tags>
       
       <tag>Eureka</tag>
+      
+      <tag>SpringCloud</tag>
       
     </tags>
     
@@ -1206,8 +1215,6 @@
     
     
     <categories>
-      
-      <category>Hexo</category>
       
       <category>Blog</category>
       
@@ -1236,14 +1243,14 @@
     
     <categories>
       
-      <category>JavaScript</category>
+      <category>Web</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JavaScript</tag>
+      <tag>Web</tag>
       
     </tags>
     
@@ -1262,8 +1269,6 @@
     <categories>
       
       <category>Java</category>
-      
-      <category>Id</category>
       
     </categories>
     
@@ -1315,8 +1320,6 @@
     
     <categories>
       
-      <category>Restful</category>
-      
       <category>Java</category>
       
     </categories>
@@ -1325,6 +1328,8 @@
     <tags>
       
       <tag>Java</tag>
+      
+      <tag>API</tag>
       
       <tag>Restful</tag>
       
@@ -1345,8 +1350,6 @@
     <categories>
       
       <category>Java</category>
-      
-      <category>String</category>
       
     </categories>
     
@@ -1423,12 +1426,14 @@
     
     <categories>
       
-      <category>Redis</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>Redis</tag>
       
@@ -1448,12 +1453,14 @@
     
     <categories>
       
-      <category>Shadowsocks</category>
+      <category>Linux</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Linux</tag>
       
       <tag>Shadowsocks</tag>
       
@@ -1498,14 +1505,14 @@
     
     <categories>
       
-      <category>Http</category>
-      
-      <category>Status</category>
+      <category>Server</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Server</tag>
       
       <tag>Http</tag>
       
@@ -1527,7 +1534,7 @@
     
     <categories>
       
-      <category>MongoDB</category>
+      <category>DataBase</category>
       
     </categories>
     
@@ -1535,6 +1542,8 @@
     <tags>
       
       <tag>MongoDB</tag>
+      
+      <tag>DataBase</tag>
       
     </tags>
     
@@ -1552,8 +1561,6 @@
     
     <categories>
       
-      <category>MongoDB</category>
-      
       <category>Java</category>
       
     </categories>
@@ -1564,6 +1571,8 @@
       <tag>Java</tag>
       
       <tag>MongoDB</tag>
+      
+      <tag>DataBase</tag>
       
     </tags>
     
@@ -1581,20 +1590,20 @@
     
     <categories>
       
-      <category>CentOS</category>
-      
       <category>Linux</category>
       
-      <category>Ngrok</category>
+      <category>Server</category>
       
     </categories>
     
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
       
-      <tag>Linux</tag>
+      <tag>Server</tag>
       
       <tag>Ngrok</tag>
       
@@ -1614,8 +1623,6 @@
     
     <categories>
       
-      <category>线程</category>
-      
       <category>Java</category>
       
     </categories>
@@ -1625,7 +1632,7 @@
       
       <tag>Java</tag>
       
-      <tag>线程</tag>
+      <tag>Thread</tag>
       
     </tags>
     
@@ -1643,7 +1650,7 @@
     
     <categories>
       
-      <category>多线程</category>
+      <category>Java</category>
       
     </categories>
     
@@ -1652,7 +1659,7 @@
       
       <tag>Java</tag>
       
-      <tag>多线程</tag>
+      <tag>Thread</tag>
       
     </tags>
     
@@ -1770,12 +1777,14 @@
     
     <categories>
       
-      <category>FreeTDS</category>
+      <category>Linux</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Linux</tag>
       
       <tag>FreeTDS</tag>
       
@@ -1897,8 +1906,6 @@
       
       <category>Web</category>
       
-      <category>Ui</category>
-      
     </categories>
     
     
@@ -1928,6 +1935,8 @@
     
     
     <tags>
+      
+      <tag>API</tag>
       
       <tag>幂等</tag>
       
@@ -1974,10 +1983,14 @@
       
       <category>Java</category>
       
+      <category>SpringCloud</category>
+      
     </categories>
     
     
     <tags>
+      
+      <tag>Java</tag>
       
       <tag>SpringCloud</tag>
       
@@ -2060,7 +2073,11 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
+      
+      <tag>Server</tag>
       
       <tag>MySQL</tag>
       
@@ -2097,6 +2114,8 @@
       
       <tag>CentOS</tag>
       
+      <tag>Server</tag>
+      
       <tag>Apache</tag>
       
       <tag>MySQL</tag>
@@ -2119,7 +2138,7 @@
     
     <categories>
       
-      <category>Sql</category>
+      <category>DataBase</category>
       
     </categories>
     
@@ -2155,7 +2174,7 @@
       
       <tag>Linux</tag>
       
-      <tag>SSH</tag>
+      <tag>Server</tag>
       
     </tags>
     
@@ -2182,9 +2201,13 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>Redis</tag>
       
       <tag>CentOS</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2211,9 +2234,13 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
       
-      <tag>node</tag>
+      <tag>Server</tag>
+      
+      <tag>NodeJS</tag>
       
     </tags>
     
@@ -2231,7 +2258,7 @@
     
     <categories>
       
-      <category>Eclipse</category>
+      <category>Java</category>
       
     </categories>
     

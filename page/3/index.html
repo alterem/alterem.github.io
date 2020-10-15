@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -788,23 +788,23 @@ from selenium.webdriver.chrome.opt
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2019/10/21/%E5%85%AC%E5%85%B1DNS%E6%80%A7%E8%83%BD%E5%A4%A7%E6%AF%94%E6%8B%BC/">公共DNS性能大比拼</a>
+        <a href="/2019/10/14/Python%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%88%AC%E8%99%AB%E4%B8%8Etkinter%E7%BB%93%E5%90%88/">Python自动更换壁纸爬虫与tkinter结合</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2019/10/21/%E5%85%AC%E5%85%B1DNS%E6%80%A7%E8%83%BD%E5%A4%A7%E6%AF%94%E6%8B%BC/">
+        <a href="/2019/10/14/Python%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%88%AC%E8%99%AB%E4%B8%8Etkinter%E7%BB%93%E5%90%88/">
           
           
             
           
-          ​    今天中午，访问Gitee突然访问不进去，然后收到红薯通知：阿里云停止了 Gitee.com 的域名解析。
-​    
-​    码云官方也随后给出解决办法
-
-没有任何提示，没有任何提前通知，阿里云停止了 Gitee.com 的域名解析！！！
-我们正在跟阿里云联系了解具体情况！
-如果你访问不了请暂时在 hosts 里映射 gitee.com 域名到 IP地址 212.64.62.174
-对
+          直接上代码
+import ctypes
+import time
+import requests
+import os
+from threading import Thread
+from tkinter import Tk, Label, Button,Entry,StringVar,messagebox
+# '放到AppData\Roaming\Microsoft\Windows\Start Men
         </a>
       </p>
 
@@ -812,8 +812,8 @@ from selenium.webdriver.chrome.opt
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-21 17:52" pubdate>
-              2019-10-21
+            <time datetime="2019-10-14 00:04" pubdate>
+              2019-10-14
             </time>
           </div>
         
@@ -821,7 +821,7 @@ from selenium.webdriver.chrome.opt
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/DNS/">DNS</a>
+              <a href="/categories/Python/">Python</a>
             
           </div>
         
@@ -829,7 +829,9 @@ from selenium.webdriver.chrome.opt
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/DNS/">DNS</a>
+              <a href="/tags/Python/">Python</a>
+            
+              <a href="/tags/Tkinter/">Tkinter</a>
             
           </div>
         
@@ -918,14 +920,11 @@ from selenium.webdriver.chrome.opt
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -951,10 +950,9 @@ from selenium.webdriver.chrome.opt
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -1101,6 +1099,7 @@ from selenium.webdriver.chrome.opt
     });
     daovoice('update');
   </script>
+
 
 
 

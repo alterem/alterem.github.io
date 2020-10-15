@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -164,7 +164,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -361,9 +361,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2019/10/21/%E5%85%AC%E5%85%B1DNS%E6%80%A7%E8%83%BD%E5%A4%A7%E6%AF%94%E6%8B%BC/">
+                      <a href="/2019/10/22/Python%E7%88%AC%E5%8F%96%E6%9F%90%E9%9F%B3%E4%B9%90%E7%BD%91%E7%AB%99%E9%87%8C%E9%9D%A2%E7%9A%84%E6%9F%90%E6%9D%BF%E5%9D%97/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">公共DNS性能大比拼</span>
+                        <span class="hidden-mobile">Python爬取某音乐网站里面的某板块</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -462,14 +462,11 @@
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -495,10 +492,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -699,6 +695,7 @@
     });
     daovoice('update');
   </script>
+
 
 
 

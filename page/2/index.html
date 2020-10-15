@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -225,13 +225,15 @@ time
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Redis/">Redis</a>
+              <a href="/categories/Java/">Java</a>
             
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
             
               <a href="/tags/Redis/">Redis</a>
             
@@ -333,13 +335,15 @@ time
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaDoc/">JavaDoc</a>
+              <a href="/categories/Java/">Java</a>
             
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
             
               <a href="/tags/JavaDoc/">JavaDoc</a>
             
@@ -388,13 +392,15 @@ IDEA 的 JavaDoc
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaDoc/">JavaDoc</a>
+              <a href="/categories/Java/">Java</a>
             
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
             
               <a href="/tags/JavaDoc/">JavaDoc</a>
             
@@ -451,8 +457,6 @@ publ
             
               <a href="/categories/Java/">Java</a>
             
-              <a href="/categories/Java/Thread/">Thread</a>
-            
           </div>
         
         
@@ -500,13 +504,17 @@ publ
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/springCloud/">springCloud</a>
+              <a href="/categories/Java/">Java</a>
+            
+              <a href="/categories/Java/SpringCloud/">SpringCloud</a>
             
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
             
               <a href="/tags/springCloud/">springCloud</a>
             
@@ -568,9 +576,9 @@ JSON.toJSONString(…, SerializerFeature.DisableCircularReferenceDetect)
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/fastjson/">fastjson</a>
-            
               <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Fastjson/">Fastjson</a>
             
           </div>
         
@@ -648,9 +656,9 @@ Enum输出name()或者orig
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/fastjson/">fastjson</a>
-            
               <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Fastjson/">Fastjson</a>
             
           </div>
         
@@ -694,7 +702,7 @@ Enum输出name()或者orig
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/gateway/">gateway</a>
+              <a href="/categories/Java/">Java</a>
             
           </div>
         
@@ -702,7 +710,9 @@ Enum输出name()或者orig
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E7%BD%91%E5%85%B3/">网关</a>
+              <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Gateway/">Gateway</a>
             
           </div>
         
@@ -844,14 +854,11 @@ public static void zi
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -877,10 +884,9 @@ public static void zi
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -1027,6 +1033,7 @@ public static void zi
     });
     daovoice('update');
   </script>
+
 
 
 

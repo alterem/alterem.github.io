@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -151,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = ' 🚀 ' + data.hitokoto + ' —《' + data.from + '》'
+                  hitokoto.innerText = ' � ' + data.hitokoto + ' —《' + data.from + '》'
                 }).catch(console.error)
             </script>
             
@@ -178,60 +178,6 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2018/09/11/Postgresql-9-4-0-1-x64-win7-%E8%A7%A3%E5%8E%8B%E7%89%88%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/">Postgresql 9.4.0-1 x64 win7 解压版安装步骤</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2018/09/11/Postgresql-9-4-0-1-x64-win7-%E8%A7%A3%E5%8E%8B%E7%89%88%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/">
-          
-          
-            
-          
-          1、下载
-
-32位：https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-binaries.zip
-64位：https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-x64-binaries.zip
-
-2、解压到：c:\pgsql\
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2018-09-11 14:55" pubdate>
-              2018-09-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Sql/">Sql</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/PostgreSQL/">PostgreSQL</a>
-            
-              <a href="/tags/windows/">windows</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
   <div class="row mx-auto index-card">
     
@@ -279,7 +225,7 @@ vi /etc/ssh/sshd_config之后在port字段加上一个端口比如说50000，原
             
               <a href="/tags/Linux/">Linux</a>
             
-              <a href="/tags/SSH/">SSH</a>
+              <a href="/tags/Server/">Server</a>
             
           </div>
         
@@ -330,9 +276,13 @@ vi /etc/ssh/sshd_config之后在port字段加上一个端口比如说50000，原
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/Linux/">Linux</a>
+            
               <a href="/tags/Redis/">Redis</a>
             
               <a href="/tags/CentOS/">CentOS</a>
+            
+              <a href="/tags/Server/">Server</a>
             
           </div>
         
@@ -383,9 +333,13 @@ yum remove nodejs npm -y
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/Linux/">Linux</a>
+            
               <a href="/tags/CentOS/">CentOS</a>
             
-              <a href="/tags/node/">node</a>
+              <a href="/tags/Server/">Server</a>
+            
+              <a href="/tags/NodeJS/">NodeJS</a>
             
           </div>
         
@@ -472,7 +426,7 @@ properties
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Eclipse/">Eclipse</a>
+              <a href="/categories/Java/">Java</a>
             
           </div>
         
@@ -571,14 +525,11 @@ properties
 
   
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <span>Fluid</span>
-    </div>
-    
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+  </div>
+  
   <div class="statistics">
     
     
@@ -604,10 +555,9 @@ properties
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -754,6 +704,7 @@ properties
     });
     daovoice('update');
   </script>
+
 
 
 
