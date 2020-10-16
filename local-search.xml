@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>解决Catalina打开应用很慢的问题</title>
+    <link href="/2020/10/16/%E8%A7%A3%E5%86%B3Catalina%E6%89%93%E5%BC%80%E5%BA%94%E7%94%A8%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <url>/2020/10/16/%E8%A7%A3%E5%86%B3Catalina%E6%89%93%E5%BC%80%E5%BA%94%E7%94%A8%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>此方法用于解决应用一直在dock上跳，打开耗时久的问题</p><p>将 <code>0.0.0.0 ocsp.apple.com</code> 写入<code>/etc/hosts</code>即可解决</p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    
+    
+    <categories>
+      
+      <category>Mac</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Mac</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Brew安装常用软件</title>
     <link href="/2020/10/15/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/"/>
     <url>/2020/10/15/Brew%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
@@ -1109,9 +1134,9 @@
     
     <tags>
       
-      <tag>Cas</tag>
-      
       <tag>Redis</tag>
+      
+      <tag>Cas</tag>
       
       <tag>Ticket</tag>
       
@@ -2201,11 +2226,11 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Linux</tag>
       
       <tag>CentOS</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Server</tag>
       
