@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>EurekaClient注册到EurekaServer的秘密 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="EurekaClient注册到EurekaServer的秘密">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -225,23 +232,22 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">EurekaClient注册到EurekaServer的秘密</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们知道Eureka分为两部分，Eureka Server和Eureka Client。Eureka Server充当注册中心的角色，Eureka Client相对于Eureka Server来说是客户端，需要将自身信息注册到注册中心。本文主要介绍的就是在Eureka Client注册到Eureka Server时     <code>RetryableClientQuarantineRefreshPercentage</code>参数的使用技巧。 </p>
 <a id="more"></a>
 
 <h2 id="Eureka-Client注册过程分析"><a href="#Eureka-Client注册过程分析" class="headerlink" title="Eureka Client注册过程分析"></a>Eureka Client注册过程分析</h2><p>Eureka Client注册到Eureka Server时，首先遇到第一个问题就是Eureka Client端要知道Server的地址，这个参数对应的是     <code>eureka.client.service-url.defaultZone</code>举个例子，在Eureka Client的properties文件中配置如下： </p>
-<pre><code class="hljs properties"><span class="hljs-meta">eureka.client.service-url.defaultZone</span>=<span class="hljs-string"></span>
-<span class="hljs-attr">http</span>:<span class="hljs-string">//localhost:8761/eureka,http://localhost:8762/eureka,http://localhost:8763/eureka,http://localhost:8764/eureka</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">eureka.client.service-url.defaultZone</span>=<span class="hljs-string"></span><br><span class="hljs-attr">http</span>:<span class="hljs-string">//localhost:8761/eureka,http://localhost:8762/eureka,http://localhost:8763/eureka,http://localhost:8764/eureka</span><br></code></pre></td></tr></table></figure>
 
 <p>如上图所示，Eureka Client配置对应的Eureka Server地址分别是8761、8762、8763、8764。这里存在两个问题： </p>
 <ul>
@@ -249,163 +255,16 @@
 <li>Eureka Clinent注册机制是怎样的？     </li>
 </ul>
 <p>源码面前一目了然，带着这两个问题我们通过源码来解答这两个问题。Eureka Client在启动的时候注册源码如下：<br><code>RetryableEurekaHttpClient</code>中的<code>execut</code>方法 </p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
-<span class="hljs-keyword">protected</span> &lt;R&gt; <span class="hljs-function">EurekaHttpResponse&lt;R&gt; <span class="hljs-title">execute</span><span class="hljs-params">(RequestExecutor&lt;R&gt; requestExecutor)</span> </span>&#123;
-    List&lt;EurekaEndpoint&gt; candidateHosts = <span class="hljs-keyword">null</span>;
-    <span class="hljs-keyword">int</span> endpointIdx = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> retry = <span class="hljs-number">0</span>; retry &lt; numberOfRetries; retry++) &#123;
-        EurekaHttpClient currentHttpClient = delegate.get();
-        EurekaEndpoint currentEndpoint = <span class="hljs-keyword">null</span>;
-        <span class="hljs-keyword">if</span> (currentHttpClient == <span class="hljs-keyword">null</span>) &#123;
-            <span class="hljs-keyword">if</span> (candidateHosts == <span class="hljs-keyword">null</span>) &#123;
-                candidateHosts = getHostCandidates();
-                <span class="hljs-keyword">if</span> (candidateHosts.isEmpty()) &#123;
-                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"There is no known eureka server; cluster server list is empty"</span>);
-                &#125;
-            &#125;
-            <span class="hljs-keyword">if</span> (endpointIdx &gt;= candidateHosts.size()) &#123;
-                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"Cannot execute request on any known server"</span>);
-            &#125;
-
-            currentEndpoint = candidateHosts.get(endpointIdx++);
-            currentHttpClient = clientFactory.newClient(currentEndpoint);
-        &#125;
-
-        <span class="hljs-keyword">try</span> &#123;
-            EurekaHttpResponse&lt;R&gt; response = requestExecutor.execute(currentHttpClient);
-            <span class="hljs-keyword">if</span> (serverStatusEvaluator.accept(response.getStatusCode(), requestExecutor.getRequestType())) &#123;
-                delegate.set(currentHttpClient);
-                <span class="hljs-keyword">if</span> (retry &gt; <span class="hljs-number">0</span>) &#123;
-                    logger.info(<span class="hljs-string">"Request execution succeeded on retry #&#123;&#125;"</span>, retry);
-                &#125;
-                <span class="hljs-keyword">return</span> response;
-            &#125;
-            logger.warn(<span class="hljs-string">"Request execution failure with status code &#123;&#125;; retrying on another server if available"</span>, response.getStatusCode());
-        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
-            logger.warn(<span class="hljs-string">"Request execution failed with message: &#123;&#125;"</span>, e.getMessage());  <span class="hljs-comment">// just log message as the underlying client should log the stacktrace</span>
-        &#125;
-
-        <span class="hljs-comment">// Connection error or 5xx from the server that must be retried on another server</span>
-        delegate.compareAndSet(currentHttpClient, <span class="hljs-keyword">null</span>);
-        <span class="hljs-keyword">if</span> (currentEndpoint != <span class="hljs-keyword">null</span>) &#123;
-            quarantineSet.add(currentEndpoint);
-        &#125;
-    &#125;
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"Retry limit reached; giving up on completing the request"</span>);
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">protected</span> &lt;R&gt; <span class="hljs-function">EurekaHttpResponse&lt;R&gt; <span class="hljs-title">execute</span><span class="hljs-params">(RequestExecutor&lt;R&gt; requestExecutor)</span> </span>&#123;<br>    List&lt;EurekaEndpoint&gt; candidateHosts = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">int</span> endpointIdx = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> retry = <span class="hljs-number">0</span>; retry &lt; numberOfRetries; retry++) &#123;<br>        EurekaHttpClient currentHttpClient = delegate.get();<br>        EurekaEndpoint currentEndpoint = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">if</span> (currentHttpClient == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">if</span> (candidateHosts == <span class="hljs-keyword">null</span>) &#123;<br>                candidateHosts = getHostCandidates();<br>                <span class="hljs-keyword">if</span> (candidateHosts.isEmpty()) &#123;<br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"There is no known eureka server; cluster server list is empty"</span>);<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (endpointIdx &gt;= candidateHosts.size()) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"Cannot execute request on any known server"</span>);<br>            &#125;<br><br>            currentEndpoint = candidateHosts.get(endpointIdx++);<br>            currentHttpClient = clientFactory.newClient(currentEndpoint);<br>        &#125;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            EurekaHttpResponse&lt;R&gt; response = requestExecutor.execute(currentHttpClient);<br>            <span class="hljs-keyword">if</span> (serverStatusEvaluator.accept(response.getStatusCode(), requestExecutor.getRequestType())) &#123;<br>                delegate.set(currentHttpClient);<br>                <span class="hljs-keyword">if</span> (retry &gt; <span class="hljs-number">0</span>) &#123;<br>                    logger.info(<span class="hljs-string">"Request execution succeeded on retry #&#123;&#125;"</span>, retry);<br>                &#125;<br>                <span class="hljs-keyword">return</span> response;<br>            &#125;<br>            logger.warn(<span class="hljs-string">"Request execution failure with status code &#123;&#125;; retrying on another server if available"</span>, response.getStatusCode());<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            logger.warn(<span class="hljs-string">"Request execution failed with message: &#123;&#125;"</span>, e.getMessage());  <span class="hljs-comment">// just log message as the underlying client should log the stacktrace</span><br>        &#125;<br><br>        <span class="hljs-comment">// Connection error or 5xx from the server that must be retried on another server</span><br>        delegate.compareAndSet(currentHttpClient, <span class="hljs-keyword">null</span>);<br>        <span class="hljs-keyword">if</span> (currentEndpoint != <span class="hljs-keyword">null</span>) &#123;<br>            quarantineSet.add(currentEndpoint);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"Retry limit reached; giving up on completing the request"</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>按照我的理解，代码精简后内容如下： </p>
-<pre><code class="hljs java"><span class="hljs-keyword">int</span> endpointIdx = <span class="hljs-number">0</span>;
-<span class="hljs-comment">//用来保存所有Eureka Server信息(8761、8762、8763、8764)</span>
-List&lt;EurekaEndpoint&gt; candidateHosts = <span class="hljs-keyword">null</span>;
-<span class="hljs-comment">//numberOfRetries的值代码写死默认为3次</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> retry = <span class="hljs-number">0</span>; retry &lt; numberOfRetries; retry++) &#123;
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 *首次进入循环时，获取全量的Eureka Server信息(8761、8762、8763、8764)</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-keyword">if</span> (candidateHosts == <span class="hljs-keyword">null</span>) &#123;
-        candidateHosts = getHostCandidates();
-    &#125;
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 *通过endpointIdx自增，依次获取Eureka Server信息，然后发送</span>
-<span class="hljs-comment">	 *注册的Post请求.</span>
-<span class="hljs-comment">	 */</span>
-    currentEndpoint = candidateHosts.get(endpointIdx++);
-    currentHttpClient = clientFactory.newClient(currentEndpoint);
-    <span class="hljs-keyword">try</span> &#123;
-       <span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 	*发送注册的Post请求动作，注意如果成功，则跳出循环，如果失败则</span>
-<span class="hljs-comment">	 	*根据endpointIdx依次获取下一个Eureka Server.</span>
-<span class="hljs-comment">	 	*/</span>
-        response = requestExecutor.execute(currentHttpClient);
-        <span class="hljs-keyword">return</span> respones;
-    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
-        <span class="hljs-comment">//向注册中心(Eureka Server)发起注册的post出现异常时，打印日志...</span>
-    &#125;
-    <span class="hljs-comment">//如果此次注册动作失败，将当前的信息保存到quarantineSet中(一个Set集合)</span>
-    <span class="hljs-keyword">if</span> (currentEndpoint != <span class="hljs-keyword">null</span>) &#123;
-        quarantineSet.add(currentEndpoint);
-    &#125;
-&#125;
-<span class="hljs-comment">//如果都失败,则以异常形式抛出...</span>
-<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"Retry limit reached; giving up on completing the request"</span>);</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> endpointIdx = <span class="hljs-number">0</span>;<br><span class="hljs-comment">//用来保存所有Eureka Server信息(8761、8762、8763、8764)</span><br>List&lt;EurekaEndpoint&gt; candidateHosts = <span class="hljs-keyword">null</span>;<br><span class="hljs-comment">//numberOfRetries的值代码写死默认为3次</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> retry = <span class="hljs-number">0</span>; retry &lt; numberOfRetries; retry++) &#123;<br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 *首次进入循环时，获取全量的Eureka Server信息(8761、8762、8763、8764)</span><br><span class="hljs-comment">	 */</span><br>	<span class="hljs-keyword">if</span> (candidateHosts == <span class="hljs-keyword">null</span>) &#123;<br>        candidateHosts = getHostCandidates();<br>    &#125;<br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 *通过endpointIdx自增，依次获取Eureka Server信息，然后发送</span><br><span class="hljs-comment">	 *注册的Post请求.</span><br><span class="hljs-comment">	 */</span><br>    currentEndpoint = candidateHosts.get(endpointIdx++);<br>    currentHttpClient = clientFactory.newClient(currentEndpoint);<br>    <span class="hljs-keyword">try</span> &#123;<br>       <span class="hljs-comment">/**</span><br><span class="hljs-comment">	 	*发送注册的Post请求动作，注意如果成功，则跳出循环，如果失败则</span><br><span class="hljs-comment">	 	*根据endpointIdx依次获取下一个Eureka Server.</span><br><span class="hljs-comment">	 	*/</span><br>        response = requestExecutor.execute(currentHttpClient);<br>        <span class="hljs-keyword">return</span> respones;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        <span class="hljs-comment">//向注册中心(Eureka Server)发起注册的post出现异常时，打印日志...</span><br>    &#125;<br>    <span class="hljs-comment">//如果此次注册动作失败，将当前的信息保存到quarantineSet中(一个Set集合)</span><br>    <span class="hljs-keyword">if</span> (currentEndpoint != <span class="hljs-keyword">null</span>) &#123;<br>        quarantineSet.add(currentEndpoint);<br>    &#125;<br>&#125;<br><span class="hljs-comment">//如果都失败,则以异常形式抛出...</span><br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TransportException(<span class="hljs-string">"Retry limit reached; giving up on completing the request"</span>);<br></code></pre></td></tr></table></figure>
 
 <p>上面代码中还有一个方法很重要就是     <code>List&lt;EurekaEndpoint&gt; candidateHosts = getHostCandidates();</code>接下来看下     <code>getHostCandidates()</code>方法源码 </p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="hljs-title">getHostCandidates</span><span class="hljs-params">()</span> </span>&#123;
-    List&lt;EurekaEndpoint&gt; candidateHosts = clusterResolver.getClusterEndpoints();
-    quarantineSet.retainAll(candidateHosts);
-
-    <span class="hljs-comment">// If enough hosts are bad, we have no choice but start over again</span>
-    <span class="hljs-keyword">int</span> threshold = (<span class="hljs-keyword">int</span>) (candidateHosts.size() * transportConfig.getRetryableClientQuarantineRefreshPercentage());
-    <span class="hljs-keyword">if</span> (quarantineSet.isEmpty()) &#123;
-        <span class="hljs-comment">// no-op</span>
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;
-        logger.debug(<span class="hljs-string">"Clearing quarantined list of size &#123;&#125;"</span>, quarantineSet.size());
-        quarantineSet.clear();
-    &#125; <span class="hljs-keyword">else</span> &#123;
-        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());
-        <span class="hljs-keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;
-            <span class="hljs-keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;
-                remainingHosts.add(endpoint);
-            &#125;
-        &#125;
-        candidateHosts = remainingHosts;
-    &#125;
-    <span class="hljs-keyword">return</span> candidateHosts;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="hljs-title">getHostCandidates</span><span class="hljs-params">()</span> </span>&#123;<br>    List&lt;EurekaEndpoint&gt; candidateHosts = clusterResolver.getClusterEndpoints();<br>    quarantineSet.retainAll(candidateHosts);<br><br>    <span class="hljs-comment">// If enough hosts are bad, we have no choice but start over again</span><br>    <span class="hljs-keyword">int</span> threshold = (<span class="hljs-keyword">int</span>) (candidateHosts.size() * transportConfig.getRetryableClientQuarantineRefreshPercentage());<br>    <span class="hljs-keyword">if</span> (quarantineSet.isEmpty()) &#123;<br>        <span class="hljs-comment">// no-op</span><br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;<br>        logger.debug(<span class="hljs-string">"Clearing quarantined list of size &#123;&#125;"</span>, quarantineSet.size());<br>        quarantineSet.clear();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());<br>        <span class="hljs-keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;<br>            <span class="hljs-keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;<br>                remainingHosts.add(endpoint);<br>            &#125;<br>        &#125;<br>        candidateHosts = remainingHosts;<br>    &#125;<br>    <span class="hljs-keyword">return</span> candidateHosts;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>按照我的理解，将代码精简下，只包括关键逻辑，内容如下： </p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="hljs-title">getHostCandidates</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">     * 获取所有defaultZone配置的注册中心信息(Eureka Server)，</span>
-<span class="hljs-comment">     * 在本文例子中代表4个(8761、8762、8763、8764)Eureka Server</span>
-<span class="hljs-comment">     */</span>
-    List candidateHosts = clusterResolver.getClusterEndpoints();
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">     * quarantineSet这个Set集合中保存的是不可用的Eureka Server</span>
-<span class="hljs-comment">     * 此处是拿不可用的Eureka Server与全量的Eureka Server取交集</span>
-<span class="hljs-comment">     */</span>
-    quarantineSet.retainAll(candidateHosts);
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">     * 根据RetryableClientQuarantineRefreshPercentage参数计算阈值</span>
-<span class="hljs-comment">     * 该阈值后续会和quarantineSet中保存的不可用的Eureka Server个数</span>
-<span class="hljs-comment">     * 作比较，从而判断是否返回全量的Eureka Server还是过滤掉不可用的</span>
-<span class="hljs-comment">     * Eureka Server。</span>
-<span class="hljs-comment">     */</span>
-    <span class="hljs-keyword">int</span> threshold = 
-       (<span class="hljs-keyword">int</span>) (
-        candidateHosts.size()
-              *
-        transportConfig.getRetryableClientQuarantineRefreshPercentage()
-        );
-    <span class="hljs-keyword">if</span> (quarantineSet.isEmpty()) &#123;
-        <span class="hljs-comment">/**</span>
-<span class="hljs-comment">         * 首次进入的时候，此时quarantineSet为空，直接返回全量的</span>
-<span class="hljs-comment">         * Eureka Server列表</span>
-<span class="hljs-comment">         */</span>
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;
-        <span class="hljs-comment">/**</span>
-<span class="hljs-comment">         * 将不可用的Eureka Server与threshold值相比较，如果不可</span>
-<span class="hljs-comment">         * 用的Eureka Server个数大于阈值，则将之间保存的Eureka</span>
-<span class="hljs-comment">         * Server内容直接清空，并返回全量的Eureka Server列表。</span>
-<span class="hljs-comment">         */</span>
-        quarantineSet.clear();
-    &#125; <span class="hljs-keyword">else</span> &#123;
-        <span class="hljs-comment">/**</span>
-<span class="hljs-comment">         * 通过quarantineSet集合保存不可用的Eureka Server来过滤</span>
-<span class="hljs-comment">         * 全量的EurekaServer，从而获取此次Eureka Client要注册要</span>
-<span class="hljs-comment">         * 注册的Eureka Server实例地址。</span>
-<span class="hljs-comment">         */</span>
-        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());
-        <span class="hljs-keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;
-            <span class="hljs-keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;
-                remainingHosts.add(endpoint);
-            &#125;
-        &#125;
-        candidateHosts = remainingHosts;
-    &#125;
-    <span class="hljs-keyword">return</span> candidateHosts;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="hljs-title">getHostCandidates</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取所有defaultZone配置的注册中心信息(Eureka Server)，</span><br><span class="hljs-comment">     * 在本文例子中代表4个(8761、8762、8763、8764)Eureka Server</span><br><span class="hljs-comment">     */</span><br>    List candidateHosts = clusterResolver.getClusterEndpoints();<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * quarantineSet这个Set集合中保存的是不可用的Eureka Server</span><br><span class="hljs-comment">     * 此处是拿不可用的Eureka Server与全量的Eureka Server取交集</span><br><span class="hljs-comment">     */</span><br>    quarantineSet.retainAll(candidateHosts);<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 根据RetryableClientQuarantineRefreshPercentage参数计算阈值</span><br><span class="hljs-comment">     * 该阈值后续会和quarantineSet中保存的不可用的Eureka Server个数</span><br><span class="hljs-comment">     * 作比较，从而判断是否返回全量的Eureka Server还是过滤掉不可用的</span><br><span class="hljs-comment">     * Eureka Server。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">int</span> threshold = <br>       (<span class="hljs-keyword">int</span>) (<br>        candidateHosts.size()<br>              *<br>        transportConfig.getRetryableClientQuarantineRefreshPercentage()<br>        );<br>    <span class="hljs-keyword">if</span> (quarantineSet.isEmpty()) &#123;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 首次进入的时候，此时quarantineSet为空，直接返回全量的</span><br><span class="hljs-comment">         * Eureka Server列表</span><br><span class="hljs-comment">         */</span><br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 将不可用的Eureka Server与threshold值相比较，如果不可</span><br><span class="hljs-comment">         * 用的Eureka Server个数大于阈值，则将之间保存的Eureka</span><br><span class="hljs-comment">         * Server内容直接清空，并返回全量的Eureka Server列表。</span><br><span class="hljs-comment">         */</span><br>        quarantineSet.clear();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 通过quarantineSet集合保存不可用的Eureka Server来过滤</span><br><span class="hljs-comment">         * 全量的EurekaServer，从而获取此次Eureka Client要注册要</span><br><span class="hljs-comment">         * 注册的Eureka Server实例地址。</span><br><span class="hljs-comment">         */</span><br>        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());<br>        <span class="hljs-keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;<br>            <span class="hljs-keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;<br>                remainingHosts.add(endpoint);<br>            &#125;<br>        &#125;<br>        candidateHosts = remainingHosts;<br>    &#125;<br>    <span class="hljs-keyword">return</span> candidateHosts;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>通过源码分析，我们现在初步知道，当Eureka Client向Eureka Server发起注册请求的时候(根据defaultZone寻找Eureka Server列表)，如果有一次请求注册成功，那么后续就不会在向其他Eureka Server发起注册请求。以本文为例，注册中心有四个(8761、8762、8763、8764)。如果8761对应的Eureka Server服务的状态是UP，那么Eureka Client向该注册中心注册成功后，不会再向(8762、8763、8764)对应的Eureka Server发起注册请求(对应程序是在for循环中直接return respones)。 </p>
 <p>说到这里又引出来另外一个问题，如果8761这个Eureka Server是down掉的呢？ </p>
@@ -417,35 +276,14 @@ List&lt;EurekaEndpoint&gt; candidateHosts = <span class="hljs-keyword">null</spa
 <li>Eureka Server全量列表的内容是(8761、8762、8763、8764)四个Eureka Server，过滤后返回的结果为8764这个Eureka Server。     </li>
 </ul>
 <p>在本文的例子中8761、8762、8763这三个Eureka Server的状态是down而8764这个Eureka Server的状态是UP，我们其实是想走到最后的else分支，从而完成过滤操作，并最终得到8764这个Server，遗憾的是它并不会走到这个分支，而是被上面的     <code>else if (quarantineSet.size() &gt;= threshold)</code>这个分支所拦截，返回的依旧是全量的Eureka Server列表。这样造成的后果就是Eureka Client依旧会依次向(8761、8762、8763)这三个down的Eureka Server发起注册请求。<br>那么问题的关键在哪里呢？问题的关键就是threshold这个值的由来，因为此时quarantineSet.size()的值为3，而3这个值大于threshold，从而导致，会将quarantineSet集合清空，返回全量的Server列表。<br>我们知道threshold这个值是根据全量的Eureka Server列表乘以一个可配置的参数计算出来的，在本文的例子当中，我的properties文件中除了defaultZone之外并没有配置这个参数，那么也就是说这个参数是有默认值的，通过源码我们了解到，这个默认值是0.66。具体源码如下： </p>
-<pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PropertyBasedTransportConfigConstants</span> </span>&#123;
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 *省略部分源码</span>
-<span class="hljs-comment">	 */</span>
-    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Values</span> </span>&#123;
-        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SESSION_RECONNECT_INTERVAL = <span class="hljs-number">20</span>*<span class="hljs-number">60</span>;
-        <span class="hljs-comment">//默认值为0.66</span>
-        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">double</span> QUARANTINE_REFRESH_PERCENTAGE = <span class="hljs-number">0.66</span>;
-        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DATA_STALENESS_TRHESHOLD = <span class="hljs-number">5</span>*<span class="hljs-number">60</span>;
-        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ASYNC_RESOLVER_REFRESH_INTERVAL = <span class="hljs-number">5</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span>;
-        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ASYNC_RESOLVER_WARMUP_TIMEOUT = <span class="hljs-number">5000</span>;
-        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ASYNC_EXECUTOR_THREADPOOL_SIZE = <span class="hljs-number">5</span>;
-    &#125;
-&#125;
-	
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> *<span class="hljs-doctag">@return</span> the percentage of the full endpoints set above which the   </span>
-<span class="hljs-comment"> *quarantine set is cleared in the range [0, 1.0]</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getRetryableClientQuarantineRefreshPercentage</span><span class="hljs-params">()</span></span>;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PropertyBasedTransportConfigConstants</span> </span>&#123;<br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 *省略部分源码</span><br><span class="hljs-comment">	 */</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Values</span> </span>&#123;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SESSION_RECONNECT_INTERVAL = <span class="hljs-number">20</span>*<span class="hljs-number">60</span>;<br>        <span class="hljs-comment">//默认值为0.66</span><br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">double</span> QUARANTINE_REFRESH_PERCENTAGE = <span class="hljs-number">0.66</span>;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DATA_STALENESS_TRHESHOLD = <span class="hljs-number">5</span>*<span class="hljs-number">60</span>;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ASYNC_RESOLVER_REFRESH_INTERVAL = <span class="hljs-number">5</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span>;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ASYNC_RESOLVER_WARMUP_TIMEOUT = <span class="hljs-number">5000</span>;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ASYNC_EXECUTOR_THREADPOOL_SIZE = <span class="hljs-number">5</span>;<br>    &#125;<br>&#125;<br>	<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *<span class="hljs-doctag">@return</span> the percentage of the full endpoints set above which the   </span><br><span class="hljs-comment"> *quarantine set is cleared in the range [0, 1.0]</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getRetryableClientQuarantineRefreshPercentage</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
 
 <p>看到这里就不难理解了，因为这个值是0.66而此时全量的Eureka Server值为4。计算之后的值为2，而由于注册的for循环为3次，所以当第二次发起注册流程的时候quarantineSet的值始终大于threshold。这样就会导致一个问题，就是如果8761、8762、8763一直是down即使8764一直是好的，那么Eureka Client也不会注册成功。而且这个参数值的区间为0到1. </p>
 <p>既然通过源码分析我们找到了问题根源，其实对应的我们也找到了解决这个问题的办法，就是对应把这个参数值调大些。<br>这个值在properties中对应的写法如下： </p>
-<pre><code class="hljs java">eureka.client.transport.retryableClientQuarantineRefreshPercentage = xxx</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">eureka.client.transport.retryableClientQuarantineRefreshPercentage = xxx<br></code></pre></td></tr></table></figure>
 
 <p>接下来我们修改下properties文件，修改后的内容如下： </p>
-<pre><code class="hljs java">eureka.client.service-url.defaultZone=
-http:<span class="hljs-comment">//localhost:8761/eureka,http://localhost:8762/eureka,http://localhost:8763/eureka,http://localhost:8764/eureka</span>
-eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="hljs-number">1</span></code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">eureka.client.service-url.defaultZone=<br>http:<span class="hljs-comment">//localhost:8761/eureka,http://localhost:8762/eureka,http://localhost:8763/eureka,http://localhost:8764/eureka</span><br>eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 
 <p>接下来按照这个配置再次回顾下上面的流程： </p>
 <ul>
@@ -466,39 +304,7 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
 <li>最终会进入else分支，这个分支原本的含义是想通过quarantineSet来充当过滤器，从全量的Eureka Server中过滤掉之前状态为down的Eureka Server，但是由于quarantineSet的值现在已经是全量，导致过滤后的结果返回的是一个空的list。即使此时Eureka Server列表(8761、8762、8763、8764)任何一个Server的状态变为UP，该Eureka Client也不可能完成注册事件。     </li>
 </ul>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>上面出现的那个问题，根本原因个人认为是由于     <code>eureka.client.transport.retryableClientQuarantineRefreshPercentage</code>参数过大而源码中没有校验，从而导致没有进入     <code>else if (quarantineSet.size() &gt;= threshold)</code>的逻辑分支，因为此时如果quarantineSet中的值已经达到了所有Eureka Server列表，那么此时我们希望的是将这个Set集合清空，从而再次返回全量的Eureka Server列表，也就是说再重新来一次注册流程。<br>所以基于上面的分析，个人认为在源码的     <code>getHostCandidates</code>增加下校验，具体代码如下： </p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="hljs-title">getHostCandidates</span><span class="hljs-params">()</span> </span>&#123;
-    List&lt;EurekaEndpoint&gt; candidateHosts = clusterResolver.getClusterEndpoints();
-    quarantineSet.retainAll(candidateHosts);
-
-    <span class="hljs-comment">// If enough hosts are bad, we have no choice but start over again</span>
-    <span class="hljs-keyword">int</span> threshold = (<span class="hljs-keyword">int</span>) (candidateHosts.size() * transportConfig.getRetryableClientQuarantineRefreshPercentage());
-    
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">     * 增加判断如果threshold的值过大，即超过Eureka Server</span>
-<span class="hljs-comment">     * 列表的数量，那么将其再次赋值，赋值的内容为Eureka Server</span>
-<span class="hljs-comment">     * 列表的数量。</span>
-<span class="hljs-comment">     */</span>
-    <span class="hljs-keyword">if</span> (threshold &gt; candidateHosts.size()) &#123;
-  	    threshold = candidateHosts.size();
-    &#125;
-
-    <span class="hljs-keyword">if</span> (quarantineSet.isEmpty()) &#123;
-        <span class="hljs-comment">// no-op</span>
-    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;
-        logger.debug(<span class="hljs-string">"Clearing quarantined list of size &#123;&#125;"</span>, quarantineSet.size());
-        quarantineSet.clear();
-    &#125; <span class="hljs-keyword">else</span> &#123;
-        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());
-        <span class="hljs-keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;
-            <span class="hljs-keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;
-                remainingHosts.add(endpoint);
-            &#125;
-        &#125;
-        candidateHosts = remainingHosts;
-    &#125;
-
-    <span class="hljs-keyword">return</span> candidateHosts;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> List&lt;EurekaEndpoint&gt; <span class="hljs-title">getHostCandidates</span><span class="hljs-params">()</span> </span>&#123;<br>    List&lt;EurekaEndpoint&gt; candidateHosts = clusterResolver.getClusterEndpoints();<br>    quarantineSet.retainAll(candidateHosts);<br><br>    <span class="hljs-comment">// If enough hosts are bad, we have no choice but start over again</span><br>    <span class="hljs-keyword">int</span> threshold = (<span class="hljs-keyword">int</span>) (candidateHosts.size() * transportConfig.getRetryableClientQuarantineRefreshPercentage());<br>    <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 增加判断如果threshold的值过大，即超过Eureka Server</span><br><span class="hljs-comment">     * 列表的数量，那么将其再次赋值，赋值的内容为Eureka Server</span><br><span class="hljs-comment">     * 列表的数量。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">if</span> (threshold &gt; candidateHosts.size()) &#123;<br>  	    threshold = candidateHosts.size();<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (quarantineSet.isEmpty()) &#123;<br>        <span class="hljs-comment">// no-op</span><br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (quarantineSet.size() &gt;= threshold) &#123;<br>        logger.debug(<span class="hljs-string">"Clearing quarantined list of size &#123;&#125;"</span>, quarantineSet.size());<br>        quarantineSet.clear();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        List&lt;EurekaEndpoint&gt; remainingHosts = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(candidateHosts.size());<br>        <span class="hljs-keyword">for</span> (EurekaEndpoint endpoint : candidateHosts) &#123;<br>            <span class="hljs-keyword">if</span> (!quarantineSet.contains(endpoint)) &#123;<br>                remainingHosts.add(endpoint);<br>            &#125;<br>        &#125;<br>        candidateHosts = remainingHosts;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> candidateHosts;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>以上内容就是个人对     <code>eureka.client.transport.retryableClientQuarantineRefreshPercentage</code>的理解，由于本人知识水平有限，对此问题也可能理解不正确，还请大家多多留言讨论。</p>
 <p>最后感谢<a href="http://spring4all.com/" target="_blank" rel="noopener">spring4all社区</a>提供这个平台，能让大家交流学习Spring相关知识。 </p>
@@ -532,7 +338,7 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -566,7 +372,7 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -578,16 +384,15 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -608,15 +413,14 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -650,10 +454,24 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -668,8 +486,19 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -678,174 +507,29 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "EurekaClient注册到EurekaServer的秘密&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -856,6 +540,14 @@ eureka.client.transport.retryableClientQuarantineRefreshPercentage=<span class="
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

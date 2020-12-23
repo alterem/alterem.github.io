@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>CentOS下安装环境文档 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CentOS下安装环境文档">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -185,7 +192,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.1k 字
     </span>
   
 
@@ -195,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      34
        分钟
     </span>
   
@@ -225,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">CentOS下安装环境文档</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <hr>
 <p>【JDK1.7安装】</p>
 <hr>
@@ -245,13 +252,7 @@
 <p>CentOs6.5 默认会安装OpenOffice之类，需要JAVA支持，系统默认安装了一个openjdk1.7版本</p>
 <a id="more"></a>
 
-<pre><code class="hljs routeros"><span class="hljs-comment"># java -version</span>
-
-java version <span class="hljs-string">"1.7.0"</span>
-
-OpenJDK  Runtime Environment (build 1.7.0-b09)
-
-OpenJDK<span class="hljs-built_in"> Client </span>VM (build 1.7.0-b09, mixed mode)</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># java -version</span><br><br>java version <span class="hljs-string">"1.7.0"</span><br><br>OpenJDK  Runtime Environment (build 1.7.0-b09)<br><br>OpenJDK<span class="hljs-built_in"> Client </span>VM (build 1.7.0-b09, mixed mode)<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>备注：</p>
@@ -259,46 +260,31 @@ OpenJDK<span class="hljs-built_in"> Client </span>VM (build 1.7.0-b09, mixed mod
 </blockquote>
 <p>如果直接”应用程序-添加/删除软件–基本系统–java“删除其他相关软件也会自动删除，所以删除前，最好安装配置好新的JDK环境</p>
 <p> 1) 删除原有的JDK：</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># rpm -qa|grep jdk</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># rpm -qa|grep jdk</span><br></code></pre></td></tr></table></figure>
 
 <p>查看安装的JDK，会显示多个java-1.7.0-openjdk-1.7.0相关的程序，在以下一一卸载。直到删完为止，如下：</p>
-<pre><code class="hljs css"># <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span>
-# <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-devel-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span>
-# <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-demo-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span></code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"># <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span><br># <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-devel-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span><br># <span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-e</span> <span class="hljs-selector-tag">--nodeps</span> <span class="hljs-selector-tag">java-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0-openjdk-demo-1</span><span class="hljs-selector-class">.7</span><span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.65-2</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.1</span><span class="hljs-selector-class">.2</span><span class="hljs-selector-class">.el6_5</span><span class="hljs-selector-class">.x86_64</span><br></code></pre></td></tr></table></figure>
 
 <p>……</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># rpm -qa|grep java</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># rpm -qa|grep java</span><br></code></pre></td></tr></table></figure>
 
 <p>查看安装的JAVA关联程序，在以下一一卸载。直到删完为止，如下：</p>
-<pre><code class="hljs angelscript"># rpm -e --nodeps tzdata-java<span class="hljs-number">-2014</span>h<span class="hljs-number">-1.</span>el6.noarch</code></pre>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"># rpm -e --nodeps tzdata-java<span class="hljs-number">-2014</span>h<span class="hljs-number">-1.</span>el6.noarch<br></code></pre></td></tr></table></figure>
 
 <p>……</p>
 <p>》配置新的JDK环境</p>
 <p>1）把安装文件文件保存在/usr/java/tools下 ,并切换到root用户</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># mkdir /usr/java  //创建/urs/java目录</span>
-<span class="hljs-meta"># cd /usr/java/</span>
-<span class="hljs-meta"># rpm -ivh ./tools/jdk-7u67-linux-x64.rpm</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># mkdir /usr/java  //创建/urs/java目录</span><br><span class="hljs-meta"># cd /usr/java/</span><br><span class="hljs-meta"># rpm -ivh ./tools/jdk-7u67-linux-x64.rpm</span><br></code></pre></td></tr></table></figure>
 
 <p>》配置jdk1.6.0_22环境变量</p>
- <pre><code class="hljs crystal"><span class="hljs-comment"># vi /etc/profile</span>
-
-JAVA_HOME=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/jdk1.7.0_79</span>
-<span class="hljs-regexp">JRE_HOME=/usr</span><span class="hljs-regexp">/java/jdk</span>1.<span class="hljs-number">7.0_79</span>/jre
-PATH=<span class="hljs-symbol">PATH:</span>JAVA_HOME/<span class="hljs-symbol">bin:</span>$JRE_HOME/bin
-CLASSPATH=:JAVA_HOME/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">dt</span>.<span class="hljs-title">jar</span>:<span class="hljs-title">JAVA_HOME</span>/<span class="hljs-title">lib</span>/<span class="hljs-title">tools</span>.<span class="hljs-title">jar</span>:$<span class="hljs-title">JRE_HOME</span>/<span class="hljs-title">lib</span></span>
-export JAVA_HOME JRE_HOME PATH CLASSPATH</code></pre>
+ <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-comment"># vi /etc/profile</span><br><br>JAVA_HOME=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/jdk1.7.0_79</span><br><span class="hljs-regexp">JRE_HOME=/usr</span><span class="hljs-regexp">/java/jdk</span>1.<span class="hljs-number">7.0_79</span>/jre<br>PATH=<span class="hljs-symbol">PATH:</span>JAVA_HOME/<span class="hljs-symbol">bin:</span>$JRE_HOME/bin<br>CLASSPATH=:JAVA_HOME/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">dt</span>.<span class="hljs-title">jar</span>:<span class="hljs-title">JAVA_HOME</span>/<span class="hljs-title">lib</span>/<span class="hljs-title">tools</span>.<span class="hljs-title">jar</span>:$<span class="hljs-title">JRE_HOME</span>/<span class="hljs-title">lib</span></span><br>export JAVA_HOME JRE_HOME PATH CLASSPATH<br></code></pre></td></tr></table></figure>
 
 <p>》使环境变量生效：</p>
-<pre><code class="hljs gradle">#<span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile</code></pre>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle">#<span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile<br></code></pre></td></tr></table></figure>
 
 <p>》测试安装</p>
 <p>   1)查看版本号</p>
-<pre><code class="hljs routeros"><span class="hljs-comment"># java -version</span>
-
-java version <span class="hljs-string">"1.7.0_67"</span>
-Java(TM) SE Runtime Environment (build 1.7.0_67-b01)
-Java HotSpot(TM) 64-Bit<span class="hljs-built_in"> Server </span>VM (build 24.65-b04, mixed mode)
-Java HotSpot(TM)<span class="hljs-built_in"> Client </span>VM (build 17.1-b03, mixed mode, sharing)</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># java -version</span><br><br>java version <span class="hljs-string">"1.7.0_67"</span><br>Java(TM) SE Runtime Environment (build 1.7.0_67-b01)<br>Java HotSpot(TM) 64-Bit<span class="hljs-built_in"> Server </span>VM (build 24.65-b04, mixed mode)<br>Java HotSpot(TM)<span class="hljs-built_in"> Client </span>VM (build 17.1-b03, mixed mode, sharing)<br></code></pre></td></tr></table></figure>
 
 <p>说明成功了。</p>
 <hr>
@@ -311,126 +297,77 @@ Java HotSpot(TM)<span class="hljs-built_in"> Client </span>VM (build 17.1-b03, m
 <p>其中mysql使用最新的稳定版本，即最新试用版的上一个版本，且非rc或者alpha的版本，Cmake直接用的最新版。</p>
 <p> 》上传mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz到/usr/java/tools文件夹下。</p>
 <p> 》CentOS安装g++和ncurses-devel</p>
- <pre><code class="hljs vala"><span class="hljs-meta"># yum install gcc-c++</span>
-<span class="hljs-meta"># yum install ncurses-devel</span></code></pre>
+ <figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># yum install gcc-c++</span><br><span class="hljs-meta"># yum install ncurses-devel</span><br></code></pre></td></tr></table></figure>
 
 <p>》cmake的安装</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># mkdir -p /usr/java/make</span>
-<span class="hljs-meta"># cd /usr/java/make</span>
-<span class="hljs-meta"># mv ../tools/cmake-2.8.10.2.tar.gz ./</span>
-<span class="hljs-meta"># tar -zxv -f cmake-2.8.10.2.tar.gz</span>
-<span class="hljs-meta"># cd cmake-2.8.10.2</span>
-<span class="hljs-meta"># ./configure</span>
-<span class="hljs-meta"># make</span>
-<span class="hljs-meta"># make install</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># mkdir -p /usr/java/make</span><br><span class="hljs-meta"># cd /usr/java/make</span><br><span class="hljs-meta"># mv ../tools/cmake-2.8.10.2.tar.gz ./</span><br><span class="hljs-meta"># tar -zxv -f cmake-2.8.10.2.tar.gz</span><br><span class="hljs-meta"># cd cmake-2.8.10.2</span><br><span class="hljs-meta"># ./configure</span><br><span class="hljs-meta"># make</span><br><span class="hljs-meta"># make install</span><br></code></pre></td></tr></table></figure>
 
 <p>》将cmake永久加入系统环境变量</p>
 <p>》用vi在文件/etc/profile文件中增加变量，使其永久有效，</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># vi /etc/profile</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># vi /etc/profile</span><br></code></pre></td></tr></table></figure>
 
 <p>》在文件PATH中加入MAKE_PATH环境变量：</p>
-<pre><code class="hljs crystal">JAVA_HOME=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/jdk1.7.0_67</span>
-<span class="hljs-regexp">JRE_HOME=/usr</span><span class="hljs-regexp">/java/jdk</span>1.<span class="hljs-number">7.0_67</span>/jre
-MAKE_PATH=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/cmake/cmake</span>-<span class="hljs-number">2.8</span>.<span class="hljs-number">10.2</span>/bin
-PATH=<span class="hljs-symbol">MAKE_PATH:</span><span class="hljs-symbol">PATH:</span>JAVA_HOME/<span class="hljs-symbol">bin:</span>JRE_HOME/bin
-CLASSPATH=:JAVA_HOME/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">dt</span>.<span class="hljs-title">jar</span>:<span class="hljs-title">JAVA_HOME</span>/<span class="hljs-title">lib</span>/<span class="hljs-title">tools</span>.<span class="hljs-title">jar</span>:$<span class="hljs-title">JRE_HOME</span>/<span class="hljs-title">lib</span></span>
-export JAVA_HOME JRE_HOME PATH CLASSPATH</code></pre>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs crystal">JAVA_HOME=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/jdk1.7.0_67</span><br><span class="hljs-regexp">JRE_HOME=/usr</span><span class="hljs-regexp">/java/jdk</span>1.<span class="hljs-number">7.0_67</span>/jre<br>MAKE_PATH=<span class="hljs-regexp">/usr/java</span><span class="hljs-regexp">/cmake/cmake</span>-<span class="hljs-number">2.8</span>.<span class="hljs-number">10.2</span>/bin<br>PATH=<span class="hljs-symbol">MAKE_PATH:</span><span class="hljs-symbol">PATH:</span>JAVA_HOME/<span class="hljs-symbol">bin:</span>JRE_HOME/bin<br>CLASSPATH=:JAVA_HOME/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">dt</span>.<span class="hljs-title">jar</span>:<span class="hljs-title">JAVA_HOME</span>/<span class="hljs-title">lib</span>/<span class="hljs-title">tools</span>.<span class="hljs-title">jar</span>:$<span class="hljs-title">JRE_HOME</span>/<span class="hljs-title">lib</span></span><br>export JAVA_HOME JRE_HOME PATH CLASSPATH<br></code></pre></td></tr></table></figure>
 
 <p>》执行以下代码使刚才的修改生效：</p>
-<pre><code class="hljs gradle"># <span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile</code></pre>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"># <span class="hljs-keyword">source</span> <span class="hljs-regexp">/etc/</span>profile<br></code></pre></td></tr></table></figure>
 
 <p>》用 export 命令查看PATH值</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span></span><br></code></pre></td></tr></table></figure>
 
 <p>》创建mysql的安装目录及数据库存放目录</p>
- <pre><code class="hljs 1c"><span class="hljs-meta"># mkdir -p /usr/java/mysql <span class="hljs-comment">//安装mysql</span></span>
-<span class="hljs-meta"># mkdir -p /usr/java/mysql/data <span class="hljs-comment">//存放数据库</span></span></code></pre>
+ <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta"># mkdir -p /usr/java/mysql <span class="hljs-comment">//安装mysql</span></span><br><span class="hljs-meta"># mkdir -p /usr/java/mysql/data <span class="hljs-comment">//存放数据库</span></span><br></code></pre></td></tr></table></figure>
 
 <p>》创建mysql用户及用户组</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># groupadd mysql</span>
-<span class="hljs-meta"># useradd -r -g mysql mysql</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># groupadd mysql</span><br><span class="hljs-meta"># useradd -r -g mysql mysql</span><br></code></pre></td></tr></table></figure>
 
 <p>》编译安装mysql</p>
-<pre><code class="hljs ini"><span class="hljs-comment"># cd /usr/java/mysql</span>
-<span class="hljs-comment"># tar zxvf ../tools/mysql-5.5.40.tar.gz</span>
-<span class="hljs-comment"># cd mysql-5.5.40/</span>
-<span class="hljs-comment"># cmake -DCMAKE_INSTALL_PREFIX=/usr/java/mysql \</span>
-<span class="hljs-attr">-DMYSQL_UNIX_ADDR</span>=/usr/java/mysql/mysql.sock \
-<span class="hljs-attr">-DDEFAULT_CHARSET</span>=utf8 \
-<span class="hljs-attr">-DDEFAULT_COLLATION</span>=utf8_general_ci \
-<span class="hljs-attr">-DWITH_MYISAM_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \
-<span class="hljs-attr">-DWITH_INNOBASE_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \
-<span class="hljs-attr">-DWITH_MEMORY_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \
-<span class="hljs-attr">-DWITH_READLINE</span>=<span class="hljs-number">1</span> \
-<span class="hljs-attr">-DENABLED_LOCAL_INFILE</span>=<span class="hljs-number">1</span> \
-<span class="hljs-attr">-DMYSQL_DATADIR</span>=/usr/java/mysql/data \
-<span class="hljs-attr">-DMYSQL_USER</span>=mysql \
-<span class="hljs-attr">-DMYSQL_TCP_PORT</span>=<span class="hljs-number">6666</span>
-<span class="hljs-comment"># make</span>
-<span class="hljs-comment"># make install</span></code></pre>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># cd /usr/java/mysql</span><br><span class="hljs-comment"># tar zxvf ../tools/mysql-5.5.40.tar.gz</span><br><span class="hljs-comment"># cd mysql-5.5.40/</span><br><span class="hljs-comment"># cmake -DCMAKE_INSTALL_PREFIX=/usr/java/mysql \</span><br><span class="hljs-attr">-DMYSQL_UNIX_ADDR</span>=/usr/java/mysql/mysql.sock \<br><span class="hljs-attr">-DDEFAULT_CHARSET</span>=utf8 \<br><span class="hljs-attr">-DDEFAULT_COLLATION</span>=utf8_general_ci \<br><span class="hljs-attr">-DWITH_MYISAM_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \<br><span class="hljs-attr">-DWITH_INNOBASE_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \<br><span class="hljs-attr">-DWITH_MEMORY_STORAGE_ENGINE</span>=<span class="hljs-number">1</span> \<br><span class="hljs-attr">-DWITH_READLINE</span>=<span class="hljs-number">1</span> \<br><span class="hljs-attr">-DENABLED_LOCAL_INFILE</span>=<span class="hljs-number">1</span> \<br><span class="hljs-attr">-DMYSQL_DATADIR</span>=/usr/java/mysql/data \<br><span class="hljs-attr">-DMYSQL_USER</span>=mysql \<br><span class="hljs-attr">-DMYSQL_TCP_PORT</span>=<span class="hljs-number">6666</span><br><span class="hljs-comment"># make</span><br><span class="hljs-comment"># make install</span><br></code></pre></td></tr></table></figure>
 
 <p>》检验是否安装成功</p>
- <pre><code class="hljs crystal"><span class="hljs-comment"># cd  /usr/java/mysql</span>
-[root@fiona mysql]<span class="hljs-comment"># ls</span>
-bin      data  <span class="hljs-keyword">include</span>         <span class="hljs-class"><span class="hljs-keyword">lib</span>  <span class="hljs-title">mysql</span>-5.5.40  <span class="hljs-title">mysql</span>-<span class="hljs-title">test</span>  <span class="hljs-title">scripts</span>  <span class="hljs-title">sql</span>-<span class="hljs-title">bench</span></span>
-COPYING  docs  INSTALL-BINARY  man  mysql.sock    README      share    support-files</code></pre>
+ <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-comment"># cd  /usr/java/mysql</span><br>[root@fiona mysql]<span class="hljs-comment"># ls</span><br>bin      data  <span class="hljs-keyword">include</span>         <span class="hljs-class"><span class="hljs-keyword">lib</span>  <span class="hljs-title">mysql</span>-5.5.40  <span class="hljs-title">mysql</span>-<span class="hljs-title">test</span>  <span class="hljs-title">scripts</span>  <span class="hljs-title">sql</span>-<span class="hljs-title">bench</span></span><br>COPYING  docs  INSTALL-BINARY  man  mysql.sock    README      share    support-files<br></code></pre></td></tr></table></figure>
 
 <p> 有bin等以上文件的话，恭喜你已经成功安装了mysql。</p>
 <p> 》配置mysql</p>
 <p> 》设置mysql目录权限</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/java/mysql //把当前目录中所有文件的所有者设为root，所属组为mysql</span>
-<span class="hljs-meta"># chown -R root:mysql .</span>
-<span class="hljs-meta"># chown -R mysql:mysql data</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/java/mysql //把当前目录中所有文件的所有者设为root，所属组为mysql</span><br><span class="hljs-meta"># chown -R root:mysql .</span><br><span class="hljs-meta"># chown -R mysql:mysql data</span><br></code></pre></td></tr></table></figure>
 
 <p>》将mysql的启动服务添加到系统服务中</p>
-<pre><code class="hljs vim"># <span class="hljs-keyword">cp</span> support-<span class="hljs-keyword">files</span>/my-medium.<span class="hljs-keyword">cnf</span> /etc/my.<span class="hljs-keyword">cnf</span>
-<span class="hljs-keyword">cp</span>：是否覆盖<span class="hljs-string">"/etc/my.cnf"</span>？ <span class="hljs-keyword">y</span></code></pre>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vim"># <span class="hljs-keyword">cp</span> support-<span class="hljs-keyword">files</span>/my-medium.<span class="hljs-keyword">cnf</span> /etc/my.<span class="hljs-keyword">cnf</span><br><span class="hljs-keyword">cp</span>：是否覆盖<span class="hljs-string">"/etc/my.cnf"</span>？ <span class="hljs-keyword">y</span><br></code></pre></td></tr></table></figure>
 
 <p>》创建系统数据库的表</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/java/mysql</span>
-<span class="hljs-meta"># scripts/mysql_install_db --user=mysql</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/java/mysql</span><br><span class="hljs-meta"># scripts/mysql_install_db --user=mysql</span><br></code></pre></td></tr></table></figure>
 
 <p>》设置环境变量</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># vi /root/.bash_profile</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># vi /root/.bash_profile</span><br></code></pre></td></tr></table></figure>
 
 <p>在修改PATH=$PATH:$HOME/bin为：</p>
-<pre><code class="hljs crystal">PATH=<span class="hljs-symbol">PATH:</span>HOME/<span class="hljs-symbol">bin:</span>/usr/java/mysql/<span class="hljs-symbol">bin:</span>/usr/java/mysql/<span class="hljs-class"><span class="hljs-keyword">lib</span></span>
-<span class="hljs-comment"># source /root/.bash_profile //使刚才的修改生效</span></code></pre>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crystal">PATH=<span class="hljs-symbol">PATH:</span>HOME/<span class="hljs-symbol">bin:</span>/usr/java/mysql/<span class="hljs-symbol">bin:</span>/usr/java/mysql/<span class="hljs-class"><span class="hljs-keyword">lib</span></span><br><span class="hljs-comment"># source /root/.bash_profile //使刚才的修改生效</span><br></code></pre></td></tr></table></figure>
 
 <p>》手动启动mysql</p>
-<pre><code class="hljs 1c"><span class="hljs-meta"># ./bin/mysqld_safe --user=mysql &amp; <span class="hljs-comment">//启动MySQL，但不能停止</span></span>
-mysqladmin -u root -p shutdown <span class="hljs-comment">//此时root还没密码，所以为空值，提示输入密码时，直接回车即可。</span></code></pre>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta"># ./bin/mysqld_safe --user=mysql &amp; <span class="hljs-comment">//启动MySQL，但不能停止</span></span><br>mysqladmin -u root -p shutdown <span class="hljs-comment">//此时root还没密码，所以为空值，提示输入密码时，直接回车即可。</span><br></code></pre></td></tr></table></figure>
 
 <p>》将mysql的启动服务添加到系统服务中</p>
-<pre><code class="hljs elm"># cp sup<span class="hljs-keyword">port</span>-files/mysql.server /etc/init.d/mysql</code></pre>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elm"># cp sup<span class="hljs-keyword">port</span>-files/mysql.server /etc/init.d/mysql<br></code></pre></td></tr></table></figure>
 
 <p>》启动mysql</p>
-<pre><code class="hljs routeros"><span class="hljs-comment"># service mysql start</span>
-Starting MySQL<span class="hljs-built_in">..</span>. ERROR! The<span class="hljs-built_in"> server </span>quit without updating PID file (/usr/java/mysql/data/localhost.localdomain.pid).</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># service mysql start</span><br>Starting MySQL<span class="hljs-built_in">..</span>. ERROR! The<span class="hljs-built_in"> server </span>quit without updating PID file (/usr/java/mysql/data/localhost.localdomain.pid).<br></code></pre></td></tr></table></figure>
 
 <p>》启动失败：</p>
 <p>》我这里是权限问题，先改变权限</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># chown -R mysql:mysql /usr/java/mysql</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># chown -R mysql:mysql /usr/java/mysql</span><br></code></pre></td></tr></table></figure>
 
 <p>》接着启动服务器</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># /etc/init.d/mysql start</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># /etc/init.d/mysql start</span><br></code></pre></td></tr></table></figure>
 
 <p>》修改MySQL的root用户的密码以及打开远程连接</p>
-<pre><code class="hljs pgsql"># mysql -u root mysql
-mysql&gt; use mysql;
-mysql&gt; <span class="hljs-keyword">desc</span> <span class="hljs-keyword">user</span>;
-mysql&gt; <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">PRIVILEGES</span> <span class="hljs-keyword">ON</span> . <span class="hljs-keyword">TO</span> root@"%" IDENTIFIED <span class="hljs-keyword">BY</span> "root"; //为root添加远程连接的能力
-mysql&gt; <span class="hljs-keyword">update</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">set</span> <span class="hljs-keyword">Password</span> = <span class="hljs-keyword">password</span>(<span class="hljs-string">'x123456.'</span>) <span class="hljs-keyword">where</span> <span class="hljs-keyword">User</span>=<span class="hljs-string">'root'</span>; //设置root用户密码
-mysql&gt; <span class="hljs-keyword">select</span> Host,<span class="hljs-keyword">User</span>,<span class="hljs-keyword">Password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">User</span>=<span class="hljs-string">'root'</span>;
-mysql&gt; flush <span class="hljs-keyword">privileges</span>;
-mysql&gt; <span class="hljs-keyword">exit</span></code></pre>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># mysql -u root mysql<br>mysql&gt; use mysql;<br>mysql&gt; <span class="hljs-keyword">desc</span> <span class="hljs-keyword">user</span>;<br>mysql&gt; <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">PRIVILEGES</span> <span class="hljs-keyword">ON</span> . <span class="hljs-keyword">TO</span> root@"%" IDENTIFIED <span class="hljs-keyword">BY</span> "root"; //为root添加远程连接的能力<br>mysql&gt; <span class="hljs-keyword">update</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">set</span> <span class="hljs-keyword">Password</span> = <span class="hljs-keyword">password</span>(<span class="hljs-string">'x123456.'</span>) <span class="hljs-keyword">where</span> <span class="hljs-keyword">User</span>=<span class="hljs-string">'root'</span>; //设置root用户密码<br>mysql&gt; <span class="hljs-keyword">select</span> Host,<span class="hljs-keyword">User</span>,<span class="hljs-keyword">Password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">User</span>=<span class="hljs-string">'root'</span>;<br>mysql&gt; flush <span class="hljs-keyword">privileges</span>;<br>mysql&gt; <span class="hljs-keyword">exit</span><br></code></pre></td></tr></table></figure>
 
 <p>》重新登录</p>
-<pre><code class="hljs nginx"><span class="hljs-comment"># mysql -u root -p</span>
-<span class="hljs-attribute">enter</span> password:x123456.<span class="hljs-number">000</span></code></pre>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># mysql -u root -p</span><br><span class="hljs-attribute">enter</span> password:x123456.<span class="hljs-number">000</span><br></code></pre></td></tr></table></figure>
 
 <p>》若还不能进行远程连接，关闭防火墙</p>
-<pre><code class="hljs autoit">[root<span class="hljs-symbol">@localhost]</span><span class="hljs-meta"># /etc/rc.d/init.d/iptables stop</span></code></pre>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@localhost]</span><span class="hljs-meta"># /etc/rc.d/init.d/iptables stop</span><br></code></pre></td></tr></table></figure>
 
 <p>用远程工具连接上了表示成功了。</p>
 <hr>
@@ -438,70 +375,7 @@ mysql&gt; <span class="hljs-keyword">exit</span></code></pre>
 <hr>
 <p>》先下载apache-tomcat-7.0.56.tar.gz</p>
 <p>》下载地下：<a href="http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.56/bin/apache-tomcat-7.0.56.tar.gz</a></p>
-<pre><code class="hljs bash">
-<span class="hljs-comment"># cd /usr/java</span>
-<span class="hljs-comment"># tar -zxvf ./tools/apache-tomcat-7.0.56.tar.gz</span>
-<span class="hljs-comment"># cd /etc/rc.d/init.d</span>
-<span class="hljs-comment"># vi tomcat</span>
-<span class="hljs-comment">#----------输入以下信息---------------------</span>
-
-<span class="hljs-comment">#</span>
-<span class="hljs-comment"># chkconfig: 345 80 15</span>
-<span class="hljs-comment"># description: Tomcat is a Servlet+JSP Engine.</span>
-<span class="hljs-comment"># Enter the jdk installation directory</span>
-jdk_File=/usr/java/jdk1.7.0_67
-<span class="hljs-comment"># Enter the tomcat installation directory</span>
-tomcat_File=/usr/java/apache-tomcat-7.0.56
-<span class="hljs-built_in">export</span> JAVA_HOME=<span class="hljs-variable">$jdk_File</span>
-<span class="hljs-comment"># Source function library.</span>
-. /etc/rc.d/init.d/<span class="hljs-built_in">functions</span>
-<span class="hljs-function"><span class="hljs-title">start</span></span>()&#123;
-<span class="hljs-keyword">if</span> [ -z $(/sbin/pidof java) ]; <span class="hljs-keyword">then</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">"Starting tomcat"</span>
-<span class="hljs-variable">$tomcat_File</span>/bin/startup.sh
-touch /var/lock/subsys/tomcat
-<span class="hljs-keyword">else</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">"tomcat allready running"</span>
-<span class="hljs-keyword">fi</span>
-&#125;
-<span class="hljs-function"><span class="hljs-title">stop</span></span>()&#123;
-<span class="hljs-keyword">if</span> [ ! -z $(/sbin/pidof java) ]; <span class="hljs-keyword">then</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">"Shutting down tomcat"</span>
-<span class="hljs-variable">$tomcat_File</span>/bin/shutdown.sh
-until [ -z $(/sbin/pidof java) ]; <span class="hljs-keyword">do</span> :; <span class="hljs-keyword">done</span>
-rm -f /var/lock/subsys/tomcat
-<span class="hljs-keyword">else</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">"tomcat not running"</span>
-<span class="hljs-keyword">fi</span>
-&#125;
-<span class="hljs-keyword">case</span> <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> <span class="hljs-keyword">in</span>
-start)
-start
-;;
-stop)
-stop
-;;
-restart)
-stop
-start
-;;
-status)
-<span class="hljs-variable">$tomcat_File</span>/bin/catalina.sh version
-;;
-*)
-<span class="hljs-built_in">echo</span> <span class="hljs-string">"Usage: <span class="hljs-variable">$0</span> &#123;start|stop|restart|status&#125;"</span>
-<span class="hljs-keyword">esac</span>
-<span class="hljs-built_in">exit</span> 0
-<span class="hljs-comment">#----------输入以下信息---------------------</span>
-
-:wq! <span class="hljs-comment">#保存退出 </span>
-<span class="hljs-comment"># chmod 755 /etc/rc.d/init.d/tomcat #添加执行权限</span>
-<span class="hljs-comment"># chkconfig --add tomcat #添加服务</span>
-<span class="hljs-comment"># chkconfig tomcat on #设置开机启动</span>
-<span class="hljs-comment"># service tomcat stop #停止</span>
-<span class="hljs-comment"># service tomcat start #启动</span>
-<span class="hljs-comment"># service tomcat restart #重启</span>
-<span class="hljs-comment"># service tomcat status #查看状态信息</span></code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs bash"><br><span class="hljs-comment"># cd /usr/java</span><br><span class="hljs-comment"># tar -zxvf ./tools/apache-tomcat-7.0.56.tar.gz</span><br><span class="hljs-comment"># cd /etc/rc.d/init.d</span><br><span class="hljs-comment"># vi tomcat</span><br><span class="hljs-comment">#----------输入以下信息---------------------</span><br><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># chkconfig: 345 80 15</span><br><span class="hljs-comment"># description: Tomcat is a Servlet+JSP Engine.</span><br><span class="hljs-comment"># Enter the jdk installation directory</span><br>jdk_File=/usr/java/jdk1.7.0_67<br><span class="hljs-comment"># Enter the tomcat installation directory</span><br>tomcat_File=/usr/java/apache-tomcat-7.0.56<br><span class="hljs-built_in">export</span> JAVA_HOME=<span class="hljs-variable">$jdk_File</span><br><span class="hljs-comment"># Source function library.</span><br>. /etc/rc.d/init.d/<span class="hljs-built_in">functions</span><br><span class="hljs-function"><span class="hljs-title">start</span></span>()&#123;<br><span class="hljs-keyword">if</span> [ -z $(/sbin/pidof java) ]; <span class="hljs-keyword">then</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">"Starting tomcat"</span><br><span class="hljs-variable">$tomcat_File</span>/bin/startup.sh<br>touch /var/lock/subsys/tomcat<br><span class="hljs-keyword">else</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">"tomcat allready running"</span><br><span class="hljs-keyword">fi</span><br>&#125;<br><span class="hljs-function"><span class="hljs-title">stop</span></span>()&#123;<br><span class="hljs-keyword">if</span> [ ! -z $(/sbin/pidof java) ]; <span class="hljs-keyword">then</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">"Shutting down tomcat"</span><br><span class="hljs-variable">$tomcat_File</span>/bin/shutdown.sh<br>until [ -z $(/sbin/pidof java) ]; <span class="hljs-keyword">do</span> :; <span class="hljs-keyword">done</span><br>rm -f /var/lock/subsys/tomcat<br><span class="hljs-keyword">else</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">"tomcat not running"</span><br><span class="hljs-keyword">fi</span><br>&#125;<br><span class="hljs-keyword">case</span> <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> <span class="hljs-keyword">in</span><br>start)<br>start<br>;;<br>stop)<br>stop<br>;;<br>restart)<br>stop<br>start<br>;;<br>status)<br><span class="hljs-variable">$tomcat_File</span>/bin/catalina.sh version<br>;;<br>*)<br><span class="hljs-built_in">echo</span> <span class="hljs-string">"Usage: <span class="hljs-variable">$0</span> &#123;start|stop|restart|status&#125;"</span><br><span class="hljs-keyword">esac</span><br><span class="hljs-built_in">exit</span> 0<br><span class="hljs-comment">#----------输入以下信息---------------------</span><br><br>:wq! <span class="hljs-comment">#保存退出 </span><br><span class="hljs-comment"># chmod 755 /etc/rc.d/init.d/tomcat #添加执行权限</span><br><span class="hljs-comment"># chkconfig --add tomcat #添加服务</span><br><span class="hljs-comment"># chkconfig tomcat on #设置开机启动</span><br><span class="hljs-comment"># service tomcat stop #停止</span><br><span class="hljs-comment"># service tomcat start #启动</span><br><span class="hljs-comment"># service tomcat restart #重启</span><br><span class="hljs-comment"># service tomcat status #查看状态信息</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -511,108 +385,16 @@ status)
 <p>》先下载nginx-1.7.6.tar.gz</p>
 <p>》下载URL:<a href="http://nginx.org/download/nginx-1.7.6.tar.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.7.6.tar.gz</a></p>
 <p>》把nginx-1.7.6.tar.gz放到/usr/java/tools目录下</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/local/</span>
-<span class="hljs-meta"># tar -zxvf /usr/java/tools/nginx-1.7.5.tar.gz</span>
-<span class="hljs-meta"># cd nginx-1.7.6/</span>
-<span class="hljs-meta"># yum -y install pcre-devel</span>
-<span class="hljs-meta"># yum install -y zlib-devel</span>
-<span class="hljs-meta"># ./configure</span>
-<span class="hljs-meta"># make &amp;&amp; make install</span>
-<span class="hljs-meta"># cd /usr/local/nginx</span>
-<span class="hljs-meta"># cd sbin</span>
-<span class="hljs-meta"># ./nginx</span>
-<span class="hljs-meta"># /etc/rc.d/init.d/iptables stop</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># cd /usr/local/</span><br><span class="hljs-meta"># tar -zxvf /usr/java/tools/nginx-1.7.5.tar.gz</span><br><span class="hljs-meta"># cd nginx-1.7.6/</span><br><span class="hljs-meta"># yum -y install pcre-devel</span><br><span class="hljs-meta"># yum install -y zlib-devel</span><br><span class="hljs-meta"># ./configure</span><br><span class="hljs-meta"># make &amp;&amp; make install</span><br><span class="hljs-meta"># cd /usr/local/nginx</span><br><span class="hljs-meta"># cd sbin</span><br><span class="hljs-meta"># ./nginx</span><br><span class="hljs-meta"># /etc/rc.d/init.d/iptables stop</span><br></code></pre></td></tr></table></figure>
 
 <p>》配置服务器启动方式</p>
-<pre><code class="hljs routeros"><span class="hljs-comment"># vi /etc/init.d/nginx</span>
-<span class="hljs-comment">#---------输入以下信息------------------</span>
-
-<span class="hljs-comment"># nginx Startup script for the Nginx HTTP Server</span>
-<span class="hljs-comment"># it is v.0.0.2 version.</span>
-<span class="hljs-comment"># chkconfig: - 85 15</span>
-<span class="hljs-comment"># description: Nginx is a high-performance web and proxy server.</span>
-<span class="hljs-comment"># It has a lot of features, but it's not for everyone.</span>
-<span class="hljs-comment"># processname: nginx</span>
-<span class="hljs-comment"># pidfile: /software/nginx/logs/nginx.pid</span>
-<span class="hljs-comment"># config: /software/nginx/conf/nginx.conf</span>
-<span class="hljs-attribute">nginxd</span>=/usr/local/nginx/sbin/nginx
-<span class="hljs-attribute">nginx_config</span>=/usr/local/nginx/conf/nginx.conf
-<span class="hljs-attribute">nginx_pid</span>=/usr/local/nginx/logs/nginx.pid
-<span class="hljs-attribute">RETVAL</span>=0
-<span class="hljs-attribute">prog</span>=<span class="hljs-string">"nginx"</span>
-<span class="hljs-comment"># Source function library.</span>
-. /etc/rc.d/init.d/functions
-<span class="hljs-comment"># Source networking configuration.</span>
-. /etc/sysconfig/network
-<span class="hljs-comment"># Check that networking is up.</span>
-[ <span class="hljs-variable">$&#123;NETWORKING&#125;</span> = <span class="hljs-string">"no"</span> ] &amp;&amp; exit 0
-[ -x <span class="hljs-variable">$nginxd</span> ] || exit 0
-<span class="hljs-comment"># Start nginx daemons functions.</span>
-start() &#123;
-<span class="hljs-keyword">if</span> [ -e <span class="hljs-variable">$nginx_pid</span> ];then
-echo <span class="hljs-string">"nginx already running...."</span>
-exit 1
-fi
-echo -n <span class="hljs-string">"Starting prog: "</span>
-daemon nginxd -c &#123;nginx_config&#125;
-<span class="hljs-attribute">RETVAL</span>=$?
-echo
-[ <span class="hljs-variable">$RETVAL</span> = 0 ] &amp;&amp; touch /var/lock/subsys/nginx
-return <span class="hljs-variable">$RETVAL</span>
-&#125;
-<span class="hljs-comment"># Stop nginx daemons functions.</span>
-stop() &#123;
-echo -n <span class="hljs-string">"Stopping prog: "</span>
-killproc <span class="hljs-variable">$nginxd</span>
-<span class="hljs-attribute">RETVAL</span>=$?
-echo
-[ <span class="hljs-variable">$RETVAL</span> = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /usr/local/nginx/logs/nginx.pid
-&#125;
-reload() &#123;
-echo -n <span class="hljs-string">"Reloading prog: "</span>
-<span class="hljs-comment">#kill -HUP cat $&#123;nginx_pid&#125;</span>
-killproc <span class="hljs-variable">$nginxd</span> -HUP
-<span class="hljs-attribute">RETVAL</span>=$?
-echo
-&#125;
-<span class="hljs-comment"># See how we were called.</span>
-case <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> <span class="hljs-keyword">in</span>
-start)
-start
-;;
-stop)
-stop
-;;
-reload)
-reload
-;;
-restart)
-stop
-start
-;;
-status)
-status <span class="hljs-variable">$prog</span>
-<span class="hljs-attribute">RETVAL</span>=$?
-;;
-*)
-echo <span class="hljs-string">"Usage: prog &#123;start|stop|restart|reload|status|help&#125;"</span>
-exit 1
-esac
-exit <span class="hljs-variable">$RETVAL</span>
-<span class="hljs-comment">#---------输入以下信息------------------</span>
-
-<span class="hljs-comment"># chmod 755 /etc/init.d/nginx &amp;&amp; chkconfig nginx on</span>
-<span class="hljs-comment"># service nginx start</span>
-<span class="hljs-comment"># service nginx stop</span>
-<span class="hljs-comment"># service nginx restart</span>
-<span class="hljs-comment"># ps -ef | grep nginx</span>
-<span class="hljs-comment"># netstat -pant | grep 80</span></code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># vi /etc/init.d/nginx</span><br><span class="hljs-comment">#---------输入以下信息------------------</span><br><br><span class="hljs-comment"># nginx Startup script for the Nginx HTTP Server</span><br><span class="hljs-comment"># it is v.0.0.2 version.</span><br><span class="hljs-comment"># chkconfig: - 85 15</span><br><span class="hljs-comment"># description: Nginx is a high-performance web and proxy server.</span><br><span class="hljs-comment"># It has a lot of features, but it's not for everyone.</span><br><span class="hljs-comment"># processname: nginx</span><br><span class="hljs-comment"># pidfile: /software/nginx/logs/nginx.pid</span><br><span class="hljs-comment"># config: /software/nginx/conf/nginx.conf</span><br><span class="hljs-attribute">nginxd</span>=/usr/local/nginx/sbin/nginx<br><span class="hljs-attribute">nginx_config</span>=/usr/local/nginx/conf/nginx.conf<br><span class="hljs-attribute">nginx_pid</span>=/usr/local/nginx/logs/nginx.pid<br><span class="hljs-attribute">RETVAL</span>=0<br><span class="hljs-attribute">prog</span>=<span class="hljs-string">"nginx"</span><br><span class="hljs-comment"># Source function library.</span><br>. /etc/rc.d/init.d/functions<br><span class="hljs-comment"># Source networking configuration.</span><br>. /etc/sysconfig/network<br><span class="hljs-comment"># Check that networking is up.</span><br>[ <span class="hljs-variable">$&#123;NETWORKING&#125;</span> = <span class="hljs-string">"no"</span> ] &amp;&amp; exit 0<br>[ -x <span class="hljs-variable">$nginxd</span> ] || exit 0<br><span class="hljs-comment"># Start nginx daemons functions.</span><br>start() &#123;<br><span class="hljs-keyword">if</span> [ -e <span class="hljs-variable">$nginx_pid</span> ];then<br>echo <span class="hljs-string">"nginx already running...."</span><br>exit 1<br>fi<br>echo -n <span class="hljs-string">"Starting prog: "</span><br>daemon nginxd -c &#123;nginx_config&#125;<br><span class="hljs-attribute">RETVAL</span>=$?<br>echo<br>[ <span class="hljs-variable">$RETVAL</span> = 0 ] &amp;&amp; touch /var/lock/subsys/nginx<br>return <span class="hljs-variable">$RETVAL</span><br>&#125;<br><span class="hljs-comment"># Stop nginx daemons functions.</span><br>stop() &#123;<br>echo -n <span class="hljs-string">"Stopping prog: "</span><br>killproc <span class="hljs-variable">$nginxd</span><br><span class="hljs-attribute">RETVAL</span>=$?<br>echo<br>[ <span class="hljs-variable">$RETVAL</span> = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /usr/local/nginx/logs/nginx.pid<br>&#125;<br>reload() &#123;<br>echo -n <span class="hljs-string">"Reloading prog: "</span><br><span class="hljs-comment">#kill -HUP cat $&#123;nginx_pid&#125;</span><br>killproc <span class="hljs-variable">$nginxd</span> -HUP<br><span class="hljs-attribute">RETVAL</span>=$?<br>echo<br>&#125;<br><span class="hljs-comment"># See how we were called.</span><br>case <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> <span class="hljs-keyword">in</span><br>start)<br>start<br>;;<br>stop)<br>stop<br>;;<br>reload)<br>reload<br>;;<br>restart)<br>stop<br>start<br>;;<br>status)<br>status <span class="hljs-variable">$prog</span><br><span class="hljs-attribute">RETVAL</span>=$?<br>;;<br>*)<br>echo <span class="hljs-string">"Usage: prog &#123;start|stop|restart|reload|status|help&#125;"</span><br>exit 1<br>esac<br>exit <span class="hljs-variable">$RETVAL</span><br><span class="hljs-comment">#---------输入以下信息------------------</span><br><br><span class="hljs-comment"># chmod 755 /etc/init.d/nginx &amp;&amp; chkconfig nginx on</span><br><span class="hljs-comment"># service nginx start</span><br><span class="hljs-comment"># service nginx stop</span><br><span class="hljs-comment"># service nginx restart</span><br><span class="hljs-comment"># ps -ef | grep nginx</span><br><span class="hljs-comment"># netstat -pant | grep 80</span><br></code></pre></td></tr></table></figure>
 
 <p>》测试在浏览器中输入广域网IP看看能不能看到欢迎界面，如果能就表示成功了。</p>
 <hr>
 <p>【配置规则】</p>
 <hr>
-<pre><code class="hljs vala"><span class="hljs-meta"># vi /etc/sysconfig/iptables</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># vi /etc/sysconfig/iptables</span><br></code></pre></td></tr></table></figure>
 
 <p>增加如下配置:</p>
 <blockquote>
@@ -620,12 +402,10 @@ exit <span class="hljs-variable">$RETVAL</span>
 <p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 8888 -j ACCEPT</p>
 <p>-A INPUT -m state –state NEW -m tcp -p tcp –dport 6666 -j ACCEPT</p>
 </blockquote>
-<pre><code class="hljs vala"><span class="hljs-meta"># service iptables restart</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># service iptables restart</span><br></code></pre></td></tr></table></figure>
 
 <p>》系统启动的方式为自启动</p>
-<pre><code class="hljs vala"><span class="hljs-meta"># chkconfig mysql on</span>
-<span class="hljs-meta"># chkconfig nginx on</span>
-<span class="hljs-meta"># chkconfig tomcat on</span></code></pre>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># chkconfig mysql on</span><br><span class="hljs-meta"># chkconfig nginx on</span><br><span class="hljs-meta"># chkconfig tomcat on</span><br></code></pre></td></tr></table></figure>
 
 <img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
@@ -646,13 +426,13 @@ exit <span class="hljs-variable">$RETVAL</span>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
                     
-                      <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
+                      <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
                     
                       <a class="hover-with-bg" href="/tags/Server/">Server</a>
                     
-                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                      <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
                     
                       <a class="hover-with-bg" href="/tags/JDK/">JDK</a>
                     
@@ -667,7 +447,7 @@ exit <span class="hljs-variable">$RETVAL</span>
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -701,7 +481,7 @@ exit <span class="hljs-variable">$RETVAL</span>
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -713,16 +493,15 @@ exit <span class="hljs-variable">$RETVAL</span>
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -743,15 +522,14 @@ exit <span class="hljs-variable">$RETVAL</span>
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -785,10 +563,24 @@ exit <span class="hljs-variable">$RETVAL</span>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -803,8 +595,19 @@ exit <span class="hljs-variable">$RETVAL</span>
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -813,174 +616,29 @@ exit <span class="hljs-variable">$RETVAL</span>
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "CentOS下安装环境文档&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -991,6 +649,14 @@ exit <span class="hljs-variable">$RETVAL</span>
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

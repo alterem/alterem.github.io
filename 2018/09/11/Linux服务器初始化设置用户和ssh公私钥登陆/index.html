@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>Linux服务器初始化设置用户和ssh公私钥登陆 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux服务器初始化设置用户和ssh公私钥登陆">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -225,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Linux服务器初始化设置用户和ssh公私钥登陆</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <blockquote>
 <p>当我们开始使用一个新的服务器的时候，首先一定要对服务器的登陆等做一些修改工作，笔者曾经就因为对服务器登陆安全没有重视，导致服务器数据全部丢失。接下来我们按照步骤，罗列出应该做的一些事情。 </p>
 </blockquote>
@@ -245,77 +252,54 @@
 <p>然后执行：</p>
 <a id="more"></a>
 
-<pre><code class="hljs ebnf"><span class="hljs-attribute">service sshd restart</span></code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">service sshd restart</span><br></code></pre></td></tr></table></figure>
 
 <p>这个时候可能还要重新配置一下防火墙，开放50000端口，具体如何配置也可以参考<a href="https://blog.csdn.net/ul646691993/article/details/52104082" target="_blank" rel="noopener">这里</a>的后半部分。但是目前，阿里云的服务器实测是不需要再配置防火墙的，但是需要去登陆到网页后台修改安全组。</p>
 <p>之后就可以通过这样的方式登录了：(注意登录方式一定要写对)</p>
-<pre><code class="hljs angelscript">ssh <span class="hljs-symbol">root@</span><span class="hljs-number">115.29</span><span class="hljs-number">.102</span><span class="hljs-number">.81</span> -p <span class="hljs-number">50000</span></code></pre>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">ssh <span class="hljs-symbol">root@</span><span class="hljs-number">115.29</span><span class="hljs-number">.102</span><span class="hljs-number">.81</span> -p <span class="hljs-number">50000</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p>这个时候我们还是用root进行操作，所以我们接下来要给自己创建一个账户，比如创建一个如下的用户：</p>
-<pre><code class="hljs properties"><span class="hljs-attr">useradd</span> <span class="hljs-string">xiaotao</span>
-<span class="hljs-attr">passwd</span> <span class="hljs-string">xiaotao</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">useradd</span> <span class="hljs-string">xiaotao</span><br><span class="hljs-attr">passwd</span> <span class="hljs-string">xiaotao</span><br></code></pre></td></tr></table></figure>
 
 <p>可以用`ls -al /home/``查看一下账户</p>
 <p>对创建的这个用户增加sudo权限： 相关配置文件/etc/sudoers中，但是这个文件是只读的，所以要更改一下权限</p>
-<pre><code class="hljs perl"><span class="hljs-keyword">chmod</span> u+w sudoers</code></pre>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-keyword">chmod</span> u+w sudoers<br></code></pre></td></tr></table></figure>
 
 <p>然后进入这个文件在这里进行更改：</p>
-<pre><code class="hljs ada">root    <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>)       <span class="hljs-keyword">ALL</span>
-xiaotao  <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>)       <span class="hljs-keyword">ALL</span></code></pre>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">root    <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>)       <span class="hljs-keyword">ALL</span><br>xiaotao  <span class="hljs-keyword">ALL</span>=(<span class="hljs-keyword">ALL</span>)       <span class="hljs-keyword">ALL</span><br></code></pre></td></tr></table></figure>
 
 <p>然后再改回权限：</p>
-<pre><code class="hljs ebnf"><span class="hljs-attribute">chmod u-w sudoers</span></code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">chmod u-w sudoers</span><br></code></pre></td></tr></table></figure>
 
 <p>注意一点，CentOS 7预设容许任何帐号透过ssh登入（也就是说自己根本不用改改，直接新建帐号登录即可），包括根和一般帐号，为了不受根帐号被黑客暴力入侵，我们必须禁止 root帐号的ssh功能，事实上root也没有必要ssh登入伺服器，因为只要使用su或sudo（当然需要输入root的密码）普通帐号便可以拥有root的权限。使用vim（或任何文本编辑器）开启的/ etc/ SSH/ sshd_config中，寻找：</p>
-<pre><code class="hljs yaml"><span class="hljs-string">＃PermitRootLogin</span> <span class="hljs-literal">yes</span></code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">＃PermitRootLogin</span> <span class="hljs-literal">yes</span><br></code></pre></td></tr></table></figure>
 
 <p>修改：</p>
-<pre><code class="hljs nginx"><span class="hljs-attribute">PermitRootLogin</span> <span class="hljs-literal">no</span></code></pre>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">PermitRootLogin</span> <span class="hljs-literal">no</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="配置公私钥加密登录"><a href="#配置公私钥加密登录" class="headerlink" title="配置公私钥加密登录"></a>配置公私钥加密登录</h3><p><strong>这一步骤要切换到自己新建的用户，不能再用 root 用户了，否则可能无法正常登陆。</strong></p>
 <p>很多时候以上所说的还是不够安全，为了更加安全方便，我们采用公私钥对称加密登录，简单的讲做法就是再客户端生成一把私钥一把公钥，私钥是在客户端的，公钥上传到服务端，对称加密进行登录。</p>
 <p>在客户端先进到这个目录：</p>
-<pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span></code></pre>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span><br></code></pre></td></tr></table></figure>
 
 <p>生成公钥和私钥（实际上如果之前有的话就不用重新生成了）</p>
-<pre><code class="hljs ebnf"><span class="hljs-attribute">ssh-keygen -t rsa</span></code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ssh-keygen -t rsa</span><br></code></pre></td></tr></table></figure>
 
 <p>接下来把公钥上传到服务端</p>
-<pre><code class="hljs angelscript">scp ~/.ssh/id_rsa.pub <span class="hljs-symbol">xiaotao@<span class="hljs-keyword">&lt;ssh_server_ip&gt;</span></span>:~</code></pre>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">scp ~/.ssh/id_rsa.pub <span class="hljs-symbol">xiaotao@<span class="hljs-keyword">&lt;ssh_server_ip&gt;</span></span>:~<br></code></pre></td></tr></table></figure>
 
 <p>在服务端执行以下命令(如果没有相关的文件和文件夹要先进行创建，注意不要使用 sudo )</p>
-<pre><code class="hljs awk">cat  id_rsa.pub &gt;&gt; ～<span class="hljs-regexp">/.ssh/</span>authorized_keys</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cat  id_rsa.pub &gt;&gt; ～<span class="hljs-regexp">/.ssh/</span>authorized_keys<br></code></pre></td></tr></table></figure>
 
 <p>配置服务器的/etc/ssh/sshd_config，下面是一些建议的配置：</p>
-<pre><code class="hljs yaml"><span class="hljs-string">vim</span> <span class="hljs-string">/etc/ssh/sshd_config</span>
-<span class="hljs-comment"># 禁用root账户登录，非必要，但为了安全性，请配置</span>
-<span class="hljs-string">PermitRootLogin</span> <span class="hljs-literal">no</span>
-
-<span class="hljs-comment"># 是否让 sshd 去检查用户家目录或相关档案的权限数据，</span>
-<span class="hljs-comment"># 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。</span>
-<span class="hljs-comment"># 例如使用者的 ~.ssh/ 权限设错时，某些特殊情况下会不许用户登入</span>
-<span class="hljs-string">StrictModes</span> <span class="hljs-literal">no</span>
-
-<span class="hljs-comment"># 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。</span>
-<span class="hljs-comment"># 至于自制的公钥数据就放置于用户家目录下的 .ssh/authorized_keys 内</span>
-<span class="hljs-string">RSAAuthentication</span> <span class="hljs-literal">yes</span>
-<span class="hljs-string">PubkeyAuthentication</span> <span class="hljs-literal">yes</span>
-<span class="hljs-string">AuthorizedKeysFile</span>      <span class="hljs-string">%h/.ssh/authorized_keys</span>
-
-<span class="hljs-comment">#有了证书登录了，就禁用密码登录吧，安全要紧</span>
-<span class="hljs-string">PasswordAuthentication</span> <span class="hljs-literal">no</span></code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">vim</span> <span class="hljs-string">/etc/ssh/sshd_config</span><br><span class="hljs-comment"># 禁用root账户登录，非必要，但为了安全性，请配置</span><br><span class="hljs-string">PermitRootLogin</span> <span class="hljs-literal">no</span><br><br><span class="hljs-comment"># 是否让 sshd 去检查用户家目录或相关档案的权限数据，</span><br><span class="hljs-comment"># 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。</span><br><span class="hljs-comment"># 例如使用者的 ~.ssh/ 权限设错时，某些特殊情况下会不许用户登入</span><br><span class="hljs-string">StrictModes</span> <span class="hljs-literal">no</span><br><br><span class="hljs-comment"># 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。</span><br><span class="hljs-comment"># 至于自制的公钥数据就放置于用户家目录下的 .ssh/authorized_keys 内</span><br><span class="hljs-string">RSAAuthentication</span> <span class="hljs-literal">yes</span><br><span class="hljs-string">PubkeyAuthentication</span> <span class="hljs-literal">yes</span><br><span class="hljs-string">AuthorizedKeysFile</span>      <span class="hljs-string">%h/.ssh/authorized_keys</span><br><br><span class="hljs-comment">#有了证书登录了，就禁用密码登录吧，安全要紧</span><br><span class="hljs-string">PasswordAuthentication</span> <span class="hljs-literal">no</span><br></code></pre></td></tr></table></figure>
 
 <p>然后不要忘记 <code>sudo service sshd restart</code></p>
 <p>一般来讲，这样就算是成功了，我们可以在客户端尝试：</p>
-<pre><code class="hljs elixir">ssh -i ~<span class="hljs-regexp">/.ssh/id</span>_rsa remote_username<span class="hljs-variable">@remote_ip</span></code></pre>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">ssh -i ~<span class="hljs-regexp">/.ssh/id</span>_rsa remote_username<span class="hljs-variable">@remote_ip</span><br></code></pre></td></tr></table></figure>
 
 <p>如果不行，可能是服务端或客户端相关 <code>.ssh</code> 文件权限不对，可以进行如下尝试：</p>
-<pre><code class="hljs angelscript">服务端
-chown -R <span class="hljs-number">0700</span>  ~/.ssh
-chown -R <span class="hljs-number">0644</span>  ~/.ssh/authorized_keys
-
-客户端改一下
-chmod <span class="hljs-number">600</span> id_rsa</code></pre>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">服务端<br>chown -R <span class="hljs-number">0700</span>  ~/.ssh<br>chown -R <span class="hljs-number">0644</span>  ~/.ssh/authorized_keys<br><br>客户端改一下<br>chmod <span class="hljs-number">600</span> id_rsa<br></code></pre></td></tr></table></figure>
 
 
 
@@ -337,9 +321,9 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Server/">Server</a>
-                    
                       <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Server/">Server</a>
                     
                   </div>
                 
@@ -348,7 +332,7 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -382,7 +366,7 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -394,16 +378,15 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -424,15 +407,14 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -466,10 +448,24 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -484,8 +480,19 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -494,174 +501,29 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Linux服务器初始化设置用户和ssh公私钥登陆&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -672,6 +534,14 @@ chmod <span class="hljs-number">600</span> id_rsa</code></pre>
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

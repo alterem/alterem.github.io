@@ -19,13 +19,13 @@
   <meta name="keywords" content="Alterem">
   <title>Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -37,6 +37,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -136,13 +140,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://gitee.com/alterem/picFB/raw/master/pics/2020/09/18/Y5X9bG.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="天下难事，必作于易；天下大事，必做于细。">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -151,7 +155,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -169,7 +173,7 @@
 
   <main>
     
-      <div class="container nopadding-md">
+      <div class="container nopadding-x-md">
         <div class="py-5" id="board"
           style=margin-top:0>
           
@@ -190,6 +194,7 @@
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/12/Java%E9%AB%98%E6%95%88%E8%AF%BB%E5%8F%96%E5%A4%A7%E6%96%87%E4%BB%B6/">Java高效读取大文件</a>
       </h1>
 
@@ -201,11 +206,9 @@
           
           1、概述本教程将演示如何用Java高效地读取大文件。 
 2、在内存中读取读取文件行的标准方式是在内存中读取，Guava 和Apache Commons IO都提供了如下所示快速读取文件行的方法： 
-Files.readLines(new File(path), Charsets.UTF_8);
- 
-FileUtils.readLines(new File(path));
+123Files.readLines(new File(path), Charsets.UTF_8); FileUtils.readLines(new File(path));
 
-这种方法带来的问题是文件
+这种方法带来的问题是文
         </a>
       </p>
 
@@ -243,6 +246,7 @@ FileUtils.readLines(new File(path));
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/12/Restful%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83%E6%80%BB%E7%BB%93/">restful接口设计规范总结</a>
       </h1>
 
@@ -297,6 +301,7 @@ Resource（资源） ：对象的单个实例。 例如，一只动物。它可�
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/12/String%E6%8B%BC%E6%8E%A5%E6%93%8D%E4%BD%9C%E2%80%9D-%E2%80%9D%E7%9A%84%E4%BC%98%E5%8C%96/">String拼接操作”+”的优化</a>
       </h1>
 
@@ -349,6 +354,7 @@ Resource（资源） ：对象的单个实例。 例如，一只动物。它可�
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/12/%E4%BD%BF%E7%94%A8BigDecimal%E8%BF%9B%E8%A1%8C%E7%B2%BE%E7%A1%AE%E8%BF%90%E7%AE%97/">使用BigDecimal进行精确运算</a>
       </h1>
 
@@ -359,11 +365,7 @@ Resource（资源） ：对象的单个实例。 例如，一只动物。它可�
             
           
           首先我们先来看如下代码示例： 
-public class Test_1 &#123;
-    public static void main(String[] args) &#123;
-        System.out.println(0.06+0.01);
-        System.out.println(1.0-0.42);
-        System.out.println(4.0
+123456789public class Test_1 &#123;    public static void main(String[] args) &#123;        System.out.println(0.06+0.01);        System.out.println(1.0-0.42);        System.out.printl
         </a>
       </p>
 
@@ -401,6 +403,7 @@ public class Test_1 &#123;
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/12/Java%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E6%9C%80%E5%B8%B8%E7%8A%AF%E7%9A%8410%E4%B8%AA%E9%94%99%E8%AF%AF/">Java开发人员最常犯的10个错误</a>
       </h1>
 
@@ -411,9 +414,9 @@ public class Test_1 &#123;
             
           
           一、把数组转成     ArrayList为了将数组转换为ArrayList，开发者经常会这样做： 
-List&lt;String&gt; list = Arrays.asList(arr);
+1List&lt;String&gt; list = Arrays.asList(arr);
 
-使用     Arrays.asList()方法可以得到一个ArrayList，但是得到这个     ArrayList其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和     java.
+使用     Arrays.asList()方法可以得到一个ArrayList，但是得到这个     ArrayList其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和     java
         </a>
       </p>
 
@@ -451,6 +454,7 @@ List&lt;String&gt; list = Arrays.asList(arr);
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/12/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">Redis分布式锁的正确实现方式</a>
       </h1>
 
@@ -487,9 +491,9 @@ List&lt;String&gt; list = Arrays.asList(arr);
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Redis/">Redis</a>
-            
               <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Redis/">Redis</a>
             
           </div>
         
@@ -502,6 +506,7 @@ List&lt;String&gt; list = Arrays.asList(arr);
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/11/Shadowsocks-Go%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/">Shadowsocks-Go一键安装脚本</a>
       </h1>
 
@@ -552,6 +557,7 @@ List&lt;String&gt; list = Arrays.asList(arr);
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/10/Java%E6%A0%B9%E6%8D%AEURL%E5%B0%86%E7%BD%91%E9%A1%B5%E8%BD%AC%E5%AD%98%E4%B8%BAPDF%E6%96%87%E4%BB%B6/">Java根据URL将网页转存为PDF文件</a>
       </h1>
 
@@ -562,11 +568,7 @@ List&lt;String&gt; list = Arrays.asList(arr);
             
           
           开始添加以下依赖：
-&lt;!-- url转pdf --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.xhtmlrenderer&lt;/groupId&gt;
-    &lt;artifactId&gt;flying-saucer-pdf-itext5&lt;/artifactId&gt;
-    &lt;version&gt;9.0.3&lt;/
+123456&lt;!-- url转pdf --&gt;&lt;dependency&gt;    &lt;groupId&gt;org.xhtmlrenderer&lt;/groupId&gt;    &lt;artifactId&gt;flying-saucer-pdf-itext5&lt;/artifactId&gt;    &lt;version&gt;9.0.3&lt
         </a>
       </p>
 
@@ -604,6 +606,7 @@ List&lt;String&gt; list = Arrays.asList(arr);
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/10/HTTP%E5%8D%8F%E8%AE%AE%E7%8A%B6%E6%80%81%E7%A0%81%E8%AF%A6%E8%A7%A3/">HTTP协议状态码详解</a>
       </h1>
 
@@ -658,6 +661,7 @@ List&lt;String&gt; list = Arrays.asList(arr);
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        
         <a href="/2019/06/10/MongoDB%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE/">MongoDB多数据源配置</a>
       </h1>
 
@@ -725,16 +729,15 @@ List&lt;String&gt; list = Arrays.asList(arr);
         </div>
       </div>
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -755,15 +758,14 @@ List&lt;String&gt; list = Arrays.asList(arr);
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -797,10 +799,24 @@ List&lt;String&gt; list = Arrays.asList(arr);
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -815,8 +831,13 @@ List&lt;String&gt; list = Arrays.asList(arr);
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -825,39 +846,29 @@ List&lt;String&gt; list = Arrays.asList(arr);
 
 
 
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "天下难事，必作于易；天下大事，必做于细。&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
   </script>
-
-
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
   </script>
 
 
@@ -868,87 +879,14 @@ List&lt;String&gt; list = Arrays.asList(arr);
 
 
 
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
-  </script>
 
 
 
 
 
 
-
-
-
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

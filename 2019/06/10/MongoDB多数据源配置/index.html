@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>MongoDB多数据源配置 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MongoDB多数据源配置">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -185,7 +192,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      939 字
+      938 字
     </span>
   
 
@@ -225,247 +232,47 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">MongoDB多数据源配置</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <p>SpringBoot对常用的数据库支持外，对NoSQL 数据库也进行了封装自动化。<br>这一篇主要讲springboot与mongo多数据源相关的配置</p>
 <h3 id="1、mongo的介绍"><a href="#1、mongo的介绍" class="headerlink" title="1、mongo的介绍"></a>1、mongo的介绍</h3><p>MongoDB是一个高性能，开源，无模式的文档型数据库，是当前NoSql数据库中比较热门的一种。它在许多场景下可用于替代传统的关系型数据库或键/值存储方式,这里不再多做说明。详细介绍参考<br><a href="http://blog.csdn.net/liusong0605/article/details/10554395" target="_blank" rel="noopener">mongo入门</a></p>
 <a id="more"></a>
 
 <h3 id="2、项目构建"><a href="#2、项目构建" class="headerlink" title="2、项目构建"></a>2、项目构建</h3><p>添加pom文件</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-mongodb<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-mongodb<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="3、在application-properties中添加配置"><a href="#3、在application-properties中添加配置" class="headerlink" title="3、在application.properties中添加配置"></a>3、在application.properties中添加配置</h3><pre><code class="hljs properties"><span class="hljs-comment">##start mongodb for basic</span>
-<span class="hljs-comment">#----------------------------------------------</span>
-<span class="hljs-meta">basic.mongodb.host</span>= <span class="hljs-string">127.0.0.1</span>
-<span class="hljs-meta">basic.mongodb.port</span>= <span class="hljs-string">27017</span>
-<span class="hljs-meta">basic.mongodb.database</span>= <span class="hljs-string">basic</span>
-<span class="hljs-comment">#----------------------------------------------</span>
-<span class="hljs-comment">##end mongodb for spirit</span>
-
-<span class="hljs-comment">##start mongodb for basic</span>
-<span class="hljs-comment">#----------------------------------------------</span>
-<span class="hljs-meta">order.mongodb.host</span>= <span class="hljs-string">127.0.0.2</span>
-<span class="hljs-meta">order.mongodb.port</span>= <span class="hljs-string">27017</span>
-<span class="hljs-meta">order.mongodb.database</span>= <span class="hljs-string">order</span>
-<span class="hljs-comment">#----------------------------------------------</span>
-<span class="hljs-comment">##end mongodb for spirit</span></code></pre>
+<h3 id="3、在application-properties中添加配置"><a href="#3、在application-properties中添加配置" class="headerlink" title="3、在application.properties中添加配置"></a>3、在application.properties中添加配置</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">##start mongodb for basic</span><br><span class="hljs-comment">#----------------------------------------------</span><br><span class="hljs-meta">basic.mongodb.host</span>= <span class="hljs-string">127.0.0.1</span><br><span class="hljs-meta">basic.mongodb.port</span>= <span class="hljs-string">27017</span><br><span class="hljs-meta">basic.mongodb.database</span>= <span class="hljs-string">basic</span><br><span class="hljs-comment">#----------------------------------------------</span><br><span class="hljs-comment">##end mongodb for spirit</span><br><br><span class="hljs-comment">##start mongodb for basic</span><br><span class="hljs-comment">#----------------------------------------------</span><br><span class="hljs-meta">order.mongodb.host</span>= <span class="hljs-string">127.0.0.2</span><br><span class="hljs-meta">order.mongodb.port</span>= <span class="hljs-string">27017</span><br><span class="hljs-meta">order.mongodb.database</span>= <span class="hljs-string">order</span><br><span class="hljs-comment">#----------------------------------------------</span><br><span class="hljs-comment">##end mongodb for spirit</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="4、配置相应的数据源"><a href="#4、配置相应的数据源" class="headerlink" title="4、配置相应的数据源"></a>4、配置相应的数据源</h3><p>这里我们采用mongoTemplate这种模式去做mongo的相关操作</p>
 <p>先写一个基础的抽象类</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractMongoConfigure</span> </span>&#123;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractMongoConfigure</span> </span>&#123;<br><br>    <span class="hljs-keyword">private</span> String host, database;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> port;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">       * Method that creates MongoDbFactory</span><br><span class="hljs-comment">       * Common to both of the MongoDb connections</span><br><span class="hljs-comment">       */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoDbFactory <span class="hljs-title">mongoDbFactory</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleMongoDbFactory(<span class="hljs-keyword">new</span> MongoClient(host, port), database);<br>    &#125;<br><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     * Factory method to create the MongoTemplate</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getHost</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> host;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setHost</span><span class="hljs-params">(String host)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.host = host;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDatabase</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> database;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDatabase</span><span class="hljs-params">(String database)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.database = database;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getPort</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> port;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> port)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.port = port;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    <span class="hljs-keyword">private</span> String host, database;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> port;
-    <span class="hljs-comment">/*</span>
-<span class="hljs-comment">       * Method that creates MongoDbFactory</span>
-<span class="hljs-comment">       * Common to both of the MongoDb connections</span>
-<span class="hljs-comment">       */</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoDbFactory <span class="hljs-title">mongoDbFactory</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
-
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleMongoDbFactory(<span class="hljs-keyword">new</span> MongoClient(host, port), database);
-    &#125;
-
-    <span class="hljs-comment">/*</span>
-<span class="hljs-comment">     * Factory method to create the MongoTemplate</span>
-<span class="hljs-comment">     */</span>
-    <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception</span>;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getHost</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> host;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setHost</span><span class="hljs-params">(String host)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.host = host;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDatabase</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> database;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDatabase</span><span class="hljs-params">(String database)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.database = database;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getPort</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> port;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> port)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.port = port;
-    &#125;
-&#125;</code></pre>
-
-<h3 id="3-1-接下来第一个库的封装"><a href="#3-1-接下来第一个库的封装" class="headerlink" title="3.1)接下来第一个库的封装"></a>3.1)接下来第一个库的封装</h3><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableMongoRepositories</span>(basePackages = &#123;<span class="hljs-string">"com.sunliangliang.service.basic"</span>&#125;, mongoTemplateRef = <span class="hljs-string">"basicMongoTemplate"</span>)
-<span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"basic.mongodb"</span>)
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BasicMongoConfigure</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMongoConfigure</span> </span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"basicMongoTemplate"</span>)
-    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MongoTemplate(mongoDbFactory());
-    &#125;
-&#125;</code></pre>
+<h3 id="3-1-接下来第一个库的封装"><a href="#3-1-接下来第一个库的封装" class="headerlink" title="3.1)接下来第一个库的封装"></a>3.1)接下来第一个库的封装</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableMongoRepositories</span>(basePackages = &#123;<span class="hljs-string">"com.sunliangliang.service.basic"</span>&#125;, mongoTemplateRef = <span class="hljs-string">"basicMongoTemplate"</span>)<br><span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"basic.mongodb"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BasicMongoConfigure</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMongoConfigure</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"basicMongoTemplate"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MongoTemplate(mongoDbFactory());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>其中 basePackages 的值是该库应用于相应的基础包，prefix即为相应的applications中的配置值</p>
-<h4 id="3-2-接下来第两个库的封装"><a href="#3-2-接下来第两个库的封装" class="headerlink" title="3.2)接下来第两个库的封装"></a>3.2)接下来第两个库的封装</h4><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableMongoRepositories</span>(basePackages = &#123;<span class="hljs-string">"com.sunliangliang.service.order"</span>&#125;, mongoTemplateRef = <span class="hljs-string">"orderMongoTemplate"</span>)
-<span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"order.mongodb"</span>)
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderMongoConfigure</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMongoConfigure</span></span>&#123;
-    <span class="hljs-meta">@Primary</span>
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"orderMongoTemplate"</span>)
-    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MongoTemplate(mongoDbFactory());
-    &#125;
-&#125;</code></pre>
+<h4 id="3-2-接下来第两个库的封装"><a href="#3-2-接下来第两个库的封装" class="headerlink" title="3.2)接下来第两个库的封装"></a>3.2)接下来第两个库的封装</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableMongoRepositories</span>(basePackages = &#123;<span class="hljs-string">"com.sunliangliang.service.order"</span>&#125;, mongoTemplateRef = <span class="hljs-string">"orderMongoTemplate"</span>)<br><span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"order.mongodb"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderMongoConfigure</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMongoConfigure</span></span>&#123;<br>    <span class="hljs-meta">@Primary</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"orderMongoTemplate"</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> MongoTemplate <span class="hljs-title">getMongoTemplate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MongoTemplate(mongoDbFactory());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>封装完成后接下来进行相应实体的配置</p>
-<h3 id="4、创建数据实体"><a href="#4、创建数据实体" class="headerlink" title="4、创建数据实体"></a>4、创建数据实体</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> id;
-    <span class="hljs-keyword">private</span> String username;
-    <span class="hljs-keyword">private</span> String password;
-    <span class="hljs-keyword">private</span> String nickname;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;
-    <span class="hljs-keyword">private</span> String name;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> id;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">long</span> id)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.id = id;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> username;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUsername</span><span class="hljs-params">(String username)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.username = username;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPassword</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> password;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPassword</span><span class="hljs-params">(String password)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.password = password;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getNickname</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> nickname;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setNickname</span><span class="hljs-params">(String nickname)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.nickname = nickname;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> age;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.age = age;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> name;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.name = name;
-    &#125;
-&#125;</code></pre>
+<h3 id="4、创建数据实体"><a href="#4、创建数据实体" class="headerlink" title="4、创建数据实体"></a>4、创建数据实体</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> id;<br>    <span class="hljs-keyword">private</span> String username;<br>    <span class="hljs-keyword">private</span> String password;<br>    <span class="hljs-keyword">private</span> String nickname;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> id;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">long</span> id)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.id = id;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> username;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUsername</span><span class="hljs-params">(String username)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.username = username;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPassword</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> password;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPassword</span><span class="hljs-params">(String password)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.password = password;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getNickname</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> nickname;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setNickname</span><span class="hljs-params">(String nickname)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.nickname = nickname;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="4、添加对实体的操作"><a href="#4、添加对实体的操作" class="headerlink" title="4、添加对实体的操作"></a>4、添加对实体的操作</h3><p>在这里我写了一个公用的接口用于基础的增删改查</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BaseService</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;
-    <span class="hljs-function">Boolean <span class="hljs-title">save</span><span class="hljs-params">(T entity)</span></span>;
-
-    <span class="hljs-function">Boolean <span class="hljs-title">update</span><span class="hljs-params">(T entity)</span></span>;
-
-    <span class="hljs-function">Boolean <span class="hljs-title">delete</span><span class="hljs-params">(Long id)</span></span>;
-
-    <span class="hljs-function">T <span class="hljs-title">getById</span><span class="hljs-params">(Long id)</span></span>;
-
-    <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span></span>;
-
-    <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listAll</span><span class="hljs-params">(T entity)</span></span>;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">BaseService</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-function">Boolean <span class="hljs-title">save</span><span class="hljs-params">(T entity)</span></span>;<br><br>    <span class="hljs-function">Boolean <span class="hljs-title">update</span><span class="hljs-params">(T entity)</span></span>;<br><br>    <span class="hljs-function">Boolean <span class="hljs-title">delete</span><span class="hljs-params">(Long id)</span></span>;<br><br>    <span class="hljs-function">T <span class="hljs-title">getById</span><span class="hljs-params">(Long id)</span></span>;<br><br>    <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span></span>;<br><br>    <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">listAll</span><span class="hljs-params">(T entity)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>接下来接口的实现</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Service</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfoService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BaseService</span>&lt;<span class="hljs-title">UserInfo</span>&gt;</span>&#123;
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-meta">@Qualifier</span>(<span class="hljs-string">"basicMongoTemplate"</span>)
-    <span class="hljs-keyword">private</span> MongoTemplate mongoTemplate;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">save</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;
-        mongoTemplate.save(entity);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">update</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">delete</span><span class="hljs-params">(Long id)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> UserInfo <span class="hljs-title">getById</span><span class="hljs-params">(Long id)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> mongoTemplate.findAll(UserInfo<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title">listAll</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
-    &#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfoService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BaseService</span>&lt;<span class="hljs-title">UserInfo</span>&gt;</span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-meta">@Qualifier</span>(<span class="hljs-string">"basicMongoTemplate"</span>)<br>    <span class="hljs-keyword">private</span> MongoTemplate mongoTemplate;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">save</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;<br>        mongoTemplate.save(entity);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">update</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">delete</span><span class="hljs-params">(Long id)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> UserInfo <span class="hljs-title">getById</span><span class="hljs-params">(Long id)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title">listAll</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> mongoTemplate.findAll(UserInfo<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;UserInfo&gt; <span class="hljs-title">listAll</span><span class="hljs-params">(UserInfo entity)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>注意此处@Qualifier(“basicMongoTemplate”)中即为相应的具体实现类。</p>
 <p>这里只写了添加和查询列表的实现，其他的查询相应的api即可</p>
-<pre><code class="hljs java"><span class="hljs-meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>
-<span class="hljs-class">@<span class="hljs-title">SpringBootTest</span></span>
-<span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">UserInfoServiceTest</span> </span>&#123;
-    <span class="hljs-meta">@Autowired</span>
-    <span class="hljs-keyword">private</span> UserInfoService userInfoService;
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
-        UserInfo userInfo = <span class="hljs-keyword">new</span> UserInfo();
-        userInfo.setAge(<span class="hljs-number">23</span>);
-        userInfo.setId(<span class="hljs-number">1000l</span>);
-        userInfo.setName(<span class="hljs-string">"管理员"</span>);
-        userInfo.setNickname(<span class="hljs-string">"hehe"</span>);
-        userInfo.setPassword(<span class="hljs-string">"123456"</span>);
-        userInfo.setUsername(<span class="hljs-string">"admin"</span>);
-        userInfoService.save(userInfo);
-    &#125;
-
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">listAll</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
-        userInfoService.listAll();
-    &#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span><br><span class="hljs-class">@<span class="hljs-title">SpringBootTest</span></span><br><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">UserInfoServiceTest</span> </span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> UserInfoService userInfoService;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        UserInfo userInfo = <span class="hljs-keyword">new</span> UserInfo();<br>        userInfo.setAge(<span class="hljs-number">23</span>);<br>        userInfo.setId(<span class="hljs-number">1000l</span>);<br>        userInfo.setName(<span class="hljs-string">"管理员"</span>);<br>        userInfo.setNickname(<span class="hljs-string">"hehe"</span>);<br>        userInfo.setPassword(<span class="hljs-string">"123456"</span>);<br>        userInfo.setUsername(<span class="hljs-string">"admin"</span>);<br>        userInfoService.save(userInfo);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">listAll</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        userInfoService.listAll();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>若库不存在，会自动生成相应的库和文档</p>
 <p>另一个order相关库的配置就不再这里写了</p>
@@ -498,7 +305,7 @@
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -532,7 +339,7 @@
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -544,16 +351,15 @@
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -574,15 +380,14 @@
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -616,10 +421,24 @@
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -634,8 +453,19 @@
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -644,174 +474,29 @@
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "MongoDB多数据源配置&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -822,6 +507,14 @@
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>restful接口设计规范总结 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="restful接口设计规范总结">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -225,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">restful接口设计规范总结</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <p><strong>这篇 文章主要是借鉴他人，但是自己很想总结出一套规范，以供向我这样的新手使用，用来规范代码，如果有什么好的提议，请不吝赐教，本篇文章长期更新！</strong> </p>
 <h3 id="一、重要概念："><a href="#一、重要概念：" class="headerlink" title="一、重要概念："></a>一、重要概念：</h3><blockquote>
 <p>REST,即Representational State Transfer的缩写。我对这个词组的翻译是”表现层状态转化”。     </p>
@@ -263,19 +270,10 @@
 <p>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。 </p>
 <p>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。 </p>
 <p>接口尽量使用名词，禁止使用动词，下面是一些例子。 </p>
-<pre><code class="hljs properties"><span class="hljs-attr">GET</span>         <span class="hljs-string">/zoos：列出所有动物园</span>
-<span class="hljs-attr">POST</span>        <span class="hljs-string">/zoos：新建一个动物园</span>
-<span class="hljs-attr">GET</span>         <span class="hljs-string">/zoos/ID：获取某个指定动物园的信息</span>
-<span class="hljs-attr">PUT</span>         <span class="hljs-string">/zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）</span>
-<span class="hljs-attr">PATCH</span>       <span class="hljs-string">/zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）</span>
-<span class="hljs-attr">DELETE</span>      <span class="hljs-string">/zoos/ID：删除某个动物园</span>
-<span class="hljs-attr">GET</span>         <span class="hljs-string">/zoos/ID/animals：列出某个指定动物园的所有动物</span>
-<span class="hljs-attr">DELETE</span>      <span class="hljs-string">/zoos/ID/animals/ID：删除某个指定动物园的指定动物</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">GET</span>         <span class="hljs-string">/zoos：列出所有动物园</span><br><span class="hljs-attr">POST</span>        <span class="hljs-string">/zoos：新建一个动物园</span><br><span class="hljs-attr">GET</span>         <span class="hljs-string">/zoos/ID：获取某个指定动物园的信息</span><br><span class="hljs-attr">PUT</span>         <span class="hljs-string">/zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）</span><br><span class="hljs-attr">PATCH</span>       <span class="hljs-string">/zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）</span><br><span class="hljs-attr">DELETE</span>      <span class="hljs-string">/zoos/ID：删除某个动物园</span><br><span class="hljs-attr">GET</span>         <span class="hljs-string">/zoos/ID/animals：列出某个指定动物园的所有动物</span><br><span class="hljs-attr">DELETE</span>      <span class="hljs-string">/zoos/ID/animals/ID：删除某个指定动物园的指定动物</span><br></code></pre></td></tr></table></figure>
 
 <p>反例： </p>
-<pre><code class="hljs properties"><span class="hljs-attr">/getAllCars</span>
-<span class="hljs-attr">/createNewCar</span>
-<span class="hljs-attr">/deleteAllRedCars</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">/getAllCars</span><br><span class="hljs-attr">/createNewCar</span><br><span class="hljs-attr">/deleteAllRedCars</span><br></code></pre></td></tr></table></figure>
 
 <p>再比如，某个URI是/posts/show/1，其中show是动词，这个URI就设计错了，正确的写法应该是/posts/1，然后用GET方法表示show。 </p>
 <p>如果某些动作是HTTP动词表示不了的，你就应该把动作做成一种资源。比如网上汇款，从账户1向账户2汇款500元，错误的URI是： </p>
@@ -288,43 +286,17 @@
 </blockquote>
 <p>理清资源的层次结构，比如业务针对的范围是学校，那么学校会是一级资源(/school)，老师(/school/teachers)，学生(/school/students)就是二级资源。 </p>
 <h4 id="3、版本（Versioning）"><a href="#3、版本（Versioning）" class="headerlink" title="3、版本（Versioning）"></a>3、版本（Versioning）</h4><p>应该将API的版本号放入URL。如： </p>
-<pre><code class="hljs properties"><span class="hljs-attr">https</span>:<span class="hljs-string">//api.example.com/v1/</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">https</span>:<span class="hljs-string">//api.example.com/v1/</span><br></code></pre></td></tr></table></figure>
 
 <p>另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。Github采用这种做法。 </p>
 <h4 id="4、过滤信息（Filtering）"><a href="#4、过滤信息（Filtering）" class="headerlink" title="4、过滤信息（Filtering）"></a>4、过滤信息（Filtering）</h4><p>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。<br>下面是一些常见的参数。 </p>
-<pre><code class="hljs properties"><span class="hljs-meta">?limit</span>=<span class="hljs-string">10：指定返回记录的数量</span>
-<span class="hljs-meta">?offset</span>=<span class="hljs-string">10：指定返回记录的开始位置。</span>
-<span class="hljs-meta">?page_number</span>=<span class="hljs-string">2&amp;page_size=100：指定第几页，以及每页的记录数。</span>
-<span class="hljs-meta">?sortby</span>=<span class="hljs-string">name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</span>
-<span class="hljs-meta">?animal_type_id</span>=<span class="hljs-string">1：指定筛选条件</span>
-<span class="hljs-attr">参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，</span>
-<span class="hljs-attr">GET</span> <span class="hljs-string">/zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">?limit</span>=<span class="hljs-string">10：指定返回记录的数量</span><br><span class="hljs-meta">?offset</span>=<span class="hljs-string">10：指定返回记录的开始位置。</span><br><span class="hljs-meta">?page_number</span>=<span class="hljs-string">2&amp;page_size=100：指定第几页，以及每页的记录数。</span><br><span class="hljs-meta">?sortby</span>=<span class="hljs-string">name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</span><br><span class="hljs-meta">?animal_type_id</span>=<span class="hljs-string">1：指定筛选条件</span><br><span class="hljs-attr">参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，</span><br><span class="hljs-attr">GET</span> <span class="hljs-string">/zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="5、状态码（Status-Codes）"><a href="#5、状态码（Status-Codes）" class="headerlink" title="5、状态码（Status Codes）"></a>5、状态码（Status Codes）</h4><p>状态码范围 </p>
-<pre><code class="hljs properties"><span class="hljs-attr">1xx</span> <span class="hljs-string">信息，请求收到，继续处理。范围保留用于底层HTTP的东西，你很可能永远也用不到。</span>
-<span class="hljs-attr">2xx</span> <span class="hljs-string">成功，行为被成功地接受、理解和采纳</span>
-<span class="hljs-attr">3xx</span> <span class="hljs-string">重定向，为了完成请求，必须进一步执行的动作</span>
-<span class="hljs-attr">4xx</span> <span class="hljs-string">客户端错误，请求包含语法错误或者请求无法实现。范围保留用于响应客户端做出的错误，例如。他们提供不良数据或要求不存在的东西。这些请求应该是幂等的，而不是更改服务器的状态。</span>
-<span class="hljs-attr">5xx</span> <span class="hljs-string">范围的状态码是保留给服务器端错误用的。这些错误常常是从底层的函数抛出来的，甚至</span>
-<span class="hljs-attr">开发人员也通常没法处理，发送这类状态码的目的以确保客户端获得某种响应。</span>
-<span class="hljs-attr">当收到5xx响应时，客户端不可能知道服务器的状态，所以这类状态码是要尽可能的避免。</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">1xx</span> <span class="hljs-string">信息，请求收到，继续处理。范围保留用于底层HTTP的东西，你很可能永远也用不到。</span><br><span class="hljs-attr">2xx</span> <span class="hljs-string">成功，行为被成功地接受、理解和采纳</span><br><span class="hljs-attr">3xx</span> <span class="hljs-string">重定向，为了完成请求，必须进一步执行的动作</span><br><span class="hljs-attr">4xx</span> <span class="hljs-string">客户端错误，请求包含语法错误或者请求无法实现。范围保留用于响应客户端做出的错误，例如。他们提供不良数据或要求不存在的东西。这些请求应该是幂等的，而不是更改服务器的状态。</span><br><span class="hljs-attr">5xx</span> <span class="hljs-string">范围的状态码是保留给服务器端错误用的。这些错误常常是从底层的函数抛出来的，甚至</span><br><span class="hljs-attr">开发人员也通常没法处理，发送这类状态码的目的以确保客户端获得某种响应。</span><br><span class="hljs-attr">当收到5xx响应时，客户端不可能知道服务器的状态，所以这类状态码是要尽可能的避免。</span><br></code></pre></td></tr></table></figure>
 
 <p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。 </p>
-<pre><code class="hljs properties"><span class="hljs-attr">200</span> <span class="hljs-string">OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</span>
-<span class="hljs-attr">201</span> <span class="hljs-string">CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</span>
-<span class="hljs-attr">202</span> <span class="hljs-string">Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</span>
-<span class="hljs-attr">204</span> <span class="hljs-string">NO CONTENT - [DELETE]：用户删除数据成功。</span>
-<span class="hljs-attr">400</span> <span class="hljs-string">INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</span>
-<span class="hljs-attr">401</span> <span class="hljs-string">Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</span>
-<span class="hljs-attr">403</span> <span class="hljs-string">Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</span>
-<span class="hljs-attr">404</span> <span class="hljs-string">NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</span>
-<span class="hljs-attr">406</span> <span class="hljs-string">Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</span>
-<span class="hljs-attr">410</span> <span class="hljs-string">Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</span>
-<span class="hljs-attr">422</span> <span class="hljs-string">Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</span>
-<span class="hljs-attr">500</span> <span class="hljs-string">INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</span>
-<span class="hljs-attr">502</span> <span class="hljs-string">网关错误</span>
-<span class="hljs-attr">503</span> <span class="hljs-string">Service Unavailable</span>
-<span class="hljs-attr">504</span> <span class="hljs-string">网关超时</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">200</span> <span class="hljs-string">OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</span><br><span class="hljs-attr">201</span> <span class="hljs-string">CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</span><br><span class="hljs-attr">202</span> <span class="hljs-string">Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</span><br><span class="hljs-attr">204</span> <span class="hljs-string">NO CONTENT - [DELETE]：用户删除数据成功。</span><br><span class="hljs-attr">400</span> <span class="hljs-string">INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</span><br><span class="hljs-attr">401</span> <span class="hljs-string">Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</span><br><span class="hljs-attr">403</span> <span class="hljs-string">Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</span><br><span class="hljs-attr">404</span> <span class="hljs-string">NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</span><br><span class="hljs-attr">406</span> <span class="hljs-string">Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</span><br><span class="hljs-attr">410</span> <span class="hljs-string">Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</span><br><span class="hljs-attr">422</span> <span class="hljs-string">Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</span><br><span class="hljs-attr">500</span> <span class="hljs-string">INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</span><br><span class="hljs-attr">502</span> <span class="hljs-string">网关错误</span><br><span class="hljs-attr">503</span> <span class="hljs-string">Service Unavailable</span><br><span class="hljs-attr">504</span> <span class="hljs-string">网关超时</span><br></code></pre></td></tr></table></figure>
 
 <p>参考资料： </p>
 <p>RESTful API 设计指南–阮一峰：<a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a> </p>
@@ -359,7 +331,7 @@
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -393,7 +365,7 @@
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -405,16 +377,15 @@
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -435,15 +406,14 @@
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -477,10 +447,24 @@
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -495,8 +479,19 @@
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -505,174 +500,29 @@
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "restful接口设计规范总结&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -683,6 +533,14 @@
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

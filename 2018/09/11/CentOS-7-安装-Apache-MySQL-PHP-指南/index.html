@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>CentOS 7 安装 Apache, MySQL, PHP 指南 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CentOS 7 安装 Apache, MySQL, PHP 指南">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -195,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      37
+      38
        分钟
     </span>
   
@@ -225,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">CentOS 7 安装 Apache, MySQL, PHP 指南</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <p>一个 LAMP 软件栈通常由多个开源软件组合而成，它们合力驱动一个服务器去运行 web 站点和应用。LAMP 这个术语实际上是一个由 Linux 操作系统，Apache web 服务器，MySQL 数据库服务器，以及 PHP 编程环境组合缩略而成的。</p>
 <p>在这篇指南中，我们将为一个搭载 CentOS 7 操作系统的服务器安装 LAMP 软件栈。CentOS 已经满足了 LAMP 软件栈的第一个需求：一个 Linux 操作系统。</p>
  <a id="more"></a>
@@ -246,34 +253,32 @@
 <p>Apache 是目前世界上最广泛使用的 web 服务器，这使得它成为运行网站的绝佳选择。</p>
 <p>利用 CentOS 的软件安装包管理系统 yum，我们可以轻易地安装 Apache。它为我们提供了无痛式地从 CentOS 维护的仓库获取并安装绝大多数软件的方式。你可以前往这里 (<a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-use-yum-repositories-on-a-centos-6-vps" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-set-up-and-use-yum-repositories-on-a-centos-6-vps</a>) 获取更多如何使用 yum 安装包管理系统的指导。</p>
 <p>对于我们的目的而言，安装 Apache 只需要在 CentOS 命令终端敲入这条命令就行了：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install httpd</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install httpd</span><br></code></pre></td></tr></table></figure>
 
 <p>由于使用了 sudo 命令，这些操作将以 root 权限执行。如果当前用户的身份不是 root，CentOS 将会要求你输入当前用户的密码，以验证你的意图。</p>
 <p>不用一会儿，你的 web 服务器就安装好了。</p>
 <p>一旦安装成功，你就可以设置服务器启动时就开启 Apache 服务：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl <span class="hljs-built_in">enable</span> httpd.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl <span class="hljs-built_in">enable</span> httpd.service</span><br></code></pre></td></tr></table></figure>
 
 <p>你可以通过重新启动服务器，然后在命令行终端中敲入这条命令来验证 Apache 服务是否在服务器启动时自动开启了：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl is-enabled httpd.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl is-enabled httpd.service</span><br></code></pre></td></tr></table></figure>
 
 <p>如果你看到了这样的响应：</p>
-<pre><code class="hljs shell">enabled</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">enabled<br></code></pre></td></tr></table></figure>
 
 <p>则说明 Apache 服务已经配置为在服务器启动时自动开启了。</p>
 <p>在服务器上启动 Apache 服务的命令为：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo systemctl start httpd.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo systemctl start httpd.service</span><br></code></pre></td></tr></table></figure>
 
 <p>重新启动 Apache：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo systemctl restart httpd.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo systemctl restart httpd.service</span><br></code></pre></td></tr></table></figure>
 
 <p>停止 Apache：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo systemctl stop httpd.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo systemctl stop httpd.service</span><br></code></pre></td></tr></table></figure>
 
 <p>以及</p>
 <p>如果你的服务器正在运行防火墙，请运行下列命令以允许它进行 HTTP 和 HTTPS 通信：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo firewall-cmd --permanent --zone=public --add-service=http</span>
-<span class="hljs-meta">$</span><span class="bash">sudo firewall-cmd --permanent --zone=public --add-service=https</span>
-<span class="hljs-meta">$</span><span class="bash">sudo firewall-cmd --reload</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">sudo firewall-cmd --permanent --zone=public --add-service=http</span><br><span class="hljs-meta">$</span><span class="bash">sudo firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="hljs-meta">$</span><span class="bash">sudo firewall-cmd --reload</span><br></code></pre></td></tr></table></figure>
 
 <p>在 Apache 启动的情况下，你可以在浏览器里访问服务器的公网 IP 地址以验证一切如计划那样顺利地进行（如果你现在还不知道如何获取服务器的公网 IP 地址，请参考下一标题中的内容）：</p>
 <p>http://&lt;服务器的公网 IP 地址&gt;/</p>
@@ -283,122 +288,95 @@
 <p>如何找到服务器的公网 IP 地址</p>
 <p>如果你不知道服务器的公网 IP 地址是什么，你可以使用多种方式找到它。通常情况下，它就是你通过 SSH 用以连接服务器的地址。</p>
 <p>在命令行终端中，你有多种方式找到它。首先，你可以通过下面这条命令，让 iproute2 工具帮你找出服务器的 IP 地址：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ip addr show eth1 | grep inet | awk <span class="hljs-string">'&#123; print $2; &#125;'</span> | sed <span class="hljs-string">'s/\/.*$//'</span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ip addr show eth1 | grep inet | awk <span class="hljs-string">'&#123; print $2; &#125;'</span> | sed <span class="hljs-string">'s/\/.*$//'</span></span><br></code></pre></td></tr></table></figure>
 
 <p>这将会返回一到两行结果。它们都是正确的 IP 地址，但是你的计算机可能只能使用其中的一条，所以随意试试其中的每一条。</p>
 <p>另一种方法是让一个外部组织告诉你它是怎样找到你的服务器的，你可以通过询问特定的服务器来获知自己的 IP 地址：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> curl http://icanhazip.com</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> curl http://icanhazip.com</span><br></code></pre></td></tr></table></figure>
 
 
 <p>第二步 —— 安装 MySQL</p>
 <p>MySQL 是一个 web 服务器上流行的数据库管理系统。然而，从 CentOS 7 的软件仓库不再提供 MySQL 的安装包，转而提供 MariaDB 作为默认的数据库管理系统。MariaDB 作为 MySQL 的简易替代品，足以胜任通常意义上你对的数据库系统的需求 (<a href="https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/)。你可以前往这里" target="_blank" rel="noopener">https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/)。你可以前往这里</a> (<a href="https://www.linode.com/docs/databases/mariadb/how-to-install-mariadb-on-centos-7" target="_blank" rel="noopener">https://www.linode.com/docs/databases/mariadb/how-to-install-mariadb-on-centos-7</a>) 获取在 CentOS 7 上安装 MariaDB 的指导。</p>
 <p>如果你不论如何都更需要 MySQL 作为 web 服务器上的数据管理系统，那么请继续阅读下面这部分指南，它将指引你如何在运行 CentOS 7 的服务器上安装并配置 MySQL 数据库。</p>
 <p>开始安装 MySQL 之前，请更新系统上的软件到最新版：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum update</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum update</span><br></code></pre></td></tr></table></figure>
 
 <p>由于 CentOS 7 的软件仓库不再提供 MySQL 的安装包，我们必须从 MySQL 社区仓库 (<a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/repo/yum/</a>) 获取 MySQL 安装包。</p>
 <p>首先，获取 MySQL 社区仓库：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm</span><br></code></pre></td></tr></table></figure>
 
 <p>载入 MySQL 社区仓库：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install mysql57-community-release-el7-8.noarch.rpm</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install mysql57-community-release-el7-8.noarch.rpm</span><br></code></pre></td></tr></table></figure>
 
 <p>更新系统上的软件到最新版：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum update</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum update</span><br></code></pre></td></tr></table></figure>
 
 <p>在更新过程中，你会被询问是否想接受这个 .rpm 文件 GPG 校验得出的结果，如果没有错误或者不匹配出现，请输入 y 以完成更新。</p>
 <p>接着，我们就能一如往常一样安装 MySQL 了：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install mysql-server</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install mysql-server</span><br></code></pre></td></tr></table></figure>
 
 <p>接下来，请按照这里的指南，重置 MySQL root 账户的密码为你能够记住的密码:</p>
 <p><a href="http://stackoverflow.com/questions/33510184/change-mysql-root-password-on-centos7" target="_blank" rel="noopener">http://stackoverflow.com/questions/33510184/change-mysql-root-password-on-centos7</a></p>
 <p>然后，启动 MySQL 服务：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl start mysqld</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl start mysqld</span><br></code></pre></td></tr></table></figure>
 
 <p>现在 MySQL 数据库已经开始运行了。我们希望运行一个安全防御脚本，将一些危险的默认配置移除掉，并为我们的数据库系统加上一点安全机制。请在命令行终端里运行下面这一条命令：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo mysql_secure_installation</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo mysql_secure_installation</span><br></code></pre></td></tr></table></figure>
 
 <p>命令行终端将会提示你输入 MySQL 内 root 用户的密码。键入上面重置 MySQL root 密码后的新密码。然后，命令行终端将会要求你更新 root 用户的密码。</p>
-<pre><code class="hljs shell">Enter current password for root:
-The existing password for the user account root has expired. Please set a new password.
-New password:
-Re-enter new password:
-The 'validate_password' plugin is installed on the server.
-The subsequent steps will run with the existing configurationof the plugin.
-Using existing password for root.</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">Enter current password for root:<br>The existing password for the user account root has expired. Please set a new password.<br>New password:<br>Re-enter new password:<br>The 'validate_password' plugin is installed on the server.<br>The subsequent steps will run with the existing configurationof the plugin.<br>Using existing password for root.<br></code></pre></td></tr></table></figure>
 
 <p>对于命令行终端接下来给出的选择，你应该敲击 ENTER 键选择忽略修改 root 密码，接着键入 y 同意移除掉出于示例目的而存在的用户，而后键入 y 同意禁用远程登录 root 用户，再次键入 y 同意移除测试数据库，最后键入 y 载入这些新的规则使得 MySQL 立即响应我们做的变更。</p>
 <p>最后，如果希望 MySQL 服务在服务器启动时自动开启，那么你应该使用这一条的命令：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl <span class="hljs-built_in">enable</span> mysqld.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl <span class="hljs-built_in">enable</span> mysqld.service</span><br></code></pre></td></tr></table></figure>
 
 <p>你可以通过重新启动服务器，然后在命令行终端中敲入这条命令来验证MySQL 服务是否在服务器启动时自动开启了：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl is-enabled mysqld.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl is-enabled mysqld.service</span><br></code></pre></td></tr></table></figure>
 
 <p>如果你看到了这样的响应：</p>
-<pre><code class="hljs shell">enabled</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">enabled<br></code></pre></td></tr></table></figure>
 
 <p>则说明 MySQL 服务已经配置为在服务器启动时自动开启了。</p>
 <p>现在，你的数据库系统已经安装妥当，我们可以继续后面的内容了。</p>
 <p>第三步 —— 安装 PHP</p>
 <p>在我们的 web 软件栈中，PHP 是一个能够处理业务逻辑和数据，并动态生成内容展现给用户的软件。它可以运行脚本，连接到 MySQL 数据库以存取数据，以及将处理过的内容递交给 web 服务器来显示。</p>
 <p>我们可以再次利用 yum 安装包管理系统来安装我们的组件。现在，我们打算将 php-mysql 也加入到我们将要安装的软件序列中：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install php php-mysql</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install php php-mysql</span><br></code></pre></td></tr></table></figure>
 
 <p>这里安装 PHP 应该不会有任何问题。我们需要重新启动 Apache web 服务器以便它能够与 PHP 协作。你可以通过这条命令达到目的：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl restart httpd.service</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo systemctl restart httpd.service</span><br></code></pre></td></tr></table></figure>
 
 <p>安装 PHP 模块</p>
 <p>为了增强 PHP 的功能，我们可以选择性地安装一些额外的模块。</p>
 <p>在命令行终端敲入这条命令，你就可以找到所有可以获取到的 PHP 模块选项和库：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> yum search php</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> yum search php</span><br></code></pre></td></tr></table></figure>
 
 <p>响应的结果就是所有你能够选择安装的组件。其中包含了每个可选组件的描述：</p>
-<pre><code class="hljs shell">php-bcmath.x86_64 : A module for PHP applications for using the bcmath library
-php-cli.x86_64 : Command-line interface for PHP
-php-common.x86_64 : Commonfiles for PHP
-php-dba.x86_64 : Adatabase abstraction layer module for PHP applications
-php-devel.x86_64 : Filesneeded for building PHP extensions
-php-embedded.x86_64 : PHPlibrary for embedding in applications
-php-enchant.x86_64 : Enchantspelling extension for PHP applications
-php-fpm.x86_64 : PHPFastCGI Process Manager
-php-gd.x86_64 : Amodule for PHP applications for using the gd graphics library
-. . .</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">php-bcmath.x86_64 : A module for PHP applications for using the bcmath library<br>php-cli.x86_64 : Command-line interface for PHP<br>php-common.x86_64 : Commonfiles for PHP<br>php-dba.x86_64 : Adatabase abstraction layer module for PHP applications<br>php-devel.x86_64 : Filesneeded for building PHP extensions<br>php-embedded.x86_64 : PHPlibrary for embedding in applications<br>php-enchant.x86_64 : Enchantspelling extension for PHP applications<br>php-fpm.x86_64 : PHPFastCGI Process Manager<br>php-gd.x86_64 : Amodule for PHP applications for using the gd graphics library<br>. . .<br></code></pre></td></tr></table></figure>
 
 <p>如果需要获取每个模块更多的信息，你可以通过互联网搜索，或者直接在命令行终端中敲入这条命令查看：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> yum info package_name</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> yum info package_name</span><br></code></pre></td></tr></table></figure>
 
 <p>响应中将会包含许多的信息，其中一个名为 Description 的域包含了这个模块提供的功能更为详尽的描述。</p>
 <p>举个例子，如果要获知 php-fpm 模块的功能，我们只要在命令行终端中敲入下列指令就可以了：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> yum info php-fpm</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> yum info php-fpm</span><br></code></pre></td></tr></table></figure>
 
 <p>顺着众多其他信息往下看，你将会找到形如这样的信息：</p>
-<pre><code class="hljs shell">. . .
-
-Summary    : PHPFastCGI Process Manager
-
-URL            : http://www.php.net/
-
-License       : PHPand Zend and BSD
-
-Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
-
-​                   : implementation with some additional features useful for sites of
-
-​                   : any size, especially busier sites.</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">. . .<br><br>Summary    : PHPFastCGI Process Manager<br><br>URL            : http://www.php.net/<br><br>License       : PHPand Zend and BSD<br><br>Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI<br><br>​                   : implementation with some additional features useful for sites of<br><br>​                   : any size, especially busier sites.<br></code></pre></td></tr></table></figure>
 
 <p>在考究之后，如果你决定要安装一个模块包，你可以像我们之前安装其他软件时的做法一样，使用 yum install 命令达到目的。</p>
 <p>如果我们决定了 php-fpm 就是我们需要的，那么我们可以在命令行终端键入：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install php-fpm</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install php-fpm</span><br></code></pre></td></tr></table></figure>
 
 <p>如果你想安装多于 1 个的模块包，你可以在命令行终端中键入 yum install 后，列出你想安装的每个模块包，并使用空格区分，就像下面这样子：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install package1 package2…</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo yum install package1 package2…</span><br></code></pre></td></tr></table></figure>
 
 <p>现在，你的 LAMP 软件栈已经安装并配置妥当了。但我们仍需要测试一下 PHP。</p>
 <p>第四步 —— 测试你 Web 服务器上的 PHP 处理程序</p>
 <p>为了测试系统已经配置得适合 PHP 运行，我们可以创建一个非常简易的 PHP 脚本。</p>
 <p>我们将这个脚本命名为 info.php。为了让 Apache 能够正确地找到并为之服务，它必须保存在一个称为『web 目录』特殊的目录中。</p>
 <p>在 CentOS 7 中，这个目录位于 /var/www/html/。我们可以通过下面这条命令在此创建一个文件：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo vi /var/www/html/info.php</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo vi /var/www/html/info.php</span><br></code></pre></td></tr></table></figure>
 
 <p>这将会打开一个空白文件，敲击小写字母 I 即可进行编辑。我们想在文件中输入下列 PHP 代码组成的文本：</p>
 <?php phpinfo(); ?>
@@ -411,7 +389,7 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
 <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymru1oojj30jv05zaaj.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>如果你的浏览器成功地显示了这个页面，那么你的 PHP 就像预期中的那样正常工作了。</p>
 <p>你很可能想要在测试之后移除掉这个文件，因为它事实上可以将服务器的信息展现给未授权的用户。为此，我们需要在命令行终端中键入下面这条命令：</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo rm /var/www/html/info.php</span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo rm /var/www/html/info.php</span><br></code></pre></td></tr></table></figure>
 
 <p>以后若需要，你总能重新创建这个页面来获取这些信息。</p>
 <p>结论</p>
@@ -441,13 +419,13 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
                     
                       <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
                     
+                      <a class="hover-with-bg" href="/tags/Server/">Server</a>
+                    
                       <a class="hover-with-bg" href="/tags/Apache/">Apache</a>
                     
                       <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
                     
                       <a class="hover-with-bg" href="/tags/PHP/">PHP</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Server/">Server</a>
                     
                   </div>
                 
@@ -456,7 +434,7 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -490,7 +468,7 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -502,16 +480,15 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -532,15 +509,14 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -574,10 +550,24 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -592,8 +582,19 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -602,174 +603,29 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "CentOS 7 安装 Apache, MySQL, PHP 指南&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -780,6 +636,14 @@ Description : PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

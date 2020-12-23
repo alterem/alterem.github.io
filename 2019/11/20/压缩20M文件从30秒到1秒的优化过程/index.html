@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>压缩20M文件从30秒到1秒的优化过程 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="压缩20M文件从30秒到1秒的优化过程">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -225,125 +232,55 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">压缩20M文件从30秒到1秒的优化过程</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <blockquote>
 <p>文章来源公众号：<strong>IT牧场</strong></p>
 </blockquote>
 <p>有一个需求需要将前端传过来的10张照片，然后后端进行处理以后压缩成一个压缩包通过网络流传输出去。之前没有接触过用Java压缩文件的，所以就直接上网找了一个例子改了一下用了，改完以后也能使用，但是随着前端所传图片的大小越来越大的时候，耗费的时间也在急剧增加，最后测了一下压缩20M的文件竟然需要30秒的时间。压缩文件的代码如下。</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileNoBuffer</span><span class="hljs-params">()</span> </span>&#123;
-    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
-    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile))) &#123;
-        <span class="hljs-comment">//开始时间</span>
-        <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
-
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
-            <span class="hljs-keyword">try</span> (InputStream input = <span class="hljs-keyword">new</span> FileInputStream(JPG_FILE)) &#123;
-                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(FILE_NAME + i));
-                <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
-                <span class="hljs-keyword">while</span> ((temp = input.read()) != -<span class="hljs-number">1</span>) &#123;
-                    zipOut.write(temp);
-                &#125;
-            &#125;
-        &#125;
-        printInfo(beginTime);
-    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
-        e.printStackTrace();
-    &#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileNoBuffer</span><span class="hljs-params">()</span> </span>&#123;<br>    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);<br>    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile))) &#123;<br>        <span class="hljs-comment">//开始时间</span><br>        <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            <span class="hljs-keyword">try</span> (InputStream input = <span class="hljs-keyword">new</span> FileInputStream(JPG_FILE)) &#123;<br>                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(FILE_NAME + i));<br>                <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">while</span> ((temp = input.read()) != -<span class="hljs-number">1</span>) &#123;<br>                    zipOut.write(temp);<br>                &#125;<br>            &#125;<br>        &#125;<br>        printInfo(beginTime);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这里找了一张2M大小的图片，并且循环十次进行测试。打印的结果如下，时间大概是30秒。</p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
-<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:29599</span></code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span><br><span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:29599</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="第一次优化过程-从30秒到2秒"><a href="#第一次优化过程-从30秒到2秒" class="headerlink" title="第一次优化过程-从30秒到2秒"></a>第一次优化过程-从30秒到2秒</h2><p>进行优化首先想到的是利用<strong>缓冲区</strong><code>BufferInputStream</code>。在<code>FileInputStream</code>中<code>read()</code>方法每次只读取一个字节。源码中也有说明。</p>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * Reads a byte of data from this input stream. This method blocks</span>
-<span class="hljs-comment"> * if no input is yet available.</span>
-<span class="hljs-comment"> *</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@return</span>     the next byte of data, or &lt;code&gt;-1&lt;/code&gt; if the end of the</span>
-<span class="hljs-comment"> *             file is reached.</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@exception</span>  IOException  if an I/O error occurs.</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException</span>;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Reads a byte of data from this input stream. This method blocks</span><br><span class="hljs-comment"> * if no input is yet available.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span>     the next byte of data, or &lt;code&gt;-1&lt;/code&gt; if the end of the</span><br><span class="hljs-comment"> *             file is reached.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@exception</span>  IOException  if an I/O error occurs.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException</span>;<br></code></pre></td></tr></table></figure>
 
 <p>这是一个调用本地方法与原生操作系统进行交互，从磁盘中读取数据。每读取一个字节的数据就调用一次本地方法与操作系统交互，是非常耗时的。例如我们现在有30000个字节的数据，如果使用<code>FileInputStream</code>那么就需要调用30000次的本地方法来获取这些数据，而如果使用缓冲区的话（这里假设初始的缓冲区大小足够放下30000字节的数据）那么只需要调用一次就行。因为缓冲区在第一次调用<code>read()</code>方法的时候会直接从磁盘中将数据直接读取到内存中。随后再一个字节一个字节的慢慢返回。</p>
 <blockquote>
 <p><code>BufferedInputStream</code>内部封装了一个byte数组用于存放数据，默认大小是8192</p>
 </blockquote>
 <p>优化过后的代码如下</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileBuffer</span><span class="hljs-params">()</span> </span>&#123;
-    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
-    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));
-            BufferedOutputStream bufferedOutputStream = <span class="hljs-keyword">new</span> BufferedOutputStream(zipOut)) &#123;
-        <span class="hljs-comment">//开始时间</span>
-        <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
-            <span class="hljs-keyword">try</span> (BufferedInputStream bufferedInputStream = <span class="hljs-keyword">new</span> BufferedInputStream(<span class="hljs-keyword">new</span> FileInputStream(JPG_FILE))) &#123;
-                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(FILE_NAME + i));
-                <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
-                <span class="hljs-keyword">while</span> ((temp = bufferedInputStream.read()) != -<span class="hljs-number">1</span>) &#123;
-                    bufferedOutputStream.write(temp);
-                &#125;
-            &#125;
-        &#125;
-        printInfo(beginTime);
-    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
-        e.printStackTrace();
-    &#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileBuffer</span><span class="hljs-params">()</span> </span>&#123;<br>    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);<br>    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));<br>            BufferedOutputStream bufferedOutputStream = <span class="hljs-keyword">new</span> BufferedOutputStream(zipOut)) &#123;<br>        <span class="hljs-comment">//开始时间</span><br>        <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            <span class="hljs-keyword">try</span> (BufferedInputStream bufferedInputStream = <span class="hljs-keyword">new</span> BufferedInputStream(<span class="hljs-keyword">new</span> FileInputStream(JPG_FILE))) &#123;<br>                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(FILE_NAME + i));<br>                <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">while</span> ((temp = bufferedInputStream.read()) != -<span class="hljs-number">1</span>) &#123;<br>                    bufferedOutputStream.write(temp);<br>                &#125;<br>            &#125;<br>        &#125;<br>        printInfo(beginTime);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>输出</p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">------Buffer</span>
-<span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
-<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1808</span></code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">------Buffer</span><br><span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span><br><span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1808</span><br></code></pre></td></tr></table></figure>
 
 <p>可以看到相比较于第一次使用<code>FileInputStream</code>效率已经提升了许多了</p>
 <h2 id="第二次优化过程-从2秒到1秒"><a href="#第二次优化过程-从2秒到1秒" class="headerlink" title="第二次优化过程-从2秒到1秒"></a>第二次优化过程-从2秒到1秒</h2><p>使用缓冲区<code>buffer</code>的话已经是满足了我的需求了，但是秉着学以致用的想法，就想着用NIO中知识进行优化一下。</p>
 <h3 id="使用Channel"><a href="#使用Channel" class="headerlink" title="使用Channel"></a>使用Channel</h3><p>为什么要用<code>Channel</code>呢？因为在NIO中新出了<code>Channel</code>和<code>ByteBuffer</code>。正是因为它们的结构更加符合操作系统执行I/O的方式，所以其速度相比较于传统IO而言速度有了显著的提高。<code>Channel</code>就像一个包含着煤矿的矿藏，而<code>ByteBuffer</code>则是派送到矿藏的卡车。也就是说我们与数据的交互都是与<code>ByteBuffer</code>的交互。</p>
 <p>在NIO中能够产生<code>FileChannel</code>的有三个类。分别是<code>FileInputStream</code>、<code>FileOutputStream</code>、以及既能读又能写的<code>RandomAccessFile</code>。</p>
 <p>源码如下</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileChannel</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-comment">//开始时间</span>
-    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
-    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
-    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));
-            WritableByteChannel writableByteChannel = Channels.newChannel(zipOut)) &#123;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
-            <span class="hljs-keyword">try</span> (FileChannel fileChannel = <span class="hljs-keyword">new</span> FileInputStream(JPG_FILE).getChannel()) &#123;
-                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i + SUFFIX_FILE));
-                fileChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, writableByteChannel);
-            &#125;
-        &#125;
-        printInfo(beginTime);
-    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
-        e.printStackTrace();
-    &#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileChannel</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">//开始时间</span><br>    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();<br>    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);<br>    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));<br>            WritableByteChannel writableByteChannel = Channels.newChannel(zipOut)) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            <span class="hljs-keyword">try</span> (FileChannel fileChannel = <span class="hljs-keyword">new</span> FileInputStream(JPG_FILE).getChannel()) &#123;<br>                zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i + SUFFIX_FILE));<br>                fileChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, writableByteChannel);<br>            &#125;<br>        &#125;<br>        printInfo(beginTime);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>我们可以看到这里并没有使用<code>ByteBuffer</code>进行数据传输，而是使用了<code>transferTo</code>的方法。这个方法是将两个通道进行直连。</p>
-<pre><code class="hljs csharp">This method <span class="hljs-keyword">is</span> potentially much more efficient than a simple loop
-* that reads <span class="hljs-keyword">from</span> <span class="hljs-keyword">this</span> channel and writes to the target channel.  Many
-* operating systems can transfer bytes directly <span class="hljs-keyword">from</span> the filesystem cache
-* to the target channel without actually copying them.</code></pre>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs csharp">This method <span class="hljs-keyword">is</span> potentially much more efficient than a simple loop<br>* that reads <span class="hljs-keyword">from</span> <span class="hljs-keyword">this</span> channel and writes to the target channel.  Many<br>* operating systems can transfer bytes directly <span class="hljs-keyword">from</span> the filesystem cache<br>* to the target channel without actually copying them.<br></code></pre></td></tr></table></figure>
 
 <p>这是源码上的描述文字，大概意思就是使用<code>transferTo</code>的效率比循环一个<code>Channel</code>读取出来然后再循环写入另一个<code>Channel</code>好。操作系统能够直接传输字节从文件系统缓存到目标的<code>Channel</code>中，而不需要实际的<code>copy</code>阶段。</p>
 <blockquote>
 <p>copy阶段就是从内核空间转到用户空间的一个过程</p>
 </blockquote>
 <p>可以看到速度相比较使用缓冲区已经有了一些的提高。</p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">------Channel</span>
-<span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
-<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1416</span></code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">------Channel</span><br><span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span><br><span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1416</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="内核空间和用户空间"><a href="#内核空间和用户空间" class="headerlink" title="内核空间和用户空间"></a>内核空间和用户空间</h4><p>那么为什么从内核空间转向用户空间这段过程会慢呢？首先我们需了解的是什么是内核空间和用户空间。在常用的操作系统中为了保护系统中的核心资源，于是将系统设计为四个区域，越往里权限越大，所以Ring0被称之为内核空间，用来访问一些关键性的资源。Ring3被称之为用户空间。</p>
 <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-38f92e6466efaf60.jpg" srcset="/img/loading.gif" alt="img"></p>
@@ -375,85 +312,19 @@
 <p>综上所述，所以我们使用<code>transferTo</code>方法就是直接开辟了一段直接缓冲区。所以性能相比而言提高了许多</p>
 </blockquote>
 <h3 id="使用内存映射文件"><a href="#使用内存映射文件" class="headerlink" title="使用内存映射文件"></a>使用内存映射文件</h3><p>NIO中新出的另一个特性就是内存映射文件，内存映射文件为什么速度快呢？其实原因和上面所讲的一样，也是在内存中开辟了一段直接缓冲区。与数据直接作交互。源码如下</p>
-<pre><code class="hljs java"><span class="hljs-comment">//Version 4 使用Map映射文件</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileMap</span><span class="hljs-params">()</span> </span>&#123;
-    <span class="hljs-comment">//开始时间</span>
-    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
-    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);
-    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));
-            WritableByteChannel writableByteChannel = Channels.newChannel(zipOut)) &#123;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
-
-            zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i + SUFFIX_FILE));
-
-            <span class="hljs-comment">//内存中的映射文件</span>
-            MappedByteBuffer mappedByteBuffer = <span class="hljs-keyword">new</span> RandomAccessFile(JPG_FILE_PATH, <span class="hljs-string">"r"</span>).getChannel()
-                    .map(FileChannel.MapMode.READ_ONLY, <span class="hljs-number">0</span>, FILE_SIZE);
-
-            writableByteChannel.write(mappedByteBuffer);
-        &#125;
-        printInfo(beginTime);
-    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
-        e.printStackTrace();
-    &#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Version 4 使用Map映射文件</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFileMap</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">//开始时间</span><br>    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();<br>    File zipFile = <span class="hljs-keyword">new</span> File(ZIP_FILE);<br>    <span class="hljs-keyword">try</span> (ZipOutputStream zipOut = <span class="hljs-keyword">new</span> ZipOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(zipFile));<br>            WritableByteChannel writableByteChannel = Channels.newChannel(zipOut)) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br><br>            zipOut.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i + SUFFIX_FILE));<br><br>            <span class="hljs-comment">//内存中的映射文件</span><br>            MappedByteBuffer mappedByteBuffer = <span class="hljs-keyword">new</span> RandomAccessFile(JPG_FILE_PATH, <span class="hljs-string">"r"</span>).getChannel()<br>                    .map(FileChannel.MapMode.READ_ONLY, <span class="hljs-number">0</span>, FILE_SIZE);<br><br>            writableByteChannel.write(mappedByteBuffer);<br>        &#125;<br>        printInfo(beginTime);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>打印如下</p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">---------Map</span>
-<span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span>
-<span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1305</span></code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">---------Map</span><br><span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span><br><span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1305</span><br></code></pre></td></tr></table></figure>
 
 <p>可以看到速度和使用Channel的速度差不多的。</p>
 <h3 id="使用Pipe"><a href="#使用Pipe" class="headerlink" title="使用Pipe"></a>使用Pipe</h3><p>Java NIO 管道是2个线程之间的单向数据连接。Pipe有一个source通道和一个sink通道。其中source通道用于读取数据，sink通道用于写入数据。可以看到源码中的介绍，大概意思就是写入线程会阻塞至有读线程从通道中读取数据。如果没有数据可读，读线程也会阻塞至写线程写入数据。直至通道关闭。</p>
-<pre><code class="hljs ruby">Whether <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> a thread writing bytes to a pipe will block <span class="hljs-keyword">until</span> another
-thread reads those bytes</code></pre>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">Whether <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> a thread writing bytes to a pipe will block <span class="hljs-keyword">until</span> another<br>thread reads those bytes<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-3fbae68c65487c14.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>image</p>
 <p>我想要的效果是这样的。源码如下</p>
-<pre><code class="hljs java"><span class="hljs-comment">//Version 5 使用Pip</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFilePip</span><span class="hljs-params">()</span> </span>&#123;
-
-    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();
-    <span class="hljs-keyword">try</span>(WritableByteChannel out = Channels.newChannel(<span class="hljs-keyword">new</span> FileOutputStream(ZIP_FILE))) &#123;
-        Pipe pipe = Pipe.open();
-        <span class="hljs-comment">//异步任务</span>
-        CompletableFuture.runAsync(()-&gt;runTask(pipe));
-
-        <span class="hljs-comment">//获取读通道</span>
-        ReadableByteChannel readableByteChannel = pipe.source();
-        ByteBuffer buffer = ByteBuffer.allocate(((<span class="hljs-keyword">int</span>) FILE_SIZE)*<span class="hljs-number">10</span>);
-        <span class="hljs-keyword">while</span> (readableByteChannel.read(buffer)&gt;= <span class="hljs-number">0</span>) &#123;
-            buffer.flip();
-            out.write(buffer);
-            buffer.clear();
-        &#125;
-    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;
-        e.printStackTrace();
-    &#125;
-    printInfo(beginTime);
-
-&#125;
-
-<span class="hljs-comment">//异步任务</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runTask</span><span class="hljs-params">(Pipe pipe)</span> </span>&#123;
-
-    <span class="hljs-keyword">try</span>(ZipOutputStream zos = <span class="hljs-keyword">new</span> ZipOutputStream(Channels.newOutputStream(pipe.sink()));
-            WritableByteChannel out = Channels.newChannel(zos)) &#123;
-        System.out.println(<span class="hljs-string">"Begin"</span>);
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
-            zos.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i+SUFFIX_FILE));
-
-            FileChannel jpgChannel = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(JPG_FILE_PATH)).getChannel();
-
-            jpgChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, out);
-
-            jpgChannel.close();
-        &#125;
-    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;
-        e.printStackTrace();
-    &#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Version 5 使用Pip</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFilePip</span><span class="hljs-params">()</span> </span>&#123;<br><br>    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();<br>    <span class="hljs-keyword">try</span>(WritableByteChannel out = Channels.newChannel(<span class="hljs-keyword">new</span> FileOutputStream(ZIP_FILE))) &#123;<br>        Pipe pipe = Pipe.open();<br>        <span class="hljs-comment">//异步任务</span><br>        CompletableFuture.runAsync(()-&gt;runTask(pipe));<br><br>        <span class="hljs-comment">//获取读通道</span><br>        ReadableByteChannel readableByteChannel = pipe.source();<br>        ByteBuffer buffer = ByteBuffer.allocate(((<span class="hljs-keyword">int</span>) FILE_SIZE)*<span class="hljs-number">10</span>);<br>        <span class="hljs-keyword">while</span> (readableByteChannel.read(buffer)&gt;= <span class="hljs-number">0</span>) &#123;<br>            buffer.flip();<br>            out.write(buffer);<br>            buffer.clear();<br>        &#125;<br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>    printInfo(beginTime);<br><br>&#125;<br><br><span class="hljs-comment">//异步任务</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runTask</span><span class="hljs-params">(Pipe pipe)</span> </span>&#123;<br><br>    <span class="hljs-keyword">try</span>(ZipOutputStream zos = <span class="hljs-keyword">new</span> ZipOutputStream(Channels.newOutputStream(pipe.sink()));<br>            WritableByteChannel out = Channels.newChannel(zos)) &#123;<br>        System.out.println(<span class="hljs-string">"Begin"</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            zos.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i+SUFFIX_FILE));<br><br>            FileChannel jpgChannel = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(JPG_FILE_PATH)).getChannel();<br><br>            jpgChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, out);<br><br>            jpgChannel.close();<br>        &#125;<br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>生活处处都需要学习，有时候只是一个简单的优化，可以让你深入学习到各种不同的知识。所以在学习中要不求甚解，不仅要知道这个知识也要了解为什么要这么做。</li>
@@ -495,7 +366,7 @@ thread reads those bytes</code></pre>
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -529,7 +400,7 @@ thread reads those bytes</code></pre>
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -541,16 +412,15 @@ thread reads those bytes</code></pre>
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -571,15 +441,14 @@ thread reads those bytes</code></pre>
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -613,10 +482,24 @@ thread reads those bytes</code></pre>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -631,8 +514,19 @@ thread reads those bytes</code></pre>
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -641,174 +535,29 @@ thread reads those bytes</code></pre>
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "压缩20M文件从30秒到1秒的优化过程&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -819,6 +568,14 @@ thread reads those bytes</code></pre>
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

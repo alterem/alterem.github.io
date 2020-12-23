@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>cola-ui的使用 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="cola-ui的使用">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -225,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">cola-ui的使用</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <h1 id="cola-ui"><a href="#cola-ui" class="headerlink" title="cola-ui"></a>cola-ui</h1><blockquote>
 <p>官方：<a href="http://www.cola-ui.com" target="_blank" rel="noopener">http://www.cola-ui.com</a></p>
 <p>教程位置：<a href="http://www.cola-ui.com/guide/model" target="_blank" rel="noopener">http://www.cola-ui.com/guide/model</a></p>
@@ -270,51 +277,15 @@
 <p><strong>本文档主要针对于camsi工程中用到的功能或特性，且可能不存在于cola-ui官网提供的API进行整理和说明</strong></p>
 <h3 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h3><p>==通常要基于camsi工程在浏览器渲染出来的页面由三个部分组成，例如：simple01.jade、M.js、simple01Model.js==</p>
 <h4 id="Jade"><a href="#Jade" class="headerlink" title="Jade"></a>Jade</h4><p>==Jade 是一个高性能的模板引擎，它深受 Haml影响，它是用 JavaScript 实现的，并且可以供 <a href="http://nodejs.org/" target="_blank" rel="noopener">Node</a> 使用，你也可以<a href="http://naltatis.github.io/jade-syntax-docs/" target="_blank" rel="noopener">在此试用</a>，这里推荐<a href="http://www.nooong.com/docs/jade_chinese.htm" target="_blank" rel="noopener">Jade入门中文文档</a>==</p>
-<pre><code class="hljs jade">extends &#x2F;_page
-block body
-	v-box
-		flex-box
-			.content(style&#x3D;&quot;overflow: auto&quot;)
-				c-table(bind&#x3D;&quot;simple01s&quot; dataType&#x3D;&quot;Simple01&quot;)
-					column(property&#x3D;&quot;name&quot;)
-append scripts
-	script(src&#x3D;&quot;simple01Model.js&quot;)
-	script(src&#x3D;&quot;simple01.js&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jade">extends &#x2F;_page<br>block body<br>	v-box<br>		flex-box<br>			.content(style&#x3D;&quot;overflow: auto&quot;)<br>				c-table(bind&#x3D;&quot;simple01s&quot; dataType&#x3D;&quot;Simple01&quot;)<br>					column(property&#x3D;&quot;name&quot;)<br>append scripts<br>	script(src&#x3D;&quot;simple01Model.js&quot;)<br>	script(src&#x3D;&quot;simple01.js&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>dataType的值应该与Js中定义的dataType的值以及Model.js中定义的dataType的值相等</p>
 <h4 id="Js"><a href="#Js" class="headerlink" title="Js"></a>Js</h4><p>==不做描述==</p>
-<pre><code class="hljs javascript">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;
-	model.dataType($DataType.Simple01);
-	model.describe(<span class="hljs-string">"simple01s"</span>, &#123;
-		dataType : <span class="hljs-string">"Simple01"</span>,
-		provider : &#123;
-			url : <span class="hljs-string">"controller/simple01Service/findPagination?from=&#123;&#123;$from&#125;&#125;&amp;limit=&#123;&#123;$limit&#125;&#125;"</span>,
-			pageSize : <span class="hljs-number">10</span>,
-			sendJson : <span class="hljs-literal">true</span>,
-			loadMode: <span class="hljs-string">'manual'</span>
-		&#125;
-	&#125;);
-	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;simple01&#125;)]"</span>);
-	model.action(&#123;
-		test : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
-			cola.alert(<span class="hljs-string">'test'</span>)
-		&#125;
-	&#125;);
-&#125;);</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;<br>	model.dataType($DataType.Simple01);<br>	model.describe(<span class="hljs-string">"simple01s"</span>, &#123;<br>		dataType : <span class="hljs-string">"Simple01"</span>,<br>		provider : &#123;<br>			url : <span class="hljs-string">"controller/simple01Service/findPagination?from=&#123;&#123;$from&#125;&#125;&amp;limit=&#123;&#123;$limit&#125;&#125;"</span>,<br>			pageSize : <span class="hljs-number">10</span>,<br>			sendJson : <span class="hljs-literal">true</span>,<br>			loadMode: <span class="hljs-string">'manual'</span><br>		&#125;<br>	&#125;);<br>	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;simple01&#125;)]"</span>);<br>	model.action(&#123;<br>		test : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>			cola.alert(<span class="hljs-string">'test'</span>)<br>		&#125;<br>	&#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p>所有正规的操作包括事件都应该编写在==cola(function(model) { })==中，其中首先需要使用dataType定义当前Js中所有用到的DataType，使用==model.describe==交互后台数据到当前指定model，使用==model.set(“”, “”)==向model交互数据，页面所有用到的事件方法应该存在于==model.action({})==中。</p>
 <h4 id="Model-js"><a href="#Model-js" class="headerlink" title="Model.js"></a>Model.js</h4><p>==由cola-ui定义的前端模型==</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> $DataType = &#123;
-		Simple01: &#123;
-		name: <span class="hljs-string">"Simple01"</span>,
-		properties : &#123;
-			name : &#123;
-				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,
-				dataType : <span class="hljs-string">"string"</span>
-			&#125;
-		&#125;
-	&#125;
-&#125;;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> $DataType = &#123;<br>		Simple01: &#123;<br>		name: <span class="hljs-string">"Simple01"</span>,<br>		properties : &#123;<br>			name : &#123;<br>				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,<br>				dataType : <span class="hljs-string">"string"</span><br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>==caption==用来标志当前字段的前端显示文本，使用==[(#{ })]==取到当前字段对应的当前语言的国际化翻译。</p>
 <h3 id="表单相关"><a href="#表单相关" class="headerlink" title="表单相关"></a>表单相关</h3><h4 id="表单对国际化的处理"><a href="#表单对国际化的处理" class="headerlink" title="表单对国际化的处理"></a>表单对国际化的处理</h4><blockquote>
@@ -323,112 +294,39 @@ append scripts
 <h4 id="表单对日期格式的处理"><a href="#表单对日期格式的处理" class="headerlink" title="表单对日期格式的处理"></a>表单对日期格式的处理</h4><blockquote>
 <p>通常需要将当前日期字段进行格式化只需要下面代码即可：</p>
 </blockquote>
-<pre><code class="hljs jade">field(property&#x3D;&quot;birthday&quot;)
-	label
-	c-datepicker(displayFormat&#x3D;&quot;yyyy-MM-dd&quot; inputFormat&#x3D;&quot;yyyy-MM-dd&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jade">field(property&#x3D;&quot;birthday&quot;)<br>	label<br>	c-datepicker(displayFormat&#x3D;&quot;yyyy-MM-dd&quot; inputFormat&#x3D;&quot;yyyy-MM-dd&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>将datatype类型为Date的birthday字段的文本显示和选择的日期格式调整为”yyyy-MM-dd”</p>
 <h4 id="表单对枚举值的处理"><a href="#表单对枚举值的处理" class="headerlink" title="表单对枚举值的处理"></a>表单对枚举值的处理</h4><blockquote>
 <p>我们经常会把一些常规的数据做成枚举值存放在数据库，并把页面的文本输入框改变成为下拉项</p>
 </blockquote>
 <p>页面元素</p>
-<pre><code class="hljs jade">field(property&#x3D;&quot;status&quot;)
-    label
-    c-dropdown(c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jade">field(property&#x3D;&quot;status&quot;)<br>    label<br>    c-dropdown(c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>引入Js</p>
-<pre><code class="hljs jade">script(src&#x3D;basecodeCP + &quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;10000&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jade">script(src&#x3D;basecodeCP + &quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;10000&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>或者</p>
-<pre><code class="hljs jade">script(src&#x3D;&quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;10000&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jade">script(src&#x3D;&quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;10000&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>这样页面会去加载枚举值代码为10000的对应status存放的id对应的文本显示到当前字段，并为当前字段提供下拉项</p>
 <h4 id="表单对文本域的处理"><a href="#表单对文本域的处理" class="headerlink" title="表单对文本域的处理"></a>表单对文本域的处理</h4><blockquote>
 <p>类似于备注，通常都是用文本框来显示</p>
 </blockquote>
-<pre><code class="hljs jade">fields.cols-1
-    field(property&#x3D;&quot;remark&quot;)
-        label
-        c-textarea(rows&#x3D;&quot;3&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jade">fields.cols-1<br>    field(property&#x3D;&quot;remark&quot;)<br>        label<br>        c-textarea(rows&#x3D;&quot;3&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>首先定义当前字段独占一列，使用==c-textarea(rows=”3”)==表名当前字段独占三列</p>
 <h4 id="表单对只读的处理"><a href="#表单对只读的处理" class="headerlink" title="表单对只读的处理"></a>表单对只读的处理</h4><blockquote>
 <p>正常场景并不是表单中列出的所有的字段都是手动输入的，比如ID，我们可以使用==readOnly=”true”==对每个field进行只读控制，也可以将==readOnly=”true”==放在c-form属性里面来控制整个表单只读</p>
 </blockquote>
 <h4 id="表单对省市县级联的处理"><a href="#表单对省市县级联的处理" class="headerlink" title="表单对省市县级联的处理"></a>表单对省市县级联的处理</h4><p>Jade</p>
-<pre><code class="hljs jade">field(property&#x3D;&quot;country&quot;
-    label
-    c-dropdown(c-items&#x3D;&quot;dictionary(&#39;CountryCode&#39;)&quot; onSelectData&#x3D;&quot;onCountrySelect&quot;)
-(property&#x3D;&quot;province&quot; caption&#x3D;ll.l(&quot;province&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)
-    label
-    c-dropdown(c-items&#x3D;&quot;provinces&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;province&#x3D;kind&quot; onSelectData&#x3D;&quot;onProvinceSel&quot;)
-field(property&#x3D;&quot;city&quot; caption&#x3D;ll.l(&quot;city&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)
-    label
-    c-dropdown(c-items&#x3D;&quot;cities&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;city&#x3D;kind&quot; beforeOpen&#x3D;&quot;beforeCityOpen&quot; onSelectData&#x3D;&quot;onCitySel&quot;)
-field(property&#x3D;&quot;county&quot; caption&#x3D;ll.l(&quot;county&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)
-    label
-    c-dropdown(c-items&#x3D;&quot;counties&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;county&#x3D;kind&quot; beforeOpen&#x3D;&quot;beforeCountyOpen&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jade">field(property&#x3D;&quot;country&quot;<br>    label<br>    c-dropdown(c-items&#x3D;&quot;dictionary(&#39;CountryCode&#39;)&quot; onSelectData&#x3D;&quot;onCountrySelect&quot;)<br>(property&#x3D;&quot;province&quot; caption&#x3D;ll.l(&quot;province&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)<br>    label<br>    c-dropdown(c-items&#x3D;&quot;provinces&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;province&#x3D;kind&quot; onSelectData&#x3D;&quot;onProvinceSel&quot;)<br>field(property&#x3D;&quot;city&quot; caption&#x3D;ll.l(&quot;city&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)<br>    label<br>    c-dropdown(c-items&#x3D;&quot;cities&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;city&#x3D;kind&quot; beforeOpen&#x3D;&quot;beforeCityOpen&quot; onSelectData&#x3D;&quot;onCitySel&quot;)<br>field(property&#x3D;&quot;county&quot; caption&#x3D;ll.l(&quot;county&quot;) c-readOnly&#x3D;&quot;queryCondition.country !&#x3D; &#39;CHN&#39;&quot;)<br>    label<br>    c-dropdown(c-items&#x3D;&quot;counties&quot; textProperty&#x3D;&quot;name&quot; assignment&#x3D;&quot;county&#x3D;kind&quot; beforeOpen&#x3D;&quot;beforeCountyOpen&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>引入数据字典</p>
-<pre><code class="hljs jade">script(src&#x3D;&quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;CountryCode&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jade">script(src&#x3D;&quot;controller&#x2F;basecode&#x2F;codeDetail&#x2F;findCodeDetails?baseCodeIds&#x3D;CountryCode&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>Js</p>
-<pre><code class="hljs javascript">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;
-	model.describe(<span class="hljs-string">"provinces"</span>, &#123;
-		provider: &#123;
-			url: <span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails"</span>,
-			parameter: &#123;
-				baseCodeId: <span class="hljs-string">"Address"</span>,
-				parentId: <span class="hljs-string">"NULL"</span>
-			&#125;
-		&#125;
-	&#125;);
-	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;simple01&#125;)]"</span>);
-	model.set(<span class="hljs-string">"queryCondition"</span>, &#123;<span class="hljs-string">"country"</span>:<span class="hljs-string">"CHN"</span>&#125;);
-	model.action(&#123;
-		beforeCityOpen: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-			<span class="hljs-keyword">var</span> province = model.get(<span class="hljs-string">"queryCondition.province"</span>);
-			$.ajax(<span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails?baseCodeId=Address&amp;parentId="</span> + province, &#123;
-				type: <span class="hljs-string">"get"</span>, <span class="hljs-attr">async</span>: <span class="hljs-literal">false</span>
-			&#125;).done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>&#123;
-				<span class="hljs-keyword">if</span> (result) &#123;
-					model.set(<span class="hljs-string">"cities"</span>, result);
-				&#125;
-			&#125;);
-		&#125;,
-		beforeCountyOpen: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-			<span class="hljs-keyword">var</span> city = model.get(<span class="hljs-string">"queryCondition.city"</span>);
-			$.ajax(<span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails?baseCodeId=Address&amp;parentId="</span> + city, &#123;
-				type: <span class="hljs-string">"get"</span>, <span class="hljs-attr">async</span>: <span class="hljs-literal">false</span>
-			&#125;).done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>&#123;
-				<span class="hljs-keyword">if</span> (result) &#123;
-					model.set(<span class="hljs-string">"counties"</span>, result);
-				&#125;
-			&#125;);
-		&#125;,
-		onProvinceSel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;
-			<span class="hljs-keyword">var</span> queryCondition = model.get(<span class="hljs-string">"queryCondition"</span>);
-			<span class="hljs-keyword">if</span>(queryCondition.get(<span class="hljs-string">"province"</span>) != arg.data.get(<span class="hljs-string">"kind"</span>))&#123;
-				queryCondition.set(<span class="hljs-string">"city"</span>, <span class="hljs-string">""</span>);
-				queryCondition.set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);
-			&#125;
-		&#125;,
-		onCitySel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;
-			<span class="hljs-keyword">var</span> queryCondition = model.get(<span class="hljs-string">"queryCondition"</span>);
-			<span class="hljs-keyword">if</span>(queryCondition.get(<span class="hljs-string">"city"</span>) != arg.data.get(<span class="hljs-string">"kind"</span>))&#123;
-				queryCondition.set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);
-			&#125;
-		&#125;,
-		onCountrySelect: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;
-			<span class="hljs-keyword">var</span> selectedItem = arg.data;
-			<span class="hljs-keyword">if</span>(<span class="hljs-string">"CHN"</span> != selectedItem.key) &#123;
-				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"province"</span>, <span class="hljs-string">""</span>);
-				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"city"</span>, <span class="hljs-string">""</span>);
-				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);
-			&#125;
-		&#125;
-	&#125;);
-&#125;);</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs javascript">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;<br>	model.describe(<span class="hljs-string">"provinces"</span>, &#123;<br>		provider: &#123;<br>			url: <span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails"</span>,<br>			parameter: &#123;<br>				baseCodeId: <span class="hljs-string">"Address"</span>,<br>				parentId: <span class="hljs-string">"NULL"</span><br>			&#125;<br>		&#125;<br>	&#125;);<br>	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;simple01&#125;)]"</span>);<br>	model.set(<span class="hljs-string">"queryCondition"</span>, &#123;<span class="hljs-string">"country"</span>:<span class="hljs-string">"CHN"</span>&#125;);<br>	model.action(&#123;<br>		beforeCityOpen: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>			<span class="hljs-keyword">var</span> province = model.get(<span class="hljs-string">"queryCondition.province"</span>);<br>			$.ajax(<span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails?baseCodeId=Address&amp;parentId="</span> + province, &#123;<br>				type: <span class="hljs-string">"get"</span>, <span class="hljs-attr">async</span>: <span class="hljs-literal">false</span><br>			&#125;).done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>&#123;<br>				<span class="hljs-keyword">if</span> (result) &#123;<br>					model.set(<span class="hljs-string">"cities"</span>, result);<br>				&#125;<br>			&#125;);<br>		&#125;,<br>		beforeCountyOpen: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>			<span class="hljs-keyword">var</span> city = model.get(<span class="hljs-string">"queryCondition.city"</span>);<br>			$.ajax(<span class="hljs-string">"controller/basecode/codeDetail/findCachedCodeDetails?baseCodeId=Address&amp;parentId="</span> + city, &#123;<br>				type: <span class="hljs-string">"get"</span>, <span class="hljs-attr">async</span>: <span class="hljs-literal">false</span><br>			&#125;).done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result</span>) </span>&#123;<br>				<span class="hljs-keyword">if</span> (result) &#123;<br>					model.set(<span class="hljs-string">"counties"</span>, result);<br>				&#125;<br>			&#125;);<br>		&#125;,<br>		onProvinceSel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;<br>			<span class="hljs-keyword">var</span> queryCondition = model.get(<span class="hljs-string">"queryCondition"</span>);<br>			<span class="hljs-keyword">if</span>(queryCondition.get(<span class="hljs-string">"province"</span>) != arg.data.get(<span class="hljs-string">"kind"</span>))&#123;<br>				queryCondition.set(<span class="hljs-string">"city"</span>, <span class="hljs-string">""</span>);<br>				queryCondition.set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);<br>			&#125;<br>		&#125;,<br>		onCitySel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;<br>			<span class="hljs-keyword">var</span> queryCondition = model.get(<span class="hljs-string">"queryCondition"</span>);<br>			<span class="hljs-keyword">if</span>(queryCondition.get(<span class="hljs-string">"city"</span>) != arg.data.get(<span class="hljs-string">"kind"</span>))&#123;<br>				queryCondition.set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);<br>			&#125;<br>		&#125;,<br>		onCountrySelect: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">self, arg</span>) </span>&#123;<br>			<span class="hljs-keyword">var</span> selectedItem = arg.data;<br>			<span class="hljs-keyword">if</span>(<span class="hljs-string">"CHN"</span> != selectedItem.key) &#123;<br>				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"province"</span>, <span class="hljs-string">""</span>);<br>				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"city"</span>, <span class="hljs-string">""</span>);<br>				model.get(<span class="hljs-string">"queryCondition"</span>).set(<span class="hljs-string">"county"</span>, <span class="hljs-string">""</span>);<br>			&#125;<br>		&#125;<br>	&#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 
 
@@ -441,110 +339,47 @@ field(property&#x3D;&quot;county&quot; caption&#x3D;ll.l(&quot;county&quot;) c-r
 <h3 id="表格相关"><a href="#表格相关" class="headerlink" title="表格相关"></a>表格相关</h3><h4 id="表格对枚举值的处理"><a href="#表格对枚举值的处理" class="headerlink" title="表格对枚举值的处理"></a>表格对枚举值的处理</h4><blockquote>
 <p>通常我们都是在表单录入数据，在表格中进行简约展示，所以在表单中录入的下拉枚举值我们需要在表格中使用的时候必须使用获取到的枚举值进行翻译</p>
 </blockquote>
-<pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)
-    template
-    div(c-bind&#x3D;&quot;translate(&#39;10000&#39;,$default)&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)<br>    template<br>    div(c-bind&#x3D;&quot;translate(&#39;10000&#39;,$default)&quot;)<br></code></pre></td></tr></table></figure>
 
 <h4 id="表格对行内编辑的处理"><a href="#表格对行内编辑的处理" class="headerlink" title="表格对行内编辑的处理"></a>表格对行内编辑的处理</h4><blockquote>
 <p>在对于处理一些简单数据的时候我们可以不需要弹出一个复杂的编辑框对当前行的数据进行编辑处理，可以直接在表格进行行内编辑</p>
 </blockquote>
-<pre><code class="hljs jade">c-table(bind&#x3D;&quot;simple01s&quot; dataType&#x3D;&quot;Simple01&quot; readOnly&#x3D;&quot;false&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jade">c-table(bind&#x3D;&quot;simple01s&quot; dataType&#x3D;&quot;Simple01&quot; readOnly&#x3D;&quot;false&quot;)<br></code></pre></td></tr></table></figure>
 
 <h5 id="表格行编辑对下拉项的处理"><a href="#表格行编辑对下拉项的处理" class="headerlink" title="表格行编辑对下拉项的处理"></a>表格行编辑对下拉项的处理</h5><blockquote>
 <p>在表单编辑我们可以去选择一个下拉项做为数据值，当然在表格行编辑也可以</p>
 </blockquote>
-<pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)
-    template(name&#x3D;&quot;edit&quot;)
-        c-dropdown(bind&#x3D;&quot;$default&quot; c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)<br>    template(name&#x3D;&quot;edit&quot;)<br>        c-dropdown(bind&#x3D;&quot;$default&quot; c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>最后代码整理为</p>
-<pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)
-    template(name&#x3D;&quot;edit&quot;)
-    	c-dropdown(bind&#x3D;&quot;$default&quot; c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)
-    template
-    	div(c-bind&#x3D;&quot;translate(&#39;10000&#39;,$default)&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jade">column(property&#x3D;&quot;status&quot;)<br>    template(name&#x3D;&quot;edit&quot;)<br>    	c-dropdown(bind&#x3D;&quot;$default&quot; c-items&#x3D;&quot;dictionary(&#39;10000&#39;)&quot;)<br>    template<br>    	div(c-bind&#x3D;&quot;translate(&#39;10000&#39;,$default)&quot;)<br></code></pre></td></tr></table></figure>
 
 <h4 id="表格添加操作列的处理"><a href="#表格添加操作列的处理" class="headerlink" title="表格添加操作列的处理"></a>表格添加操作列的处理</h4><blockquote>
 <p>通常我们需要在表格的最后一列添加一行操作列来处理当前行的数据</p>
 </blockquote>
-<pre><code class="hljs jade">c-table(bind&#x3D;&quot;simple in simple01s&quot; dataType&#x3D;&quot;Simple01&quot;)
-    column(caption&#x3D;ll.l(&quot;operation&quot;))
-        template
-            div
-                a.cell-link(c-onclick&#x3D;&quot;view(simple)&quot;)&#x3D;ll.l(&quot;view&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jade">c-table(bind&#x3D;&quot;simple in simple01s&quot; dataType&#x3D;&quot;Simple01&quot;)<br>    column(caption&#x3D;ll.l(&quot;operation&quot;))<br>        template<br>            div<br>                a.cell-link(c-onclick&#x3D;&quot;view(simple)&quot;)&#x3D;ll.l(&quot;view&quot;)<br></code></pre></td></tr></table></figure>
 
 <h4 id="表格联动的处理"><a href="#表格联动的处理" class="headerlink" title="表格联动的处理"></a>表格联动的处理</h4><blockquote>
 <p>很多场景下，我们的数据和数据都是有关联关系，比如一本书对应书籍的出版社的详细信息，这时候针对不同的书本信息联动到出版社的详细信息</p>
 </blockquote>
 <p>因为此处是两个表的关联，所以需要定义两个dataType</p>
 <p>cModel.js</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> $DataType = &#123;
-	A: &#123;
-		name: <span class="hljs-string">"A"</span>,
-		properties : &#123;
-			name : &#123;
-				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,
-				dataType : <span class="hljs-string">"string"</span>,
-			&#125;
-		&#125;
-	&#125;,
-	B : &#123;
-		name : <span class="hljs-string">"B"</span>,
-		properties : &#123;
-			name : &#123;
-				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,
-				dataType : <span class="hljs-string">"string"</span>
-			&#125;
-		&#125;
-	&#125;
-&#125;;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> $DataType = &#123;<br>	A: &#123;<br>		name: <span class="hljs-string">"A"</span>,<br>		properties : &#123;<br>			name : &#123;<br>				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,<br>				dataType : <span class="hljs-string">"string"</span>,<br>			&#125;<br>		&#125;<br>	&#125;,<br>	B : &#123;<br>		name : <span class="hljs-string">"B"</span>,<br>		properties : &#123;<br>			name : &#123;<br>				caption : <span class="hljs-string">"[(#&#123;name&#125;)]"</span>,<br>				dataType : <span class="hljs-string">"string"</span><br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>c.jade</p>
-<pre><code class="hljs jade">c-table(bind&#x3D;&quot;as&quot; dataType&#x3D;&quot;a&quot;)
-	column(property&#x3D;&quot;name&quot;)
-c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
-	column(property&#x3D;&quot;name&quot;)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jade">c-table(bind&#x3D;&quot;as&quot; dataType&#x3D;&quot;a&quot;)<br>	column(property&#x3D;&quot;name&quot;)<br>c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)<br>	column(property&#x3D;&quot;name&quot;)<br></code></pre></td></tr></table></figure>
 
 <p>c.js</p>
-<pre><code class="hljs js">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;
-	model.dataType($DataType.B);
-	$DataType.A.properties.bs = &#123;
-		dataType: <span class="hljs-string">"B"</span>,
-		aggregated: <span class="hljs-literal">true</span>,
-		provider: &#123;
-			url: <span class="hljs-string">"controller/B/find"</span>,
-			sendJson: <span class="hljs-literal">true</span>,
-			parameter: &#123;
-				<span class="hljs-string">"name"</span>: <span class="hljs-string">"&#123;&#123;@name&#125;&#125;"</span>
-			&#125;
-		&#125;
-	&#125;
-	model.dataType($DataType.A);
-	model.describe(<span class="hljs-string">"as"</span>, &#123;
-		dataType : <span class="hljs-string">"A"</span>,
-		provider : &#123;
-			url : <span class="hljs-string">"controller/C/findPagination?from=&#123;&#123;$from&#125;&#125;&amp;limit=&#123;&#123;$limit&#125;&#125;"</span>,
-			pageSize : <span class="hljs-number">10</span>,
-			sendJson : <span class="hljs-literal">true</span>,
-			loadMode: <span class="hljs-string">'manual'</span>
-		&#125;
-	&#125;);
-	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;C&#125;)]"</span>);
-	model.action(&#123;
-	&#125;);
-&#125;);</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js">cola(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">model</span>) </span>&#123;<br>	model.dataType($DataType.B);<br>	$DataType.A.properties.bs = &#123;<br>		dataType: <span class="hljs-string">"B"</span>,<br>		aggregated: <span class="hljs-literal">true</span>,<br>		provider: &#123;<br>			url: <span class="hljs-string">"controller/B/find"</span>,<br>			sendJson: <span class="hljs-literal">true</span>,<br>			parameter: &#123;<br>				<span class="hljs-string">"name"</span>: <span class="hljs-string">"&#123;&#123;@name&#125;&#125;"</span><br>			&#125;<br>		&#125;<br>	&#125;<br>	model.dataType($DataType.A);<br>	model.describe(<span class="hljs-string">"as"</span>, &#123;<br>		dataType : <span class="hljs-string">"A"</span>,<br>		provider : &#123;<br>			url : <span class="hljs-string">"controller/C/findPagination?from=&#123;&#123;$from&#125;&#125;&amp;limit=&#123;&#123;$limit&#125;&#125;"</span>,<br>			pageSize : <span class="hljs-number">10</span>,<br>			sendJson : <span class="hljs-literal">true</span>,<br>			loadMode: <span class="hljs-string">'manual'</span><br>		&#125;<br>	&#125;);<br>	model.set(<span class="hljs-string">"title"</span>, <span class="hljs-string">"[(#&#123;C&#125;)]"</span>);<br>	model.action(&#123;<br>	&#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
-<p>在关联中可以使用==parameter:{“name”:”“}==方式拿到父表中当前选中行的name的值</p>
+<p>在关联中可以使用==parameter:{“name”:”{{@name}}“}==方式拿到父表中当前选中行的name的值</p>
 <h4 id="表格数据加载的处理"><a href="#表格数据加载的处理" class="headerlink" title="表格数据加载的处理"></a>表格数据加载的处理</h4><blockquote>
 <p>在某些场景下我们可以让表格数据直接加载到页面，也可以使用事件来触发加载数据</p>
 </blockquote>
-<pre><code class="hljs javascript">loadMode: <span class="hljs-string">'manual'</span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">loadMode: <span class="hljs-string">'manual'</span><br></code></pre></td></tr></table></figure>
 
 <p>可以通过loadMode来控制表单是否在页面加载的时候加载数据到页面：manual手工加载，注释掉loadMode缺省自动加载数据</p>
-<h3 id="面板Panel-相关"><a href="#面板Panel-相关" class="headerlink" title="面板Panel 相关"></a>面板Panel 相关</h3><h4 id="在panel头位置添加按钮"><a href="#在panel头位置添加按钮" class="headerlink" title="在panel头位置添加按钮"></a>在panel头位置添加按钮</h4><pre><code class="hljs jade">c-panel#panelDemo(caption&#x3D;ll.l(&quot;panel&quot;))
-    template(name&#x3D;&quot;tools&quot;)
-       div
-          c-button.primary(caption&#x3D;ll.l(&quot;add&quot;) click&#x3D;&quot;add&quot;)</code></pre>
+<h3 id="面板Panel-相关"><a href="#面板Panel-相关" class="headerlink" title="面板Panel 相关"></a>面板Panel 相关</h3><h4 id="在panel头位置添加按钮"><a href="#在panel头位置添加按钮" class="headerlink" title="在panel头位置添加按钮"></a>在panel头位置添加按钮</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jade">c-panel#panelDemo(caption&#x3D;ll.l(&quot;panel&quot;))<br>    template(name&#x3D;&quot;tools&quot;)<br>       div<br>          c-button.primary(caption&#x3D;ll.l(&quot;add&quot;) click&#x3D;&quot;add&quot;)<br></code></pre></td></tr></table></figure>
 
 
 
@@ -553,9 +388,7 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
 <h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><h4 id="预加载处理"><a href="#预加载处理" class="headerlink" title="预加载处理"></a>预加载处理</h4><blockquote>
 <p>通常我们会在页面加载完成的时候自动触发一部分方法或者set一部分数据值到指定属性</p>
 </blockquote>
-<pre><code class="hljs javas">cola.ready(function() &#123;
-	cola.widget(&quot;panelDemo&quot;).collapse(); &#x2F;&#x2F; 在加载完页面之后 折叠id为panelDemo的面板
-&#125;);</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javas">cola.ready(function() &#123;<br>	cola.widget(&quot;panelDemo&quot;).collapse(); &#x2F;&#x2F; 在加载完页面之后 折叠id为panelDemo的面板<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p>代码应该放在==cola(function (model) { })==</p>
 <img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
@@ -584,7 +417,7 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -618,7 +451,7 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -630,16 +463,15 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -660,15 +492,14 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -702,10 +533,24 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -720,8 +565,19 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -730,174 +586,29 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "cola-ui的使用&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -908,6 +619,14 @@ c-table(bind&#x3D;&quot;as#.bs&quot; dataType&#x3D;&quot;b&quot;)
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>Spring极速集成注解Redis实践 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Spring极速集成注解Redis实践">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -225,118 +232,33 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Spring极速集成注解Redis实践</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <p>Redis 做为基于内存的 Key-Value 数据库，用来做缓存服务器性价比相当高。 </p>
 <p>官方推出的面向 Java 的 Client Jedis，提供了很多接口和方法，可以让 Java 操作使用 Redis。 </p>
 <p>Spring 团队对 Jedis 进行了封装，独立为 spring-data-redis 项目，配合 spring 特性并集成 Jedis 的一些命令和方法。 </p>
 <p>本文重点描述集成过程，能让你迅速的通过 spring-data-redis 将 redis 集成到 spring 项目中,毕竟大家都忙的。 </p>
 <a id="more"></a>
 
-<h3 id="1-添加项目依赖"><a href="#1-添加项目依赖" class="headerlink" title="1. 添加项目依赖"></a>1. 添加项目依赖</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--redis 缓存--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.data<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.8.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>redis.clients<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jedis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<h3 id="1-添加项目依赖"><a href="#1-添加项目依赖" class="headerlink" title="1. 添加项目依赖"></a>1. 添加项目依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--redis 缓存--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.data<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.8.4.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>redis.clients<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jedis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="2-添加-spring-redis-context-配置"><a href="#2-添加-spring-redis-context-配置" class="headerlink" title="2. 添加 spring-redis-context 配置"></a>2. 添加 spring-redis-context 配置</h3><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
-<span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
-<span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
-<span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span>
-<span class="hljs-tag"><span class="hljs-string">                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></span>
-<span class="hljs-tag"><span class="hljs-string">                        http://www.springframework.org/schema/context</span></span>
-<span class="hljs-tag"><span class="hljs-string">                        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>redis 相关类 Spring 托管<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!--载入 redis 配置文件--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"classpath:redis.properties"</span> <span class="hljs-attr">ignore-unresolvable</span>=<span class="hljs-string">"true"</span>/&gt;</span>
-
-    <span class="hljs-comment">&lt;!-- 配置 JedisPoolConfig 实例 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"poolConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"redis.clients.jedis.JedisPoolConfig"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxIdle"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.maxIdle&#125;"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxTotal"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.maxActive&#125;"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxWaitMillis"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.maxWait&#125;"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"testOnBorrow"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.testOnBorrow&#125;"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!-- 配置JedisConnectionFactory --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"jedisConnectionFactory"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.data.redis.connection.jedis.JedisConnectionFactory"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hostName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.host&#125;"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"port"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.port&#125;"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.pass&#125;"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"database"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.dbIndex&#125;"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"poolConfig"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"poolConfig"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!-- 配置RedisTemplate --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"redisTemplate"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.data.redis.core.RedisTemplate"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"connectionFactory"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"jedisConnectionFactory"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!-- 配置RedisCacheManager --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"redisCacheManager"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.data.redis.cache.RedisCacheManager"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"redisOperations"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"redisTemplate"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"defaultExpiration"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.expiration&#125;"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!-- 配置RedisCacheConfig --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"redisCacheConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.rambo.sdh.common.util.RedisCacheConfig"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"jedisConnectionFactory"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"redisTemplate"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"redisCacheManager"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<h3 id="2-添加-spring-redis-context-配置"><a href="#2-添加-spring-redis-context-配置" class="headerlink" title="2. 添加 spring-redis-context 配置"></a>2. 添加 spring-redis-context 配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans</span></span><br><span class="hljs-tag"><span class="hljs-string">                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span></span><br><span class="hljs-tag"><span class="hljs-string">                        http://www.springframework.org/schema/context</span></span><br><span class="hljs-tag"><span class="hljs-string">                        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>redis 相关类 Spring 托管<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--载入 redis 配置文件--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span> <span class="hljs-attr">location</span>=<span class="hljs-string">"classpath:redis.properties"</span> <span class="hljs-attr">ignore-unresolvable</span>=<span class="hljs-string">"true"</span>/&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 配置 JedisPoolConfig 实例 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"poolConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"redis.clients.jedis.JedisPoolConfig"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxIdle"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.maxIdle&#125;"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxTotal"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.maxActive&#125;"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxWaitMillis"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.maxWait&#125;"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"testOnBorrow"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.testOnBorrow&#125;"</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 配置JedisConnectionFactory --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"jedisConnectionFactory"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.data.redis.connection.jedis.JedisConnectionFactory"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hostName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.host&#125;"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"port"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.port&#125;"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.pass&#125;"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"database"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.dbIndex&#125;"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"poolConfig"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"poolConfig"</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 配置RedisTemplate --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"redisTemplate"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.data.redis.core.RedisTemplate"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"connectionFactory"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"jedisConnectionFactory"</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 配置RedisCacheManager --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"redisCacheManager"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.data.redis.cache.RedisCacheManager"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"redisOperations"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"redisTemplate"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"defaultExpiration"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;redis.expiration&#125;"</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 配置RedisCacheConfig --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"redisCacheConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.rambo.sdh.common.util.RedisCacheConfig"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"jedisConnectionFactory"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"redisTemplate"</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"redisCacheManager"</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>JedisConnectionFactory 为 Jedis 连接工厂，配置由单独抽象的 JedisPoolConfig 提供。 </p>
 <p>如果你熟悉 Spring 的 JdbcTemplate 对象的话，这里大概能猜出来 RedisTemplate 的作用，RedisTemplate 对 RedisConnection 进行了封装。 </p>
 <p>提供连接管理，序列化等功能，它对 Redis 的交互进行了更高层次的抽象，极大的方便和简化了 Redis 的操作。 </p>
 <p>RedisCacheManager 做为 redis 统一的调度和管理者，有兴趣可以反编译源码看看。 </p>
 <p>继承自 org.springframework.cache.transaction.AbstractTransactionSupportingCacheManager 并实现 org.springframework.cache.CacheManager。 </p>
-<h3 id="3-添加-redis-properties"><a href="#3-添加-redis-properties" class="headerlink" title="3. 添加 redis.properties"></a>3. 添加 redis.properties</h3><pre><code class="hljs properties"><span class="hljs-comment">#============================#</span>
-<span class="hljs-comment">#==== Redis settings ====#</span>
-<span class="hljs-comment">#============================#</span>
-<span class="hljs-comment">#redis 服务器 IP</span>
-<span class="hljs-meta">redis.host</span>=<span class="hljs-string">127.0.0.1</span>
-
-<span class="hljs-comment">#redis 服务器端口</span>
-<span class="hljs-meta">redis.port</span>=<span class="hljs-string">6379</span>
-
-<span class="hljs-comment">#redis 密码</span>
-<span class="hljs-meta">redis.pass</span>=<span class="hljs-string">redis#2017</span>
-
-<span class="hljs-comment">#redis 支持16个数据库（相当于不同用户）可以使不同的应用程序数据彼此分开同时又存储在相同的实例上</span>
-<span class="hljs-meta">redis.dbIndex</span>=<span class="hljs-string">0</span>
-
-<span class="hljs-comment">#redis 缓存数据过期时间单位秒</span>
-<span class="hljs-meta">redis.expiration</span>=<span class="hljs-string">3000</span>
-
-<span class="hljs-comment">#控制一个 pool 最多有多少个状态为 idle 的jedis实例</span>
-<span class="hljs-meta">redis.maxIdle</span>=<span class="hljs-string">300</span>
-
-<span class="hljs-comment">#控制一个 pool 可分配多少个jedis实例</span>
-<span class="hljs-meta">redis.maxActive</span>=<span class="hljs-string">600</span>
-
-<span class="hljs-comment">#当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException；</span>
-<span class="hljs-meta">redis.maxWait</span>=<span class="hljs-string">1000</span>
-
-<span class="hljs-comment">#在borrow一个jedis实例时，是否提前进行alidate操作；如果为true，则得到的jedis实例均是可用的；</span>
-<span class="hljs-meta">redis.testOnBorrow</span>=<span class="hljs-string">true</span></code></pre>
+<h3 id="3-添加-redis-properties"><a href="#3-添加-redis-properties" class="headerlink" title="3. 添加 redis.properties"></a>3. 添加 redis.properties</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#============================#</span><br><span class="hljs-comment">#==== Redis settings ====#</span><br><span class="hljs-comment">#============================#</span><br><span class="hljs-comment">#redis 服务器 IP</span><br><span class="hljs-meta">redis.host</span>=<span class="hljs-string">127.0.0.1</span><br><br><span class="hljs-comment">#redis 服务器端口</span><br><span class="hljs-meta">redis.port</span>=<span class="hljs-string">6379</span><br><br><span class="hljs-comment">#redis 密码</span><br><span class="hljs-meta">redis.pass</span>=<span class="hljs-string">redis#2017</span><br><br><span class="hljs-comment">#redis 支持16个数据库（相当于不同用户）可以使不同的应用程序数据彼此分开同时又存储在相同的实例上</span><br><span class="hljs-meta">redis.dbIndex</span>=<span class="hljs-string">0</span><br><br><span class="hljs-comment">#redis 缓存数据过期时间单位秒</span><br><span class="hljs-meta">redis.expiration</span>=<span class="hljs-string">3000</span><br><br><span class="hljs-comment">#控制一个 pool 最多有多少个状态为 idle 的jedis实例</span><br><span class="hljs-meta">redis.maxIdle</span>=<span class="hljs-string">300</span><br><br><span class="hljs-comment">#控制一个 pool 可分配多少个jedis实例</span><br><span class="hljs-meta">redis.maxActive</span>=<span class="hljs-string">600</span><br><br><span class="hljs-comment">#当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException；</span><br><span class="hljs-meta">redis.maxWait</span>=<span class="hljs-string">1000</span><br><br><span class="hljs-comment">#在borrow一个jedis实例时，是否提前进行alidate操作；如果为true，则得到的jedis实例均是可用的；</span><br><span class="hljs-meta">redis.testOnBorrow</span>=<span class="hljs-string">true</span><br></code></pre></td></tr></table></figure>
 
 <p>当然配置文件你也可以硬编码到程序中，只是在参数发生改变的时候比较痛苦一点而已。 </p>
 <p>其中大部分配置项都是围绕着 jedisPool ，如果你对数据库连接池比较熟，你会发现它俩的配置项有点相似。 </p>
@@ -345,54 +267,7 @@
 <blockquote>
 <p><a href="https://link.zhihu.com/?target=http%3A//www.2cto.com/database/201311/254449.html">http://www.2cto.com/database/201311/254449.html</a> </p>
 </blockquote>
-<h3 id="4-编写自定义-redis-配置类"><a href="#4-编写自定义-redis-配置类" class="headerlink" title="4. 编写自定义 redis 配置类"></a>4. 编写自定义 redis 配置类</h3><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@EnableCaching</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisCacheConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CachingConfigurerSupport</span> </span>&#123;
-    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> Logger log = LoggerFactory.getLogger(RedisCacheConfig<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
-
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> JedisConnectionFactory mJedisConnectionFactory;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> RedisTemplate&lt;String, String&gt; mRedisTemplate;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> RedisCacheManager mRedisCacheManager;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisCacheConfig</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">super</span>();
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisCacheConfig</span><span class="hljs-params">(JedisConnectionFactory mJedisConnectionFactory, RedisTemplate&lt;String, String&gt; mRedisTemplate, RedisCacheManager mRedisCacheManager)</span> </span>&#123;
-        <span class="hljs-keyword">super</span>();
-        <span class="hljs-keyword">this</span>.mJedisConnectionFactory = mJedisConnectionFactory;
-        <span class="hljs-keyword">this</span>.mRedisTemplate = mRedisTemplate;
-        <span class="hljs-keyword">this</span>.mRedisCacheManager = mRedisCacheManager;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> JedisConnectionFactory <span class="hljs-title">redisConnectionFactory</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> mJedisConnectionFactory;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate&lt;String, String&gt; <span class="hljs-title">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory cf)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> mRedisTemplate;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> CacheManager <span class="hljs-title">cacheManager</span><span class="hljs-params">(RedisTemplate&lt;?, ?&gt; redisTemplate)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> mRedisCacheManager;
-    &#125;
-
-    <span class="hljs-meta">@Bean</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> KeyGenerator <span class="hljs-title">keyGenerator</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> KeyGenerator() &#123;
-            <span class="hljs-meta">@Override</span>
-            <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">generate</span><span class="hljs-params">(Object o, Method method, Object... objects)</span> </span>&#123;
-                StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();
-                sb.append(o.getClass().getName());
-                sb.append(method.getName());
-                <span class="hljs-keyword">for</span> (Object obj : objects) &#123;
-                    sb.append(obj.toString());
-                &#125;
-                <span class="hljs-keyword">return</span> sb.toString();
-            &#125;
-        &#125;;
-    &#125;
-&#125;</code></pre>
+<h3 id="4-编写自定义-redis-配置类"><a href="#4-编写自定义-redis-配置类" class="headerlink" title="4. 编写自定义 redis 配置类"></a>4. 编写自定义 redis 配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableCaching</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisCacheConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CachingConfigurerSupport</span> </span>&#123;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> Logger log = LoggerFactory.getLogger(RedisCacheConfig<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> JedisConnectionFactory mJedisConnectionFactory;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> RedisTemplate&lt;String, String&gt; mRedisTemplate;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> RedisCacheManager mRedisCacheManager;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisCacheConfig</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RedisCacheConfig</span><span class="hljs-params">(JedisConnectionFactory mJedisConnectionFactory, RedisTemplate&lt;String, String&gt; mRedisTemplate, RedisCacheManager mRedisCacheManager)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>();<br>        <span class="hljs-keyword">this</span>.mJedisConnectionFactory = mJedisConnectionFactory;<br>        <span class="hljs-keyword">this</span>.mRedisTemplate = mRedisTemplate;<br>        <span class="hljs-keyword">this</span>.mRedisCacheManager = mRedisCacheManager;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> JedisConnectionFactory <span class="hljs-title">redisConnectionFactory</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> mJedisConnectionFactory;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> RedisTemplate&lt;String, String&gt; <span class="hljs-title">redisTemplate</span><span class="hljs-params">(RedisConnectionFactory cf)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> mRedisTemplate;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> CacheManager <span class="hljs-title">cacheManager</span><span class="hljs-params">(RedisTemplate&lt;?, ?&gt; redisTemplate)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> mRedisCacheManager;<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> KeyGenerator <span class="hljs-title">keyGenerator</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> KeyGenerator() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">generate</span><span class="hljs-params">(Object o, Method method, Object... objects)</span> </span>&#123;<br>                StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>                sb.append(o.getClass().getName());<br>                sb.append(method.getName());<br>                <span class="hljs-keyword">for</span> (Object obj : objects) &#123;<br>                    sb.append(obj.toString());<br>                &#125;<br>                <span class="hljs-keyword">return</span> sb.toString();<br>            &#125;<br>        &#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>该配置类继承自 org.springframework.cache.annotation.CachingConfigurerSupport 并实现 org.springframework.cache.annotation.CachingConfigurer 的方法。 </p>
 <p>通俗一点，该类告诉 spring 当前使用的缓存服务为 redis 并自定义了缓存 key 生成的规则。 </p>
@@ -426,9 +301,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
-                    
                       <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
                     
                       <a class="hover-with-bg" href="/tags/Spring/">Spring</a>
                     
@@ -439,7 +314,7 @@
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -473,7 +348,7 @@
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -485,16 +360,15 @@
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -515,15 +389,14 @@
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -557,10 +430,24 @@
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -575,8 +462,19 @@
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -585,174 +483,29 @@
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Spring极速集成注解Redis实践&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -763,6 +516,14 @@
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

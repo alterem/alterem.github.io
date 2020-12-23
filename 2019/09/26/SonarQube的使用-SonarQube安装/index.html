@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>[SonarQube的使用] SonarQube安装 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="[SonarQube的使用] SonarQube安装">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -225,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">[SonarQube的使用] SonarQube安装</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <h2 id="工欲善其事必先利其器"><a href="#工欲善其事必先利其器" class="headerlink" title="工欲善其事必先利其器"></a>工欲善其事必先利其器</h2><h3 id="一-SonarQube代码质量检查工具简介"><a href="#一-SonarQube代码质量检查工具简介" class="headerlink" title="一 . SonarQube代码质量检查工具简介"></a>一 . SonarQube代码质量检查工具简介</h3><blockquote>
 <p>Sonar (SonarQube)是一个开源平台，用于管理源代码的质量</p>
 <p>Sonar 不只是一个质量数据报告工具，更是代码质量管理平台</p>
@@ -305,33 +312,16 @@
 <li><p>版本要求:</p>
 <p>在conf目录下的sonar.properties文件下:</p>
 <p>有这样一行配置 : </p>
-<pre><code class="hljs properties"><span class="hljs-comment">#----- MySQL &gt;=5.6 &amp;&amp; &lt; 8.0</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#----- MySQL &gt;=5.6 &amp;&amp; &lt; 8.0</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>为sonarqube 创建一个数据库</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> sonar;
-<span class="hljs-comment">-- 创建数据库</span></code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> sonar;<br><span class="hljs-comment">-- 创建数据库</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>创建sonarqube用户并进行授权</p>
-<pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">'username'</span>@<span class="hljs-string">'host'</span> <span class="hljs-keyword">IDENTIFIED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">'password'</span>; 
-<span class="hljs-comment">-- 创建用户并设置密码</span>
-<span class="hljs-comment">-- username 为创建的用户名</span>
-<span class="hljs-comment">-- host 为对应的主机地址,本地就是localhost</span>
-<span class="hljs-comment">-- password 为设置的密码</span>
-<span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">ON</span> *.* <span class="hljs-keyword">TO</span> <span class="hljs-string">'username'</span>@<span class="hljs-string">'localhost'</span>;
-<span class="hljs-comment">-- 对用户进行授权操作</span></code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">'username'</span>@<span class="hljs-string">'host'</span> <span class="hljs-keyword">IDENTIFIED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">'password'</span>; <br><span class="hljs-comment">-- 创建用户并设置密码</span><br><span class="hljs-comment">-- username 为创建的用户名</span><br><span class="hljs-comment">-- host 为对应的主机地址,本地就是localhost</span><br><span class="hljs-comment">-- password 为设置的密码</span><br><span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">ON</span> *.* <span class="hljs-keyword">TO</span> <span class="hljs-string">'username'</span>@<span class="hljs-string">'localhost'</span>;<br><span class="hljs-comment">-- 对用户进行授权操作</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>修改SonarQube配置文件,添加Mysql相关配置</p>
-<pre><code class="hljs properties"><span class="hljs-meta">sonar.jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span>
-<span class="hljs-comment"># 刚刚创建的sonarQube用户</span>
-<span class="hljs-meta">sonar.jdbc.username</span>=<span class="hljs-string">sonar</span>
-<span class="hljs-comment"># 创建用户对应的密码</span>
-<span class="hljs-meta">sonar.jdbc.password</span>=<span class="hljs-string">sonar</span>
-<span class="hljs-comment"># 设置编码格式为UTF-8</span>
-<span class="hljs-meta">sonar.sorceEncoding</span>=<span class="hljs-string">UTF-8</span>
-<span class="hljs-comment"># sonar登陆用户名</span>
-<span class="hljs-meta">sonar.login</span>=<span class="hljs-string">admin</span>
-<span class="hljs-comment"># sonar登陆密码</span>
-<span class="hljs-meta">sonar.password</span>=<span class="hljs-string">admin</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">sonar.jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span><br><span class="hljs-comment"># 刚刚创建的sonarQube用户</span><br><span class="hljs-meta">sonar.jdbc.username</span>=<span class="hljs-string">sonar</span><br><span class="hljs-comment"># 创建用户对应的密码</span><br><span class="hljs-meta">sonar.jdbc.password</span>=<span class="hljs-string">sonar</span><br><span class="hljs-comment"># 设置编码格式为UTF-8</span><br><span class="hljs-meta">sonar.sorceEncoding</span>=<span class="hljs-string">UTF-8</span><br><span class="hljs-comment"># sonar登陆用户名</span><br><span class="hljs-meta">sonar.login</span>=<span class="hljs-string">admin</span><br><span class="hljs-comment"># sonar登陆密码</span><br><span class="hljs-meta">sonar.password</span>=<span class="hljs-string">admin</span><br></code></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -352,9 +342,7 @@
 <p>附 : 一些关键配置的修改,如 主机地址,context,端口号等:</p>
 <p>通常情况下使用默认的配置即可!</p>
 <p>文件 /conf/sonar.properties</p>
-<pre><code class="hljs properties"><span class="hljs-comment">#sonar.web.host=0.0.0.0 </span>
-<span class="hljs-comment">#sonar.web.context=</span>
-<span class="hljs-comment">#sonar.web.port=9000</span></code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#sonar.web.host=0.0.0.0 </span><br><span class="hljs-comment">#sonar.web.context=</span><br><span class="hljs-comment">#sonar.web.port=9000</span><br></code></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -363,27 +351,12 @@
 <p>安装成功后, 重启 SonarQube !</p>
 <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoldzq6j31jr0u0wk8.jpg" srcset="/img/loading.gif" alt="pack"></p>
 <h4 id="3-2-开始分析项目代码源代码"><a href="#3-2-开始分析项目代码源代码" class="headerlink" title="3.2. 开始分析项目代码源代码"></a>3.2. 开始分析项目代码源代码</h4><p>使用maven的方式进行分析</p>
-<h5 id="3-2-1-编辑maven-的settings-xml文件"><a href="#3-2-1-编辑maven-的settings-xml文件" class="headerlink" title="3.2.1 编辑maven 的settings.xml文件"></a>3.2.1 编辑maven 的settings.xml文件</h5><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">pluginGroups</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">pluginGroup</span>&gt;</span>org.sonarsource.scanner.maven<span class="hljs-tag">&lt;/<span class="hljs-name">pluginGroup</span>&gt;</span>
-	<span class="hljs-tag">&lt;/<span class="hljs-name">pluginGroups</span>&gt;</span>
-	<span class="hljs-tag">&lt;<span class="hljs-name">profiles</span>&gt;</span>
-		<span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>sonar<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">activation</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">activeByDefault</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">activeByDefault</span>&gt;</span>
-			<span class="hljs-tag">&lt;/<span class="hljs-name">activation</span>&gt;</span>
-			<span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
-				<span class="hljs-tag">&lt;<span class="hljs-name">sonar.host.url</span>&gt;</span>http://loaclhost:9000<span class="hljs-tag">&lt;/<span class="hljs-name">sonar.host.url</span>&gt;</span>
-			<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
-		<span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span>
-	 <span class="hljs-tag">&lt;/<span class="hljs-name">profiles</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span></code></pre>
+<h5 id="3-2-1-编辑maven-的settings-xml文件"><a href="#3-2-1-编辑maven-的settings-xml文件" class="headerlink" title="3.2.1 编辑maven 的settings.xml文件"></a>3.2.1 编辑maven 的settings.xml文件</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">pluginGroups</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">pluginGroup</span>&gt;</span>org.sonarsource.scanner.maven<span class="hljs-tag">&lt;/<span class="hljs-name">pluginGroup</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">pluginGroups</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">profiles</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>sonar<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">activation</span>&gt;</span><br>				<span class="hljs-tag">&lt;<span class="hljs-name">activeByDefault</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">activeByDefault</span>&gt;</span><br>			<span class="hljs-tag">&lt;/<span class="hljs-name">activation</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>				<span class="hljs-tag">&lt;<span class="hljs-name">sonar.host.url</span>&gt;</span>http://loaclhost:9000<span class="hljs-tag">&lt;/<span class="hljs-name">sonar.host.url</span>&gt;</span><br>			<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span><br>	 <span class="hljs-tag">&lt;/<span class="hljs-name">profiles</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>其中sonar.host.url 值就是 上文启动的sonar 服务器地址。</p>
 <h5 id="3-2-2-对maven项目进行分析"><a href="#3-2-2-对maven项目进行分析" class="headerlink" title="3.2.2 对maven项目进行分析"></a>3.2.2 对maven项目进行分析</h5><p>到项目所在的文件路径下: </p>
 <p>使用命令提示符或者是power shell执行 如下命令: </p>
-<pre><code class="hljs shell">mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar<br></code></pre></td></tr></table></figure>
 
 <p>出现: BUILD SUCCESS 标识之后</p>
 <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymomt8guj32dq0sutlb.jpg" srcset="/img/loading.gif" alt="BUILD SUCCESS"></p>
@@ -403,114 +376,7 @@
 <h4 id="3-4-程序员用户使用说明"><a href="#3-4-程序员用户使用说明" class="headerlink" title="3.4. 程序员用户使用说明"></a>3.4. 程序员用户使用说明</h4><p>SonarQube Web管理者通过配置和设置以下参数值对项目源代码进行：</p>
 <p>复杂度、覆盖率、文档、重复、问题、可维护性、可靠性、安全性、大小等约束和规范。</p>
 <p>sonar中的质量阈管理以下内容。</p>
-<pre><code class="hljs scheme">复杂度
-	复杂度
-	复杂度/类
-	复杂度/文件
-	复杂度/方法
-覆盖率
-	分支覆盖
-	集成测试的新分支覆盖
-	新代码的分支覆盖率
-	覆盖率
-	新集成测试覆盖
-	新覆盖率
-	集成测试分支覆盖
-	集成测试覆盖
-	集成测试覆盖行
-	集成测试未覆盖分支
-	集成测试未覆盖行
-	代码覆盖率
-	集成测试的新行覆盖
-	新代码覆盖率
-	代码行
-	集成测试的新行覆盖
-	覆盖的新代码
-	总体分支覆盖率
-	总体新分支覆盖率
-	总体覆盖率
-	总体新覆盖率
-	总体代码覆盖率
-	总体新代码覆盖率
-	总体覆盖的新行数
-	总体未覆盖分支
-	总体未覆盖的新分支
-	总体未覆盖代码
-	总体未覆盖新行数
-	单元测试忽略数
-	未覆盖分支
-	集成测试未覆盖的新分支
-	未覆盖新分支
-	未覆盖的代码
-	集成测试未覆盖的行
-	未覆盖的新代码
-	单元测试持续时间
-	单元测试错误数
-	单元测试失败数
-	单元测试成功 (%)
-	单元测试数
-文档
-	注释行
-	注释 (%)
-	公共API
-	公共注释的API (%)
-	公共未注释的API
-重复
-	重复块
-	重复文件
-	重复行
-	重复行(%)
-问题
-	阻断违规
-	确认问题
-	严重违规
-	误判问题
-	提示违规
-	违规
-	主要违规
-	次要违规
-	新阻断违规
-	新严重违规
-	新提示违规
-	新违规
-	新主要违规
-	新次要违规
-	开启问题
-	重开问题
-	不修复的问题
-可维护性
-	新代码的技术债务
-	坏味道
-	达到可维护性A级所需的工作
-	新增坏味道
-	技术债务
-	技术债务比率
-	新代码技术债务比率
-	Management
-	Burned budget
-	Business value
-	Team size
-可靠性
-	Bugs
-	新增Bugs
-	可靠性修复工作
-	新代码的可靠性修复工作
-安全性
-	新增漏洞
-	安全修复工作
-	新代码的安全修复工作
-	漏洞
-大小
-	类
-	目录
-	文件
-	方法
-	生成的行数
-	生成的代码行数
-	行数
-	代码行数
-	项目
-	语句</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs scheme">复杂度<br>	复杂度<br>	复杂度/类<br>	复杂度/文件<br>	复杂度/方法<br>覆盖率<br>	分支覆盖<br>	集成测试的新分支覆盖<br>	新代码的分支覆盖率<br>	覆盖率<br>	新集成测试覆盖<br>	新覆盖率<br>	集成测试分支覆盖<br>	集成测试覆盖<br>	集成测试覆盖行<br>	集成测试未覆盖分支<br>	集成测试未覆盖行<br>	代码覆盖率<br>	集成测试的新行覆盖<br>	新代码覆盖率<br>	代码行<br>	集成测试的新行覆盖<br>	覆盖的新代码<br>	总体分支覆盖率<br>	总体新分支覆盖率<br>	总体覆盖率<br>	总体新覆盖率<br>	总体代码覆盖率<br>	总体新代码覆盖率<br>	总体覆盖的新行数<br>	总体未覆盖分支<br>	总体未覆盖的新分支<br>	总体未覆盖代码<br>	总体未覆盖新行数<br>	单元测试忽略数<br>	未覆盖分支<br>	集成测试未覆盖的新分支<br>	未覆盖新分支<br>	未覆盖的代码<br>	集成测试未覆盖的行<br>	未覆盖的新代码<br>	单元测试持续时间<br>	单元测试错误数<br>	单元测试失败数<br>	单元测试成功 (%)<br>	单元测试数<br>文档<br>	注释行<br>	注释 (%)<br>	公共API<br>	公共注释的API (%)<br>	公共未注释的API<br>重复<br>	重复块<br>	重复文件<br>	重复行<br>	重复行(%)<br>问题<br>	阻断违规<br>	确认问题<br>	严重违规<br>	误判问题<br>	提示违规<br>	违规<br>	主要违规<br>	次要违规<br>	新阻断违规<br>	新严重违规<br>	新提示违规<br>	新违规<br>	新主要违规<br>	新次要违规<br>	开启问题<br>	重开问题<br>	不修复的问题<br>可维护性<br>	新代码的技术债务<br>	坏味道<br>	达到可维护性A级所需的工作<br>	新增坏味道<br>	技术债务<br>	技术债务比率<br>	新代码技术债务比率<br>	Management<br>	Burned budget<br>	Business value<br>	Team size<br>可靠性<br>	Bugs<br>	新增Bugs<br>	可靠性修复工作<br>	新代码的可靠性修复工作<br>安全性<br>	新增漏洞<br>	安全修复工作<br>	新代码的安全修复工作<br>	漏洞<br>大小<br>	类<br>	目录<br>	文件<br>	方法<br>	生成的行数<br>	生成的代码行数<br>	行数<br>	代码行数<br>	项目<br>	语句<br></code></pre></td></tr></table></figure>
 
 
 
@@ -534,9 +400,9 @@
                     
                       <a class="hover-with-bg" href="/tags/Java/">Java</a>
                     
-                      <a class="hover-with-bg" href="/tags/SonarQube/">SonarQube</a>
-                    
                       <a class="hover-with-bg" href="/tags/Sonar/">Sonar</a>
+                    
+                      <a class="hover-with-bg" href="/tags/SonarQube/">SonarQube</a>
                     
                   </div>
                 
@@ -545,7 +411,7 @@
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -579,7 +445,7 @@
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -591,16 +457,15 @@
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -621,15 +486,14 @@
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -663,10 +527,24 @@
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -681,8 +559,19 @@
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -691,174 +580,29 @@
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "[SonarQube的使用] SonarQube安装&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -869,6 +613,14 @@
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

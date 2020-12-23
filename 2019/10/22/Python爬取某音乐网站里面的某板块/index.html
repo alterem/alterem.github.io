@@ -19,26 +19,29 @@
   <meta name="keywords" content="Alterem">
   <title>Python爬取某音乐网站里面的某板块 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
@@ -50,6 +53,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -149,13 +156,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Python爬取某音乐网站里面的某板块">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -164,7 +171,7 @@
                 .then(response => response.json())
                 .then(data => {
                   const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '👉❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️👈'
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
                 }).catch(console.error)
             </script>
             
@@ -185,7 +192,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      699 字
+      689 字
     </span>
   
 
@@ -225,154 +232,26 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">Python爬取某音乐网站里面的某板块</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymp6b9hxj311s0ogwjk.jpg" srcset="/img/loading.gif" alt="img"></p>
 <blockquote>
 <p>Python爬取某音乐网站里面的某板块。</p>
 <p>本代码只作用学习交流使用</p>
 </blockquote>
-<pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
-<span class="hljs-comment"># @FileName: qq_music.py</span>
-
-<span class="hljs-keyword">import</span> json
-<span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">import</span> re
-<span class="hljs-keyword">import</span> requests
-<span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
-<span class="hljs-keyword">from</span> selenium.webdriver.chrome.options <span class="hljs-keyword">import</span> Options
-<span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By
-<span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions <span class="hljs-keyword">as</span> EC
-<span class="hljs-keyword">from</span> selenium.webdriver.support.ui <span class="hljs-keyword">import</span> WebDriverWait
-<span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QqMusic</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-comment"># 设置 chrome 无界面化模式</span>
-        self.chrome_options = Options()
-        self.chrome_options.add_argument(<span class="hljs-string">'--headless'</span>)
-        self.chrome_options.add_argument(<span class="hljs-string">'--disable-gpu'</span>)
-        chrome_driver = <span class="hljs-string">"/usr/local/bin/chromedriver"</span>  <span class="hljs-comment"># 指定位置</span>
-        self.header = &#123;
-            <span class="hljs-string">"accept"</span>: <span class="hljs-string">"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"</span>,
-            <span class="hljs-string">"accept-language"</span>: <span class="hljs-string">"zh-CN,zh;q=0.9"</span>,
-            <span class="hljs-string">"referer"</span>: <span class="hljs-string">"https://y.qq.com/n/yqq/toplist/26.html"</span>,
-            <span class="hljs-string">"upgrade-insecure-requests"</span>: <span class="hljs-string">"1"</span>,
-            <span class="hljs-string">"user-agent"</span>: <span class="hljs-string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"</span>
-        &#125;
-        self.driver = webdriver.Chrome(chrome_driver, options=self.chrome_options)
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loading_music</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""</span>
-<span class="hljs-string">        等到列表里面的歌曲 加载完成后在处理</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">        # 等待元素出现在DOM</span>
-<span class="hljs-string">        WebDriverWait(self._driver).until(EC.presence_of_element_located((By.ID, value)))</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">        # 等待元素显示在页面</span>
-<span class="hljs-string">        WebDriverWait(self._driver,10).until(EC.visibility_of_element_located((By.NAME, value)))</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">        # 等待元素从页面消失</span>
-<span class="hljs-string">        WebDriverWait(self._driver, 10, 0.2).until_not(EC.visibility_of_element_located((By.CLASS_NAME, value))))</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">        # 等待页面的title显示</span>
-<span class="hljs-string">        WebDriverWait(self._driver, 5,0.2).until(EC.title_contains(title))</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">        一次查找多个元素 (这些方法会返回一个list列表):</span>
-<span class="hljs-string">        find_elements_by_name</span>
-<span class="hljs-string">        find_elements_by_xpath</span>
-<span class="hljs-string">        find_elements_by_link_text</span>
-<span class="hljs-string">        find_elements_by_partial_link_text</span>
-<span class="hljs-string">        find_elements_by_tag_name</span>
-<span class="hljs-string">        find_elements_by_class_name</span>
-<span class="hljs-string">        find_elements_by_css_selector</span>
-<span class="hljs-string">        :return:</span>
-<span class="hljs-string">        """</span>
-        self.driver.get(<span class="hljs-string">"https://y.qq.com/n/yqq/toplist/26.html"</span>)
-        print(self.driver.title)
-        WebDriverWait(self.driver, <span class="hljs-number">10</span>).until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, <span class="hljs-string">"songlist__songname_txt"</span>)))
-        lists = self.driver.find_elements_by_class_name(<span class="hljs-string">"songlist__songname_txt"</span>)
-        pattern = re.compile(<span class="hljs-string">r"https://y.qq.com/n/yqq/song/(\S+).html"</span>)  <span class="hljs-comment"># 取出每首歌的具体链接</span>
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(lists)):
-            li = lists.__getitem__(i)
-            a = li.find_element_by_class_name(<span class="hljs-string">"js_song"</span>)
-            href = a.get_attribute(<span class="hljs-string">"href"</span>)
-            music_name = a.get_attribute(<span class="hljs-string">"title"</span>)
-            m = pattern.match(href)
-            <span class="hljs-keyword">yield</span> m.group(<span class="hljs-number">1</span>), music_name
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cut_download_url</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-string">"""</span>
-<span class="hljs-string">        筛选和查找下载的url</span>
-<span class="hljs-string">        :return:</span>
-<span class="hljs-string">        """</span>
-        <span class="hljs-keyword">for</span> music_url, music_name <span class="hljs-keyword">in</span> self.loading_music():
-            data = json.dumps(&#123;<span class="hljs-string">"req"</span>: &#123;<span class="hljs-string">"module"</span>: <span class="hljs-string">"CDN.SrfCdnDispatchServer"</span>, <span class="hljs-string">"method"</span>: <span class="hljs-string">"GetCdnDispatch"</span>,
-                                       <span class="hljs-string">"param"</span>: &#123;<span class="hljs-string">"guid"</span>: <span class="hljs-string">"3802082216"</span>, <span class="hljs-string">"calltype"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"userip"</span>: <span class="hljs-string">""</span>&#125;
-                                       &#125;,
-                               <span class="hljs-string">"req_0"</span>: &#123;
-                                   <span class="hljs-string">"module"</span>: <span class="hljs-string">"vkey.GetVkeyServer"</span>, <span class="hljs-string">"method"</span>: <span class="hljs-string">"CgiGetVkey"</span>,
-                                   <span class="hljs-string">"param"</span>: &#123;
-                                       <span class="hljs-string">"guid"</span>: <span class="hljs-string">"3802082216"</span>, <span class="hljs-string">"songmid"</span>: [<span class="hljs-string">f'<span class="hljs-subst">&#123;music_url&#125;</span>'</span>],
-                                       <span class="hljs-string">"songtype"</span>: [<span class="hljs-number">0</span>], <span class="hljs-string">"uin"</span>: <span class="hljs-string">"0"</span>, <span class="hljs-string">"loginflag"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"platform"</span>: <span class="hljs-string">"20"</span>
-                                   &#125;
-                               &#125;, <span class="hljs-string">"comm"</span>: &#123;<span class="hljs-string">"uin"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"format"</span>: <span class="hljs-string">"json"</span>, <span class="hljs-string">"ct"</span>: <span class="hljs-number">24</span>, <span class="hljs-string">"cv"</span>: <span class="hljs-number">0</span>&#125;&#125;)
-            url = <span class="hljs-string">"https://u.y.qq.com/cgi-bin/musicu.fcg?callback=getplaysongvkey3131073469569151&amp;"</span> \
-                  <span class="hljs-string">"g_tk=5381&amp;jsonpCallback=getplaysongvkey3131073469569151&amp;loginUin=0&amp;hostUin=0&amp;"</span> \
-                  <span class="hljs-string">f"format=jsonp&amp;inCharset=utf8&amp;outCharset=utf-8¬ice=0&amp;platform=yqq&amp;needNewCode=0&amp;data=<span class="hljs-subst">&#123;data&#125;</span>"</span>
-            response = requests.get(url=<span class="hljs-string">f"<span class="hljs-subst">&#123;url&#125;</span>"</span>,
-                                    headers=self.header)
-            html = response.text
-            <span class="hljs-comment"># music_json = json.loads(re.findall(r'^\w+\((.*)\)$',html)[0])</span>
-            music_json = html.split(<span class="hljs-string">"("</span>)[<span class="hljs-number">1</span>].split(<span class="hljs-string">")"</span>)[<span class="hljs-number">0</span>]
-            music_json = json.loads(music_json)
-            req = music_json[<span class="hljs-string">'req'</span>][<span class="hljs-string">'data'</span>]
-            sip = req[<span class="hljs-string">"sip"</span>][<span class="hljs-number">-1</span>]
-            purl = music_json[<span class="hljs-string">'req_0'</span>][<span class="hljs-string">'data'</span>][<span class="hljs-string">'midurlinfo'</span>][<span class="hljs-number">0</span>][<span class="hljs-string">'purl'</span>]
-            url = <span class="hljs-string">f"<span class="hljs-subst">&#123;sip&#125;</span><span class="hljs-subst">&#123;purl&#125;</span>"</span>
-            <span class="hljs-keyword">yield</span> url, music_name
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">downloading</span><span class="hljs-params">(self, url, music_name)</span>:</span>
-        <span class="hljs-string">"""</span>
-<span class="hljs-string">        开始下载</span>
-<span class="hljs-string">        :param url:</span>
-<span class="hljs-string">        :param music_name:</span>
-<span class="hljs-string">        :return:</span>
-<span class="hljs-string">        """</span>
-        res = requests.get(<span class="hljs-string">f"<span class="hljs-subst">&#123;url&#125;</span>"</span>)
-        chunk_size = <span class="hljs-number">1024</span>
-        <span class="hljs-comment"># content_size = int(res.headers['content-length'])</span>
-        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">"qq_music"</span>):
-            os.mkdir(<span class="hljs-string">"qq_music"</span>)
-        <span class="hljs-keyword">with</span> open(<span class="hljs-string">f"qq_music/<span class="hljs-subst">&#123;music_name&#125;</span>.m4a"</span>, <span class="hljs-string">'wb'</span>) <span class="hljs-keyword">as</span> f:
-            <span class="hljs-comment"># pbar = tqdm(total=int(content_size/1024))</span>
-            <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> res.iter_content(chunk_size=chunk_size):
-                f.write(data)
-                <span class="hljs-comment"># pbar.update()</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
-        downloads = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> self.cut_download_url()]
-        pbar = tqdm(total=len(downloads))
-        <span class="hljs-keyword">for</span> num, (url, music_name) <span class="hljs-keyword">in</span> enumerate(downloads):
-            self.downloading(url, music_name)
-            pbar.update()
-
-
-QqMusic().run()</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># @FileName: qq_music.py</span><br><br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> selenium.webdriver.chrome.options <span class="hljs-keyword">import</span> Options<br><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By<br><span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions <span class="hljs-keyword">as</span> EC<br><span class="hljs-keyword">from</span> selenium.webdriver.support.ui <span class="hljs-keyword">import</span> WebDriverWait<br><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm<br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QqMusic</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-comment"># 设置 chrome 无界面化模式</span><br>        self.chrome_options = Options()<br>        self.chrome_options.add_argument(<span class="hljs-string">'--headless'</span>)<br>        self.chrome_options.add_argument(<span class="hljs-string">'--disable-gpu'</span>)<br>        chrome_driver = <span class="hljs-string">"/usr/local/bin/chromedriver"</span>  <span class="hljs-comment"># 指定位置</span><br>        self.header = &#123;<br>            <span class="hljs-string">"accept"</span>: <span class="hljs-string">"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"</span>,<br>            <span class="hljs-string">"accept-language"</span>: <span class="hljs-string">"zh-CN,zh;q=0.9"</span>,<br>            <span class="hljs-string">"referer"</span>: <span class="hljs-string">"https://y.qq.com/n/yqq/toplist/26.html"</span>,<br>            <span class="hljs-string">"upgrade-insecure-requests"</span>: <span class="hljs-string">"1"</span>,<br>            <span class="hljs-string">"user-agent"</span>: <span class="hljs-string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"</span><br>        &#125;<br>        self.driver = webdriver.Chrome(chrome_driver, options=self.chrome_options)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loading_music</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-string">"""</span><br><span class="hljs-string">        等到列表里面的歌曲 加载完成后在处理</span><br><span class="hljs-string"></span><br><span class="hljs-string">        # 等待元素出现在DOM</span><br><span class="hljs-string">        WebDriverWait(self._driver).until(EC.presence_of_element_located((By.ID, value)))</span><br><span class="hljs-string"></span><br><span class="hljs-string">        # 等待元素显示在页面</span><br><span class="hljs-string">        WebDriverWait(self._driver,10).until(EC.visibility_of_element_located((By.NAME, value)))</span><br><span class="hljs-string"></span><br><span class="hljs-string">        # 等待元素从页面消失</span><br><span class="hljs-string">        WebDriverWait(self._driver, 10, 0.2).until_not(EC.visibility_of_element_located((By.CLASS_NAME, value))))</span><br><span class="hljs-string"></span><br><span class="hljs-string">        # 等待页面的title显示</span><br><span class="hljs-string">        WebDriverWait(self._driver, 5,0.2).until(EC.title_contains(title))</span><br><span class="hljs-string"></span><br><span class="hljs-string">        一次查找多个元素 (这些方法会返回一个list列表):</span><br><span class="hljs-string">        find_elements_by_name</span><br><span class="hljs-string">        find_elements_by_xpath</span><br><span class="hljs-string">        find_elements_by_link_text</span><br><span class="hljs-string">        find_elements_by_partial_link_text</span><br><span class="hljs-string">        find_elements_by_tag_name</span><br><span class="hljs-string">        find_elements_by_class_name</span><br><span class="hljs-string">        find_elements_by_css_selector</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        """</span><br>        self.driver.get(<span class="hljs-string">"https://y.qq.com/n/yqq/toplist/26.html"</span>)<br>        print(self.driver.title)<br>        WebDriverWait(self.driver, <span class="hljs-number">10</span>).until(<br>            EC.presence_of_all_elements_located((By.CLASS_NAME, <span class="hljs-string">"songlist__songname_txt"</span>)))<br>        lists = self.driver.find_elements_by_class_name(<span class="hljs-string">"songlist__songname_txt"</span>)<br>        pattern = re.compile(<span class="hljs-string">r"https://y.qq.com/n/yqq/song/(\S+).html"</span>)  <span class="hljs-comment"># 取出每首歌的具体链接</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(lists)):<br>            li = lists.__getitem__(i)<br>            a = li.find_element_by_class_name(<span class="hljs-string">"js_song"</span>)<br>            href = a.get_attribute(<span class="hljs-string">"href"</span>)<br>            music_name = a.get_attribute(<span class="hljs-string">"title"</span>)<br>            m = pattern.match(href)<br>            <span class="hljs-keyword">yield</span> m.group(<span class="hljs-number">1</span>), music_name<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cut_download_url</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-string">"""</span><br><span class="hljs-string">        筛选和查找下载的url</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        """</span><br>        <span class="hljs-keyword">for</span> music_url, music_name <span class="hljs-keyword">in</span> self.loading_music():<br>            data = json.dumps(&#123;<span class="hljs-string">"req"</span>: &#123;<span class="hljs-string">"module"</span>: <span class="hljs-string">"CDN.SrfCdnDispatchServer"</span>, <span class="hljs-string">"method"</span>: <span class="hljs-string">"GetCdnDispatch"</span>,<br>                                       <span class="hljs-string">"param"</span>: &#123;<span class="hljs-string">"guid"</span>: <span class="hljs-string">"3802082216"</span>, <span class="hljs-string">"calltype"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"userip"</span>: <span class="hljs-string">""</span>&#125;<br>                                       &#125;,<br>                               <span class="hljs-string">"req_0"</span>: &#123;<br>                                   <span class="hljs-string">"module"</span>: <span class="hljs-string">"vkey.GetVkeyServer"</span>, <span class="hljs-string">"method"</span>: <span class="hljs-string">"CgiGetVkey"</span>,<br>                                   <span class="hljs-string">"param"</span>: &#123;<br>                                       <span class="hljs-string">"guid"</span>: <span class="hljs-string">"3802082216"</span>, <span class="hljs-string">"songmid"</span>: [<span class="hljs-string">f'<span class="hljs-subst">&#123;music_url&#125;</span>'</span>],<br>                                       <span class="hljs-string">"songtype"</span>: [<span class="hljs-number">0</span>], <span class="hljs-string">"uin"</span>: <span class="hljs-string">"0"</span>, <span class="hljs-string">"loginflag"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"platform"</span>: <span class="hljs-string">"20"</span><br>                                   &#125;<br>                               &#125;, <span class="hljs-string">"comm"</span>: &#123;<span class="hljs-string">"uin"</span>: <span class="hljs-number">0</span>, <span class="hljs-string">"format"</span>: <span class="hljs-string">"json"</span>, <span class="hljs-string">"ct"</span>: <span class="hljs-number">24</span>, <span class="hljs-string">"cv"</span>: <span class="hljs-number">0</span>&#125;&#125;)<br>            url = <span class="hljs-string">"https://u.y.qq.com/cgi-bin/musicu.fcg?callback=getplaysongvkey3131073469569151&amp;"</span> \<br>                  <span class="hljs-string">"g_tk=5381&amp;jsonpCallback=getplaysongvkey3131073469569151&amp;loginUin=0&amp;hostUin=0&amp;"</span> \<br>                  <span class="hljs-string">f"format=jsonp&amp;inCharset=utf8&amp;outCharset=utf-8¬ice=0&amp;platform=yqq&amp;needNewCode=0&amp;data=<span class="hljs-subst">&#123;data&#125;</span>"</span><br>            response = requests.get(url=<span class="hljs-string">f"<span class="hljs-subst">&#123;url&#125;</span>"</span>,<br>                                    headers=self.header)<br>            html = response.text<br>            <span class="hljs-comment"># music_json = json.loads(re.findall(r'^\w+\((.*)\)$',html)[0])</span><br>            music_json = html.split(<span class="hljs-string">"("</span>)[<span class="hljs-number">1</span>].split(<span class="hljs-string">")"</span>)[<span class="hljs-number">0</span>]<br>            music_json = json.loads(music_json)<br>            req = music_json[<span class="hljs-string">'req'</span>][<span class="hljs-string">'data'</span>]<br>            sip = req[<span class="hljs-string">"sip"</span>][<span class="hljs-number">-1</span>]<br>            purl = music_json[<span class="hljs-string">'req_0'</span>][<span class="hljs-string">'data'</span>][<span class="hljs-string">'midurlinfo'</span>][<span class="hljs-number">0</span>][<span class="hljs-string">'purl'</span>]<br>            url = <span class="hljs-string">f"<span class="hljs-subst">&#123;sip&#125;</span><span class="hljs-subst">&#123;purl&#125;</span>"</span><br>            <span class="hljs-keyword">yield</span> url, music_name<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">downloading</span><span class="hljs-params">(self, url, music_name)</span>:</span><br>        <span class="hljs-string">"""</span><br><span class="hljs-string">        开始下载</span><br><span class="hljs-string">        :param url:</span><br><span class="hljs-string">        :param music_name:</span><br><span class="hljs-string">        :return:</span><br><span class="hljs-string">        """</span><br>        res = requests.get(<span class="hljs-string">f"<span class="hljs-subst">&#123;url&#125;</span>"</span>)<br>        chunk_size = <span class="hljs-number">1024</span><br>        <span class="hljs-comment"># content_size = int(res.headers['content-length'])</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">"qq_music"</span>):<br>            os.mkdir(<span class="hljs-string">"qq_music"</span>)<br>        <span class="hljs-keyword">with</span> open(<span class="hljs-string">f"qq_music/<span class="hljs-subst">&#123;music_name&#125;</span>.m4a"</span>, <span class="hljs-string">'wb'</span>) <span class="hljs-keyword">as</span> f:<br>            <span class="hljs-comment"># pbar = tqdm(total=int(content_size/1024))</span><br>            <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> res.iter_content(chunk_size=chunk_size):<br>                f.write(data)<br>                <span class="hljs-comment"># pbar.update()</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span><br>        downloads = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> self.cut_download_url()]<br>        pbar = tqdm(total=len(downloads))<br>        <span class="hljs-keyword">for</span> num, (url, music_name) <span class="hljs-keyword">in</span> enumerate(downloads):<br>            self.downloading(url, music_name)<br>            pbar.update()<br><br><br>QqMusic().run()<br></code></pre></td></tr></table></figure>
 
 <p>运行</p>
-<pre><code class="hljs bash">python3 qq_music.py</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 qq_music.py<br></code></pre></td></tr></table></figure>
 
 <p>结果：</p>
 <p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymp77qqcj325e02oaaw.jpg" srcset="/img/loading.gif" alt="image-20191022190329400"></p>
@@ -404,7 +283,7 @@ QqMusic().run()</code></pre>
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -438,7 +317,7 @@ QqMusic().run()</code></pre>
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -450,16 +329,15 @@ QqMusic().run()</code></pre>
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -480,15 +358,14 @@ QqMusic().run()</code></pre>
     </div>
   </div>
 </div>
-  
+    
 
-  
-
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> Fluid 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
   <div class="statistics">
@@ -522,10 +399,24 @@ QqMusic().run()</code></pre>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -540,8 +431,19 @@ QqMusic().run()</code></pre>
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
@@ -550,174 +452,29 @@ QqMusic().run()</code></pre>
 
 
 
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Python爬取某音乐网站里面的某板块&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
       }
-    );
-  </script>
-
-
-
-
-
-
-
-  
-  
-    <script>
-      !function (e, t, a) {
-        function r() {
-          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
-          requestAnimationFrame(r)
-        }
-
-        function n() {
-          var t = "function" == typeof e.onclick && e.onclick;
-          e.onclick = function (e) {
-            t && t(), o(e)
-          }
-        }
-
-        function o(e) {
-          var a = t.createElement("div");
-          a.className = "heart", s.push({
-            el: a,
-            x: e.clientX - 5,
-            y: e.clientY - 5,
-            scale: 1,
-            alpha: 1,
-            color: c()
-          }), t.body.appendChild(a)
-        }
-
-        function i(e) {
-          var a = t.createElement("style");
-          a.type = "text/css";
-          try {
-            a.appendChild(t.createTextNode(e))
-          } catch (t) {
-            a.styleSheet.cssText = e
-          }
-          t.getElementsByTagName("head")[0].appendChild(a)
-        }
-
-        function c() {
-          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-        }
-
-        var s = [];
-        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
-          setTimeout(e, 1e3 / 60)
-        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
-      }(window, document);
-    </script>
-  
-
-
-
-  <script>(function (i, s, o, g, r, a, m) {
-      i['DaoVoiceObject'] = r;
-      i[r] = i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        };
-      i[r].l = 1 * new Date();
-      a = s.createElement(o);
-      m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      a.charset = 'utf-8';
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', ('https:' === document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/f4bf9f58.js", 'daovoice');
-    daovoice('init', {
-      app_id: "f4bf9f58",
-    });
-    daovoice('update');
+    })()
   </script>
 
 
@@ -728,6 +485,14 @@ QqMusic().run()</code></pre>
 
 
 
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 
