@@ -1070,9 +1070,9 @@
       
       <tag>Java</tag>
       
-      <tag>Sonar</tag>
-      
       <tag>SonarQube</tag>
+      
+      <tag>Sonar</tag>
       
     </tags>
     
@@ -2280,11 +2280,11 @@
       
       <tag>Linux</tag>
       
+      <tag>Redis</tag>
+      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
-      
-      <tag>Redis</tag>
       
     </tags>
     
