@@ -2154,9 +2154,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
-      
       <tag>MySQL</tag>
+      
+      <tag>Server</tag>
       
       <tag>JDK</tag>
       
@@ -2191,13 +2191,13 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
-      
       <tag>Apache</tag>
       
       <tag>MySQL</tag>
       
       <tag>PHP</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2280,11 +2280,11 @@
       
       <tag>Linux</tag>
       
-      <tag>Redis</tag>
-      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
