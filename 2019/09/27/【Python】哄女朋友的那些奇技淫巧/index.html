@@ -276,11 +276,11 @@
 <h3 id="pinyin"><a href="#pinyin" class="headerlink" title="pinyin"></a>pinyin</h3><p><strong>第一个就是我们的pinyin模块了，这个模块骚就骚在可以直接把中文汉字转化成中文的汉语拼音，甚至连第几声发音都可以给你搞出来，具体使用很简单，导入后直接使用get方法即可：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pinyin<br>transf = pinyin.get(<span class="hljs-string">"狗哥"</span>)<br>trans2 = pinyin.get(<span class="hljs-string">"狗哥"</span>, format=<span class="hljs-string">"strip"</span>)<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoss66zj30q70g7q3p.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoss66zj30q70g7q3p.jpg" srcset="/img/loading.gif" alt="img"></p>
 <h3 id="qrcode"><a href="#qrcode" class="headerlink" title="qrcode"></a>qrcode</h3><p><strong>下面这个是我们的二维码生成器，可以将文字，号码，网址存放在二维码中，只需要只用make方法去生成二维码，如何使用save方法保存二维码图片即可。很简单的两部搞定！下面我们来看一个栗子：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> qrcode<br>words=<span class="hljs-string">'https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzU1NDcwNTE2OA==&amp;scene=126#wechat_redirect'</span><br>img = qrcode.make(words)<br>img.save(<span class="hljs-string">'test.png'</span>)<br>img.show()<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymou71fqj30u00g70ts.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymou71fqj30u00g70ts.jpg" srcset="/img/loading.gif" alt="img"></p>
 <h3 id="myqr"><a href="#myqr" class="headerlink" title="myqr"></a>myqr</h3><p><strong>如果说刚刚的qrcode已经足够神奇了的话，那这个将会更加神奇，因为它可以以图片为背景来生成二维码，背景图片可以是动态gif也可以是静态jpg，png，整个生成二维码的步骤也要比上面简单许多，你甚至都不需要敲代码就可以享受到动态二维码的美好，可以直接在终端（cmd）敲一句口令即可生成二维码！（需要安装好myqr）</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">myqr <span class="hljs-string">"https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzU1NDcwNTE2OA==&amp;scene=126#wechat_redirect"</span> -v 1 -l Q -n <span class="hljs-string">"s_qr.gif"</span> -p s.gif -con 1.2 -bri 1.2 -c<br></code></pre></td></tr></table></figure>
 
@@ -290,7 +290,7 @@
 <p><strong>其他的参数你不知道什么意思均可以不动</strong></p>
 <p><strong>如果想了解具体参数是什么意思，可参考狗哥公众号内python生成二维码那片文章。</strong></p>
 <p><strong>效果如下：</strong></p>
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymow2exxg30e90e9qk3.gif" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymow2exxg30e90e9qk3.gif" srcset="/img/loading.gif" alt="img"></p>
 <h3 id="jieba"><a href="#jieba" class="headerlink" title="jieba"></a>jieba</h3><p><strong>jieba，真的就是结巴的意思，主要是用来进行分词的。</strong></p>
 <p><strong>jieba 可以**</strong>把一句话拆分成多个词。**</p>
 <p><strong>从一句话（一段话）中提取最重要的几个关键词。</strong></p>
@@ -300,13 +300,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> jieba<br>string = <span class="hljs-string">"大家都说狗哥好，狗哥帅气人又好"</span><br>sl = jieba.cut(string, cut_all=<span class="hljs-literal">True</span>)<br>print(<span class="hljs-string">'全的模式:'</span>, list(sl))<br>sl = jieba.cut(string, cut_all=<span class="hljs-literal">False</span>)<br>print(<span class="hljs-string">"精确模式:"</span>, list(sl))<br>sl = jieba.cut(string)<br>print(<span class="hljs-string">'搜索模式:'</span>, list(sl))<br></code></pre></td></tr></table></figure>
 
 <p><strong>结巴还有很多高级的方法，希望大家多多发掘，如果实在懒，在狗哥的公众号里面搜一下也就找到了。</strong></p>
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymowyfkmj30u0042dgw.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymowyfkmj30u0042dgw.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p><strong>itchat/wxpy</strong></p>
 <p><strong>itchat和wxpy这两个模块功能都差不多，都是用于微信聊天的，可以用来获取朋友圈好友的数据，也可以用来和好友聊天自动回复等等。（接上图灵机器人也是无敌了）</strong></p>
 <p><strong>使用itchat很简单，导入模块后调用login方法便可以直接扫码登陆了：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> itchat<br>itchat.login()<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoxyhxhj30u00h0ac1.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoxyhxhj30u00h0ac1.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p><strong>登陆了之后可以通过get_friends方法获取到所有的微信好友</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">friends = itchat.get_friends(update=<span class="hljs-literal">True</span>)[<span class="hljs-number">0</span>:]<br></code></pre></td></tr></table></figure>
 
@@ -320,15 +320,15 @@
 
 <p><strong>没错定义好回复的对象，只要登陆上了，这些回复就会生效了！</strong></p>
 <p><strong>狗哥测试的一个例子：</strong></p>
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymozpmrzj30a20ftdg9.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymozpmrzj30a20ftdg9.jpg" srcset="/img/loading.gif" alt="img"></p>
 <h3 id="wordcloud"><a href="#wordcloud" class="headerlink" title="wordcloud"></a>wordcloud</h3><p><strong>下面这个看起来比较鬼畜，但是其实在数据可视化里面它的用处还是比较强大的。</strong></p>
 <p><strong>词云这个东西一般与numpy，matplotlib，jieba，pillow连用，用起来也是挺麻烦的</strong></p>
 <p><strong>狗哥这里整理了一个简单的版本供大家参考：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">import</span> jieba<br><span class="hljs-keyword">from</span> wordcloud <span class="hljs-keyword">import</span> WordCloud,\<br>   ImageColorGenerator,\<br>   STOPWORDS<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-keyword">with</span> open(<span class="hljs-string">'content.txt'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:<br>   word = (f.read())<br>   f.close()<br><br><span class="hljs-comment"># 图片模板和字体</span><br>image = np.array(Image.open(<span class="hljs-string">'ditu.jpg'</span>))<br>font = <span class="hljs-string">r'C:\\Windows\\fonts\\msyh.ttf'</span><br><br><span class="hljs-comment"># 去掉英文，保留中文</span><br>resultword = re.sub(<span class="hljs-string">"[A-Za-z0-9\[\`\~\!\@\#\$\^\&amp;\*\(\)\=\|\&#123;\&#125;"</span><br>                   <span class="hljs-string">"\'\:\;\'\,\[\]\.\&lt;\&gt;\/\?\~\。\@\#\\\&amp;\*\%]"</span>,<br>                   <span class="hljs-string">""</span>, word)<br>wordlist_after_jieba = jieba.cut(resultword)<br>wl_space_split = <span class="hljs-string">" "</span>.join(wordlist_after_jieba)<br><br><span class="hljs-comment"># 设置停用词</span><br>sw = set(STOPWORDS)<br><br><span class="hljs-comment"># 关键一步</span><br>my_wordcloud = WordCloud(scale=<span class="hljs-number">4</span>,<br>                        font_path=font,<br>                        mask=image,<br>                        stopwords=sw,<br>                        background_color=<span class="hljs-string">'white'</span>,<br>                        max_words=<span class="hljs-number">100</span>,<br>                        max_font_size=<span class="hljs-number">60</span>,<br>                        random_state=<span class="hljs-number">20</span>).\<br>   generate(wl_space_split)<br><br><span class="hljs-comment"># 显示生成的词云</span><br>plt.imshow(my_wordcloud)<br>plt.axis(<span class="hljs-string">"off"</span>)<br>plt.show()<br><br><span class="hljs-comment"># 保存生成的图片</span><br>my_wordcloud.to_file(<span class="hljs-string">'result.jpg'</span>)<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymp0rpdnj30oo0e1n02.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymp0rpdnj30oo0e1n02.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>欢迎关注微信公众号​：</p>
-<img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+<img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
             <hr>
             <div>

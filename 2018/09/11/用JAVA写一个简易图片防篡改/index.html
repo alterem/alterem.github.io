@@ -264,7 +264,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//验证图片是否被篡改</span><br>   <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">notTamper</span><span class="hljs-params">(File file,String salt)</span> <span class="hljs-keyword">throws</span> Exception</span>&#123;<br>       <span class="hljs-keyword">byte</span>[] storageMd5=popMd5Bytes(file);<span class="hljs-comment">//获取存储在图片末尾的16个md5字节</span><br>       imgDelEndMd5Bytes(file);<span class="hljs-comment">//删除末尾md5字节数组</span><br>       <span class="hljs-keyword">byte</span>[] imgMd5=img2Md5Bytes(file,salt);<br>       <span class="hljs-keyword">return</span> Arrays.equals(storageMd5,imgMd5);<br>   &#125;<br></code></pre></td></tr></table></figure>
 
 <p>简单实现，没有进行调优</p>
-<h3 id="欢迎关注微信公众号"><a href="#欢迎关注微信公众号" class="headerlink" title="欢迎关注微信公众号"></a>欢迎关注微信公众号</h3><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+<h3 id="欢迎关注微信公众号"><a href="#欢迎关注微信公众号" class="headerlink" title="欢迎关注微信公众号"></a>欢迎关注微信公众号</h3><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
             <hr>
             <div>

@@ -157,7 +157,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/09/27/Xzgwby.jpg') no-repeat center center;
+         style="background: url('https://github.com/alterem/picFB/raw/master/pics/2020/09/27/Xzgwby.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -246,7 +246,7 @@
               <p>IntelliJ IDEA，本身提供了很好的 JavaDoc 生成功能，以及标准 JavaDoc 注释转换功能，其实质是在代码编写过程中，按照标准 JavaDoc 的注释要求，为需要暴露给使用者的类、方法以及其他成员编写注释。然后使用 IDEA 的功能自动调用 javadoc（JDK 自带的工具）根据源代码中的注释内容自动生成 JavaDoc 文档（超文本格式）。</p>
 <ol>
 <li><p>IDEA 的 JavaDoc 生成功能在菜单 Tools -&gt; Generate JavaDoc 项里面。</p>
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409111759947.png" srcset="/img/loading.gif" alt="image-20200409111759947"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409111759947.png" srcset="/img/loading.gif" alt="image-20200409111759947"></p>
 </li>
 <li><p>点击上述菜单项后，会出现生成 JavaDoc 的对话框，一般的选项都很直观，不必细说。但是要注意生成 JavaDoc 的源代码对象的选择，一般以模块（Module）为主，必要时可以单独选择必要的 Java 源代码文件</p>
 </li>
@@ -254,21 +254,21 @@
 </li>
 <li><p>还有一个 “Other command line arguments:” 可选填项，非常重要，是填写直接向 javadoc 传递的参数内容。因为有一些重要的设置，只能通过直接参数形式向 javadoc 传递。这里必须要填写如下参数：</p>
 <p><code>-encoding UTF-8 -charset UTF-8 -windowtitle&quot;YKXClouds Docs&quot;-link http://docs.Oracle.com/javase/8/docs/api</code></p>
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409112213039.png" srcset="/img/loading.gif" alt="image-20200409112213039"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409112213039.png" srcset="/img/loading.gif" alt="image-20200409112213039"></p>
 </li>
 <li><p>第一个参数 <code>-encoding UTF-8</code>  表示你的源代码（含有符合 JavaDoc 标准的注释）是基于 UTF-8 编码的，以免处理过程中出现中文等非英语字符乱码；第二个参数 -charset UTF-8 表示在处理并生成 JavaDoc 超文本时使用的字符集也是以 UTF-8 为编码，目前所有浏览器都支持 UTF-8，这样最具有通用性，支持中文非常好；第三个参数 -windowtitle 表示生成的 JavaDoc 超文本在浏览器中打开时，浏览器窗口标题栏显示的文字内容；第四个参数 -link 很重要，它表示你生成的 JavaDoc 中涉及到很多对其他外部 Java 类的引用，是使用全限定名称还是带有超链接的短名称，举个例子，我创建了一个方法 public void func (String arg)，这个方法在生成 JavaDoc 时如果不指定 -link 参数，则 JavaDoc 中对该方法的表述就会自动变为 public void func (java.lang.String arg)，因为 String 这个类对我自己实现的类来讲就是外部引用的类，虽然它是 Java 标准库的类。</p>
 </li>
 <li><p>如果指定了 <code>-link http://docs.oracle.com/javase/8/docs/api</code> 参数，则 javadoc 在生成 JavaDoc 时，会使用 String 这样的短名称而非全限定名称 java.lang.String，同时自动为 String 短名称生成一个超链接，指向官方 JavaSE 标准文档 <a href="http://docs.oracle.com/javase/8/docs/api" target="_blank" rel="noopener">http://docs.oracle.com/javase/8/docs/api</a> 中对 String 类的详细文档地址。-link 实质上是告诉 javadoc 根据提供的外部引用类的 JavaDoc 地址去找一个叫 package-list 的文本文件，在这个文本文件中包含了所有外部引用类的全限定名称，因此生成的新 JavaDoc 不必使用外部引用类的全限定名，只需要使用短名称，同时可以自动创建指向其外部引用 JavaDoc 中的详细文档超链接。每个 JavaDoc 都会在根目录下有一个 package-list 文件，包括我们自己生成的 JavaDoc。如果指定了 -link <a href="http://docs.oracle.com/javase/8/docs/api" target="_blank" rel="noopener">http://docs.oracle.com/javase/8/docs/api</a> 参数，则 javadoc 在生成 JavaDoc 时，会使用 String 这样的短名称而非全限定名称 java.lang.String，同时自动为 String 短名称生成一个超链接，指向官方 JavaSE 标准文档 <a href="http://docs.oracle.com/javase/8/docs/api" target="_blank" rel="noopener">http://docs.oracle.com/javase/8/docs/api</a> 中对 String 类的详细文档地址。-link 实质上是告诉 javadoc 根据提供的外部引用类的 JavaDoc 地址去找一个叫 package-list 的文本文件，在这个文本文件中包含了所有外部引用类的全限定名称，因此生成的新 JavaDoc 不必使用外部引用类的全限定名，只需要使用短名称，同时可以自动创建指向其外部引用 JavaDoc 中的详细文档超链接。每个 JavaDoc 都会在根目录下有一个 package-list 文件，包括我们自己生成的 JavaDoc。</p>
 </li>
 <li><p>JavaDoc 生成完毕，即可在其根目录下找到 index.html 文件，打开它就可以看到我们自己的标准 JavaDoc API 文档啦。</p>
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409112314666.png" srcset="/img/loading.gif" alt="image-20200409112314666"></p>
-<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409112442451.png" srcset="/img/loading.gif" alt="image-20200409112442451"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409112314666.png" srcset="/img/loading.gif" alt="image-20200409112314666"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409112442451.png" srcset="/img/loading.gif" alt="image-20200409112442451"></p>
 </li>
 <li><p><code>使用鼠标 + CTRL 选择多个模块，再去点击 Tools-&gt;Generate JavaDoc，生成的文档只会是你选择的多个模块，而不是单个模块，也不是这个项目源码的文档。</code></p>
 </li>
 </ol>
 <p><strong>欢迎关注微信公众号：</strong></p>
-<img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+<img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
             <hr>
             <div>
