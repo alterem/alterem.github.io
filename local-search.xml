@@ -8,7 +8,7 @@
     <link href="/2023/05/16/%E3%80%90AI-%E7%BB%98%E7%94%BB%E3%80%91Stable-Diffusion-%E9%80%9A%E8%BF%87%E9%AA%A8%E6%9E%B6%E5%88%86%E6%9E%90%E6%8F%92%E4%BB%B6-ControlNet-%E6%9D%A5%E5%88%B6%E4%BD%9C%E8%B6%85%E6%9C%89%E6%84%8F%E5%A2%83%E7%9A%84%E5%9B%BE%E7%89%87/"/>
     <url>/2023/05/16/%E3%80%90AI-%E7%BB%98%E7%94%BB%E3%80%91Stable-Diffusion-%E9%80%9A%E8%BF%87%E9%AA%A8%E6%9E%B6%E5%88%86%E6%9E%90%E6%8F%92%E4%BB%B6-ControlNet-%E6%9D%A5%E5%88%B6%E4%BD%9C%E8%B6%85%E6%9C%89%E6%84%8F%E5%A2%83%E7%9A%84%E5%9B%BE%E7%89%87/</url>
     
-    <content type="html"><![CDATA[<p>烟花未曾闪耀的地方，也有仰望着的笑脸，生活沉重如此，仰望本身就是美的。</p><hr><blockquote><p><strong>【AI 绘画】Stable-Diffusion 通过骨架分析插件 ControlNet 来制作超有意境的图片</strong></p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/image-20230305215441759.png" srcset="/img/loading.gif" alt="image-20230305215441759"></p><h5 id="A-开始前的准备工作，你需要先安装必备的环境"><a href="#A-开始前的准备工作，你需要先安装必备的环境" class="headerlink" title="A. 开始前的准备工作，你需要先安装必备的环境"></a>A. 开始前的准备工作，你需要先安装必备的环境</h5><ol><li>安装 <a href="https://www.python.org/downloads/" target="_blank" rel="noopener" title="**Python**"><strong>Python</strong></a>, “Add Python to PATH”</li><li>安装 <a href="https://git-scm.com/download" target="_blank" rel="noopener" title="**git**"><strong>git</strong></a>.</li></ol><h5 id="B-正式开始安装的步骤："><a href="#B-正式开始安装的步骤：" class="headerlink" title="B. 正式开始安装的步骤："></a>B. 正式开始安装的步骤：</h5><h6 id="1-下载【Stable-Diffusion-webui】-Github-开源项目，【中文语言包】"><a href="#1-下载【Stable-Diffusion-webui】-Github-开源项目，【中文语言包】" class="headerlink" title="1. 下载【Stable-Diffusion-webui】 Github 开源项目，【中文语言包】"></a><strong>1.</strong> 下载【<a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener" title="**Stable-Diffusion-webui**"><strong>Stable-Diffusion-webui</strong></a>】 Github 开源项目，【<a href="https://github.com/VinsonLaro/stable-diffusion-webui-chinese" target="_blank" rel="noopener" title="**中文语言包**"><strong>中文语言包</strong></a>】</h6><h6 id="2-安装扩展"><a href="#2-安装扩展" class="headerlink" title="2. 安装扩展"></a><strong>2.</strong> <a href="https://github.com/Mikubill/sd-webui-controlnet.git" target="_blank" rel="noopener" title="**安装扩展**"><strong>安装扩展</strong></a></h6><h6 id="3-下载-【ControlNet-模型】选择里面的-control-sd15-openpose-pth，下载后放入-stable-diffusion-webui-extensions-sd-webui-controlnet-models-文件夹下"><a href="#3-下载-【ControlNet-模型】选择里面的-control-sd15-openpose-pth，下载后放入-stable-diffusion-webui-extensions-sd-webui-controlnet-models-文件夹下" class="headerlink" title="3. 下载 【ControlNet 模型】选择里面的 control_sd15_openpose.pth，下载后放入./stable-diffusion-webui/extensions/sd-webui-controlnet/models 文件夹下"></a><strong>3.</strong> 下载 【<a href="https://huggingface.co/lllyasviel/ControlNet/tree/main/models" target="_blank" rel="noopener" title="**ControlNet 模型**"><strong>ControlNet 模型</strong></a>】选择里面的 control_sd15_openpose.pth，下载后放入./stable-diffusion-webui/extensions/sd-webui-controlnet/models 文件夹下</h6><h6 id="4-重启进入-WebUi-选择-ControlNet-模型"><a href="#4-重启进入-WebUi-选择-ControlNet-模型" class="headerlink" title="4. 重启进入 WebUi 选择 ControlNet 模型"></a><strong>4.</strong> 重启进入 WebUi 选择 ControlNet 模型</h6><h6 id="5-载入训练好的模型：stablydiffuseds-26-也就是模型：StablyDiffused’s-Aesthetic-Mix"><a href="#5-载入训练好的模型：stablydiffuseds-26-也就是模型：StablyDiffused’s-Aesthetic-Mix" class="headerlink" title="5. 载入训练好的模型：stablydiffuseds_26 也就是模型：StablyDiffused’s Aesthetic Mix"></a><strong>5. 载入训练好的模型</strong>：stablydiffuseds_26 也就是模型：<a href="https://civitai.com/api/download/models/6266" target="_blank" rel="noopener" title="**StablyDiffused’s Aesthetic Mix**"><strong>StablyDiffused’s Aesthetic Mix</strong></a></h6><h6 id="6-载入图片进行骨架分析，并输入下面的正负关键词："><a href="#6-载入图片进行骨架分析，并输入下面的正负关键词：" class="headerlink" title="6. 载入图片进行骨架分析，并输入下面的正负关键词："></a><strong>6.</strong> 载入图片进行骨架分析，并输入下面的正负关键词：</h6><a id="more"></a><p>正面关键词：</p><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span>girls,<span class="hljs-number">4</span> girls <span class="hljs-keyword">on</span> the beach,back <span class="hljs-keyword">to</span> the sea,White dress,beautiful white gauze skirt,bikini,intricate,elegant,highly detailed,digita painting,concept art,summer lights,queen,sunset,orange sky,pink nightgown,simple background,soft light&lt;lora:dalcefopainting_Lora300:<span class="hljs-number">1</span>&gt;<br></code></pre></td></tr></table></figure><p>负关键词：</p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">nude</span>,<span class="hljs-selector-tag">naked</span>,<span class="hljs-selector-tag">hands</span>,<span class="hljs-selector-tag">cartoon</span>,<span class="hljs-selector-tag">thick</span> <span class="hljs-selector-tag">strokes</span>,((disfigured)),((bad art)),((deformed)),((poorly drawn)),((extra limbs)),((close up)),((b&amp;w)),<span class="hljs-selector-tag">weird</span> <span class="hljs-selector-tag">colors</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/image-20230305215606238.png" srcset="/img/loading.gif" alt="image-20230305215606238"></p><p>关键词大家可以根据自己的需要进行修改，最后生成即可</p><h5 id="C-当然还有更多的好玩的玩法"><a href="#C-当然还有更多的好玩的玩法" class="headerlink" title="C. 当然还有更多的好玩的玩法:"></a>C. <strong>当然还有更多的好玩的玩法:</strong></h5><p>比如这个【<a href="https://civitai.com/api/download/models/12378" target="_blank" rel="noopener" title="**国风模型**"><strong>国风模型</strong></a>】 和 【<a href="https://civitai.com/gallery/119364?modelId=10415&modelVersionId=12378&infinite=false&returnUrl=%2Fmodels%2F10415%2Fguofeng3" target="_blank" rel="noopener" title="**提示词**"><strong>提示词</strong></a>】</p><p> 正面提示词:</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1</span>girl, beautiful, realistic<br></code></pre></td></tr></table></figure><p> 负提示词：</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">(((simple <span class="hljs-keyword">background))),monochrome </span>,lowres, <span class="hljs-keyword">bad </span>anatomy, <span class="hljs-keyword">bad </span>hands, text, error, missing fingers, <span class="hljs-keyword">extra </span><span class="hljs-keyword">digit, </span>fewer <span class="hljs-keyword">digits, </span>cropped, worst quality, low quality, <span class="hljs-keyword">normal </span>quality, <span class="hljs-keyword">jpeg </span>artifacts, signature, watermark, username, <span class="hljs-keyword">blurry, </span>lowres, <span class="hljs-keyword">bad </span>anatomy, <span class="hljs-keyword">bad </span>hands, text, error, <span class="hljs-keyword">extra </span><span class="hljs-keyword">digit, </span>fewer <span class="hljs-keyword">digits, </span>cropped, worst quality, low quality, <span class="hljs-keyword">normal </span>quality, <span class="hljs-keyword">jpeg </span>artifacts, signature, watermark, username, <span class="hljs-keyword">blurry, </span>ugly,pregnant,vore,duplicate,morbid,mut ilated,tran nsexual, hermaphrodite,long neck,mutated hands,poorly drawn hands,poorly drawn face,mutation,deformed,<span class="hljs-keyword">blurry,bad </span>anatomy,<span class="hljs-keyword">bad </span>proportions,malformed limbs,<span class="hljs-keyword">extra </span>limbs,<span class="hljs-keyword">cloned </span>face,<span class="hljs-keyword">disfigured,gross </span>proportions, (((missing arms))),(((missing legs))), (((<span class="hljs-keyword">extra </span>arms))),(((<span class="hljs-keyword">extra </span>legs))),pubic hair, plump,<span class="hljs-keyword">bad </span>legs,error legs,username,<span class="hljs-keyword">blurry,bad </span>feet<br></code></pre></td></tr></table></figure><p>输出结果样式</p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/bzEoga.jpg" srcset="/img/loading.gif" alt="img2"></p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/dEInqe.jpg" srcset="/img/loading.gif" alt="dEInqe"></p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/Xknqo7.jpg" srcset="/img/loading.gif" alt="Xknqo7"></p><p>比如还有这个模型：<a href="https://civitai.com/api/download/models/7804" target="_blank" rel="noopener" title="**SamDoesArts (Sam Yang) Style LoRA**"><strong>SamDoesArts (Sam Yang) Style LoRA</strong></a></p><p>提示词：</p><p> 正面</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">sam yang, (dreamlikeart, redshift style, analog style:<span class="hljs-number">1.1</span>), (copeseethemald style:<span class="hljs-number">0.5</span>), (thepit bimbo, glossy), sexy, bimbo,portrait, <span class="hljs-number">1</span>girl, solo, ([Nina Dobrev|Emma Stone]:<span class="hljs-number">1.1</span>), closeup, extreme closeup, looking at viewer, symmetric, centered, pantsuit, business suit, elegant suit, white crop top shirt, shinny skin, oily skin, subsurface skin scattering, shiny skin, choker, earrings, eyelashes, eyeshadow, lips, lipstick, jewelry, makeup, nose, parted lips, navel, beautiful detailed blue eyes, redhead, realistic, photo-realistic, well-lit face, glowing face, face focus, see-through, (night:<span class="hljs-number">1.2</span>), dark, scary, dark city, alley, chased, danger, worried, afraid, stressed, building, street lights, detailed background, [(dust particle paint explosion:<span class="hljs-number">1.2</span>)::<span class="hljs-number">0.11</span>], (secret:<span class="hljs-number">0.8</span>), &lt;lora:samdoesartsSamYang_offsetRightFilesize:<span class="hljs-number">0.65</span>&gt;<br></code></pre></td></tr></table></figure><p> 反面：</p><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">lowres</span>, low quality, doll, <span class="hljs-keyword">bad </span>anatomy, poorly drawn, ugly, maiden, virgin, malformed, deformed, masculine, manly, <span class="hljs-keyword">black </span>skin, asian, <span class="hljs-keyword">blurry, </span>out of focus, freckles, skin defects, skin <span class="hljs-keyword">marks, </span>long neck, anime, highlights, shadows,<br></code></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/1ukud3.jpg" srcset="/img/loading.gif" alt="1ukud3"></p><p><strong>还有这个模型</strong>：<a href="https://huggingface.co/lysdowie/dalcefoV3Painting/tree/main" target="_blank" rel="noopener" title="**dalcefoV3Painting_dalcefoV3Painting**"><strong>dalcefoV3Painting_dalcefoV3Painting</strong></a></p><p> 正提示词</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-symbol">slora:</span>dalcefoPainting_LoRA300:<span class="hljs-number">1</span>&gt;dalcefo realistic,painting,portrait of a girl,full-<span class="hljs-keyword">body </span><span class="hljs-keyword">shot,collar,tattoo,luminous </span>design,pastel colours,ink drips,autumn lights,<span class="hljs-keyword">sharp </span>face,<span class="hljs-keyword">blue </span>eyes,<span class="hljs-keyword">sharp </span>eyes<br></code></pre></td></tr></table></figure><p> 负提示词：</p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">cartoon</span>,<span class="hljs-selector-tag">3d</span>,((disfigured)),((bad art)),((deformed)),((poorly draw)),((extra limbs)),((close up)),((b&amp;w)),<span class="hljs-selector-tag">weird</span> <span class="hljs-selector-tag">colors</span>,<span class="hljs-selector-tag">blurry</span>,(worst quality,low <span class="hljs-attribute">quality</span>:<span class="hljs-number">1.4</span>),(more than <span class="hljs-number">2</span> <span class="hljs-attribute">nipples</span>:<span class="hljs-number">1</span>-<span class="hljs-number">331</span>),(missing <span class="hljs-attribute">arms</span>:<span class="hljs-number">1</span>-<span class="hljs-number">331</span>),(extra<br><span class="hljs-attribute">legs</span>:<span class="hljs-number">1.331</span>),(fused <span class="hljs-attribute">fingers</span>:<span class="hljs-number">1.61051</span>),(too many <span class="hljs-attribute">fingers</span>:<span class="hljs-number">1.61051</span>),(<span class="hljs-attribute">mutilated</span>:<span class="hljs-number">1.21</span>),<span class="hljs-selector-tag">mutated</span> <span class="hljs-selector-tag">hands</span>,(poorly drawn <span class="hljs-attribute">hands</span>:<span class="hljs-number">1.331</span>),(unclear <span class="hljs-attribute">eyes</span>:<span class="hljs-number">1.331</span>),<span class="hljs-selector-tag">lowers</span>,<span class="hljs-selector-tag">bad</span> <span class="hljs-selector-tag">hands</span>,<span class="hljs-selector-tag">missing</span> <span class="hljs-selector-tag">fingers</span>,<span class="hljs-selector-tag">bad</span> <span class="hljs-selector-tag">hands</span><br></code></pre></td></tr></table></figure><p>就可以获得如下的输出结果：</p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/gWIFRx.png" srcset="/img/loading.gif" alt="gWIFRx"></p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/KRZycv.jpg" srcset="/img/loading.gif" alt="KRZycv"></p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    <content type="html"><![CDATA[<p>烟花未曾闪耀的地方，也有仰望着的笑脸，生活沉重如此，仰望本身就是美的。</p><hr><blockquote><p>【AI 绘画】Stable-Diffusion 通过骨架分析插件 ControlNet 来制作超有意境的图片</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/image-20230305215441759.png" srcset="/img/loading.gif" alt="image-20230305215441759"></p><h5 id="A-开始前的准备工作，你需要先安装必备的环境"><a href="#A-开始前的准备工作，你需要先安装必备的环境" class="headerlink" title="A. 开始前的准备工作，你需要先安装必备的环境"></a>A. 开始前的准备工作，你需要先安装必备的环境</h5><ol><li>安装 <a href="https://www.python.org/downloads/" target="_blank" rel="noopener" title="**Python**"><strong>Python</strong></a>, “Add Python to PATH”</li><li>安装 <a href="https://git-scm.com/download" target="_blank" rel="noopener" title="**git**"><strong>git</strong></a>.</li></ol><h5 id="B-正式开始安装的步骤："><a href="#B-正式开始安装的步骤：" class="headerlink" title="B. 正式开始安装的步骤："></a>B. 正式开始安装的步骤：</h5><h6 id="1-下载【Stable-Diffusion-webui】-Github-开源项目，【中文语言包】"><a href="#1-下载【Stable-Diffusion-webui】-Github-开源项目，【中文语言包】" class="headerlink" title="1. 下载【Stable-Diffusion-webui】 Github 开源项目，【中文语言包】"></a><strong>1.</strong> 下载【<a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener" title="**Stable-Diffusion-webui**"><strong>Stable-Diffusion-webui</strong></a>】 Github 开源项目，【<a href="https://github.com/VinsonLaro/stable-diffusion-webui-chinese" target="_blank" rel="noopener" title="**中文语言包**"><strong>中文语言包</strong></a>】</h6><h6 id="2-安装扩展"><a href="#2-安装扩展" class="headerlink" title="2. 安装扩展"></a><strong>2.</strong> <a href="https://github.com/Mikubill/sd-webui-controlnet.git" target="_blank" rel="noopener" title="**安装扩展**"><strong>安装扩展</strong></a></h6><h6 id="3-下载-【ControlNet-模型】选择里面的-control-sd15-openpose-pth，下载后放入-stable-diffusion-webui-extensions-sd-webui-controlnet-models-文件夹下"><a href="#3-下载-【ControlNet-模型】选择里面的-control-sd15-openpose-pth，下载后放入-stable-diffusion-webui-extensions-sd-webui-controlnet-models-文件夹下" class="headerlink" title="3. 下载 【ControlNet 模型】选择里面的 control_sd15_openpose.pth，下载后放入./stable-diffusion-webui/extensions/sd-webui-controlnet/models 文件夹下"></a><strong>3.</strong> 下载 【<a href="https://huggingface.co/lllyasviel/ControlNet/tree/main/models" target="_blank" rel="noopener" title="**ControlNet 模型**"><strong>ControlNet 模型</strong></a>】选择里面的 control_sd15_openpose.pth，下载后放入./stable-diffusion-webui/extensions/sd-webui-controlnet/models 文件夹下</h6><h6 id="4-重启进入-WebUi-选择-ControlNet-模型"><a href="#4-重启进入-WebUi-选择-ControlNet-模型" class="headerlink" title="4. 重启进入 WebUi 选择 ControlNet 模型"></a><strong>4.</strong> 重启进入 WebUi 选择 ControlNet 模型</h6><h6 id="5-载入训练好的模型：stablydiffuseds-26-也就是模型：StablyDiffused’s-Aesthetic-Mix"><a href="#5-载入训练好的模型：stablydiffuseds-26-也就是模型：StablyDiffused’s-Aesthetic-Mix" class="headerlink" title="5. 载入训练好的模型：stablydiffuseds_26 也就是模型：StablyDiffused’s Aesthetic Mix"></a><strong>5. 载入训练好的模型</strong>：stablydiffuseds_26 也就是模型：<a href="https://civitai.com/api/download/models/6266" target="_blank" rel="noopener" title="**StablyDiffused’s Aesthetic Mix**"><strong>StablyDiffused’s Aesthetic Mix</strong></a></h6><h6 id="6-载入图片进行骨架分析，并输入下面的正负关键词："><a href="#6-载入图片进行骨架分析，并输入下面的正负关键词：" class="headerlink" title="6. 载入图片进行骨架分析，并输入下面的正负关键词："></a><strong>6.</strong> 载入图片进行骨架分析，并输入下面的正负关键词：</h6><a id="more"></a><p>正面关键词：</p><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">4 </span>girls,<span class="hljs-number">4</span> girls <span class="hljs-keyword">on</span> the beach,back <span class="hljs-keyword">to</span> the sea,White dress,beautiful white gauze skirt,bikini,intricate,elegant,highly detailed,digita painting,concept art,summer lights,queen,sunset,orange sky,pink nightgown,simple background,soft light&lt;lora:dalcefopainting_Lora300:<span class="hljs-number">1</span>&gt;<br></code></pre></td></tr></table></figure><p>负关键词：</p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">nude</span>,<span class="hljs-selector-tag">naked</span>,<span class="hljs-selector-tag">hands</span>,<span class="hljs-selector-tag">cartoon</span>,<span class="hljs-selector-tag">thick</span> <span class="hljs-selector-tag">strokes</span>,((disfigured)),((bad art)),((deformed)),((poorly drawn)),((extra limbs)),((close up)),((b&amp;w)),<span class="hljs-selector-tag">weird</span> <span class="hljs-selector-tag">colors</span><br></code></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/image-20230305215606238.png" srcset="/img/loading.gif" alt="image-20230305215606238"></p><p>关键词大家可以根据自己的需要进行修改，最后生成即可</p><h5 id="C-当然还有更多的好玩的玩法"><a href="#C-当然还有更多的好玩的玩法" class="headerlink" title="C. 当然还有更多的好玩的玩法:"></a>C. <strong>当然还有更多的好玩的玩法:</strong></h5><p>比如这个【<a href="https://civitai.com/api/download/models/12378" target="_blank" rel="noopener" title="**国风模型**"><strong>国风模型</strong></a>】 和 【<a href="https://civitai.com/gallery/119364?modelId=10415&modelVersionId=12378&infinite=false&returnUrl=%2Fmodels%2F10415%2Fguofeng3" target="_blank" rel="noopener" title="**提示词**"><strong>提示词</strong></a>】</p><p> 正面提示词:</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-number">1</span>girl, beautiful, realistic<br></code></pre></td></tr></table></figure><p> 负提示词：</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">(((simple <span class="hljs-keyword">background))),monochrome </span>,lowres, <span class="hljs-keyword">bad </span>anatomy, <span class="hljs-keyword">bad </span>hands, text, error, missing fingers, <span class="hljs-keyword">extra </span><span class="hljs-keyword">digit, </span>fewer <span class="hljs-keyword">digits, </span>cropped, worst quality, low quality, <span class="hljs-keyword">normal </span>quality, <span class="hljs-keyword">jpeg </span>artifacts, signature, watermark, username, <span class="hljs-keyword">blurry, </span>lowres, <span class="hljs-keyword">bad </span>anatomy, <span class="hljs-keyword">bad </span>hands, text, error, <span class="hljs-keyword">extra </span><span class="hljs-keyword">digit, </span>fewer <span class="hljs-keyword">digits, </span>cropped, worst quality, low quality, <span class="hljs-keyword">normal </span>quality, <span class="hljs-keyword">jpeg </span>artifacts, signature, watermark, username, <span class="hljs-keyword">blurry, </span>ugly,pregnant,vore,duplicate,morbid,mut ilated,tran nsexual, hermaphrodite,long neck,mutated hands,poorly drawn hands,poorly drawn face,mutation,deformed,<span class="hljs-keyword">blurry,bad </span>anatomy,<span class="hljs-keyword">bad </span>proportions,malformed limbs,<span class="hljs-keyword">extra </span>limbs,<span class="hljs-keyword">cloned </span>face,<span class="hljs-keyword">disfigured,gross </span>proportions, (((missing arms))),(((missing legs))), (((<span class="hljs-keyword">extra </span>arms))),(((<span class="hljs-keyword">extra </span>legs))),pubic hair, plump,<span class="hljs-keyword">bad </span>legs,error legs,username,<span class="hljs-keyword">blurry,bad </span>feet<br></code></pre></td></tr></table></figure><p>输出结果样式</p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/bzEoga.jpg" srcset="/img/loading.gif" alt="img2"></p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/dEInqe.jpg" srcset="/img/loading.gif" alt="dEInqe"></p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/Xknqo7.jpg" srcset="/img/loading.gif" alt="Xknqo7"></p><p>比如还有这个模型：<a href="https://civitai.com/api/download/models/7804" target="_blank" rel="noopener" title="**SamDoesArts (Sam Yang) Style LoRA**"><strong>SamDoesArts (Sam Yang) Style LoRA</strong></a></p><p>提示词：</p><p> 正面</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">sam yang, (dreamlikeart, redshift style, analog style:<span class="hljs-number">1.1</span>), (copeseethemald style:<span class="hljs-number">0.5</span>), (thepit bimbo, glossy), sexy, bimbo,portrait, <span class="hljs-number">1</span>girl, solo, ([Nina Dobrev|Emma Stone]:<span class="hljs-number">1.1</span>), closeup, extreme closeup, looking at viewer, symmetric, centered, pantsuit, business suit, elegant suit, white crop top shirt, shinny skin, oily skin, subsurface skin scattering, shiny skin, choker, earrings, eyelashes, eyeshadow, lips, lipstick, jewelry, makeup, nose, parted lips, navel, beautiful detailed blue eyes, redhead, realistic, photo-realistic, well-lit face, glowing face, face focus, see-through, (night:<span class="hljs-number">1.2</span>), dark, scary, dark city, alley, chased, danger, worried, afraid, stressed, building, street lights, detailed background, [(dust particle paint explosion:<span class="hljs-number">1.2</span>)::<span class="hljs-number">0.11</span>], (secret:<span class="hljs-number">0.8</span>), &lt;lora:samdoesartsSamYang_offsetRightFilesize:<span class="hljs-number">0.65</span>&gt;<br></code></pre></td></tr></table></figure><p> 反面：</p><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">lowres</span>, low quality, doll, <span class="hljs-keyword">bad </span>anatomy, poorly drawn, ugly, maiden, virgin, malformed, deformed, masculine, manly, <span class="hljs-keyword">black </span>skin, asian, <span class="hljs-keyword">blurry, </span>out of focus, freckles, skin defects, skin <span class="hljs-keyword">marks, </span>long neck, anime, highlights, shadows,<br></code></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/1ukud3.jpg" srcset="/img/loading.gif" alt="1ukud3"></p><p><strong>还有这个模型</strong>：<a href="https://huggingface.co/lysdowie/dalcefoV3Painting/tree/main" target="_blank" rel="noopener" title="**dalcefoV3Painting_dalcefoV3Painting**"><strong>dalcefoV3Painting_dalcefoV3Painting</strong></a></p><p> 正提示词</p><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-symbol">slora:</span>dalcefoPainting_LoRA300:<span class="hljs-number">1</span>&gt;dalcefo realistic,painting,portrait of a girl,full-<span class="hljs-keyword">body </span><span class="hljs-keyword">shot,collar,tattoo,luminous </span>design,pastel colours,ink drips,autumn lights,<span class="hljs-keyword">sharp </span>face,<span class="hljs-keyword">blue </span>eyes,<span class="hljs-keyword">sharp </span>eyes<br></code></pre></td></tr></table></figure><p> 负提示词：</p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">cartoon</span>,<span class="hljs-selector-tag">3d</span>,((disfigured)),((bad art)),((deformed)),((poorly draw)),((extra limbs)),((close up)),((b&amp;w)),<span class="hljs-selector-tag">weird</span> <span class="hljs-selector-tag">colors</span>,<span class="hljs-selector-tag">blurry</span>,(worst quality,low <span class="hljs-attribute">quality</span>:<span class="hljs-number">1.4</span>),(more than <span class="hljs-number">2</span> <span class="hljs-attribute">nipples</span>:<span class="hljs-number">1</span>-<span class="hljs-number">331</span>),(missing <span class="hljs-attribute">arms</span>:<span class="hljs-number">1</span>-<span class="hljs-number">331</span>),(extra<br><span class="hljs-attribute">legs</span>:<span class="hljs-number">1.331</span>),(fused <span class="hljs-attribute">fingers</span>:<span class="hljs-number">1.61051</span>),(too many <span class="hljs-attribute">fingers</span>:<span class="hljs-number">1.61051</span>),(<span class="hljs-attribute">mutilated</span>:<span class="hljs-number">1.21</span>),<span class="hljs-selector-tag">mutated</span> <span class="hljs-selector-tag">hands</span>,(poorly drawn <span class="hljs-attribute">hands</span>:<span class="hljs-number">1.331</span>),(unclear <span class="hljs-attribute">eyes</span>:<span class="hljs-number">1.331</span>),<span class="hljs-selector-tag">lowers</span>,<span class="hljs-selector-tag">bad</span> <span class="hljs-selector-tag">hands</span>,<span class="hljs-selector-tag">missing</span> <span class="hljs-selector-tag">fingers</span>,<span class="hljs-selector-tag">bad</span> <span class="hljs-selector-tag">hands</span><br></code></pre></td></tr></table></figure><p>就可以获得如下的输出结果：</p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/gWIFRx.png" srcset="/img/loading.gif" alt="gWIFRx"></p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/03/05/KRZycv.jpg" srcset="/img/loading.gif" alt="KRZycv"></p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
     
     
     <categories>
@@ -355,9 +355,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
@@ -519,9 +519,9 @@
     
     <tags>
       
-      <tag>Fastjson</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Fastjson</tag>
       
     </tags>
     
@@ -546,9 +546,9 @@
     
     <tags>
       
-      <tag>Fastjson</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Fastjson</tag>
       
     </tags>
     
@@ -1217,9 +1217,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Spring</tag>
       
@@ -1510,9 +1510,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
@@ -1676,11 +1676,11 @@
     
     <tags>
       
-      <tag>Linux</tag>
-      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
+      
+      <tag>Linux</tag>
       
       <tag>Ngrok</tag>
       
@@ -2067,9 +2067,9 @@
     
     <tags>
       
-      <tag>SpringCloud</tag>
-      
       <tag>Java</tag>
+      
+      <tag>SpringCloud</tag>
       
     </tags>
     
@@ -2150,13 +2150,13 @@
     
     <tags>
       
-      <tag>Linux</tag>
-      
       <tag>CentOS</tag>
       
-      <tag>MySQL</tag>
-      
       <tag>Server</tag>
+      
+      <tag>Linux</tag>
+      
+      <tag>MySQL</tag>
       
       <tag>JDK</tag>
       
@@ -2191,13 +2191,13 @@
       
       <tag>CentOS</tag>
       
+      <tag>Server</tag>
+      
       <tag>Apache</tag>
       
       <tag>MySQL</tag>
       
       <tag>PHP</tag>
-      
-      <tag>Server</tag>
       
     </tags>
     
@@ -2249,9 +2249,9 @@
     
     <tags>
       
-      <tag>Linux</tag>
-      
       <tag>Server</tag>
+      
+      <tag>Linux</tag>
       
     </tags>
     
@@ -2278,13 +2278,13 @@
     
     <tags>
       
-      <tag>Linux</tag>
+      <tag>Redis</tag>
       
       <tag>CentOS</tag>
       
       <tag>Server</tag>
       
-      <tag>Redis</tag>
+      <tag>Linux</tag>
       
     </tags>
     
@@ -2311,11 +2311,11 @@
     
     <tags>
       
-      <tag>Linux</tag>
-      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
+      
+      <tag>Linux</tag>
       
       <tag>NodeJS</tag>
       
