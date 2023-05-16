@@ -254,7 +254,7 @@
 
 <hr>
 <p>疑问：为什么查询<strong>runlevel 3</strong>的服务？<br>Linux系统有7个运行级别(runlevel)，分别如下：<br>runlevel 0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动；<br>runlevel 1：单用户工作状态，root权限，用于系统维护，禁止远程登陆；<br>runlevel 2：多用户状态(没有NFS)；<br>runlevel 3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式。这个运行级别的服务会启动httpd，系统提供web server服务，所以主要查看这个运行级别的服务；<br>runlevel 4：系统未使用，保留；<br>runlevel 5：X11控制台，登陆后进入图形GUI模式；<br>runlevel 6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动；</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrkisisj30eq0q6ajx.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrkisisj30eq0q6ajx.jpg" srcset="/img/loading.gif" alt="img"></p>
 <h3 id="2-检查监听的网络端口"><a href="#2-检查监听的网络端口" class="headerlink" title="2.检查监听的网络端口"></a>2.检查监听的网络端口</h3><p>通过netstat命名能够看到所有已经打开的端口，并且可以看到是哪些程序打开的。如果发现某些是必须要的，建议关掉：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">[<span class="hljs-symbol">alter@</span>alter~]# netstat -tulpn<br>Active Internet connections (only servers)<br>Proto Recv-Q Send-Q Local Address  Foreign Address  State   PID/Program name   <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2181</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        LISTEN  <span class="hljs-number">48983</span>/java          <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2182</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        LISTEN  <span class="hljs-number">49051</span>/java<br></code></pre></td></tr></table></figure>
 
@@ -315,7 +315,7 @@
 
 
 <p><strong>欢迎关注微信公众号​：</strong></p>
-<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+<img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
             <hr>
             <div>

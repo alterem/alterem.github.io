@@ -283,22 +283,22 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">------Channel</span><br><span class="hljs-selector-tag">fileSize</span><span class="hljs-selector-pseudo">:20M</span><br><span class="hljs-selector-tag">consum</span> <span class="hljs-selector-tag">time</span><span class="hljs-selector-pseudo">:1416</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="内核空间和用户空间"><a href="#内核空间和用户空间" class="headerlink" title="内核空间和用户空间"></a>内核空间和用户空间</h4><p>那么为什么从内核空间转向用户空间这段过程会慢呢？首先我们需了解的是什么是内核空间和用户空间。在常用的操作系统中为了保护系统中的核心资源，于是将系统设计为四个区域，越往里权限越大，所以Ring0被称之为内核空间，用来访问一些关键性的资源。Ring3被称之为用户空间。</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-38f92e6466efaf60.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-38f92e6466efaf60.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>image</p>
 <blockquote>
 <p>用户态、内核态：线程处于内核空间称之为内核态，线程处于用户空间属于用户态</p>
 </blockquote>
 <p>那么我们如果此时应用程序（应用程序是都属于用户态的）需要访问核心资源怎么办呢？那就需要调用内核中所暴露出的接口用以调用，称之为<strong>系统调用</strong>。例如此时我们应用程序需要访问磁盘上的文件。此时应用程序就会调用系统调用的接口<code>open</code>方法，然后内核去访问磁盘中的文件，将文件内容返回给应用程序。大致的流程如下</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-53cc9499caddb485.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-53cc9499caddb485.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>image</p>
 <h4 id="直接缓冲区和非直接缓冲区"><a href="#直接缓冲区和非直接缓冲区" class="headerlink" title="直接缓冲区和非直接缓冲区"></a>直接缓冲区和非直接缓冲区</h4><p>既然我们要读取一个磁盘的文件，要废这么大的周折。有没有什么简单的方法能够使我们的应用直接操作磁盘文件，不需要内核进行中转呢？有，那就是建立直接缓冲区了。</p>
 <ul>
 <li><p>非直接缓冲区：非直接缓冲区就是我们上面所讲内核态作为中间人，每次都需要内核在中间作为中转。</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-6bbfb5446221cb2d.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-6bbfb5446221cb2d.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>image</p>
 </li>
 <li><p>直接缓冲区：直接缓冲区不需要内核空间作为中转copy数据，而是直接在物理内存申请一块空间，这块空间映射到内核地址空间和用户地址空间，应用程序与磁盘之间数据的存取通过这块直接申请的物理内存进行交互。</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-92211d2b9a85215e.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-92211d2b9a85215e.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>image</p>
 </li>
 </ul>
@@ -321,7 +321,7 @@
 <h3 id="使用Pipe"><a href="#使用Pipe" class="headerlink" title="使用Pipe"></a>使用Pipe</h3><p>Java NIO 管道是2个线程之间的单向数据连接。Pipe有一个source通道和一个sink通道。其中source通道用于读取数据，sink通道用于写入数据。可以看到源码中的介绍，大概意思就是写入线程会阻塞至有读线程从通道中读取数据。如果没有数据可读，读线程也会阻塞至写线程写入数据。直至通道关闭。</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">Whether <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> a thread writing bytes to a pipe will block <span class="hljs-keyword">until</span> another<br>thread reads those bytes<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-3fbae68c65487c14.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/13146186-3fbae68c65487c14.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>image</p>
 <p>我想要的效果是这样的。源码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Version 5 使用Pip</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zipFilePip</span><span class="hljs-params">()</span> </span>&#123;<br><br>    <span class="hljs-keyword">long</span> beginTime = System.currentTimeMillis();<br>    <span class="hljs-keyword">try</span>(WritableByteChannel out = Channels.newChannel(<span class="hljs-keyword">new</span> FileOutputStream(ZIP_FILE))) &#123;<br>        Pipe pipe = Pipe.open();<br>        <span class="hljs-comment">//异步任务</span><br>        CompletableFuture.runAsync(()-&gt;runTask(pipe));<br><br>        <span class="hljs-comment">//获取读通道</span><br>        ReadableByteChannel readableByteChannel = pipe.source();<br>        ByteBuffer buffer = ByteBuffer.allocate(((<span class="hljs-keyword">int</span>) FILE_SIZE)*<span class="hljs-number">10</span>);<br>        <span class="hljs-keyword">while</span> (readableByteChannel.read(buffer)&gt;= <span class="hljs-number">0</span>) &#123;<br>            buffer.flip();<br>            out.write(buffer);<br>            buffer.clear();<br>        &#125;<br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>    printInfo(beginTime);<br><br>&#125;<br><br><span class="hljs-comment">//异步任务</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runTask</span><span class="hljs-params">(Pipe pipe)</span> </span>&#123;<br><br>    <span class="hljs-keyword">try</span>(ZipOutputStream zos = <span class="hljs-keyword">new</span> ZipOutputStream(Channels.newOutputStream(pipe.sink()));<br>            WritableByteChannel out = Channels.newChannel(zos)) &#123;<br>        System.out.println(<span class="hljs-string">"Begin"</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            zos.putNextEntry(<span class="hljs-keyword">new</span> ZipEntry(i+SUFFIX_FILE));<br><br>            FileChannel jpgChannel = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(JPG_FILE_PATH)).getChannel();<br><br>            jpgChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, out);<br><br>            jpgChannel.close();<br>        &#125;<br>    &#125;<span class="hljs-keyword">catch</span> (Exception e)&#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -338,7 +338,7 @@
 <li><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fmy.oschina.net%2FhappyBKs%2Fblog%2F1592329" target="_blank" rel="noopener">JAVA NIO 直接缓冲区和非直接缓冲区</a></li>
 </ul>
 <p><strong>欢迎关注微信公众号​：</strong></p>
-<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee-20200407103256742.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+<img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee-20200407103256742.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
             <hr>
             <div>

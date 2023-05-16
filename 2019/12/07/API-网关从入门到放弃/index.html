@@ -247,7 +247,7 @@
 <p>来源：<a href="http://www.jiangxinlingdu.com/thought/2019/09/12/gateway.html" target="_blank" rel="noopener">匠心零度</a><a href="http://www.jiangxinlingdu.com/thought/2019/09/12/gateway.html" target="_blank" rel="noopener">http://www.jiangxinlingdu.com/thought/2019/09/12/gateway.html</a></p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>假设你正在开发一个电商网站，那么这里会涉及到很多后端的微服务，比如会员、商品、推荐服务等等。</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmel0tcj30dg0dc0t7.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmel0tcj30dg0dc0t7.jpg" srcset="/img/loading.gif" alt="img"></p>
 <p>那么这里就会遇到一个问题，APP/Browser怎么去访问这些后端的服务? 如果业务比较简单的话，可以给每个业务都分配一个独立的域名(<a href="https://service.api.company.com)，但这种方式会有几个问题" target="_blank" rel="noopener">https://service.api.company.com)，但这种方式会有几个问题</a>:</p>
 <ul>
 <li>每个业务都会需要鉴权、限流、权限校验等逻辑，如果每个业务都各自为战，自己造轮子实现一遍，会很蛋疼，完全可以抽出来，放到一个统一的地方去做。</li>
@@ -256,20 +256,20 @@
 <li>另外还有一个问题，后端每个微服务可能是由不同语言编写的、采用了不同的协议，比如HTTP、Dubbo、GRPC等，但是你不可能要求客户端去适配这么多种协议，这是一项非常有挑战的工作，项目会变的非常复杂且很难维护。</li>
 <li>后期如果需要对微服务进行重构的话，也会变的非常麻烦，需要客户端配合你一起进行改造，比如商品服务，随着业务变的越来越复杂，后期需要进行拆分成多个微服务，这个时候对外提供的服务也需要拆分成多个，同时需要客户端配合你进行改造，非常蛋疼。</li>
 </ul>
-<h2 id="API-Gateway"><a href="#API-Gateway" class="headerlink" title="API Gateway"></a><strong>API Gateway</strong></h2><p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmfjn96j30dg0dcdgb.jpg" srcset="/img/loading.gif" alt=""></p>
+<h2 id="API-Gateway"><a href="#API-Gateway" class="headerlink" title="API Gateway"></a><strong>API Gateway</strong></h2><p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmfjn96j30dg0dcdgb.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>更好的方式是采用API网关，实现一个API网关接管所有的入口流量，类似Nginx的作用，将所有用户的请求转发给后端的服务器，但网关做的不仅仅只是简单的转发，也会针对流量做一些扩展，比如鉴权、限流、权限、熔断、协议转换、错误码统一、缓存、日志、监控、告警等，这样将通用的逻辑抽出来，由网关统一去做，业务方也能够更专注于业务逻辑，提升迭代的效率。</p>
 <p>通过引入API网关，客户端只需要与API网关交互，而不用与各个业务方的接口分别通讯，但多引入一个组件就多引入了一个潜在的故障点，因此要实现一个高性能、稳定的网关，也会涉及到很多点。</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmg0sxxj30sg0kpabh.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmg0sxxj30sg0kpabh.jpg" srcset="/img/loading.gif" alt="img"></p>
 <h2 id="API注册"><a href="#API注册" class="headerlink" title="API注册"></a><strong>API注册</strong></h2><p>业务方如何接入网关?一般来说有几种方式。</p>
 <ul>
 <li>第一种采用插件扫描业务方的API，比如Spring MVC的注解，并结合Swagger的注解，从而实现参数校验、文档&amp;&amp;SDK生成等功能，扫描完成之后，需要上报到网关的存储服务。</li>
 <li>手动录入。比如接口的路径、请求参数、响应参数、调用方式等信息，但这种方式相对来说会麻烦一些，如果参数过多的话，前期录入会很费时费力。</li>
 </ul>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmguf7zj30u00fraal.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmguf7zj30u00fraal.jpg" srcset="/img/loading.gif" alt=""></p>
 <ul>
 <li>配置文件导入。比如通过Swagger\OpenAPI等，比如阿里云的网关:</li>
 </ul>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmhua4lj30u0064t93.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymmhua4lj30u0064t93.jpg" srcset="/img/loading.gif" alt=""></p>
 <h2 id="协议转换"><a href="#协议转换" class="headerlink" title="协议转换"></a><strong>协议转换</strong></h2><p>内部的API可能是由很多种不同的协议实现的，比如HTTP、Dubbo、GRPC等，但对于用户来说其中很多都不是很友好，或者根本没法对外暴露，比如Dubbo服务，因此需要在网关层做一次协议转换，将用户的HTTP协议请求，在网关层转换成底层对应的协议，比如HTTP -&gt; Dubbo, 但这里需要注意很多问题，比如参数类型，如果类型搞错了，导致转换出问题，而日志又不够详细的话，问题会很难定位。</p>
 <h2 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a><strong>服务发现</strong></h2><p>网关作为流量的入口，负责请求的转发，但首先需要知道转发给谁，如何寻址，这里有几种方式:</p>
 <ul>
@@ -302,7 +302,7 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>目前的网关还是中心化的架构，所有的请求都需要走一次网关，因此当大促或者流量突增时，网关可能会成为性能的瓶颈，而且当网关接入的大量接口的时候，做好流量评估也不是一项容易的工作，每次大促前都需要跟业务方一起针对接口做压测，评估出大致的容量，并对网关进行扩容，而且网关是所有流量的入口，所有的请求都是由网关处理，要想准确的评估出容量很复杂。可以参考目前比较流行的ServiceMesh，采用去中心化的方案，将网关的逻辑下沉到sidecar中，sidecar和应用部署到同一个节点，并接管应用流入、流出的流量，这样大促时，只需要对相关的业务压测，并针对性扩容即可，另外升级也会更平滑，中心化的网关，即使灰度发布，但是理论上所有业务方的流量都会流入到新版本的网关，如果出了问题，会影响到所有的业务，但这种去中心化的方式，可以先针对非核心业务升级，观察一段时间没问题后，再全量推上线。另外ServiceMesh的方案，对于多语言支持也更友好。</p>
 <p> 作者：aCoder2013<br> 链接：github.com/aCoder2013/blog/issues/35</p>
 <p><strong>欢迎关注微信公众号​：</strong></p>
-<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+<img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
             <hr>
             <div>

@@ -298,7 +298,7 @@
 </ol>
 <p>我下载的是sonarqube-7.2.1，因为最新版<strong>7.9.1</strong>需要<strong>jdk11</strong>支持</p>
 <p>并解压,解压完之后的目录如下 :</p>
-<p>  <img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoi44lcj31eo0omagi.jpg" srcset="/img/loading.gif" alt=""></p>
+<p>  <img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoi44lcj31eo0omagi.jpg" srcset="/img/loading.gif" alt=""></p>
 <ol start="3">
 <li><p>到解压目录的bin\macosx-universal-64(对应系统)目录下:</p>
 <p>linux、Mac <code>sh sonar.sh start</code>启动</p>
@@ -349,7 +349,7 @@
 <h3 id="三-使用"><a href="#三-使用" class="headerlink" title="三. 使用"></a>三. 使用</h3><h4 id="3-1-安装必要的插件-汉化包举例"><a href="#3-1-安装必要的插件-汉化包举例" class="headerlink" title="3.1. 安装必要的插件 (汉化包举例)"></a>3.1. 安装必要的插件 (汉化包举例)</h4><p>点击 导航栏的 Administration, 选择Marketplace</p>
 <p>搜索 Chinese pack, 点击install进行安装</p>
 <p>安装成功后, 重启 SonarQube !</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoldzq6j31jr0u0wk8.jpg" srcset="/img/loading.gif" alt="pack"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoldzq6j31jr0u0wk8.jpg" srcset="/img/loading.gif" alt="pack"></p>
 <h4 id="3-2-开始分析项目代码源代码"><a href="#3-2-开始分析项目代码源代码" class="headerlink" title="3.2. 开始分析项目代码源代码"></a>3.2. 开始分析项目代码源代码</h4><p>使用maven的方式进行分析</p>
 <h5 id="3-2-1-编辑maven-的settings-xml文件"><a href="#3-2-1-编辑maven-的settings-xml文件" class="headerlink" title="3.2.1 编辑maven 的settings.xml文件"></a>3.2.1 编辑maven 的settings.xml文件</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">pluginGroups</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">pluginGroup</span>&gt;</span>org.sonarsource.scanner.maven<span class="hljs-tag">&lt;/<span class="hljs-name">pluginGroup</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">pluginGroups</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">profiles</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>sonar<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">activation</span>&gt;</span><br>				<span class="hljs-tag">&lt;<span class="hljs-name">activeByDefault</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">activeByDefault</span>&gt;</span><br>			<span class="hljs-tag">&lt;/<span class="hljs-name">activation</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>				<span class="hljs-tag">&lt;<span class="hljs-name">sonar.host.url</span>&gt;</span>http://loaclhost:9000<span class="hljs-tag">&lt;/<span class="hljs-name">sonar.host.url</span>&gt;</span><br>			<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span><br>	 <span class="hljs-tag">&lt;/<span class="hljs-name">profiles</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -359,10 +359,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar<br></code></pre></td></tr></table></figure>
 
 <p>出现: BUILD SUCCESS 标识之后</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymomt8guj32dq0sutlb.jpg" srcset="/img/loading.gif" alt="BUILD SUCCESS"></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymomt8guj32dq0sutlb.jpg" srcset="/img/loading.gif" alt="BUILD SUCCESS"></p>
 <p>刷新界面查看 :</p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymopjdz6j31bv0u0n3x.jpg" srcset="/img/loading.gif" alt=""></p>
-<p><img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoqvxqaj31bv0u0n3x.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymopjdz6j31bv0u0n3x.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoqvxqaj31bv0u0n3x.jpg" srcset="/img/loading.gif" alt=""></p>
 <h4 id="3-3-配置分析参数"><a href="#3-3-配置分析参数" class="headerlink" title="3.3 配置分析参数"></a>3.3 配置分析参数</h4><p>强制参数：    </p>
 <ol>
 <li>Server<br>sonar.host.url        <a href="http://localhost:9000" target="_blank" rel="noopener">http://localhost:9000</a></li>
@@ -381,7 +381,7 @@
 
 
 <p><strong>欢迎关注微信公众号​：</strong></p>
-<img src="https://gitee.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+<img src="https://raw.githubusercontent.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
             <hr>
             <div>
@@ -400,9 +400,9 @@
                     
                       <a class="hover-with-bg" href="/tags/Java/">Java</a>
                     
-                      <a class="hover-with-bg" href="/tags/Sonar/">Sonar</a>
-                    
                       <a class="hover-with-bg" href="/tags/SonarQube/">SonarQube</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Sonar/">Sonar</a>
                     
                   </div>
                 
