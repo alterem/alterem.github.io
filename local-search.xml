@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>MySQL免安装版使用</title>
+    <link href="/2023/05/16/MySQL%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/05/16/MySQL%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h3><p>将下载到的文件解压缩到自己喜欢的位置，例如我自己的位置是<code>D:\\Program Files\\mysql-5.7.10-winx64</code></p><h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>右键计算机-&gt;属性-&gt;高级系统设置-&gt;环境变量；在系统变量里添加<code>MYSQL_HOME</code>环境变量，变量值为MySQL的根目录，例如我的是<code>D:\\Program Files\\mysql-5.7.10-winx64</code>（原路径有错，已更改，对受误导的网友表示抱歉。谢谢网友“庞大进”的提醒，2016.5.7）</p><p>找到<code>path</code>，选择编辑，在原有值末尾添加<code>;%MYSQL_HOME%\\bin</code></p><a id="more"></a><h3 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h3><p>在MySQL的安装目录（例如我的是<code>D:\\Program Files\\mysql-5.7.10-winx64</code>）下，建立新文本文件txt，并将其命名为my.ini（注意扩展名也要修改）。</p><p>双击打开该文件，并在其中添加内容如下：</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[mysqld]</span><br><span class="hljs-attr">basedir</span>=D:\Program Files\mysql-<span class="hljs-number">5.7</span>.<span class="hljs-number">10</span>-winx64<br><span class="hljs-attr">datadir</span>=D:\\Program Files\\mysql-<span class="hljs-number">5.7</span>.<span class="hljs-number">10</span>-winx64\\data<br><span class="hljs-attr">port</span> = <span class="hljs-number">3306</span><br>——————<br><br><span class="hljs-section">[Client]</span><br><span class="hljs-attr">port</span> = <span class="hljs-number">3306</span><br><span class="hljs-section">[mysqld]</span><br><span class="hljs-attr">port</span> = <span class="hljs-number">3306</span><br><span class="hljs-attr">basedir</span>=E:\install_work\mysql<br><span class="hljs-attr">datadir</span>=E:\install_work\mysql\data<br><span class="hljs-attr">max_connections</span>=<span class="hljs-number">200</span><br><span class="hljs-attr">character-set-server</span>=utf8<br><span class="hljs-attr">default-storage-engine</span>=INNODB<br><span class="hljs-section">[mysql]</span><br><span class="hljs-attr">default-character-set</span>=utf8<br>——————<br></code></pre></td></tr></table></figure><p>保存后关闭</p><h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><p>以管理员自身份打开CMD执行以下命令（注意必须以管理员身份打开，否则报错）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mysqld --initialize --user=mysql --console<br></code></pre></td></tr></table></figure><p>在控制台消息尾部会出现随机生成的初始密码，记下来（因为有特殊字符，很容易记错，最好把整个消息保存在记事本里）</p><p>如果上述命令运行不成功请用以下命令代替：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">%MYSQL_HOME%\bin\mysqld --initialize --user=mysql --console<br></code></pre></td></tr></table></figure><p>如果仍然不成功请检查第２步</p><p>将MySQL添加到系统服务</p><p>以管理员自身份打开CMD执行以下命令（注意必须以管理员身份打开，否则报错）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">mysqld --install MySQL<br>net start MySQL<br></code></pre></td></tr></table></figure><p>安装成功，则显示“服务已启动成功”</p><p>如果上述命令运行不成功，可以用以下命令代替：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">%MYSQL_HOME%\bin\mysqld --install MySQL<br>net start MySQL<br></code></pre></td></tr></table></figure><p>安装成功，则显示“服务已启动成功”</p><p>如果仍然不成功请检查第２步</p><h3 id="保护MySQL"><a href="#保护MySQL" class="headerlink" title="保护MySQL"></a>保护MySQL</h3><p>运行<code>mysql_secure_installation</code>脚本，该脚本执行一些与安全性相关的操作并设置MySQL根密码：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mysql_secure_installation<br></code></pre></td></tr></table></figure><p>将要求您配置<code>VALIDATE PASSWORD PLUGIN</code>，该工具用于测试MySQL用户密码的强度并提高安全性。密码验证策略分为三个级别：低，中和强。如果您不想设置验证密码插件，请按<code>ENTER</code>。</p><p>在下一个提示符下，将要求您为MySQL根用户设置密码。完成此操作后，脚本还将要求您删除匿名用户，限制root用户对本地计算机的访问，并删除测试数据库。您应该对所有问题回答“是”。</p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    
+    
+    <categories>
+      
+      <category>MySQL</category>
+      
+      <category>Windows</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MySQL</tag>
+      
+      <tag>Windows</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【AI 绘画】Stable-Diffusion 通过骨架分析插件 ControlNet 来制作超有意境的图片</title>
     <link href="/2023/05/16/%E3%80%90AI-%E7%BB%98%E7%94%BB%E3%80%91Stable-Diffusion-%E9%80%9A%E8%BF%87%E9%AA%A8%E6%9E%B6%E5%88%86%E6%9E%90%E6%8F%92%E4%BB%B6-ControlNet-%E6%9D%A5%E5%88%B6%E4%BD%9C%E8%B6%85%E6%9C%89%E6%84%8F%E5%A2%83%E7%9A%84%E5%9B%BE%E7%89%87/"/>
     <url>/2023/05/16/%E3%80%90AI-%E7%BB%98%E7%94%BB%E3%80%91Stable-Diffusion-%E9%80%9A%E8%BF%87%E9%AA%A8%E6%9E%B6%E5%88%86%E6%9E%90%E6%8F%92%E4%BB%B6-ControlNet-%E6%9D%A5%E5%88%B6%E4%BD%9C%E8%B6%85%E6%9C%89%E6%84%8F%E5%A2%83%E7%9A%84%E5%9B%BE%E7%89%87/</url>
@@ -1680,9 +1709,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>Ngrok</tag>
-      
       <tag>Server</tag>
+      
+      <tag>Ngrok</tag>
       
     </tags>
     
@@ -2154,11 +2183,11 @@
       
       <tag>CentOS</tag>
       
+      <tag>MySQL</tag>
+      
       <tag>Server</tag>
       
       <tag>JDK</tag>
-      
-      <tag>MySQL</tag>
       
       <tag>Tomcat</tag>
       
@@ -2191,13 +2220,13 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
+      <tag>Apache</tag>
       
       <tag>MySQL</tag>
       
-      <tag>Apache</tag>
-      
       <tag>PHP</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
