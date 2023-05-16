@@ -330,9 +330,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
@@ -1045,9 +1045,9 @@
       
       <tag>Java</tag>
       
-      <tag>Sonar</tag>
-      
       <tag>SonarQube</tag>
+      
+      <tag>Sonar</tag>
       
     </tags>
     
@@ -1161,9 +1161,9 @@
     
     <tags>
       
-      <tag>Cas</tag>
-      
       <tag>Redis</tag>
+      
+      <tag>Cas</tag>
       
       <tag>Ticket</tag>
       
@@ -1192,9 +1192,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Spring</tag>
       
@@ -1485,9 +1485,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Java</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
@@ -2129,11 +2129,11 @@
       
       <tag>CentOS</tag>
       
-      <tag>MySQL</tag>
-      
       <tag>Server</tag>
       
       <tag>JDK</tag>
+      
+      <tag>MySQL</tag>
       
       <tag>Tomcat</tag>
       
@@ -2166,13 +2166,13 @@
       
       <tag>CentOS</tag>
       
-      <tag>Apache</tag>
+      <tag>Server</tag>
       
       <tag>MySQL</tag>
       
-      <tag>PHP</tag>
+      <tag>Apache</tag>
       
-      <tag>Server</tag>
+      <tag>PHP</tag>
       
     </tags>
     
@@ -2253,11 +2253,11 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Linux</tag>
       
       <tag>CentOS</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Server</tag>
       
