@@ -198,6 +198,70 @@
   <div class="row mx-auto index-card">
     
     
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/" target="_self">
+          <img src="https://images.unsplash.com/photo-1584530588779-6ce0af8c9255?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=880&ixlib=rb-1.2.1&q=80&w=1360" srcset="/img/loading.gif" alt="使用线程">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/">使用线程</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/04/02/%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B/">
+          
+          
+            
+          
+          一、使用线程有三种使用线程的方法：
+
+实现 Runnable 接口；
+实现 Callable 接口；
+继承 Thread 类。
+
+实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。
+实现 Runnable 接口需要实现接口中的 run() 方法。
+1234
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-02 16:27" pubdate>
+              2020-04-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Thread/">Thread</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
@@ -721,72 +785,6 @@ JDK：在maven3.3 以上的版本需要JDK版本1.7+。内存：没有最低限�
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
             <time datetime="2019-11-03 15:51" pubdate>
-              2019-11-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Jenkins/">Jenkins</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Jenkins/">Jenkins</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E3%80%81%E5%87%AD%E6%8D%AE%E3%80%81%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">Jenkins用户、凭据、权限管理</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/11/03/Jenkins%E7%94%A8%E6%88%B7%E3%80%81%E5%87%AD%E6%8D%AE%E3%80%81%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
-          
-          
-            
-          
-          
-来源公众号： DevOps持续集成
-
-1. 用户管理
-配置用户接入入口: 系统管理-&gt;全局安全配置。
-
-默认使用的是Jenkins数据库存储。
-
-可以选择集成LDAP服务或者是GItlab服务（需要安装插件后才会有）。
-
-
-
-1.1 查看用户
-以使用Jenkins专有数据库为例，用户管理入口: 系统管理-&gt; 管理用户
-
-1.2 创建用户
-1.3 删除用户
-1.4 更新用户
-2. 凭据
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-11-03 15:50" pubdate>
               2019-11-03
             </time>
           </div>
