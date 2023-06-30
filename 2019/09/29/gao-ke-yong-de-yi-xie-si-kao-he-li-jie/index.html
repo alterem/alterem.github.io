@@ -1,0 +1,545 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>高可用的一些思考和理解 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymp28hfsj30hs0c3752.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="高可用的一些思考和理解">
+              
+            </span>
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
+                }).catch(console.error)
+            </script>
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-09-29 10:30" pubdate>
+        2019年9月29日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">高可用的一些思考和理解</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>本文来源公众号：匠心零度</p>
+</blockquote>
+<p>在目前的互联网大时代，在高并发等冲击下，还必须保证<strong>服务高可用</strong>，如果服务不高可用那么意味着：</p>
+<ul>
+<li>系统不是7*24小时提供服务，那么用户体验就特别差了，可能用户下次不用了，留不住用户。</li>
+<li>当系统不可用的时候，对公司的形象是有所影响的，BAT类似这种技术都是象征的。</li>
+<li>最重要的一点，当系统不可用的时候，直接损失就是金钱！！！基本都是秒算损失的，依稀记得<strong>2015年5月28日携程网瘫痪事件</strong>，按照携程一季度财报公布的数据，携程宕机的损失为平均每小时106.48万美元。</li>
+</ul>
+<p>高可用是非常复杂的，自己水平有限，并不能涵盖那么多，只能说是自己对高可用的一些思考和理解。</p>
+<h2 id="那么怎么使系统高可用呢？"><a href="#那么怎么使系统高可用呢？" class="headerlink" title="那么怎么使系统高可用呢？"></a>那么怎么使系统高可用呢？</h2><blockquote>
+<p>我们不能让服务器不挂，让服务不挂，那么怎么样让这种必败的局面不会有问题呢，就是可以挂，服务可以坏，那么怎么让系统还可以提供服务呢？</p>
+</blockquote>
+<p>首先如果机器有很多，服务有很多，就算坏了一部分也没有问题啊，必败的局面得到的解决。下面进行一步一步剖析，如果机器里面存储了特定值，那么就不能扩展，必须是用挂的那台机器，那么这个是不行的，机器问题好解决，相同的配置替代是容易的，那么应用服务也是类似，应用服务可以不存储状态有关的值在任何机器而自己内部不会有存储一些特定的特征数据，如果有就没办法很容易的扩展，只有当每个主件都是一样的时候，无任何差异，我们才好替换，容易扩展，那么这个就叫着<strong>服务的无状态化。</strong></p>
+<blockquote>
+<p>假如目前服务已经是无状态化了，那么如何让系统动态的感知到服务挂了呢？不然请求还是回去到挂的那台机器，怎么转移到新的机器呢？那么可能就需要<strong>服务发现与注册了。</strong></p>
+<p>如果达到了上面的情况，应对一般的情况基本已经够了，但是互联网是复杂的，刚刚说的机器坏，服务坏了的问题，那么如果网络出现短暂不通因为怎么办呢？</p>
+</blockquote>
+<p>所以服务之间应该有<strong>心跳的检测，</strong>来定期看看是否可通（机器坏了，服务挂了，网络不通了）反正就是不可达了。这种情况通过服务注册与发现即可解决，但是有时候网络是闪断下那么在那种特定的情况呢？比如刚刚a服务已经把请求发送给了b服务，b服务已经接收到请求了，那么这个时候忽然网络断了，但是b服务进行把逻辑处理做完成了，但是a服务反应的就是没有响应，前台超时了，那么再一次触发下，那么如果b服务把之前的逻辑再做一遍是否存在问题呢？ 比如支付，已经付款200元，难道再付款200元吗？这里需要提到一个<strong>幂等性</strong>的设计概念，什么是幂等呢，就是多次执行结果都一样，如果有幂等性设计那么就不怕这种情况了，在没有得到反馈情况<strong>重试</strong>即可，也不会出现问题。</p>
+<blockquote>
+<p>达到上面说的这些就是应对机器坏了，服务挂了，网络不通或者闪断等情况已经基本没有什么大问题了，那么目前互联网都是高并发，那么在高并发的情况，如何来提高系统的能力的？</p>
+</blockquote>
+<p>就和搬东西一样，一个人慢，可以多来点人一起帮东西，由于上面的架构是可以添加机器，服务的，那么很容易想到的就是多来点机器和服务。那么这样一定比机器少要快的，比如有5台机器，那么很多请求过来了，用什么策略让他们分摊到不同的机器呢？通过设备，通过一些软件层面，但是其中一定有服务发现注册，不然没办法动态知道节点变化，还有就是对一些信息的控制，黑白名单，访问频率等。<strong>很多时候，加机器可能看起来比较low，但是有时候的确比较有效，但是也不能一味的加机器，有些情况加机器是解决不了的了。</strong></p>
+<p>机器多了的确快了，如果在服务里面有一个阻塞方法，那么就算服务在多也没用，所以必须注意关于<strong>服务超时的问题，</strong>由于服务是幂等的，就算再次执行也没有任何关系，有了超时就不会卡很久影响到后面的服务了（下游服务宕机了，线程死锁了，下游服务忙等等）。</p>
+<p>关于同步，异步的一些设计模式，在有些必须顺序执行的业务场景就必须要使用同步了，在非必须的这种场景那么用异步一定比同步处理的并发量要大（由于中间件经历很多步骤，所以从单个请求的总时间来看并不一定有同步的快，但是从一个宏观的角度来看提高并发的请求会大很多了）。简单聊聊异步，在一个服务内部，异步那么就需要提到多线程了，多线程很多有点提高cpu利用率，提高系统性能，但是实现成本要高很多了，那么不同服务直接的如何异步呢，消息中间件了，（消息中间件很难，第一要保证<strong>真异步，</strong>第二需要保证<strong>不重不漏</strong>，就这2点真的很难，特别是在大数据情况下），特别是网络I/O需要重点考虑异步模型，不过Netty封装的挺好了。</p>
+<blockquote>
+<p>由于每个机器，或者服务都是有上限的，如果量一下泄洪式的过来并且不是他的能力可以处理的，那么该如果解决呢？</p>
+</blockquote>
+<p>该问题在生活中到处可见，刚刚好国庆回家、出去玩，随处可见该事项体现，比如过安检的时候，有一个保安专门拿一个牌看人差不多了，让后面的人等，等处理的查不多了，在让后面的人进行，之后类似在等。，但是如果有级别高的，或者车快发车了，一般让他们先过，在软件架构里面应该叫<strong>限流、服务降级，</strong>一般有两种控制策略（1，拒绝部分请求，2，关闭部分服务）可能之前的时候都提到了关闭部分服务，不过现在不推荐了（<strong>毕竟也是公司技术实力的体现</strong>），目前重点说的是关于拒绝部分请求，关于这块的控制在那里添加？就是那块需要控制，应该每层都需要加下该控制。</p>
+<p>依稀记得行业里面有句话，<strong>高并发、高可用三大法宝：限流、降级、缓存</strong>，关于缓存，大家应该接触的最多，互联网业务特点就是读多写少，那么就非常适合使用缓存了。</p>
+<blockquote>
+<p>由于所以请求在一个服务，扩展还是不好扩展，而且统一服务里面有些调用特别多，有些调用就比较少，因为继续划分，继续拆，这样还是可以再次提高并发。</p>
+</blockquote>
+<p><strong>微服务了，</strong>微服务概念很多，首先提到的就是搞垂直拆分，很容易理解，之后垂直业务可能也很多，还需要继续水平拆分，（这里一切的拆分依据都是根据自己公司的业务，理解越深才的越好）。</p>
+<p>通过上面的这些，服务可以挂，机器可以坏，网络不通或者闪断的问题都解决了，并且可以提高并发，尽最大努力来让服务高可用。<strong>那么由于这么做带来了很多问题，</strong>所以需要把这些修改带来的问题解决：</p>
+<ul>
+<li>以前在一个服务里面，对于事务的控制很容易，那么微服务之后，事务的控制就显的特别重要了，很多时候我们不能强一致性，但是我们可以做到<strong>最终一致性</strong>就是可以的。</li>
+<li>调用链监控也就显得特别重要了，一起的还有预警也特别重要了。</li>
+<li>分布式日志也显得特别重要了。</li>
+<li>高级的jstack、Btrace在真实环境就是特别重要的。</li>
+</ul>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><blockquote>
+<p>本人水平有限，难免会有一些理解偏差的地方，如果发现，欢迎各位积极指出，感谢！！！</p>
+</blockquote>
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee-20200407102957991.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/30/lombok-jie-shao-shi-yong-fang-fa-he-zong-jie/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lombok介绍、使用方法和总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/27/python-hong-nu-peng-you-de-na-xie-qi-ji-yin-qiao/">
+                        <span class="hidden-mobile">【Python】哄女朋友的那些奇技淫巧</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

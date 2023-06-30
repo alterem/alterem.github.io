@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>Lombok介绍、使用方法和总结 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Lombok介绍、使用方法和总结">
+              
+            </span>
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
+                }).catch(console.error)
+            </script>
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-09-30 10:17" pubdate>
+        2019年9月30日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Lombok介绍、使用方法和总结</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>文章来源公众号：猿人谷</p>
+</blockquote>
+<h1 id="1-Lombok背景介绍"><a href="#1-Lombok背景介绍" class="headerlink" title="1 Lombok背景介绍"></a>1 Lombok背景介绍</h1><p>官方介绍如下：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">Project Lombok makes java a spicier language by adding 'handlers' that know how to build and compile simple, boilerplate-free, not-quite-java code.<br></code></pre></td></tr></table></figure>
+
+<p>大致意思是Lombok通过增加一些“处理程序”，可以让java变得简洁、快速。</p>
+<h1 id="2-Lombok使用方法"><a href="#2-Lombok使用方法" class="headerlink" title="2 Lombok使用方法"></a>2 Lombok使用方法</h1><p>Lombok能以简单的注解形式来简化java代码，提高开发人员的开发效率。例如开发中经常需要写的javabean，都需要花时间去添加相应的getter/setter，也许还要去写构造器、equals等方法，而且需要维护，当属性多时会出现大量的getter/setter方法，这些显得很冗长也没有太多技术含量，一旦修改属性，就容易出现忘记修改对应方法的失误。</p>
+<p>Lombok能通过注解的方式，在编译时自动为属性生成构造器、getter/setter、equals、hashcode、toString方法。出现的神奇就是在源码中没有getter和setter方法，但是在编译生成的字节码文件中有getter和setter方法。这样就省去了手动重建这些代码的麻烦，使代码看起来更简洁些。</p>
+<p>Lombok的使用跟引用jar包一样，可以在官网（<a href="https://projectlombok.org/download）下载jar包，也可以使用maven添加依赖：" target="_blank" rel="noopener">https://projectlombok.org/download）下载jar包，也可以使用maven添加依赖：</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.16.20<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>接下来我们来分析Lombok中注解的具体用法。</p>
+<h2 id="2-1-Data"><a href="#2-1-Data" class="headerlink" title="2.1 @Data"></a>2.1 @Data</h2><p>@Data注解在类上，会为类的所有属性自动生成setter/getter、equals、canEqual、hashCode、toString方法，如为final属性，则不会为该属性生成setter方法。</p>
+<p>官方实例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.AccessLevel;<br><span class="hljs-keyword">import</span> lombok.Setter;<br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> lombok.ToString;<br><br><span class="hljs-meta">@Data</span> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataExample</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br>  <span class="hljs-meta">@Setter</span>(AccessLevel.PACKAGE) <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> score;<br>  <span class="hljs-keyword">private</span> String[] tags;<br>  <br>  <span class="hljs-meta">@ToString</span>(includeFieldNames=<span class="hljs-keyword">true</span>)<br>  <span class="hljs-meta">@Data</span>(staticConstructor=<span class="hljs-string">"of"</span>)<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Exercise</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> T value;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如不使用Lombok，则实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Arrays;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataExample</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> score;<br>  <span class="hljs-keyword">private</span> String[] tags;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DataExample</span><span class="hljs-params">(String name)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.name = name;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.age = age;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.age;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setScore</span><span class="hljs-params">(<span class="hljs-keyword">double</span> score)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.score = score;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getScore</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.score;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> String[] getTags() &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tags;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setTags</span><span class="hljs-params">(String[] tags)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.tags = tags;<br>  &#125;<br>  <br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">"DataExample("</span> + <span class="hljs-keyword">this</span>.getName() + <span class="hljs-string">", "</span> + <span class="hljs-keyword">this</span>.getAge() + <span class="hljs-string">", "</span> + <span class="hljs-keyword">this</span>.getScore() + <span class="hljs-string">", "</span> + Arrays.deepToString(<span class="hljs-keyword">this</span>.getTags()) + <span class="hljs-string">")"</span>;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">canEqual</span><span class="hljs-params">(Object other)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> other <span class="hljs-keyword">instanceof</span> DataExample;<br>  &#125;<br>  <br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object o)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (o == <span class="hljs-keyword">this</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    <span class="hljs-keyword">if</span> (!(o <span class="hljs-keyword">instanceof</span> DataExample)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    DataExample other = (DataExample) o;<br>    <span class="hljs-keyword">if</span> (!other.canEqual((Object)<span class="hljs-keyword">this</span>)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getName() == <span class="hljs-keyword">null</span> ? other.getName() != <span class="hljs-keyword">null</span> : !<span class="hljs-keyword">this</span>.getName().equals(other.getName())) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getAge() != other.getAge()) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (Double.compare(<span class="hljs-keyword">this</span>.getScore(), other.getScore()) != <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (!Arrays.deepEquals(<span class="hljs-keyword">this</span>.getTags(), other.getTags())) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>  &#125;<br>  <br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> PRIME = <span class="hljs-number">59</span>;<br>    <span class="hljs-keyword">int</span> result = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> temp1 = Double.doubleToLongBits(<span class="hljs-keyword">this</span>.getScore());<br>    result = (result*PRIME) + (<span class="hljs-keyword">this</span>.getName() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">43</span> : <span class="hljs-keyword">this</span>.getName().hashCode());<br>    result = (result*PRIME) + <span class="hljs-keyword">this</span>.getAge();<br>    result = (result*PRIME) + (<span class="hljs-keyword">int</span>)(temp1 ^ (temp1 &gt;&gt;&gt; <span class="hljs-number">32</span>));<br>    result = (result*PRIME) + Arrays.deepHashCode(<span class="hljs-keyword">this</span>.getTags());<br>    <span class="hljs-keyword">return</span> result;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Exercise</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> T value;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Exercise</span><span class="hljs-params">(String name, T value)</span> </span>&#123;<br>      <span class="hljs-keyword">this</span>.name = name;<br>      <span class="hljs-keyword">this</span>.value = value;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function">Exercise&lt;T&gt; <span class="hljs-title">of</span><span class="hljs-params">(String name, T value)</span> </span>&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Exercise&lt;T&gt;(name, value);<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">getValue</span><span class="hljs-params">()</span> </span>&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.value;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-string">"Exercise(name="</span> + <span class="hljs-keyword">this</span>.getName() + <span class="hljs-string">", value="</span> + <span class="hljs-keyword">this</span>.getValue() + <span class="hljs-string">")"</span>;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">canEqual</span><span class="hljs-params">(Object other)</span> </span>&#123;<br>      <span class="hljs-keyword">return</span> other <span class="hljs-keyword">instanceof</span> Exercise;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object o)</span> </span>&#123;<br>      <span class="hljs-keyword">if</span> (o == <span class="hljs-keyword">this</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>      <span class="hljs-keyword">if</span> (!(o <span class="hljs-keyword">instanceof</span> Exercise)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>      Exercise&lt;?&gt; other = (Exercise&lt;?&gt;) o;<br>      <span class="hljs-keyword">if</span> (!other.canEqual((Object)<span class="hljs-keyword">this</span>)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getName() == <span class="hljs-keyword">null</span> ? other.getValue() != <span class="hljs-keyword">null</span> : !<span class="hljs-keyword">this</span>.getName().equals(other.getName())) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getValue() == <span class="hljs-keyword">null</span> ? other.getValue() != <span class="hljs-keyword">null</span> : !<span class="hljs-keyword">this</span>.getValue().equals(other.getValue())) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span> </span>&#123;<br>      <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> PRIME = <span class="hljs-number">59</span>;<br>      <span class="hljs-keyword">int</span> result = <span class="hljs-number">1</span>;<br>      result = (result*PRIME) + (<span class="hljs-keyword">this</span>.getName() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">43</span> : <span class="hljs-keyword">this</span>.getName().hashCode());<br>      result = (result*PRIME) + (<span class="hljs-keyword">this</span>.getValue() == <span class="hljs-keyword">null</span> ? <span class="hljs-number">43</span> : <span class="hljs-keyword">this</span>.getValue().hashCode());<br>      <span class="hljs-keyword">return</span> result;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-2-Getter-Setter"><a href="#2-2-Getter-Setter" class="headerlink" title="2.2 @Getter/@Setter"></a>2.2 @Getter/@Setter</h2><p>如果觉得@Data太过残暴（因为@Data集合了@ToString、@EqualsAndHashCode、@Getter/@Setter、@RequiredArgsConstructor的所有特性）不够精细，可以使用@Getter/@Setter注解，此注解在属性上，可以为相应的属性自动生成Getter/Setter方法，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.AccessLevel;<br><span class="hljs-keyword">import</span> lombok.Getter;<br><span class="hljs-keyword">import</span> lombok.Setter;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetterSetterExample</span> </span>&#123;<br><br>  <span class="hljs-meta">@Getter</span> <span class="hljs-meta">@Setter</span> <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age = <span class="hljs-number">10</span>;<br>  <br>  <span class="hljs-meta">@Setter</span>(AccessLevel.PROTECTED) <span class="hljs-keyword">private</span> String name;<br>  <br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> String.format(<span class="hljs-string">"%s (age: %d)"</span>, name, age);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果不使用Lombok：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetterSetterExample</span> </span>&#123;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age = <span class="hljs-number">10</span>;<br><br>  <span class="hljs-keyword">private</span> String name;<br>  <br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> String.format(<span class="hljs-string">"%s (age: %d)"</span>, name, age);<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> age;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.age = age;<br>  &#125;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.name = name;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-3-NonNull"><a href="#2-3-NonNull" class="headerlink" title="2.3 @NonNull"></a>2.3 @NonNull</h2><p>该注解用在属性或构造器上，Lombok会生成一个非空的声明，可用于校验参数，能帮助避免空指针。</p>
+<p>示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.NonNull;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NonNullExample</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Something</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> String name;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NonNullExample</span><span class="hljs-params">(@NonNull Person person)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>(<span class="hljs-string">"Hello"</span>);<br>    <span class="hljs-keyword">this</span>.name = person.getName();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>不使用Lombok：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.NonNull;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NonNullExample</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Something</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> String name;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NonNullExample</span><span class="hljs-params">(@NonNull Person person)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>(<span class="hljs-string">"Hello"</span>);<br>    <span class="hljs-keyword">if</span> (person == <span class="hljs-keyword">null</span>) &#123;<br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">"person"</span>);<br>    &#125;<br>    <span class="hljs-keyword">this</span>.name = person.getName();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-4-Cleanup"><a href="#2-4-Cleanup" class="headerlink" title="2.4 @Cleanup"></a>2.4 @Cleanup</h2><p>该注解能帮助我们自动调用close()方法，很大的简化了代码。</p>
+<p>示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.Cleanup;<br><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CleanupExample</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>    <span class="hljs-meta">@Cleanup</span> InputStream in = <span class="hljs-keyword">new</span> FileInputStream(args[<span class="hljs-number">0</span>]);<br>    <span class="hljs-meta">@Cleanup</span> OutputStream out = <span class="hljs-keyword">new</span> FileOutputStream(args[<span class="hljs-number">1</span>]);<br>    <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">10000</span>];<br>    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>      <span class="hljs-keyword">int</span> r = in.read(b);<br>      <span class="hljs-keyword">if</span> (r == -<span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>;<br>      out.write(b, <span class="hljs-number">0</span>, r);<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如不使用Lombok，则需如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CleanupExample</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>    InputStream in = <span class="hljs-keyword">new</span> FileInputStream(args[<span class="hljs-number">0</span>]);<br>    <span class="hljs-keyword">try</span> &#123;<br>      OutputStream out = <span class="hljs-keyword">new</span> FileOutputStream(args[<span class="hljs-number">1</span>]);<br>      <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">10000</span>];<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>          <span class="hljs-keyword">int</span> r = in.read(b);<br>          <span class="hljs-keyword">if</span> (r == -<span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>;<br>          out.write(b, <span class="hljs-number">0</span>, r);<br>        &#125;<br>      &#125; <span class="hljs-keyword">finally</span> &#123;<br>        <span class="hljs-keyword">if</span> (out != <span class="hljs-keyword">null</span>) &#123;<br>          out.close();<br>        &#125;<br>      &#125;<br>    &#125; <span class="hljs-keyword">finally</span> &#123;<br>      <span class="hljs-keyword">if</span> (in != <span class="hljs-keyword">null</span>) &#123;<br>        in.close();<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-5-EqualsAndHashCode"><a href="#2-5-EqualsAndHashCode" class="headerlink" title="2.5 @EqualsAndHashCode"></a>2.5 @EqualsAndHashCode</h2><p>默认情况下，会使用所有非静态（non-static）和非瞬态（non-transient）属性来生成equals和hasCode，也能通过exclude注解来排除一些属性。</p>
+<p>示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.EqualsAndHashCode;<br><br><span class="hljs-meta">@EqualsAndHashCode</span>(exclude=&#123;<span class="hljs-string">"id"</span>, <span class="hljs-string">"shape"</span>&#125;)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EqualsAndHashCodeExample</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> <span class="hljs-keyword">int</span> transientVar = <span class="hljs-number">10</span>;<br>  <span class="hljs-keyword">private</span> String name;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> score;<br>  <span class="hljs-keyword">private</span> Shape shape = <span class="hljs-keyword">new</span> Square(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>);<br>  <span class="hljs-keyword">private</span> String[] tags;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name;<br>  &#125;<br>  <br>  <span class="hljs-meta">@EqualsAndHashCode</span>(callSuper=<span class="hljs-keyword">true</span>)<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> width, height;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height)</span> </span>&#123;<br>      <span class="hljs-keyword">this</span>.width = width;<br>      <span class="hljs-keyword">this</span>.height = height;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-6-ToString"><a href="#2-6-ToString" class="headerlink" title="2.6 @ToString"></a>2.6 @ToString</h2><p>类使用@ToString注解，Lombok会生成一个toString()方法，默认情况下，会输出类名、所有属性（会按照属性定义顺序），用逗号来分割。</p>
+<p>通过将<code>includeFieldNames</code>参数设为true，就能明确的输出toString()属性。这一点是不是有点绕口，通过代码来看会更清晰些。</p>
+<p>使用Lombok的示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.ToString;<br><br><span class="hljs-meta">@ToString</span>(exclude=<span class="hljs-string">"id"</span>)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ToStringExample</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> STATIC_VAR = <span class="hljs-number">10</span>;<br>  <span class="hljs-keyword">private</span> String name;<br>  <span class="hljs-keyword">private</span> Shape shape = <span class="hljs-keyword">new</span> Square(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>);<br>  <span class="hljs-keyword">private</span> String[] tags;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.getName();<br>  &#125;<br>  <br>  <span class="hljs-meta">@ToString</span>(callSuper=<span class="hljs-keyword">true</span>, includeFieldNames=<span class="hljs-keyword">true</span>)<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> width, height;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height)</span> </span>&#123;<br>      <span class="hljs-keyword">this</span>.width = width;<br>      <span class="hljs-keyword">this</span>.height = height;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>不使用Lombok的示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Arrays;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ToStringExample</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> STATIC_VAR = <span class="hljs-number">10</span>;<br>  <span class="hljs-keyword">private</span> String name;<br>  <span class="hljs-keyword">private</span> Shape shape = <span class="hljs-keyword">new</span> Square(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>);<br>  <span class="hljs-keyword">private</span> String[] tags;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.getName();<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> width, height;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height)</span> </span>&#123;<br>      <span class="hljs-keyword">this</span>.width = width;<br>      <span class="hljs-keyword">this</span>.height = height;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-string">"Square(super="</span> + <span class="hljs-keyword">super</span>.toString() + <span class="hljs-string">", width="</span> + <span class="hljs-keyword">this</span>.width + <span class="hljs-string">", height="</span> + <span class="hljs-keyword">this</span>.height + <span class="hljs-string">")"</span>;<br>    &#125;<br>  &#125;<br>  <br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">"ToStringExample("</span> + <span class="hljs-keyword">this</span>.getName() + <span class="hljs-string">", "</span> + <span class="hljs-keyword">this</span>.shape + <span class="hljs-string">", "</span> + Arrays.deepToString(<span class="hljs-keyword">this</span>.tags) + <span class="hljs-string">")"</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-7-NoArgsConstructor-RequiredArgsConstructor-and-AllArgsConstructor"><a href="#2-7-NoArgsConstructor-RequiredArgsConstructor-and-AllArgsConstructor" class="headerlink" title="2.7 @NoArgsConstructor, @RequiredArgsConstructor and @AllArgsConstructor"></a>2.7 @NoArgsConstructor, @RequiredArgsConstructor and @AllArgsConstructor</h2><p>无参构造器、部分参数构造器、全参构造器。Lombok没法实现多种参数构造器的重载。</p>
+<p>Lombok示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.AccessLevel;<br><span class="hljs-keyword">import</span> lombok.RequiredArgsConstructor;<br><span class="hljs-keyword">import</span> lombok.AllArgsConstructor;<br><span class="hljs-keyword">import</span> lombok.NonNull;<br><br><span class="hljs-meta">@RequiredArgsConstructor</span>(staticName = <span class="hljs-string">"of"</span>)<br><span class="hljs-meta">@AllArgsConstructor</span>(access = AccessLevel.PROTECTED)<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConstructorExample</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> x, y;<br>  <span class="hljs-meta">@NonNull</span> <span class="hljs-keyword">private</span> T description;<br>  <br>  <span class="hljs-meta">@NoArgsConstructor</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NoArgsExample</span> </span>&#123;<br>    <span class="hljs-meta">@NonNull</span> <span class="hljs-keyword">private</span> String field;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>不使用Lombok的示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConstructorExample</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> x, y;<br>  <span class="hljs-meta">@NonNull</span> <span class="hljs-keyword">private</span> T description;<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">ConstructorExample</span><span class="hljs-params">(T description)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (description == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">"description"</span>);<br>    <span class="hljs-keyword">this</span>.description = description;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function">ConstructorExample&lt;T&gt; <span class="hljs-title">of</span><span class="hljs-params">(T description)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ConstructorExample&lt;T&gt;(description);<br>  &#125;<br>  <br>  <span class="hljs-meta">@java</span>.beans.ConstructorProperties(&#123;<span class="hljs-string">"x"</span>, <span class="hljs-string">"y"</span>, <span class="hljs-string">"description"</span>&#125;)<br>  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">ConstructorExample</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, T description)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (description == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">"description"</span>);<br>    <span class="hljs-keyword">this</span>.x = x;<br>    <span class="hljs-keyword">this</span>.y = y;<br>    <span class="hljs-keyword">this</span>.description = description;<br>  &#125;<br>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NoArgsExample</span> </span>&#123;<br>    <span class="hljs-meta">@NonNull</span> <span class="hljs-keyword">private</span> String field;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NoArgsExample</span><span class="hljs-params">()</span> </span>&#123;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="3-Lombok工作原理分析"><a href="#3-Lombok工作原理分析" class="headerlink" title="3 Lombok工作原理分析"></a>3 Lombok工作原理分析</h1><p>会发现在Lombok使用的过程中，只需要添加相应的注解，无需再为此写任何代码。自动生成的代码到底是如何产生的呢？</p>
+<p>核心之处就是对于注解的解析上。JDK5引入了注解的同时，也提供了两种解析方式。</p>
+<ul>
+<li>运行时解析</li>
+</ul>
+<p>运行时能够解析的注解，必须将@Retention设置为RUNTIME，这样就可以通过反射拿到该注解。java.lang,reflect反射包中提供了一个接口AnnotatedElement，该接口定义了获取注解信息的几个方法，Class、Constructor、Field、Method、Package等都实现了该接口，对反射熟悉的朋友应该都会很熟悉这种解析方式。</p>
+<ul>
+<li>编译时解析</li>
+</ul>
+<p>编译时解析有两种机制，分别简单描述下：</p>
+<p>1）Annotation Processing Tool</p>
+<p>apt自JDK5产生，JDK7已标记为过期，不推荐使用，JDK8中已彻底删除，自JDK6开始，可以使用Pluggable Annotation Processing API来替换它，apt被替换主要有2点原因：</p>
+<ul>
+<li>api都在com.sun.mirror非标准包下</li>
+<li>没有集成到javac中，需要额外运行</li>
+</ul>
+<p>2）Pluggable Annotation Processing API</p>
+<p><a href="https://jcp.org/en/jsr/detail?id=269" target="_blank" rel="noopener">JSR 269</a>自JDK6加入，作为apt的替代方案，它解决了apt的两个问题，javac在执行的时候会调用实现了该API的程序，这样我们就可以对编译器做一些增强，这时javac执行的过程如下：</p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymsf9xjbj30go0230sq.jpg" srcset="/img/loading.gif" alt="123"></p>
+<p>Lombok本质上就是一个实现了“<a href="https://www.jcp.org/en/jsr/detail?id=269" target="_blank" rel="noopener">JSR 269 API</a>”的程序。在使用javac的过程中，它产生作用的具体流程如下：</p>
+<ol>
+<li>javac对源代码进行分析，生成了一棵抽象语法树（AST）</li>
+<li>运行过程中调用实现了“JSR 269 API”的Lombok程序</li>
+<li>此时Lombok就对第一步骤得到的AST进行处理，找到@Data注解所在类对应的语法树（AST），然后修改该语法树（AST），增加getter和setter方法定义的相应树节点</li>
+<li>javac使用修改后的抽象语法树（AST）生成字节码文件，即给class增加新的节点（代码块）</li>
+</ol>
+<p>拜读了Lombok源码，对应注解的实现都在HandleXXX中，比如@Getter注解的实现时HandleGetter.handle()。还有一些其它类库使用这种方式实现，比如<a href="https://github.com/google/auto" target="_blank" rel="noopener">Google Auto</a>、<a href="http://square.github.io/dagger/" target="_blank" rel="noopener">Dagger</a>等等。</p>
+<h1 id="4-Lombok的优缺点"><a href="#4-Lombok的优缺点" class="headerlink" title="4. Lombok的优缺点"></a>4. Lombok的优缺点</h1><p>优点：</p>
+<ol>
+<li>能通过注解的形式自动生成构造器、getter/setter、equals、hashcode、toString等方法，提高了一定的开发效率</li>
+<li>让代码变得简洁，不用过多的去关注相应的方法</li>
+<li>属性做修改时，也简化了维护为这些属性所生成的getter/setter方法等</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>不支持多种参数构造器的重载</li>
+<li>虽然省去了手动创建getter/setter方法的麻烦，但大大降低了源代码的可读性和完整性，降低了阅读源代码的舒适度</li>
+</ol>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h1><p>Lombok虽然有很多优点，但Lombok更类似于一种IDE插件，项目也需要依赖相应的jar包。Lombok依赖jar包是因为编译时要用它的注解，为什么说它又类似插件？因为在使用时，eclipse或IntelliJ IDEA都需要安装相应的插件，在编译器编译时通过操作AST（抽象语法树）改变字节码生成，变向的就是说它在改变java语法。它不像spring的依赖注入或者mybatis的ORM一样是运行时的特性，而是编译时的特性。这里我个人最感觉不爽的地方就是对插件的依赖！因为Lombok只是省去了一些人工生成代码的麻烦，但IDE都有快捷键来协助生成getter/setter等方法，也非常方便。</p>
+<p>知乎上有位大神发表过对Lombok的一些看法：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">这是一种低级趣味的插件，不建议使用。JAVA发展到今天，各种插件层出不穷，如何甄别各种插件的优劣？能从架构上优化你的设计的，能提高应用程序性能的 ，<br>实现高度封装可扩展的...， 像lombok这种，像这种插件，已经不仅仅是插件了，改变了你如何编写源码，事实上，少去了代码你写上去又如何？ <br>如果JAVA家族到处充斥这样的东西，那只不过是一坨披着金属颜色的屎，迟早会被其它的语言取代。<br></code></pre></td></tr></table></figure>
+
+<p>虽然话糙但理确实不糙，试想一个项目有非常多类似Lombok这样的插件，个人觉得真的会极大的降低阅读源代码的舒适度。</p>
+<p>虽然非常不建议在属性的getter/setter写一些业务代码，但在多年项目的实战中，有时通过给getter/setter加一点点业务代码，能极大的简化某些业务场景的代码。所谓取舍，也许就是这时的舍弃一定的规范，取得极大的方便。</p>
+<p>我现在非常坚信一条理念，任何编程语言或插件，都仅仅只是工具而已，即使工具再强大也在于用的人，就如同小米加步枪照样能赢飞机大炮的道理一样。结合具体业务场景和项目实际情况，无需一味追求高大上的技术，适合的才是王道。</p>
+<p>Lombok有它的得天独厚的优点，也有它避之不及的缺点，熟知其优缺点，在实战中灵活运用才是王道。</p>
+<p>参考：</p>
+<p><a href="https://projectlombok.org/features/" target="_blank" rel="noopener">https://projectlombok.org/features/</a></p>
+<p><a href="https://github.com/rzwitserloot/lombok?spm=a2c4e.11153940.blogcont59972.5.2aeb6d32hayLHv" target="_blank" rel="noopener">https://github.com/rzwitserloot/lombok?spm=a2c4e.11153940.blogcont59972.5.2aeb6d32hayLHv</a></p>
+<p><a href="https://www.zhihu.com/question/42348457" target="_blank" rel="noopener">https://www.zhihu.com/question/42348457</a></p>
+<p><a href="https://blog.csdn.net/ghsau/article/details/52334762" target="_blank" rel="noopener">https://blog.csdn.net/ghsau/article/details/52334762</a></p>
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Lombok/">Lombok</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/10/11/python-chai-fen-excel/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python拆分excel</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/29/gao-ke-yong-de-yi-xie-si-kao-he-li-jie/">
+                        <span class="hidden-mobile">高可用的一些思考和理解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

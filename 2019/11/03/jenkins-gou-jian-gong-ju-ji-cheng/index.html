@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Alterem">
+  <meta name="keywords" content="Alterem">
+  <title>Jenkins构建工具集成 - Alterem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://github.com/alterem/picFB/raw/master/pics/2020/09/27/9AIhn8.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Jenkins构建工具集成">
+              
+            </span>
+            <p id="hitokoto"> ... </p>
+            <script>
+              fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                  const hitokoto = document.getElementById('hitokoto')
+                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
+                }).catch(console.error)
+            </script>
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-11-03 16:24" pubdate>
+        2019年11月3日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      595 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Jenkins构建工具集成</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>来源公众号： DevOps持续集成</p>
+</blockquote>
+<h2 id="1-集成maven"><a href="#1-集成maven" class="headerlink" title="1. 集成maven"></a>1. 集成maven</h2><h3 id="1-1-先决条件"><a href="#1-1-先决条件" class="headerlink" title="1.1 先决条件"></a>1.1 先决条件</h3><ul>
+<li>JDK：在maven3.3 以上的版本需要JDK版本1.7+。内存：没有最低限制。</li>
+<li>磁盘：1G+可用磁盘空间。操作系统：没有限制。</li>
+<li>下载maven <a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">Download</a></li>
+</ul>
+<h3 id="1-2-安装maven"><a href="#1-2-安装maven" class="headerlink" title="1.2 安装maven"></a>1.2 安装maven</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar zxf apache-maven-3.6.0-bin.tar.gz -C /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#设置全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> MAVEN_HOME=/usr/<span class="hljs-built_in">local</span>/apache-maven-3.6.0<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$MAVEN_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3-Jenkins配置maven"><a href="#1-3-Jenkins配置maven" class="headerlink" title="1.3 Jenkins配置maven"></a>1.3 Jenkins配置maven</h3><ul>
+<li><p>系统设置-&gt;全局工具配置 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn3b3fwj30o007xweq.jpg" srcset="/img/loading.gif" alt=""></p>
+</li>
+<li><p>编写Jenkinsfile</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"build"</span>)&#123;<br>        mavenHome = tool <span class="hljs-string">'M3'</span><br>        sh <span class="hljs-string">"<span class="hljs-variable">$&#123;mavenHome&#125;</span>/bin/mvn -v"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>构建测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn49lvrj30o00e4my9.jpg" srcset="/img/loading.gif" alt="">到此jenkins集成maven就完成了。</li>
+</ul>
+<h3 id="1-4-maven常用命令"><a href="#1-4-maven常用命令" class="headerlink" title="1.4 maven常用命令"></a>1.4 maven常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">clean install -DskipTests<br>clean package<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-集成Ant"><a href="#2-集成Ant" class="headerlink" title="2. 集成Ant"></a>2. 集成Ant</h2><h3 id="2-1-先决条件"><a href="#2-1-先决条件" class="headerlink" title="2.1 先决条件"></a>2.1 先决条件</h3><ul>
+<li>下载：<a href="https://ant.apache.org/bindownload.cgi" target="_blank" rel="noopener">Download</a><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn4sopmj30kw0413z4.jpg" srcset="/img/loading.gif" alt=""></li>
+</ul>
+<h3 id="2-2-安装ant"><a href="#2-2-安装ant" class="headerlink" title="2.2 安装ant"></a>2.2 安装ant</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar zxf apache-ant-1.10.5-bin.tar.gz -C /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> ANT_HOME=/usr/<span class="hljs-built_in">local</span>/apache-ant-1.10.5<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$MAVEN_HOME</span>/bin:<span class="hljs-variable">$ANT_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn644tjj30mw020jrn.jpg" srcset="/img/loading.gif" alt=""></li>
+</ul>
+<h3 id="2-3-Jenkins配置ant"><a href="#2-3-Jenkins配置ant" class="headerlink" title="2.3 Jenkins配置ant"></a>2.3 Jenkins配置ant</h3><ul>
+<li><p>系统设置-&gt;全局工具配置</p>
+</li>
+<li><p>编写Jenkinsfile</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"build"</span>)&#123;<br>        antHome = tool <span class="hljs-string">'ANT'</span><br>        sh <span class="hljs-string">"<span class="hljs-variable">$&#123;antHome&#125;</span>/bin/ant -version"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>构建测试</p>
+<p> <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn730xij30m807rq3e.jpg" srcset="/img/loading.gif" alt=""> 到此ant的集成就完成了</p>
+</li>
+</ul>
+<h3 id="2-4-Ant常用命令"><a href="#2-4-Ant常用命令" class="headerlink" title="2.4 Ant常用命令"></a>2.4 Ant常用命令</h3><p><code>ant -buildfile -f build.xml</code></p>
+<h2 id="3-集成Gradle"><a href="#3-集成Gradle" class="headerlink" title="3. 集成Gradle"></a>3. 集成Gradle</h2><h3 id="3-1-先决条件"><a href="#3-1-先决条件" class="headerlink" title="3.1 先决条件"></a>3.1 先决条件</h3><p> <img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9ymn7mrf3j30gd062wey.jpg" srcset="/img/loading.gif" alt=""></p>
+<ul>
+<li>下载:<a href="https://downloads.gradle.org/distributions/gradle-5.3-bin.zip" target="_blank" rel="noopener">Download</a></li>
+</ul>
+<h3 id="3-2-安装Gradle"><a href="#3-2-安装Gradle" class="headerlink" title="3.2 安装Gradle"></a>3.2 安装Gradle</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip gradle-5.3-bin.zip -d /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> GRADLE_HOME=/usr/<span class="hljs-built_in">local</span>/gradle-5.3<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>: <span class="hljs-variable">$GRADLE_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-3-Jenkins配置gradle"><a href="#3-3-Jenkins配置gradle" class="headerlink" title="3.3 Jenkins配置gradle"></a>3.3 Jenkins配置gradle</h3><ul>
+<li><p>系统设置-&gt;全局工具配置</p>
+</li>
+<li><p>编写Jenkinsfile</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"gradlebuild"</span>)&#123;<br>        gradleHome = tool <span class="hljs-string">'GRADLE'</span><br>        sh <span class="hljs-string">"<span class="hljs-variable">$&#123;gradleHome&#125;</span>/bin/gradle -v"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>构建测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn82gi8j30l20cu74x.jpg" srcset="/img/loading.gif" alt="">到此jenkins配置gradle完成</li>
+</ul>
+<h3 id="3-4-Gradle常用命令"><a href="#3-4-Gradle常用命令" class="headerlink" title="3.4 Gradle常用命令"></a>3.4 Gradle常用命令</h3><ul>
+<li>./gradlew -v 版本号，首次运行，没有gradle的要下载的哦。</li>
+<li>./gradlew clean 删除HelloWord/app目录下的build文件夹</li>
+<li>./gradlew build 检查依赖并编译打包</li>
+<li>./gradlew assembleDebug 编译并打Debug包</li>
+<li>./gradlew assembleRelease 编译并打Release的包</li>
+<li>./gradlew installRelease Release模式打包并安装</li>
+<li>./gradlew uninstallRelease 卸载Release模式包</li>
+</ul>
+<h2 id="4-集成NPM"><a href="#4-集成NPM" class="headerlink" title="4.集成NPM"></a>4.集成NPM</h2><h3 id="4-1-先决条件"><a href="#4-1-先决条件" class="headerlink" title="4.1 先决条件"></a>4.1 先决条件</h3><ul>
+<li>下载<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Download</a></li>
+</ul>
+<h3 id="4-2-安装Node"><a href="#4-2-安装Node" class="headerlink" title="4.2 安装Node"></a>4.2 安装Node</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar xf node-v10.15.3-linux-x64.tar.xz -C /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> NODE_HOME=/usr/<span class="hljs-built_in">local</span>/node-v10.15.3-linux-x64<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>: <span class="hljs-variable">$NODE_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>测试</li>
+</ul>
+<h3 id="4-3-Jenkins配置Npm"><a href="#4-3-Jenkins配置Npm" class="headerlink" title="4.3 Jenkins配置Npm"></a>4.3 Jenkins配置Npm</h3><ul>
+<li><p>在Jenkins全局工具配置中并没有node，可以直接通过Jenkinsfile定义使用。</p>
+</li>
+<li><p>Jenkinsfile</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"npmbuild"</span>)&#123;<br>        sh <span class="hljs-string">""</span><span class="hljs-string">"</span><br><span class="hljs-string">           export npmHome=/usr/local/node-v10.15.3-linux-x64</span><br><span class="hljs-string">           export PATH=\$PATH:\$npmHome/bin</span><br><span class="hljs-string">           npm -v</span><br><span class="hljs-string">           "</span><span class="hljs-string">""</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>构建测试</li>
+</ul>
+<h3 id="4-4-Npm常用构建命令"><a href="#4-4-Npm常用构建命令" class="headerlink" title="4.4 Npm常用构建命令"></a>4.4 Npm常用构建命令</h3><p><code>npm install &amp;&amp; npm run build</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn8kwtuj30o00ajwf3.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><strong>欢迎关注微信公众号​：</strong></p>
+<img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Jenkins/">Jenkins</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Jenkins/">Jenkins</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/11/04/chong-wen-qiao-bu-si-zui-jing-dian-yan-jiang-qiu-zhi-ruo-ji-xu-xin-ruo-yu/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">重温乔布斯最经典演讲：求知若饥 虚心若愚</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/11/03/jenkins-yong-hu-quan-xian-shou-quan-guan-li/">
+                        <span class="hidden-mobile">Jenkins用户权限授权管理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
