@@ -204,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      199 字
+      299 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      3
        分钟
     </span>
   
@@ -255,16 +255,18 @@
             <h1 style="display: none">去掉宝塔7.9.0首页软件推荐的方法</h1>
             
             <div class="markdown-body">
-              <h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>宝塔 linux 面板 7.9.0 增加了首页专业版企业版的广告，以及软件推荐。<br>但看代码，宝塔应该会在后续版本添加关闭推荐的功能。<br>目前虽然没啥影响，但有些用户想去掉，因此写个小教程。</p>
-<h3 id="教程说明"><a href="#教程说明" class="headerlink" title="教程说明"></a>教程说明</h3><p>注意：如果开启了面板静态加速插件，以下方法将无法生效。</p>
+              <h2 id="删除首页软件推荐"><a href="#删除首页软件推荐" class="headerlink" title="删除首页软件推荐"></a>删除首页软件推荐</h2><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704104821417.png" srcset="/img/loading.gif" alt="image-20230704104821417"></p>
+<p>文件位置：<code>/www/server/panel/BTPanel/static/js/index.js</code> 使用宝塔编辑器搜索</p>
 <ol>
-<li>首先进入面板的文件管理器。</li>
-<li>进入 / www/server/panel/BTPanel/static/js 目录</li>
-<li>打开 index.js 文件。</li>
-<li>注释或者删除下图的代码。（710 行 - 735 行）</li>
+<li>搜索 <code>setTimeout(function () { _this.get_index_list() }, 400)</code> 取消这部分注释。</li>
+<li>搜索 <code>product_recommend.init</code> 函数，注释如下内容。</li>
 </ol>
-<p><img src="https://www.baota.me/usr/uploads/2022/02/2270035445.jpg" srcset="/img/loading.gif" alt="img"></p>
-<p>5.ssh 终端 - 使用 bt 命令 - 清理面板缓存并重启面板，然后清理浏览器缓存，重新打开面板即可。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua">/*product_recommend.init(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>&#123;<br>  index.get_product_status(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>&#123;<br>    index.recommend_paid_version()<br>  &#125;);<br>  index.get_index_list();<br>&#125;)*/<br></code></pre></td></tr></table></figure>
+
+<h2 id="软件商店广告"><a href="#软件商店广告" class="headerlink" title="软件商店广告"></a>软件商店广告</h2><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704104832985.png" srcset="/img/loading.gif" alt="image-20230704104832985"></p>
+<p>文件路径：<code>/www/server/panel/BTPanel/static/js/soft.js</code> 使用宝塔编辑器搜索</p>
+<p>把 <code>if (bt.get_cookie(&#39;productPurchase&#39;) != null) return false</code><br>改为 <code>if (bt.get_cookie(&#39;productPurchase&#39;) == null) return false</code></p>
+<p>免责声明：<br>本站提供的一切软件、教程和内容信息仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络收集整理，版权争议与本站无关。您必须在下载后的 24 个小时之内，从您的电脑或手机中彻底删除上述内容。如果您喜欢该程序和内容，请支持正版，购买注册，得到更好的正版服务。我们非常重视版权问题，如有侵权请邮件与我们联系处理。敬请谅解！</p>
 <h3 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h3><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704103928666.png" srcset="/img/loading.gif" alt="image-20230704103928666"></p>
 <p><strong>欢迎关注微信公众号 ：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />

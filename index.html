@@ -216,12 +216,13 @@
           
             
           
-          简单介绍宝塔 linux 面板 7.9.0 增加了首页专业版企业版的广告，以及软件推荐。但看代码，宝塔应该会在后续版本添加关闭推荐的功能。目前虽然没啥影响，但有些用户想去掉，因此写个小教程。
-教程说明注意：如果开启了面板静态加速插件，以下方法将无法生效。
+          删除首页软件推荐
+文件位置：/www/server/panel/BTPanel/static/js/index.js 使用宝塔编辑器搜索
 
-首先进入面板的文件管理器。
-进入 / www/server/panel/BTPanel/static/js 目录
-打开 index.js 文件
+搜索 setTimeout(function () { _this.get_index_list() }, 400) 取消这部分注释。
+搜索 product_recommend.init 函数，注释如下内容。
+
+123456/*product_recommen
         </a>
       </p>
 
@@ -483,9 +484,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Linux/">Linux</a>
-            
               <a href="/tags/CentOS/">CentOS</a>
+            
+              <a href="/tags/Linux/">Linux</a>
             
               <a href="/tags/Clash/">Clash</a>
             
