@@ -8,7 +8,7 @@
     <link href="/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/"/>
     <url>/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/</url>
     
-    <content type="html"><![CDATA[<p><strong>Centos 安裝命令（默認安裝是 7.9.10 直接在線升級 8.0.0）：</strong></p><ol><li>yum install -y wget &amp;&amp; wget -O install.sh <a href="http://io.bt.sy/install/install_6.0.sh" target="_blank" rel="noopener">http://io.bt.sy/install/install_6.0.sh</a> &amp;&amp; sh install.sh</li></ol><p><strong>試驗性 Centos/Ubuntu/Debian 安裝命令 獨立運行環境（py3.7） 可能存在少量兼容性問題 不斷優化中</strong></p><ol><li>curl -sSO <a href="http://io.bt.sy/install/install_panel.sh" target="_blank" rel="noopener">http://io.bt.sy/install/install_panel.sh</a> &amp;&amp; bash install_panel.sh</li></ol><p><strong>Ubuntu Deepin 安裝命令：</strong></p><ol><li>wget -O install.sh <a href="http://io.bt.sy/install/install-ubuntu_6.0.sh" target="_blank" rel="noopener">http://io.bt.sy/install/install-ubuntu_6.0.sh</a> &amp;&amp; sudo bash install.sh</li></ol><p><strong>Debian 安裝命令：</strong></p><ol><li>wget -O install.sh <a href="http://io.bt.sy/install/install-ubuntu_6.0.sh" target="_blank" rel="noopener">http://io.bt.sy/install/install-ubuntu_6.0.sh</a> &amp;&amp; bash install.sh</li></ol><p><strong>Fedora 安裝命令:</strong></p><ol><li>wget -O install.sh <a href="http://io.bt.sy/install/install_6.0.sh" target="_blank" rel="noopener">http://io.bt.sy/install/install_6.0.sh</a> &amp;&amp; bash install.sh</li></ol><p><strong>Linux 面闆 7.9.10 升級企業版命令 1（7.9.10 官方版 / 7.7.0 開心版 可以執行這個升級到 8.0.0 開心版）：</strong></p><ol><li>curl <a href="https://io.bt.sy/install/update_panel.sh|bash" target="_blank" rel="noopener">https://io.bt.sy/install/update_panel.sh|bash</a></li></ol><p><strong>講解：升級企業版命令 1 與</strong> <strong>升級企業版命令 2 二選一 都可以升級最新版！</strong><br><strong>Linux 面闆 7.9.10 升級企業版命令 2（7.9.10 官方版 / 7.7.0 開心版 可以執行這個升級到 8.0.0 開心版）：</strong></p><ol><li>curl <a href="http://io.bt.sy/install/update6.sh|bash" target="_blank" rel="noopener">http://io.bt.sy/install/update6.sh|bash</a></li></ol><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    <content type="html"><![CDATA[<p><strong>Centos 安裝命令（默認安裝是 7.9.10 直接在線升級 8.0.0）：</strong></p><p><code>yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/install_6.0.sh &amp;&amp; sh install.sh</code></p><p><strong>試驗性 Centos/Ubuntu/Debian 安裝命令 獨立運行環境（py3.7） 可能存在少量兼容性問題 不斷優化中</strong></p><p><code>curl -sSO http://io.bt.sy/install/install_panel.sh &amp;&amp; bash install_panel.sh</code></p><p><strong>Ubuntu Deepin 安裝命令：</strong></p><p><code>wget -O install.sh http://io.bt.sy/install/install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh</code></p><p><strong>Debian 安裝命令：</strong></p><p><code>wget -O install.sh http://io.bt.sy/install/install-ubuntu_6.0.sh &amp;&amp; bash install.sh</code></p><p><strong>Fedora 安裝命令:</strong></p><p><code>wget -O install.sh http://io.bt.sy/install/install_6.0.sh &amp;&amp; bash install.sh</code></p><p><strong>Linux 面闆 7.9.10 升級企業版命令 1（7.9.10 官方版 / 7.7.0 開心版 可以執行這個升級到 8.0.0 開心版）：</strong></p><p><code>curl https://io.bt.sy/install/update_panel.sh|bash</code></p><p><strong>講解：升級企業版命令 1 與升級企業版命令 2 二選一 都可以升級最新版！</strong><br><strong>Linux 面闆 7.9.10 升級企業版命令 2（7.9.10 官方版 / 7.7.0 開心版 可以執行這個升級到 8.0.0 開心版）：</strong></p><p><code>curl http://io.bt.sy/install/update6.sh|bash</code></p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
     
     
     <categories>
@@ -1300,9 +1300,9 @@
       
       <tag>Java</tag>
       
-      <tag>SonarQube</tag>
-      
       <tag>Sonar</tag>
+      
+      <tag>SonarQube</tag>
       
     </tags>
     
@@ -2508,13 +2508,13 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Linux</tag>
       
       <tag>CentOS</tag>
       
       <tag>Server</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
