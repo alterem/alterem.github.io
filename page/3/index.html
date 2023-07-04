@@ -199,6 +199,64 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/28/linux-xia-qing-kong-yong-hu-deng-lu-ji-lu-he-ming-ling-li-shi-de-fang-fa/" target="_self">
+          <img src="https://github.com/alterem/picFB/raw/master/pics/2020/10/15/ccJL6g.jpg" srcset="/img/loading.gif" alt="Linux下清空用户登录记录和命令历史的方法">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/05/28/linux-xia-qing-kong-yong-hu-deng-lu-ji-lu-he-ming-ling-li-shi-de-fang-fa/">Linux下清空用户登录记录和命令历史的方法</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/28/linux-xia-qing-kong-yong-hu-deng-lu-ji-lu-he-ming-ling-li-shi-de-fang-fa/">
+          
+          
+            
+          
+          清除登陆系统成功的记录，也就是last命令看到的记录
+[root@localhost root]# echo &gt; /var/log/wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息
+[root@localhost root]# echo &gt;/var/log/wtmp[root@localhost root]# last
+此时即看不到用户登录信息
+清除登陆系统失败的记录，也就是
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-28 14:09" pubdate>
+              2020-05-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/05/26/redis-pei-zhi-wen-jian-zhu-yao-can-shu-jie-xi-can-kao/" target="_self">
           <img src="https://github.com/alterem/picFB/raw/master/pics/2020/05/26/TC6Q2z.jpg" srcset="/img/loading.gif" alt="Redis 配置文件主要参数解析参考">
         </a>
@@ -241,9 +299,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Redis/">Redis</a>
-            
               <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Redis/">Redis</a>
             
           </div>
         
@@ -727,60 +785,6 @@ Enum输出name()或者orig
               <a href="/tags/Java/">Java</a>
             
               <a href="/tags/Gateway/">Gateway</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/11/20/ya-suo-20m-wen-jian-cong-30-miao-dao-1-miao-de-you-hua-guo-cheng/">压缩20M文件从30秒到1秒的优化过程</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/11/20/ya-suo-20m-wen-jian-cong-30-miao-dao-1-miao-de-you-hua-guo-cheng/">
-          
-          
-            
-          
-          
-文章来源公众号：IT牧场
-
-有一个需求需要将前端传过来的10张照片，然后后端进行处理以后压缩成一个压缩包通过网络流传输出去。之前没有接触过用Java压缩文件的，所以就直接上网找了一个例子改了一下用了，改完以后也能使用，但是随着前端所传图片的大小越来越大的时候，耗费的时间也在急剧增加，最后测了一下压缩20M的文件竟然需要30秒的时间。压缩文件的代码如下。
-123456789101112131415
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-11-20 10:38" pubdate>
-              2019-11-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Java/">Java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">Java</a>
-            
-              <a href="/tags/IO/">IO</a>
             
           </div>
         
