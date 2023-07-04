@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>去掉宝塔7.9.0首页软件推荐的方法</title>
+    <link href="/2023/07/04/qu-diao-bao-ta-7-9-0-shou-ye-ruan-jian-tui-jian-de-fang-fa/"/>
+    <url>/2023/07/04/qu-diao-bao-ta-7-9-0-shou-ye-ruan-jian-tui-jian-de-fang-fa/</url>
+    
+    <content type="html"><![CDATA[<h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>宝塔 linux 面板 7.9.0 增加了首页专业版企业版的广告，以及软件推荐。<br>但看代码，宝塔应该会在后续版本添加关闭推荐的功能。<br>目前虽然没啥影响，但有些用户想去掉，因此写个小教程。</p><h3 id="教程说明"><a href="#教程说明" class="headerlink" title="教程说明"></a>教程说明</h3><p>注意：如果开启了面板静态加速插件，以下方法将无法生效。</p><ol><li>首先进入面板的文件管理器。</li><li>进入 / www/server/panel/BTPanel/static/js 目录</li><li>打开 index.js 文件。</li><li>注释或者删除下图的代码。（710 行 - 735 行）</li></ol><p><img src="https://www.baota.me/usr/uploads/2022/02/2270035445.jpg" srcset="/img/loading.gif" alt="img"></p><p>5.ssh 终端 - 使用 bt 命令 - 清理面板缓存并重启面板，然后清理浏览器缓存，重新打开面板即可。</p><h3 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h3><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704103928666.png" srcset="/img/loading.gif" alt="image-20230704103928666"></p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    
+    
+    <categories>
+      
+      <category>bt</category>
+      
+      <category>宝塔</category>
+      
+      <category>开心版</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>bt</tag>
+      
+      <tag>宝塔</tag>
+      
+      <tag>开心版</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>宫崎骏28部动画作品终极收藏版</title>
     <link href="/2023/06/29/gong-qi-jun-28-bu-dong-hua-zuo-pin-zhong-ji-shou-cang-ban/"/>
     <url>/2023/06/29/gong-qi-jun-28-bu-dong-hua-zuo-pin-zhong-ji-shou-cang-ban/</url>
@@ -2318,15 +2351,15 @@
       
       <tag>CentOS</tag>
       
-      <tag>JDK</tag>
+      <tag>Server</tag>
       
       <tag>MySQL</tag>
+      
+      <tag>JDK</tag>
       
       <tag>Tomcat</tag>
       
       <tag>Nginx</tag>
-      
-      <tag>Server</tag>
       
     </tags>
     
@@ -2355,11 +2388,11 @@
       
       <tag>CentOS</tag>
       
-      <tag>MySQL</tag>
-      
       <tag>Server</tag>
       
       <tag>Apache</tag>
+      
+      <tag>MySQL</tag>
       
       <tag>PHP</tag>
       
@@ -2446,9 +2479,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
-      
       <tag>Redis</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     

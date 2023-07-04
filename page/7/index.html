@@ -201,6 +201,59 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2019/06/12/string-pin-jie-cao-zuo-de-you-hua/">String拼接操作”+”的优化</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/06/12/string-pin-jie-cao-zuo-de-you-hua/">
+          
+          
+            
+          
+          很多讲Java优化的文章都会强调对String拼接的优化。倒不用特意记，本质上在于对不可变类优势和劣势的理解上。 
+需要关注的是编译器对String拼接做出的优化，在简单场景下的性能能够与StringBuilder相当，复杂场景下仍然有较大的性能问题。网上关于这一问题讲的非常乱；如果我讲的有什么纰漏，也欢迎指正。 
+
+本文用到了反编译工具jad。在查阅网上关于String拼接操作的优化时发现了这个
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-12 13:19" pubdate>
+              2019-06-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/String/">String</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2019/06/12/shi-yong-bigdecimal-jin-xing-jing-que-yun-suan/">使用BigDecimal进行精确运算</a>
       </h1>
 
@@ -662,66 +715,6 @@
               <a href="/tags/Server/">Server</a>
             
               <a href="/tags/Ngrok/">Ngrok</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/06/10/chuang-jian-xian-cheng-chi-de-liang-chong-ban-fa/" target="_self">
-          <img src="https://github.com/alterem/picFB/raw/master/pics/2020/09/24/mRluda.jpg" srcset="/img/loading.gif" alt="创建线程池的两种办法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/06/10/chuang-jian-xian-cheng-chi-de-liang-chong-ban-fa/">创建线程池的两种办法</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/06/10/chuang-jian-xian-cheng-chi-de-liang-chong-ban-fa/">
-          
-          
-            
-          
-          线程池，其实就是一个容纳多个线程的容器，其中的线程可以反复使用，省去了频繁创建线程对象的操作，
-无需反复创建线程而消耗过多资源。
-我们详细的解释一下为什么要使用线程池？
-在java中，如果每个请求到达就创建一个新线程，开销是相当大的。在实际使用中，创建和销毁线程花费的时间和消耗的系统资源都相当大，
-甚至可能要比在处理实际的用户请求的时间和资源要多的多。除了创建和销毁线程的开销之外，活动的线程也需要
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-06-10 16:23" pubdate>
-              2019-06-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Java/">Java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">Java</a>
-            
-              <a href="/tags/Thread/">Thread</a>
             
           </div>
         
