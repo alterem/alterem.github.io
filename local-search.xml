@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>使用 Unsplash API 生成随机图片 </title>
+    <link href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/"/>
+    <url>/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/</url>
+    
+    <content type="html"><![CDATA[<h1 id="使用-Unsplash-API-生成随机图片"><a href="#使用-Unsplash-API-生成随机图片" class="headerlink" title="使用 Unsplash API 生成随机图片"></a>使用 Unsplash API 生成随机图片</h1><h2 id="Unsplash"><a href="#Unsplash" class="headerlink" title="Unsplash"></a>Unsplash</h2><p>如果你想使用免费版权的图片时，无论你是否用于商业用途，<a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a> 是不错的选择。</p><p>我自己也经常用它来制作大型背景图片，例如：<a href="https://www.imyangyong.com/" target="_blank" rel="noopener">https://www.imyangyong.com</a> 。</p><p>虽然他们为开发人员提供了很棒的 API，但他们也提供了通过 URL 访问随机图片的选项。</p><h2 id="1-默认随机"><a href="#1-默认随机" class="headerlink" title="1. 默认随机"></a>1. 默认随机</h2><p>请看这个例子，从他们巨大的存储中生成随机的图片。</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">http<span class="hljs-variable">s:</span>//<span class="hljs-keyword">source</span>.unsplash.<span class="hljs-keyword">com</span>/random<br></code></pre></td></tr></table></figure><h2 id="2-指定用户"><a href="#2-指定用户" class="headerlink" title="2.指定用户"></a>2.指定用户</h2><p>我们还可以从特定用户账号中生成随机图像。URL 格式是这样的:</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">http<span class="hljs-variable">s:</span>//<span class="hljs-keyword">source</span>.unsplash.<span class="hljs-keyword">com</span>/user/&#123;USERNAME&#125;<br></code></pre></td></tr></table></figure><p>你可以尝试单击下面的链接，从我的账号中随机生成图片：</p><p><a href="https://source.unsplash.com/user/angusyang9/likes" target="_blank" rel="noopener">https://source.unsplash.com/user/angusyang9/likes</a></p><h2 id="3-指定尺寸"><a href="#3-指定尺寸" class="headerlink" title="3. 指定尺寸"></a>3. 指定尺寸</h2><p>还有一个选项可以设置要生成的图像的大小。像这样:</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">http<span class="hljs-variable">s:</span>//<span class="hljs-keyword">source</span>.unsplash.<span class="hljs-keyword">com</span>/random/&#123;WIDTH&#125;<span class="hljs-keyword">x</span>&#123;HEIGHT&#125;<br></code></pre></td></tr></table></figure><p>让我们生成下 300 x 300 大小的图片：</p><p><a href="https://source.unsplash.com/random/300×300" target="_blank" rel="noopener">https://source.unsplash.com/random/300×300</a></p><h2 id="4-依据关键词搜索"><a href="#4-依据关键词搜索" class="headerlink" title="4. 依据关键词搜索"></a>4. 依据关键词搜索</h2><p>这个真的很棒。你可以从搜索词生成图像。让我们搜索下城市和夜晚（非常有创意）：</p><p><a href="https://source.unsplash.com/random/?city,night" target="_blank" rel="noopener">https://source.unsplash.com/random/?city,night</a></p><p>当然，你可以与尺寸配合使用：</p><p><a href="https://source.unsplash.com/random/900×700/?fruit" target="_blank" rel="noopener">https://source.unsplash.com/random/900×700/?fruit</a></p><h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下是 react 中的代码片段：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RandomImg</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span>() &#123;<br>    <span class="hljs-keyword">super</span>();<br>    <span class="hljs-keyword">this</span>.state = &#123;<br>      bgImageUrl: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./default.jpeg'</span>)<br>    &#125;<br>  &#125;<br>  <br>  componentDidMount() &#123;<br>    <span class="hljs-keyword">this</span>.generateImage();<br>  &#125;<br>  <br>  generateImage()&#123;<br>    fetch(<span class="hljs-string">`https://source.unsplash.com/random/?people`</span>).then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> &#123;<br>      preloadImage(response.url);<br>    &#125;)<br>&#125;<br>  <br>  preloadImage(url) &#123;<br>    <span class="hljs-keyword">let</span> img = <span class="hljs-keyword">new</span> Image();<br>    img.src = url;<br>    img.onload = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>      <span class="hljs-keyword">this</span>.setState(&#123;<br>        bgImageUrl: url<br>      &#125;);<br>    &#125;<br>&#125;<br>  <br>  render() &#123;<br>    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;bgImageUrl&#125;</span> /&gt;</span></span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul><li><a href="https://awik.io/generate-random-images-unsplash-without-using-api/" target="_blank" rel="noopener">Generate Random Images From Unsplash Without Using The API</a></li></ul><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    
+    
+    <categories>
+      
+      <category>Resource</category>
+      
+      <category>Unsplash</category>
+      
+      <category>Photo</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Resource</tag>
+      
+      <tag>Unsplash</tag>
+      
+      <tag>Photo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JAVA 根据设置的概率生成随机数 </title>
     <link href="/2023/07/05/java-gen-ju-she-zhi-de-gai-lu-sheng-cheng-sui-ji-shu/"/>
     <url>/2023/07/05/java-gen-ju-she-zhi-de-gai-lu-sheng-cheng-sui-ji-shu/</url>
@@ -1939,9 +1972,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
-      
       <tag>Ngrok</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2413,9 +2446,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>MySQL</tag>
-      
       <tag>Server</tag>
+      
+      <tag>MySQL</tag>
       
       <tag>JDK</tag>
       
@@ -2450,13 +2483,13 @@
       
       <tag>CentOS</tag>
       
+      <tag>Server</tag>
+      
       <tag>Apache</tag>
       
       <tag>MySQL</tag>
       
       <tag>PHP</tag>
-      
-      <tag>Server</tag>
       
     </tags>
     
@@ -2537,9 +2570,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>Redis</tag>
       
       <tag>CentOS</tag>
       
