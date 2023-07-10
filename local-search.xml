@@ -2572,11 +2572,11 @@
       
       <tag>Linux</tag>
       
-      <tag>Redis</tag>
-      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
@@ -2607,9 +2607,9 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
-      
       <tag>NodeJS</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
