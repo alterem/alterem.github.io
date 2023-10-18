@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
-  <title>去掉宝塔7.9.0首页软件推荐的方法 - Alterem</title>
+  <title>uniapp+vue3+typescript+vite创建项目 - Alterem</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -169,12 +169,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704103846308.png') no-repeat center center;
+         style="background: url('https://img3.wallspic.com/previews/2/5/8/5/7/175852/175852-fan_she-huang_shi_guo_jia_gong_yuan-shui_zi_yuan-yu_hui-zi_ran_jing_guan-500x.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="去掉宝塔7.9.0首页软件推荐的方法">
+            <span class="h2" id="subtitle" title="uniapp+vue3+typescript+vite创建项目">
               
             </span>
             <p id="hitokoto"> ... </p>
@@ -192,8 +192,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2023-07-04 10:37" pubdate>
-        2023年7月4日 上午
+      <time datetime="2023-10-18 15:01" pubdate>
+        2023年10月18日 下午
       </time>
     </span>
   
@@ -204,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      299 字
+      499 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        分钟
     </span>
   
@@ -252,22 +252,47 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">去掉宝塔7.9.0首页软件推荐的方法</h1>
+            <h1 style="display: none">uniapp+vue3+typescript+vite创建项目</h1>
             
             <div class="markdown-body">
-              <h2 id="删除首页软件推荐"><a href="#删除首页软件推荐" class="headerlink" title="删除首页软件推荐"></a>删除首页软件推荐</h2><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704104821417.png" srcset="/img/loading.gif" alt="image-20230704104821417"></p>
-<p>文件位置：<code>/www/server/panel/BTPanel/static/js/index.js</code> 使用宝塔编辑器搜索</p>
-<ol>
-<li>搜索 <code>setTimeout(function () { _this.get_index_list() }, 400)</code> 取消这部分注释。</li>
-<li>搜索 <code>product_recommend.init</code> 函数，注释如下内容。</li>
-</ol>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua">/*product_recommend.init(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>&#123;<br>  index.get_product_status(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>&#123;<br>    index.recommend_paid_version()<br>  &#125;);<br>  index.get_index_list();<br>&#125;)*/<br></code></pre></td></tr></table></figure>
-
-<h2 id="软件商店广告"><a href="#软件商店广告" class="headerlink" title="软件商店广告"></a>软件商店广告</h2><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704104832985.png" srcset="/img/loading.gif" alt="image-20230704104832985"></p>
-<p>文件路径：<code>/www/server/panel/BTPanel/static/js/soft.js</code> 使用宝塔编辑器搜索</p>
-<p>把 <code>if (bt.get_cookie(&#39;productPurchase&#39;) != null) return false</code><br>改为 <code>if (bt.get_cookie(&#39;productPurchase&#39;) == null) return false</code></p>
-<p>免责声明：<br>本站提供的一切软件、教程和内容信息仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络收集整理，版权争议与本站无关。您必须在下载后的 24 个小时之内，从您的电脑或手机中彻底删除上述内容。如果您喜欢该程序和内容，请支持正版，购买注册，得到更好的正版服务。我们非常重视版权问题，如有侵权请邮件与我们联系处理。敬请谅解！</p>
-<h3 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h3><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704103928666.png" srcset="/img/loading.gif" alt="image-20230704103928666"></p>
+              <p>从创建项目到使用组件库，再到页面的过程呈现一下。</p>
+<h5 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h5><blockquote>
+<p>uni-app官网：<a href="https://uniapp.dcloud.net.cn/quickstart-hx.html" target="_blank" rel="noopener">https://uniapp.dcloud.net.cn/quickstart-hx.html</a></p>
+</blockquote>
+<h6 id="1-安装vue-cli"><a href="#1-安装vue-cli" class="headerlink" title="1.安装vue-cli"></a>1.安装vue-cli</h6><p><code>npm install -g @vue/cli@4</code></p>
+<h6 id="2-创建uniapp应用"><a href="#2-创建uniapp应用" class="headerlink" title="2.创建uniapp应用"></a>2.创建uniapp应用</h6><p>// 创建以 javascript 开发的工程<br><code>npx degit dcloudio/uni-preset-vue#vite my-vue3-project</code><br>// 创建以 typescript 开发的工程<br><code>npx degit dcloudio/uni-preset-vue#vite-ts my-vue3-project</code><br>创建完成后的目录结构如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018150807603.png" srcset="/img/loading.gif" alt="image-20231018150807603"></p>
+<h5 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2.安装依赖"></a>2.安装依赖</h5><p>进入到项目根目录，执行命令安装项目所需依赖。</p>
+<p><code>npm i</code></p>
+<h5 id="3-运行项目"><a href="#3-运行项目" class="headerlink" title="3.运行项目"></a>3.运行项目</h5><p>可根据package.json中的命令运行到不同平台。</p>
+<p><code>npm run dev:h5</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018150906930.png" srcset="/img/loading.gif" alt="image-20231018150906930"></p>
+<h5 id="4-运行成功"><a href="#4-运行成功" class="headerlink" title="4.运行成功"></a>4.运行成功</h5><p>vue文件使用vue3+typescript进行编写。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018150927274.png" srcset="/img/loading.gif" alt="image-20231018150927274"></p>
+<h5 id="5-使用扩展组件（uni-ui）"><a href="#5-使用扩展组件（uni-ui）" class="headerlink" title="5.使用扩展组件（uni-ui）"></a>5.使用扩展组件（uni-ui）</h5><p>下面主要通过 uni_modules 单独安装组件，这样会适当减少项目的体积。</p>
+<h6 id="（1）点击组件说明进入插件市场"><a href="#（1）点击组件说明进入插件市场" class="headerlink" title="（1）点击组件说明进入插件市场"></a>（1）点击组件说明进入插件市场</h6><p>![image-20231018151008155](/Users/alterem/Library/Application Support/typora-user-images/image-20231018151008155.png)</p>
+<h6 id="（2）点击使用HBuildderX导入插件"><a href="#（2）点击使用HBuildderX导入插件" class="headerlink" title="（2）点击使用HBuildderX导入插件"></a>（2）点击使用HBuildderX导入插件</h6><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151021224.png" srcset="/img/loading.gif" alt="image-20231018151021224"></p>
+<h6 id="（3）选择需要导入插件的项目，点击确定"><a href="#（3）选择需要导入插件的项目，点击确定" class="headerlink" title="（3）选择需要导入插件的项目，点击确定"></a>（3）选择需要导入插件的项目，点击确定</h6><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151033885.png" srcset="/img/loading.gif" alt="image-20231018151033885"></p>
+<h6 id="（4）到组件具体内容页面查看具体使用方法"><a href="#（4）到组件具体内容页面查看具体使用方法" class="headerlink" title="（4）到组件具体内容页面查看具体使用方法"></a>（4）到组件具体内容页面查看具体使用方法</h6><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151048151.png" srcset="/img/loading.gif" alt="image-20231018151048151"></p>
+<h6 id="（5）安装依赖sass"><a href="#（5）安装依赖sass" class="headerlink" title="（5）安装依赖sass"></a>（5）安装依赖sass</h6><p>如果之前没有安装sass，运行项目会保存，所以需要安装。</p>
+<p><code>npm install sass</code></p>
+<h6 id="（6）在项目页面中使用"><a href="#（6）在项目页面中使用" class="headerlink" title="（6）在项目页面中使用"></a>（6）在项目页面中使用</h6><p>如果导入成功会在uni_modules中找到。此外，直接在页面使用即可，不需要在引入组件。</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151130463.png" srcset="/img/loading.gif" alt="image-20231018151130463"></p>
+<p> （7）运行结果</p>
+<p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151145318.png" srcset="/img/loading.gif" alt="image-20231018151145318"></p>
+<p> 注意：</p>
+<blockquote>
+<p> 注意：</p>
+<ul>
+<li>vue3 响应式基于 Proxy 实现，不支持iOS9和IE11。</li>
+<li>暂不支持新增的 Teleport,Suspense 组件。</li>
+<li>在 Vue3 中， 处理 API Promise 化 调用结果的方式不同于 Vue2。Vue3 中，调用成功会进入 then 方法，调用失败会进入 catch 方法。Vue2 中，调用无论成功还是失败，都会进入 then 方法，返回数据的第一个参数是错误对象，第二个参数是返回数据</li>
+</ul>
+</blockquote>
+<p>uni-app 项目支持 vue 3.0 介绍，及升级指南</p>
+<blockquote>
+<p><a href="https://ask.dcloud.net.cn/article/id-37834" target="_blank" rel="noopener">https://ask.dcloud.net.cn/article/id-37834</a></p>
+</blockquote>
 <p><strong>欢迎关注微信公众号 ：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
             </div>
@@ -278,11 +303,13 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/bt/">bt</a>
+                      <a class="hover-with-bg" href="/categories/vue/">vue</a>
                     
-                      <a class="hover-with-bg" href="/categories/bt/%E5%AE%9D%E5%A1%94/">宝塔</a>
+                      <a class="hover-with-bg" href="/categories/vue/vue3/">vue3</a>
                     
-                      <a class="hover-with-bg" href="/categories/bt/%E5%AE%9D%E5%A1%94/%E5%BC%80%E5%BF%83%E7%89%88/">开心版</a>
+                      <a class="hover-with-bg" href="/categories/vue/vue3/vite/">vite</a>
+                    
+                      <a class="hover-with-bg" href="/categories/vue/vue3/vite/uniapp/">uniapp</a>
                     
                   </div>
                 
@@ -290,11 +317,13 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/bt/">bt</a>
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%AE%9D%E5%A1%94/">宝塔</a>
+                      <a class="hover-with-bg" href="/tags/vue3/">vue3</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%BC%80%E5%BF%83%E7%89%88/">开心版</a>
+                      <a class="hover-with-bg" href="/tags/vite/">vite</a>
+                    
+                      <a class="hover-with-bg" href="/tags/uniapp/">uniapp</a>
                     
                   </div>
                 
@@ -307,18 +336,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">寶塔 Linux 面版 8.0.0 開心版</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/">
-                        <span class="hidden-mobile">新海诚作品打包下载</span>
+                      <a href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/">
+                        <span class="hidden-mobile">使用 Unsplash API 生成随机图片 </span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

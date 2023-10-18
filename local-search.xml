@@ -4,6 +4,43 @@
   
   
   <entry>
+    <title>uniapp+vue3+typescript+vite创建项目</title>
+    <link href="/2023/10/18/uniapp-vue3-typescript-vite-chuang-jian-xiang-mu/"/>
+    <url>/2023/10/18/uniapp-vue3-typescript-vite-chuang-jian-xiang-mu/</url>
+    
+    <content type="html"><![CDATA[<p>从创建项目到使用组件库，再到页面的过程呈现一下。</p><h5 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h5><blockquote><p>uni-app官网：<a href="https://uniapp.dcloud.net.cn/quickstart-hx.html" target="_blank" rel="noopener">https://uniapp.dcloud.net.cn/quickstart-hx.html</a></p></blockquote><h6 id="1-安装vue-cli"><a href="#1-安装vue-cli" class="headerlink" title="1.安装vue-cli"></a>1.安装vue-cli</h6><p><code>npm install -g @vue/cli@4</code></p><h6 id="2-创建uniapp应用"><a href="#2-创建uniapp应用" class="headerlink" title="2.创建uniapp应用"></a>2.创建uniapp应用</h6><p>// 创建以 javascript 开发的工程<br><code>npx degit dcloudio/uni-preset-vue#vite my-vue3-project</code><br>// 创建以 typescript 开发的工程<br><code>npx degit dcloudio/uni-preset-vue#vite-ts my-vue3-project</code><br>创建完成后的目录结构如图：</p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018150807603.png" srcset="/img/loading.gif" alt="image-20231018150807603"></p><h5 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2.安装依赖"></a>2.安装依赖</h5><p>进入到项目根目录，执行命令安装项目所需依赖。</p><p><code>npm i</code></p><h5 id="3-运行项目"><a href="#3-运行项目" class="headerlink" title="3.运行项目"></a>3.运行项目</h5><p>可根据package.json中的命令运行到不同平台。</p><p><code>npm run dev:h5</code></p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018150906930.png" srcset="/img/loading.gif" alt="image-20231018150906930"></p><h5 id="4-运行成功"><a href="#4-运行成功" class="headerlink" title="4.运行成功"></a>4.运行成功</h5><p>vue文件使用vue3+typescript进行编写。</p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018150927274.png" srcset="/img/loading.gif" alt="image-20231018150927274"></p><h5 id="5-使用扩展组件（uni-ui）"><a href="#5-使用扩展组件（uni-ui）" class="headerlink" title="5.使用扩展组件（uni-ui）"></a>5.使用扩展组件（uni-ui）</h5><p>下面主要通过 uni_modules 单独安装组件，这样会适当减少项目的体积。</p><h6 id="（1）点击组件说明进入插件市场"><a href="#（1）点击组件说明进入插件市场" class="headerlink" title="（1）点击组件说明进入插件市场"></a>（1）点击组件说明进入插件市场</h6><p>![image-20231018151008155](/Users/alterem/Library/Application Support/typora-user-images/image-20231018151008155.png)</p><h6 id="（2）点击使用HBuildderX导入插件"><a href="#（2）点击使用HBuildderX导入插件" class="headerlink" title="（2）点击使用HBuildderX导入插件"></a>（2）点击使用HBuildderX导入插件</h6><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151021224.png" srcset="/img/loading.gif" alt="image-20231018151021224"></p><h6 id="（3）选择需要导入插件的项目，点击确定"><a href="#（3）选择需要导入插件的项目，点击确定" class="headerlink" title="（3）选择需要导入插件的项目，点击确定"></a>（3）选择需要导入插件的项目，点击确定</h6><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151033885.png" srcset="/img/loading.gif" alt="image-20231018151033885"></p><h6 id="（4）到组件具体内容页面查看具体使用方法"><a href="#（4）到组件具体内容页面查看具体使用方法" class="headerlink" title="（4）到组件具体内容页面查看具体使用方法"></a>（4）到组件具体内容页面查看具体使用方法</h6><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151048151.png" srcset="/img/loading.gif" alt="image-20231018151048151"></p><h6 id="（5）安装依赖sass"><a href="#（5）安装依赖sass" class="headerlink" title="（5）安装依赖sass"></a>（5）安装依赖sass</h6><p>如果之前没有安装sass，运行项目会保存，所以需要安装。</p><p><code>npm install sass</code></p><h6 id="（6）在项目页面中使用"><a href="#（6）在项目页面中使用" class="headerlink" title="（6）在项目页面中使用"></a>（6）在项目页面中使用</h6><p>如果导入成功会在uni_modules中找到。此外，直接在页面使用即可，不需要在引入组件。</p><p> <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151130463.png" srcset="/img/loading.gif" alt="image-20231018151130463"></p><p> （7）运行结果</p><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/10/18/image-20231018151145318.png" srcset="/img/loading.gif" alt="image-20231018151145318"></p><p> 注意：</p><blockquote><p> 注意：</p><ul><li>vue3 响应式基于 Proxy 实现，不支持iOS9和IE11。</li><li>暂不支持新增的 Teleport,Suspense 组件。</li><li>在 Vue3 中， 处理 API Promise 化 调用结果的方式不同于 Vue2。Vue3 中，调用成功会进入 then 方法，调用失败会进入 catch 方法。Vue2 中，调用无论成功还是失败，都会进入 then 方法，返回数据的第一个参数是错误对象，第二个参数是返回数据</li></ul></blockquote><p>uni-app 项目支持 vue 3.0 介绍，及升级指南</p><blockquote><p><a href="https://ask.dcloud.net.cn/article/id-37834" target="_blank" rel="noopener">https://ask.dcloud.net.cn/article/id-37834</a></p></blockquote><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+      <category>vue3</category>
+      
+      <category>vite</category>
+      
+      <category>uniapp</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+      <tag>vue3</tag>
+      
+      <tag>vite</tag>
+      
+      <tag>uniapp</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用 Unsplash API 生成随机图片 </title>
     <link href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/"/>
     <url>/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/</url>
@@ -132,31 +169,6 @@
   
   
   <entry>
-    <title>宫崎骏28部动画作品终极收藏版</title>
-    <link href="/2023/06/29/gong-qi-jun-28-bu-dong-hua-zuo-pin-zhong-ji-shou-cang-ban/"/>
-    <url>/2023/06/29/gong-qi-jun-28-bu-dong-hua-zuo-pin-zhong-ji-shou-cang-ban/</url>
-    
-    <content type="html"><![CDATA[<blockquote><p>宫崎骏28部动画作品终极收藏版</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/06/29/image-20230629135934863.png" srcset="/img/loading.gif" alt="image-20230629135934863"></p><p><strong>欢迎关注微信公众号 ：</strong></p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />]]></content>
-    
-    
-    <categories>
-      
-      <category>Other</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Other</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>新海诚作品打包下载</title>
     <link href="/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/"/>
     <url>/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/</url>
@@ -225,9 +237,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>CentOS</tag>
       
       <tag>Clash</tag>
       
@@ -1943,11 +1955,11 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
-      
-      <tag>Linux</tag>
       
       <tag>Ngrok</tag>
       
@@ -2392,13 +2404,13 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
-      <tag>Server</tag>
-      
       <tag>Linux</tag>
       
+      <tag>CentOS</tag>
+      
       <tag>MySQL</tag>
+      
+      <tag>Server</tag>
       
       <tag>JDK</tag>
       
@@ -2433,13 +2445,13 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
-      
       <tag>Apache</tag>
       
       <tag>MySQL</tag>
       
       <tag>PHP</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2491,9 +2503,9 @@
     
     <tags>
       
-      <tag>Server</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2520,13 +2532,13 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>Redis</tag>
       
       <tag>CentOS</tag>
       
       <tag>Server</tag>
-      
-      <tag>Linux</tag>
       
     </tags>
     
@@ -2553,11 +2565,11 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
-      
-      <tag>Linux</tag>
       
       <tag>NodeJS</tag>
       
