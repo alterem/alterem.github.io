@@ -83,7 +83,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -282,13 +282,13 @@
 <p>centos 上： </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://nodejs.org/dist/v7.7.4/node-v7.7.4-linux-x64.tar.gz<br>tar zxvf node-v7.7.4-linux-x64.tar.gz<br></code></pre></td></tr></table></figure>
 
-<a id="more"></a>
+<span id="more"></span>
 
 <p>sudo vi /etc/profile </p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># node （注释作用）</span><br><span class="hljs-attr">export</span> <span class="hljs-string">NODE_HOME=/home/user/software/node-v7.7.4-linux-x64</span><br><span class="hljs-attr">export</span> <span class="hljs-string">PATH=$PATH:$NODE_HOME/bin  </span><br><span class="hljs-attr">export</span> <span class="hljs-string">NODE_PATH=$NODE_HOME/lib/node_modules</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># node （注释作用）</span><br><span class="hljs-attr">export</span> <span class="hljs-string">NODE_HOME=/home/user/software/node-v7.7.4-linux-x64</span><br><span class="hljs-attr">export</span> <span class="hljs-string">PATH=$PATH:$NODE_HOME/bin  </span><br><span class="hljs-attr">export</span> <span class="hljs-string">NODE_PATH=$NODE_HOME/lib/node_modules </span><br></code></pre></td></tr></table></figure>
 
 <p>:wq （保存并退出）<br>source /etc/profile （使配置文件生效） </p>
-<h4 id="2-Hexo安装"><a href="#2-Hexo安装" class="headerlink" title="2.Hexo安装"></a>2.Hexo安装</h4><p><a href="https://github.com/hexojs/hexo/" target="_blank" rel="noopener">Hexo</a> 是一个功能强大的静态网站生成系统，快速、简洁、高效。Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。可以一键部署到github，还有丰富的插件和主题,还支持热部署哦。执行如下命令进行安装 </p>
+<h4 id="2-Hexo安装"><a href="#2-Hexo安装" class="headerlink" title="2.Hexo安装"></a>2.Hexo安装</h4><p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/">Hexo</a> 是一个功能强大的静态网站生成系统，快速、简洁、高效。Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。可以一键部署到github，还有丰富的插件和主题,还支持热部署哦。执行如下命令进行安装 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo npm install hexo-cli -g<br></code></pre></td></tr></table></figure>
 
 <p>安装Hexo安成后，使用如下命令快速新建一个博客系统，然后运行它： </p>
@@ -298,7 +298,7 @@
 <li><code>npm install</code>     </li>
 <li><code>hexo server</code>     </li>
 </ol>
-<p>如果npm安装失败，请使用sudo安装。运行成功后，访问 <a href="http://0.0.0.0:4000/" target="_blank" rel="noopener">http://127.0.0.1:4000/</a><a href="http://127.0.0.1:4000/" target="_blank" rel="noopener"> </a> </p>
+<p>如果npm安装失败，请使用sudo安装。运行成功后，访问 <a target="_blank" rel="noopener" href="http://0.0.0.0:4000/">http://127.0.0.1:4000/</a><a target="_blank" rel="noopener" href="http://127.0.0.1:4000/"> </a> </p>
 <p>Hexo 生成博客的目录结构： </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">.<br>├── _config.yml<br>├── db.json<br>├── node_modules<br>├── package.json<br>├── public<br>├── scaffolds<br>├── <span class="hljs-built_in">source</span><br>└── themes<br></code></pre></td></tr></table></figure>
 
@@ -309,20 +309,20 @@
 <p>然后配置站点的url和permalink，这两个分别是你的站点的url host地址以及文章的永久连接 </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">url:</span> <span class="hljs-string">http://www.alterempty.cn</span><br><span class="hljs-string">root:/</span><br><span class="hljs-string">permalink::year/:month/:day/:title.html</span><br><span class="hljs-attr">permalink_defaults:</span><br></code></pre></td></tr></table></figure>
 
-<p>permalink 我配置的是年月日以及title，后缀是html，便于搜索收录。permalink详情参见： <a href="http://hexo.io/zh-cn/docs/permalinks.html" target="_blank" rel="noopener">http://hexo.io/zh-cn/docs/permalinks.html</a> </p>
+<p>permalink 我配置的是年月日以及title，后缀是html，便于搜索收录。permalink详情参见： <a target="_blank" rel="noopener" href="http://hexo.io/zh-cn/docs/permalinks.html">http://hexo.io/zh-cn/docs/permalinks.html</a> </p>
 <h4 id="4-新增一篇文章"><a href="#4-新增一篇文章" class="headerlink" title="4.新增一篇文章"></a>4.新增一篇文章</h4><p>使用如下命令即可新增一篇md格式的文章： </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo new'github-page-with-hexo'<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo new&#x27;github-page-with-hexo&#x27;<br></code></pre></td></tr></table></figure>
 
 <p>然后就会在sources/_posts生成一篇文件名为github-page-with-hexo.md的markdown文件。编辑该文件就可以写博客了 </p>
 <p>Front-matter 是文件最上方以 —- 分隔的区域，用于指定个别文件的变量，举例来说： </p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">title:"使用Hexo在Github上搭建自己的博客"<br>date:2017-03-22 00:00:04<br>tags:<br>-Hexo<br>-Github<br>categories:<br>-Hexo<br>---<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">title:&quot;使用Hexo在Github上搭建自己的博客&quot;<br>date:2017-03-22 00:00:04<br>tags:<br>-Hexo<br>-Github<br>categories:<br><span class="hljs-section">-Hexo</span><br><span class="hljs-section">---</span><br></code></pre></td></tr></table></figure>
 
-<p>目前的categories只能有一个一级分类，如果填写多个，第二个会被解析为二级分类，以及类推。tags可以允许有多个。更多关于Front-matter请参考 <a href="http://hexo.io/zh-cn/docs/front-matter.html" target="_blank" rel="noopener">http://hexo.io/zh-cn/docs/front-matter.html</a> 。 </p>
+<p>目前的categories只能有一个一级分类，如果填写多个，第二个会被解析为二级分类，以及类推。tags可以允许有多个。更多关于Front-matter请参考 <a target="_blank" rel="noopener" href="http://hexo.io/zh-cn/docs/front-matter.html">http://hexo.io/zh-cn/docs/front-matter.html</a> 。 </p>
 <h4 id="5-安装git"><a href="#5-安装git" class="headerlink" title="5.安装git"></a>5.安装git</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install git<br></code></pre></td></tr></table></figure>
 
 <p>通过 git –version 查看是否安装成功 </p>
 <h4 id="6-申请GitHub"><a href="#6-申请GitHub" class="headerlink" title="6.申请GitHub"></a>6.申请GitHub</h4><h4 id="7-发布博客"><a href="#7-发布博客" class="headerlink" title="7.发布博客"></a>7.发布博客</h4><p> 发布更新博客 </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> hexo d -g</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">hexo d -g</span><br></code></pre></td></tr></table></figure>
 
 <p>然后等个几分钟，访问你的域名就可以看到你的网站了 </p>
 <p>注：从github上获取数据的办法有很多，就不一一阐述 </p>

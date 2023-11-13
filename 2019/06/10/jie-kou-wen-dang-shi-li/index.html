@@ -84,7 +84,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k 字
+          6.9k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          55 分钟
+          58 分钟
         
       </span>
     
@@ -453,7 +453,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <p>暂无</p>
@@ -491,13 +491,8 @@
 <td>Not Found</td>
 <td></td>
 </tr>
-<tr>
-<td>## jobChangeStatus</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<p><strong>接口描述</strong>:按照id修改调度状态</p>
+<h2 id="jobChangeStatus"><a href="#jobChangeStatus" class="headerlink" title="jobChangeStatus"></a>jobChangeStatus</h2><p><strong>接口描述</strong>:按照id修改调度状态</p>
 <p><strong>接口地址</strong>:<code>/quartz/job/changeStatus</code></p>
 <p><strong>请求方式</strong>：<code>POST</code></p>
 <p><strong>consumes</strong>:<code>[&quot;application/json&quot;]</code></p>
@@ -668,7 +663,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <p>暂无</p>
@@ -706,19 +701,14 @@
 <td>Not Found</td>
 <td></td>
 </tr>
-<tr>
-<td>## jobCheckCronExpressionIsValid</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<p><strong>接口描述</strong>:校验cron表达式是否有效</p>
+<h2 id="jobCheckCronExpressionIsValid"><a href="#jobCheckCronExpressionIsValid" class="headerlink" title="jobCheckCronExpressionIsValid"></a>jobCheckCronExpressionIsValid</h2><p><strong>接口描述</strong>:校验cron表达式是否有效</p>
 <p><strong>接口地址</strong>:<code>/quartz/job/checkCronExpressionIsValid</code></p>
 <p><strong>请求方式</strong>：<code>POST</code></p>
 <p><strong>consumes</strong>:<code>[&quot;application/json&quot;]</code></p>
 <p><strong>produces</strong>:<code>[&quot;*/*&quot;]</code></p>
 <p><strong>请求示例</strong>：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>	<span class="hljs-attr">"beginTime"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"concurrent"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"createBy"</span>: <span class="hljs-number">0</span>,<br>	<span class="hljs-attr">"createTime"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"cronExpression"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"endTime"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"invokeTarget"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"jobGroup"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"jobId"</span>: <span class="hljs-number">0</span>,<br>	<span class="hljs-attr">"jobName"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"misfirePolicy"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"nextValidTime"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"params"</span>: &#123;&#125;,<br>	<span class="hljs-attr">"remark"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"searchValue"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"status"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"tenantId"</span>: <span class="hljs-string">""</span>,<br>	<span class="hljs-attr">"updateBy"</span>: <span class="hljs-number">0</span>,<br>	<span class="hljs-attr">"updateTime"</span>: <span class="hljs-string">""</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>	<span class="hljs-attr">&quot;beginTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;concurrent&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;createBy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;createTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;cronExpression&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;endTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;invokeTarget&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;jobGroup&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;jobId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;jobName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;misfirePolicy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;nextValidTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;params&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;remark&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;searchValue&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;tenantId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;updateBy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;updateTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 
 <p><strong>请求参数</strong>：</p>
@@ -909,7 +899,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <p>暂无</p>
@@ -947,13 +937,8 @@
 <td>Not Found</td>
 <td></td>
 </tr>
-<tr>
-<td>## jobEdit</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<p><strong>接口描述</strong>:修改保存调度</p>
+<h2 id="jobEdit"><a href="#jobEdit" class="headerlink" title="jobEdit"></a>jobEdit</h2><p><strong>接口描述</strong>:修改保存调度</p>
 <p><strong>接口地址</strong>:<code>/quartz/job/edit</code></p>
 <p><strong>请求方式</strong>：<code>POST</code></p>
 <p><strong>consumes</strong>:<code>[&quot;application/json&quot;]</code></p>
@@ -1124,7 +1109,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <p>暂无</p>
@@ -1162,13 +1147,8 @@
 <td>Not Found</td>
 <td></td>
 </tr>
-<tr>
-<td>## jobExport</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<p><strong>接口描述</strong>:导出定时任务列表到Excel</p>
+<h2 id="jobExport"><a href="#jobExport" class="headerlink" title="jobExport"></a>jobExport</h2><p><strong>接口描述</strong>:导出定时任务列表到Excel</p>
 <p><strong>接口地址</strong>:<code>/quartz/job/export</code></p>
 <p><strong>请求方式</strong>：<code>POST</code></p>
 <p><strong>consumes</strong>:<code>[&quot;application/json&quot;]</code></p>
@@ -1339,7 +1319,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <p>暂无</p>
@@ -1377,13 +1357,8 @@
 <td>Not Found</td>
 <td></td>
 </tr>
-<tr>
-<td>## jobList</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<p><strong>接口描述</strong>:获取调度任务列表</p>
+<h2 id="jobList"><a href="#jobList" class="headerlink" title="jobList"></a>jobList</h2><p><strong>接口描述</strong>:获取调度任务列表</p>
 <p><strong>接口地址</strong>:<code>/quartz/job/list</code></p>
 <p><strong>请求方式</strong>：<code>POST</code></p>
 <p><strong>consumes</strong>:<code>[&quot;application/json&quot;]</code></p>
@@ -1554,7 +1529,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>	<span class="hljs-attr">"code"</span>: <span class="hljs-number">0</span>,<br>	<span class="hljs-attr">"rows"</span>: [],<br>	<span class="hljs-attr">"total"</span>: <span class="hljs-number">0</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>	<span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;rows&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <table>
@@ -1619,13 +1594,8 @@
 <td>Not Found</td>
 <td></td>
 </tr>
-<tr>
-<td>## jobRemove</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<p><strong>接口描述</strong>:按照id批量删除调度信息</p>
+<h2 id="jobRemove"><a href="#jobRemove" class="headerlink" title="jobRemove"></a>jobRemove</h2><p><strong>接口描述</strong>:按照id批量删除调度信息</p>
 <p><strong>接口地址</strong>:<code>/quartz/job/remove</code></p>
 <p><strong>请求方式</strong>：<code>POST</code></p>
 <p><strong>consumes</strong>:<code>[&quot;application/json&quot;]</code></p>
@@ -1652,7 +1622,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <p>暂无</p>
@@ -1690,13 +1660,8 @@
 <td>Not Found</td>
 <td></td>
 </tr>
-<tr>
-<td>## jobRun</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<p><strong>接口描述</strong>:任务调度立即执行一次</p>
+<h2 id="jobRun"><a href="#jobRun" class="headerlink" title="jobRun"></a>jobRun</h2><p><strong>接口描述</strong>:任务调度立即执行一次</p>
 <p><strong>接口地址</strong>:<code>/quartz/job/run</code></p>
 <p><strong>请求方式</strong>：<code>POST</code></p>
 <p><strong>consumes</strong>:<code>[&quot;application/json&quot;]</code></p>
@@ -1867,7 +1832,7 @@
 </tr>
 </tbody></table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 
 <p><strong>响应参数</strong>:</p>
 <p>暂无</p>

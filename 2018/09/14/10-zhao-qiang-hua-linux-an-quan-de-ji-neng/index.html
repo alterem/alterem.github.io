@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &#39;3:on&#39;">
+    <meta name="description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &amp;#x27;3:on&amp;#x27;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10招强化Linux安全的技能">
 <meta property="og:url" content="https://alterem.github.io/2018/09/14/10-zhao-qiang-hua-linux-an-quan-de-ji-neng/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &#39;3:on&#39;">
+<meta property="og:description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &amp;#x27;3:on&amp;#x27;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrkisisj30eq0q6ajx.jpg">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg">
@@ -85,7 +85,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          3.3k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          27 分钟
+          28 分钟
         
       </span>
     
@@ -278,9 +278,9 @@
                 
                 <h3 id="1-找出不必要的服务"><a href="#1-找出不必要的服务" class="headerlink" title="1.找出不必要的服务"></a>1.找出不必要的服务</h3><p>很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。</p>
 <p>查询运行在<strong>runlevel 3</strong>的服务列表：</p>
-<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sas">[<span class="hljs-meta">alter</span>@<span class="hljs-meta">alter</span> ~]# /sbin/chkconfig --<span class="hljs-meta">list</span> |grep <span class="hljs-string">'3:on'</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">[alter<span class="hljs-symbol">@alter</span> ~]<span class="hljs-meta"># /sbin/chkconfig --list |grep <span class="hljs-string">&#x27;3:on&#x27;</span></span><br></code></pre></td></tr></table></figure>
 
-<a id="more"></a>
+<span id="more"></span>
 
 <p>关闭指定的服务：</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">[<span class="hljs-keyword">alter</span>@<span class="hljs-keyword">alter</span> ~]# chkconfig ip6tables <span class="hljs-keyword">off</span><br></code></pre></td></tr></table></figure>
@@ -289,13 +289,13 @@
 <p>疑问：为什么查询<strong>runlevel 3</strong>的服务？<br>Linux系统有7个运行级别(runlevel)，分别如下：<br>runlevel 0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动；<br>runlevel 1：单用户工作状态，root权限，用于系统维护，禁止远程登陆；<br>runlevel 2：多用户状态(没有NFS)；<br>runlevel 3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式。这个运行级别的服务会启动httpd，系统提供web server服务，所以主要查看这个运行级别的服务；<br>runlevel 4：系统未使用，保留；<br>runlevel 5：X11控制台，登陆后进入图形GUI模式；<br>runlevel 6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动；</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrkisisj30eq0q6ajx.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="2-检查监听的网络端口"><a href="#2-检查监听的网络端口" class="headerlink" title="2.检查监听的网络端口"></a>2.检查监听的网络端口</h3><p>通过netstat命名能够看到所有已经打开的端口，并且可以看到是哪些程序打开的。如果发现某些是必须要的，建议关掉：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">[<span class="hljs-symbol">alter@</span>alter~]# netstat -tulpn<br>Active Internet connections (only servers)<br>Proto Recv-Q Send-Q Local Address  Foreign Address  State   PID/Program name   <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2181</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        LISTEN  <span class="hljs-number">48983</span>/java          <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2182</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        LISTEN  <span class="hljs-number">49051</span>/java<br></code></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">[<span class="hljs-keyword">alter</span>@<span class="hljs-keyword">alter</span>~]# netstat -tulpn<br>Active Internet connections (<span class="hljs-keyword">only</span> servers)<br>Proto Recv-Q Send-Q <span class="hljs-keyword">Local</span> Address  <span class="hljs-keyword">Foreign</span> Address  State   PID/Program <span class="hljs-type">name</span>   <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2181</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        <span class="hljs-keyword">LISTEN</span>  <span class="hljs-number">48983</span>/java          <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2182</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        <span class="hljs-keyword">LISTEN</span>  <span class="hljs-number">49051</span>/java  <br></code></pre></td></tr></table></figure>
 
 <h3 id="3-优化CRON任务"><a href="#3-优化CRON任务" class="headerlink" title="3.优化CRON任务"></a>3.优化CRON任务</h3><p>linux的cron可以执行一些定时任务。并且还可以通过/etc/cron.allow 和 /etc/cron.deny 控制哪些用户可以运行JOB，哪位用户禁止运行JOB。例如:<br>允许用户alter允许JOB，执行如下命令：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">echo</span> alter &gt;&gt; <span class="hljs-string">/etc/cron.allow</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> alter &gt;&gt; /etc/cron.allow<br></code></pre></td></tr></table></figure>
 
 <p>禁止所有用户访问JOB，执行如下命令：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">echo</span> ALL &gt;&gt;<span class="hljs-string">/etc/cron.deny</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">echo</span> <span class="hljs-literal">ALL</span> &gt;&gt;/etc/cron.<span class="hljs-literal">deny</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="4-限制用户使用旧密码"><a href="#4-限制用户使用旧密码" class="headerlink" title="4.限制用户使用旧密码"></a>4.限制用户使用旧密码</h3><p>linux用户的旧密码保存在文件/etc/security/opasswd中：</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@LAPP</span>-V1159 ~]<span class="hljs-meta"># cat /etc/security/opasswd</span><br>alter:<span class="hljs-number">504</span>:<span class="hljs-number">4</span>:$1$MVAi/EpJ$iXXkV5r3Hjc8AaK2b5KyQ/,$1$AbpFPYaD$ZKj12lK6qaYUqgQnEdocd0,$1$POabjmzY$F4Cp6aTwN6RRk1KjZWm8A/,$1$LoHe5GHY$QjkLGqABANpLmlQsRB4WE.<br></code></pre></td></tr></table></figure>
@@ -304,22 +304,22 @@
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">auth        sufficient    pam_unix.so <span class="hljs-literal">null</span>ok try_first_pass<br>password    sufficient    pam_unix.so sha512 shadow <span class="hljs-literal">null</span>ok try_first_pass use_authtok remember=<span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="5-检查密码过期"><a href="#5-检查密码过期" class="headerlink" title="5.检查密码过期"></a>5.检查密码过期</h3><p>密码的过期属性可以通过如下命令查看：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql">[root@root ~]<span class="hljs-comment"># chage -l alter</span><br>Last password <span class="hljs-keyword">change</span>                    : Sep <span class="hljs-number">14</span>, <span class="hljs-number">2018</span><br><span class="hljs-keyword">Password</span> expires                    : Nov <span class="hljs-number">13</span>, <span class="hljs-number">2018</span><br><span class="hljs-keyword">Password</span> inactive                    : <span class="hljs-keyword">never</span><br><span class="hljs-keyword">Account</span> expires                        : <span class="hljs-keyword">never</span><br><span class="hljs-keyword">Minimum</span> <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">days</span> <span class="hljs-keyword">between</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">change</span>        : <span class="hljs-number">0</span><br>Maximum <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">days</span> <span class="hljs-keyword">between</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">change</span>        : <span class="hljs-number">60</span><br><span class="hljs-built_in">Number</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">days</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">warning</span> <span class="hljs-keyword">before</span> <span class="hljs-keyword">password</span> expires    : <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">[root@root ~]# chage -l <span class="hljs-keyword">alter</span><br>Last <span class="hljs-keyword">password</span> change                    : Sep <span class="hljs-number">14</span>, <span class="hljs-number">2018</span><br><span class="hljs-keyword">Password</span> expires                    : Nov <span class="hljs-number">13</span>, <span class="hljs-number">2018</span><br><span class="hljs-keyword">Password</span> inactive                    : never<br>Account expires                        : never<br>Minimum number <span class="hljs-keyword">of</span> days <span class="hljs-keyword">between</span> <span class="hljs-keyword">password</span> change        : <span class="hljs-number">0</span><br>Maximum number <span class="hljs-keyword">of</span> days <span class="hljs-keyword">between</span> <span class="hljs-keyword">password</span> change        : <span class="hljs-number">60</span><br>Number <span class="hljs-keyword">of</span> days <span class="hljs-keyword">of</span> <span class="hljs-built_in">warning</span> <span class="hljs-keyword">before</span> <span class="hljs-keyword">password</span> expires    : <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
 
 <p>修改密码的过期属性可以执行如下命令：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">chage -M <span class="hljs-number">60</span> -W <span class="hljs-number">7</span>  alter<br>说明：<br>-M <span class="hljs-number">60</span>表示密码最大有效期是<span class="hljs-number">60</span>天。<br>-W <span class="hljs-number">7</span> 表示密码还有<span class="hljs-number">7</span>天过期时给出告警提醒。<br></code></pre></td></tr></table></figure>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tap">chage -M<span class="hljs-number"> 60 </span>-W<span class="hljs-number"> 7 </span> alter<br>说明：<br>-M 60表示密码最大有效期是60天。<br>-W<span class="hljs-number"> 7 </span>表示密码还有7天过期时给出告警提醒。<br></code></pre></td></tr></table></figure>
 
 <h3 id="6-检查密码为空的用户"><a href="#6-检查密码为空的用户" class="headerlink" title="6.检查密码为空的用户"></a>6.检查密码为空的用户</h3><p>密码为空意味着只要知道用户名就能访问，这非常危险。因为用户与密码信息保存在文件/etc/shadow中，且格式如下：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">admin:$<span class="hljs-number">6</span>$YTSkre3DLd4SAZ$Jy9piv/gPezhLrLzMMeUleV8F5DNjP:<span class="hljs-number">17765</span>:<span class="hljs-number">0</span>:<span class="hljs-number">99</span>:<span class="hljs-number">5</span>:::<br>alter:$<span class="hljs-number">6</span>$.vMcyE9ss96$YNk2Q5qiS/SAeGCcyEFsmspkC5dr3OXfnN:<span class="hljs-number">17788</span>:<span class="hljs-number">0</span>:<span class="hljs-number">60</span>:<span class="hljs-number">7</span>:::<br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">admin</span>:$<span class="hljs-number">6</span>$YTSkre3DLd4SAZ$Jy9piv/gPezhLrLzMMeUleV8F5DNjP:<span class="hljs-number">17765</span>:<span class="hljs-number">0</span>:<span class="hljs-number">99</span>:<span class="hljs-number">5</span>:::<br><span class="hljs-attribute">alter</span>:$<span class="hljs-number">6</span>$.vMcyE9ss96$YNk2Q5qiS/SAeGCcyEFsmspkC5dr3OXfnN:<span class="hljs-number">17788</span>:<span class="hljs-number">0</span>:<span class="hljs-number">60</span>:<span class="hljs-number">7</span>:::<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>后面的几个数字是密码过期等属性信息，上面已经提及。</p>
 </blockquote>
 <p>所以，检查密码为空的用户，只需要执行如下命令即可，如果发现有这样的用户，通过root用户执行<code>passwd username</code>强行修改它的密码：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">cat</span> /etc/shadow | awk -F: '(<span class="hljs-variable">$2</span>==<span class="hljs-string">""</span>)&#123;<span class="hljs-keyword">print</span> <span class="hljs-variable">$1&#125;</span>'<br></code></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">cat</span> /etc/shadow | awk -F: <span class="hljs-string">&#x27;(<span class="hljs-variable">$2</span>==&quot;&quot;)&#123;print <span class="hljs-variable">$1</span>&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="7-锁定-amp-解锁用户"><a href="#7-锁定-amp-解锁用户" class="headerlink" title="7.锁定&amp;解锁用户"></a>7.锁定&amp;解锁用户</h3><p>和删除用户账户不一样，这个只是限制用户登录。只需要执行如下密码即可锁定&amp;解锁用户：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros">[root@root ~]# passwd -l alter<br>Locking password <span class="hljs-keyword">for</span><span class="hljs-built_in"> user </span>alter.<br>passwd: Success<br>[root@root ~]# passwd -u alter<br>Unlocking password <span class="hljs-keyword">for</span><span class="hljs-built_in"> user </span>alter.<br>passwd: Success<br></code></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">[root@root ~]<span class="hljs-comment"># passwd -l alter</span><br>Locking password for <span class="hljs-keyword">user</span> <span class="hljs-title">alter</span>.<br>passwd: Success<br>[root@root ~]<span class="hljs-comment"># passwd -u alter</span><br>Unlocking password for <span class="hljs-keyword">user</span> <span class="hljs-title">alter</span>.<br>passwd: Success<br></code></pre></td></tr></table></figure>
 
 <p>说明：</p>
 <ul>
@@ -343,7 +343,7 @@
 <li>/var/log/yum.log: Yum log files.</li>
 </ul>
 <h3 id="10-保持系统更新"><a href="#10-保持系统更新" class="headerlink" title="10.保持系统更新"></a>10.保持系统更新</h3><p>总是让系统更新最新发行的补丁包，因为这些补丁包会修复一些BUG：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt-<span class="hljs-builtin-name">get</span> upgrade<br><br>yum check-update<br>yum upgrade<br></code></pre></td></tr></table></figure>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs smali">sudo apt-get upgrade<br><br>yum<span class="hljs-built_in"> check-update</span><br><span class="hljs-built_in"></span>yum upgrade<br></code></pre></td></tr></table></figure>
 
 
 

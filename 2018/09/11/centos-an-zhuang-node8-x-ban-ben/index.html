@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -282,7 +282,7 @@
 <p>安装之前删除原来的node和npm (我原来是用yum安装的，如果是第一次安装可以省略这一步):</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum remove nodejs npm -y<br></code></pre></td></tr></table></figure>
 
-<a id="more"></a>
+<span id="more"></span>
 
 <p>首先我们随便进入服务器的一个目录，然后从淘宝的源拉取内容: </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://npm.taobao.org/mirrors/node/v8.0.0/node-v8.0.0-linux-x64.tar.xz<br></code></pre></td></tr></table></figure>
@@ -291,7 +291,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo tar -xvf node-v8.0.0-linux-x64.tar.xz<br></code></pre></td></tr></table></figure>
 
 <p>进入解压目录下的 bin 目录，执行 ls 命令 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> node-v8.0.0-linux-x64/bin &amp;&amp; ls<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> node-v8.0.0-linux-x64/bin &amp;&amp; <span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
 
 <p>我们发现有node 和 npm</p>
 <p>这个时候我们测试:</p>
@@ -299,10 +299,10 @@
 
 <p>这个时候我们发现实际上已经安装好了，接下来就是要建立链接文件。</p>
 <p>这里还是，如果我们之前已经安装过了，那么我们要先删除之前建立的链接文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo rm -rf /usr/bin/node<br>sudo rm -rf /usr/bin/npm<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">rm</span> -rf /usr/bin/node<br>sudo <span class="hljs-built_in">rm</span> -rf /usr/bin/npm<br></code></pre></td></tr></table></figure>
 
 <p>然后建立链接文件: </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ln -s /usr/share/node-v8.0.0-linux-x64/bin/node /usr/bin/node<br>sudo ln -s /usr/share/node-v8.0.0-linux-x64/bin/npm /usr/bin/npm<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">ln</span> -s /usr/share/node-v8.0.0-linux-x64/bin/node /usr/bin/node<br>sudo <span class="hljs-built_in">ln</span> -s /usr/share/node-v8.0.0-linux-x64/bin/npm /usr/bin/npm<br></code></pre></td></tr></table></figure>
 
 <p>注意这里的第一个路径不要直接复制粘贴，要写当前文件的真正的路径，这个可以通过pwd获取。</p>
 <p>然后我们可以通过<code>node -v</code>等测试已经安装成功。</p>

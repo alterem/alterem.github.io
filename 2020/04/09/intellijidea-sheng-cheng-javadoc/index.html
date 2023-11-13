@@ -85,7 +85,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -291,7 +291,7 @@
 </li>
 <li><p>第一个参数 <code>-encoding UTF-8</code>  表示你的源代码（含有符合 JavaDoc 标准的注释）是基于 UTF-8 编码的，以免处理过程中出现中文等非英语字符乱码；第二个参数 -charset UTF-8 表示在处理并生成 JavaDoc 超文本时使用的字符集也是以 UTF-8 为编码，目前所有浏览器都支持 UTF-8，这样最具有通用性，支持中文非常好；第三个参数 -windowtitle 表示生成的 JavaDoc 超文本在浏览器中打开时，浏览器窗口标题栏显示的文字内容；第四个参数 -link 很重要，它表示你生成的 JavaDoc 中涉及到很多对其他外部 Java 类的引用，是使用全限定名称还是带有超链接的短名称，举个例子，我创建了一个方法 public void func (String arg)，这个方法在生成 JavaDoc 时如果不指定 -link 参数，则 JavaDoc 中对该方法的表述就会自动变为 public void func (java.lang.String arg)，因为 String 这个类对我自己实现的类来讲就是外部引用的类，虽然它是 Java 标准库的类。</p>
 </li>
-<li><p>如果指定了 <code>-link http://docs.oracle.com/javase/8/docs/api</code> 参数，则 javadoc 在生成 JavaDoc 时，会使用 String 这样的短名称而非全限定名称 java.lang.String，同时自动为 String 短名称生成一个超链接，指向官方 JavaSE 标准文档 <a href="http://docs.oracle.com/javase/8/docs/api" target="_blank" rel="noopener">http://docs.oracle.com/javase/8/docs/api</a> 中对 String 类的详细文档地址。-link 实质上是告诉 javadoc 根据提供的外部引用类的 JavaDoc 地址去找一个叫 package-list 的文本文件，在这个文本文件中包含了所有外部引用类的全限定名称，因此生成的新 JavaDoc 不必使用外部引用类的全限定名，只需要使用短名称，同时可以自动创建指向其外部引用 JavaDoc 中的详细文档超链接。每个 JavaDoc 都会在根目录下有一个 package-list 文件，包括我们自己生成的 JavaDoc。如果指定了 -link <a href="http://docs.oracle.com/javase/8/docs/api" target="_blank" rel="noopener">http://docs.oracle.com/javase/8/docs/api</a> 参数，则 javadoc 在生成 JavaDoc 时，会使用 String 这样的短名称而非全限定名称 java.lang.String，同时自动为 String 短名称生成一个超链接，指向官方 JavaSE 标准文档 <a href="http://docs.oracle.com/javase/8/docs/api" target="_blank" rel="noopener">http://docs.oracle.com/javase/8/docs/api</a> 中对 String 类的详细文档地址。-link 实质上是告诉 javadoc 根据提供的外部引用类的 JavaDoc 地址去找一个叫 package-list 的文本文件，在这个文本文件中包含了所有外部引用类的全限定名称，因此生成的新 JavaDoc 不必使用外部引用类的全限定名，只需要使用短名称，同时可以自动创建指向其外部引用 JavaDoc 中的详细文档超链接。每个 JavaDoc 都会在根目录下有一个 package-list 文件，包括我们自己生成的 JavaDoc。</p>
+<li><p>如果指定了 <code>-link http://docs.oracle.com/javase/8/docs/api</code> 参数，则 javadoc 在生成 JavaDoc 时，会使用 String 这样的短名称而非全限定名称 java.lang.String，同时自动为 String 短名称生成一个超链接，指向官方 JavaSE 标准文档 <a target="_blank" rel="noopener" href="http://docs.oracle.com/javase/8/docs/api">http://docs.oracle.com/javase/8/docs/api</a> 中对 String 类的详细文档地址。-link 实质上是告诉 javadoc 根据提供的外部引用类的 JavaDoc 地址去找一个叫 package-list 的文本文件，在这个文本文件中包含了所有外部引用类的全限定名称，因此生成的新 JavaDoc 不必使用外部引用类的全限定名，只需要使用短名称，同时可以自动创建指向其外部引用 JavaDoc 中的详细文档超链接。每个 JavaDoc 都会在根目录下有一个 package-list 文件，包括我们自己生成的 JavaDoc。如果指定了 -link <a target="_blank" rel="noopener" href="http://docs.oracle.com/javase/8/docs/api">http://docs.oracle.com/javase/8/docs/api</a> 参数，则 javadoc 在生成 JavaDoc 时，会使用 String 这样的短名称而非全限定名称 java.lang.String，同时自动为 String 短名称生成一个超链接，指向官方 JavaSE 标准文档 <a target="_blank" rel="noopener" href="http://docs.oracle.com/javase/8/docs/api">http://docs.oracle.com/javase/8/docs/api</a> 中对 String 类的详细文档地址。-link 实质上是告诉 javadoc 根据提供的外部引用类的 JavaDoc 地址去找一个叫 package-list 的文本文件，在这个文本文件中包含了所有外部引用类的全限定名称，因此生成的新 JavaDoc 不必使用外部引用类的全限定名，只需要使用短名称，同时可以自动创建指向其外部引用 JavaDoc 中的详细文档超链接。每个 JavaDoc 都会在根目录下有一个 package-list 文件，包括我们自己生成的 JavaDoc。</p>
 </li>
 <li><p>JavaDoc 生成完毕，即可在其根目录下找到 index.html 文件，打开它就可以看到我们自己的标准 JavaDoc API 文档啦。</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/09/image-20200409112314666.png" srcset="/img/loading.gif" lazyload alt="image-20200409112314666"></p>

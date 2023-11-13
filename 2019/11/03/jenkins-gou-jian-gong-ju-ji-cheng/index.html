@@ -84,7 +84,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.2k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          18 分钟
+          19 分钟
         
       </span>
     
@@ -281,67 +281,57 @@
 <h2 id="1-集成maven"><a href="#1-集成maven" class="headerlink" title="1. 集成maven"></a>1. 集成maven</h2><h3 id="1-1-先决条件"><a href="#1-1-先决条件" class="headerlink" title="1.1 先决条件"></a>1.1 先决条件</h3><ul>
 <li>JDK：在maven3.3 以上的版本需要JDK版本1.7+。内存：没有最低限制。</li>
 <li>磁盘：1G+可用磁盘空间。操作系统：没有限制。</li>
-<li>下载maven <a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">Download</a></li>
+<li>下载maven <a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">Download</a></li>
 </ul>
-<h3 id="1-2-安装maven"><a href="#1-2-安装maven" class="headerlink" title="1.2 安装maven"></a>1.2 安装maven</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar zxf apache-maven-3.6.0-bin.tar.gz -C /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#设置全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> MAVEN_HOME=/usr/<span class="hljs-built_in">local</span>/apache-maven-3.6.0<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$MAVEN_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+<h3 id="1-2-安装maven"><a href="#1-2-安装maven" class="headerlink" title="1.2 安装maven"></a>1.2 安装maven</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar zxf apache-maven-3.6.0-bin.tar.gz -C /usr/local/<br><span class="hljs-comment">#设置全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> MAVEN_HOME=/usr/local/apache-maven-3.6.0<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$MAVEN_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
 
 <h3 id="1-3-Jenkins配置maven"><a href="#1-3-Jenkins配置maven" class="headerlink" title="1.3 Jenkins配置maven"></a>1.3 Jenkins配置maven</h3><ul>
-<li><p>系统设置-&gt;全局工具配置 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn3b3fwj30o007xweq.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>系统设置-&gt;全局工具配置 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn3b3fwj30o007xweq.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>编写Jenkinsfile</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"build"</span>)&#123;<br>        mavenHome = tool <span class="hljs-string">'M3'</span><br>        sh <span class="hljs-string">"<span class="hljs-variable">$&#123;mavenHome&#125;</span>/bin/mvn -v"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">&quot;build&quot;</span>)&#123;<br>        mavenHome = tool <span class="hljs-string">&#x27;M3&#x27;</span><br>        sh <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;mavenHome&#125;</span>/bin/mvn -v&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 </li>
-</ul>
-<ul>
-<li>构建测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn49lvrj30o00e4my9.jpg" srcset="/img/loading.gif" lazyload alt="">到此jenkins集成maven就完成了。</li>
+<li><p>构建测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn49lvrj30o00e4my9.jpg" srcset="/img/loading.gif" lazyload>到此jenkins集成maven就完成了。</p>
+</li>
 </ul>
 <h3 id="1-4-maven常用命令"><a href="#1-4-maven常用命令" class="headerlink" title="1.4 maven常用命令"></a>1.4 maven常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">clean install -DskipTests<br>clean package<br></code></pre></td></tr></table></figure>
 
 <h2 id="2-集成Ant"><a href="#2-集成Ant" class="headerlink" title="2. 集成Ant"></a>2. 集成Ant</h2><h3 id="2-1-先决条件"><a href="#2-1-先决条件" class="headerlink" title="2.1 先决条件"></a>2.1 先决条件</h3><ul>
-<li>下载：<a href="https://ant.apache.org/bindownload.cgi" target="_blank" rel="noopener">Download</a><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn4sopmj30kw0413z4.jpg" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>下载：<a target="_blank" rel="noopener" href="https://ant.apache.org/bindownload.cgi">Download</a><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn4sopmj30kw0413z4.jpg" srcset="/img/loading.gif" lazyload></li>
 </ul>
-<h3 id="2-2-安装ant"><a href="#2-2-安装ant" class="headerlink" title="2.2 安装ant"></a>2.2 安装ant</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar zxf apache-ant-1.10.5-bin.tar.gz -C /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> ANT_HOME=/usr/<span class="hljs-built_in">local</span>/apache-ant-1.10.5<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$MAVEN_HOME</span>/bin:<span class="hljs-variable">$ANT_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+<h3 id="2-2-安装ant"><a href="#2-2-安装ant" class="headerlink" title="2.2 安装ant"></a>2.2 安装ant</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar zxf apache-ant-1.10.5-bin.tar.gz -C /usr/local/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> ANT_HOME=/usr/local/apache-ant-1.10.5<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$MAVEN_HOME</span>/bin:<span class="hljs-variable">$ANT_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn644tjj30mw020jrn.jpg" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn644tjj30mw020jrn.jpg" srcset="/img/loading.gif" lazyload></li>
 </ul>
 <h3 id="2-3-Jenkins配置ant"><a href="#2-3-Jenkins配置ant" class="headerlink" title="2.3 Jenkins配置ant"></a>2.3 Jenkins配置ant</h3><ul>
 <li><p>系统设置-&gt;全局工具配置</p>
 </li>
 <li><p>编写Jenkinsfile</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"build"</span>)&#123;<br>        antHome = tool <span class="hljs-string">'ANT'</span><br>        sh <span class="hljs-string">"<span class="hljs-variable">$&#123;antHome&#125;</span>/bin/ant -version"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">&quot;build&quot;</span>)&#123;<br>        antHome = tool <span class="hljs-string">&#x27;ANT&#x27;</span><br>        sh <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;antHome&#125;</span>/bin/ant -version&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 </li>
-</ul>
-<ul>
 <li><p>构建测试</p>
-<p> <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn730xij30m807rq3e.jpg" srcset="/img/loading.gif" lazyload alt=""> 到此ant的集成就完成了</p>
+<p> <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn730xij30m807rq3e.jpg" srcset="/img/loading.gif" lazyload> 到此ant的集成就完成了</p>
 </li>
 </ul>
 <h3 id="2-4-Ant常用命令"><a href="#2-4-Ant常用命令" class="headerlink" title="2.4 Ant常用命令"></a>2.4 Ant常用命令</h3><p><code>ant -buildfile -f build.xml</code></p>
-<h2 id="3-集成Gradle"><a href="#3-集成Gradle" class="headerlink" title="3. 集成Gradle"></a>3. 集成Gradle</h2><h3 id="3-1-先决条件"><a href="#3-1-先决条件" class="headerlink" title="3.1 先决条件"></a>3.1 先决条件</h3><p> <img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9ymn7mrf3j30gd062wey.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="3-集成Gradle"><a href="#3-集成Gradle" class="headerlink" title="3. 集成Gradle"></a>3. 集成Gradle</h2><h3 id="3-1-先决条件"><a href="#3-1-先决条件" class="headerlink" title="3.1 先决条件"></a>3.1 先决条件</h3><p> <img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9ymn7mrf3j30gd062wey.jpg" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li>下载:<a href="https://downloads.gradle.org/distributions/gradle-5.3-bin.zip" target="_blank" rel="noopener">Download</a></li>
+<li>下载:<a target="_blank" rel="noopener" href="https://downloads.gradle.org/distributions/gradle-5.3-bin.zip">Download</a></li>
 </ul>
-<h3 id="3-2-安装Gradle"><a href="#3-2-安装Gradle" class="headerlink" title="3.2 安装Gradle"></a>3.2 安装Gradle</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip gradle-5.3-bin.zip -d /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> GRADLE_HOME=/usr/<span class="hljs-built_in">local</span>/gradle-5.3<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>: <span class="hljs-variable">$GRADLE_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+<h3 id="3-2-安装Gradle"><a href="#3-2-安装Gradle" class="headerlink" title="3.2 安装Gradle"></a>3.2 安装Gradle</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip gradle-5.3-bin.zip -d /usr/local/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> GRADLE_HOME=/usr/local/gradle-5.3<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>: <span class="hljs-variable">$GRADLE_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
 
 <h3 id="3-3-Jenkins配置gradle"><a href="#3-3-Jenkins配置gradle" class="headerlink" title="3.3 Jenkins配置gradle"></a>3.3 Jenkins配置gradle</h3><ul>
 <li><p>系统设置-&gt;全局工具配置</p>
 </li>
 <li><p>编写Jenkinsfile</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"gradlebuild"</span>)&#123;<br>        gradleHome = tool <span class="hljs-string">'GRADLE'</span><br>        sh <span class="hljs-string">"<span class="hljs-variable">$&#123;gradleHome&#125;</span>/bin/gradle -v"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">&quot;gradlebuild&quot;</span>)&#123;<br>        gradleHome = tool <span class="hljs-string">&#x27;GRADLE&#x27;</span><br>        sh <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;gradleHome&#125;</span>/bin/gradle -v&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 </li>
-</ul>
-<ul>
-<li>构建测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn82gi8j30l20cu74x.jpg" srcset="/img/loading.gif" lazyload alt="">到此jenkins配置gradle完成</li>
+<li><p>构建测试 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn82gi8j30l20cu74x.jpg" srcset="/img/loading.gif" lazyload>到此jenkins配置gradle完成</p>
+</li>
 </ul>
 <h3 id="3-4-Gradle常用命令"><a href="#3-4-Gradle常用命令" class="headerlink" title="3.4 Gradle常用命令"></a>3.4 Gradle常用命令</h3><ul>
 <li>./gradlew -v 版本号，首次运行，没有gradle的要下载的哦。</li>
@@ -353,9 +343,9 @@
 <li>./gradlew uninstallRelease 卸载Release模式包</li>
 </ul>
 <h2 id="4-集成NPM"><a href="#4-集成NPM" class="headerlink" title="4.集成NPM"></a>4.集成NPM</h2><h3 id="4-1-先决条件"><a href="#4-1-先决条件" class="headerlink" title="4.1 先决条件"></a>4.1 先决条件</h3><ul>
-<li>下载<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Download</a></li>
+<li>下载<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Download</a></li>
 </ul>
-<h3 id="4-2-安装Node"><a href="#4-2-安装Node" class="headerlink" title="4.2 安装Node"></a>4.2 安装Node</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar xf node-v10.15.3-linux-x64.tar.xz -C /usr/<span class="hljs-built_in">local</span>/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> NODE_HOME=/usr/<span class="hljs-built_in">local</span>/node-v10.15.3-linux-x64<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>: <span class="hljs-variable">$NODE_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+<h3 id="4-2-安装Node"><a href="#4-2-安装Node" class="headerlink" title="4.2 安装Node"></a>4.2 安装Node</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar xf node-v10.15.3-linux-x64.tar.xz -C /usr/local/<br><span class="hljs-comment">#添加全局变量（/etc/profile）</span><br><span class="hljs-built_in">export</span> NODE_HOME=/usr/local/node-v10.15.3-linux-x64<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>: <span class="hljs-variable">$NODE_HOME</span>/bin<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>测试</li>
@@ -364,17 +354,14 @@
 <li><p>在Jenkins全局工具配置中并没有node，可以直接通过Jenkinsfile定义使用。</p>
 </li>
 <li><p>Jenkinsfile</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">"npmbuild"</span>)&#123;<br>        sh <span class="hljs-string">""</span><span class="hljs-string">"</span><br><span class="hljs-string">           export npmHome=/usr/local/node-v10.15.3-linux-x64</span><br><span class="hljs-string">           export PATH=\$PATH:\$npmHome/bin</span><br><span class="hljs-string">           npm -v</span><br><span class="hljs-string">           "</span><span class="hljs-string">""</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">node &#123;<br>    stage (<span class="hljs-string">&quot;npmbuild&quot;</span>)&#123;<br>        sh <span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;</span><br><span class="hljs-string">           export npmHome=/usr/local/node-v10.15.3-linux-x64</span><br><span class="hljs-string">           export PATH=\$PATH:\$npmHome/bin</span><br><span class="hljs-string">           npm -v</span><br><span class="hljs-string">           &quot;</span><span class="hljs-string">&quot;&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 </li>
-</ul>
-<ul>
-<li>构建测试</li>
+<li><p>构建测试</p>
+</li>
 </ul>
 <h3 id="4-4-Npm常用构建命令"><a href="#4-4-Npm常用构建命令" class="headerlink" title="4.4 Npm常用构建命令"></a>4.4 Npm常用构建命令</h3><p><code>npm install &amp;&amp; npm run build</code></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn8kwtuj30o00ajwf3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymn8kwtuj30o00ajwf3.jpg" srcset="/img/loading.gif" lazyload></p>
 <p><strong>欢迎关注微信公众号​：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" lazyload alt="欢迎关注公众号" style="width: 100px" />
                 

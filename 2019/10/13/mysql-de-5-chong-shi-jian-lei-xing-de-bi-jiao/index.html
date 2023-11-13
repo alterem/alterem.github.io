@@ -84,7 +84,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -328,7 +328,9 @@
 </tr>
 </tbody></table>
 <p><strong>DATETIME</strong></p>
-<pre><code class="hljs">DATETIME 用于表示 年月日 时分秒，是 DATE 和 TIME 的组合，并且记录的年份（见上表）比较长久。如果实际应用中有这样的需求，就可以使用 DATETIME 类型。</code></pre><p>1、DATETIME列可以设置为多个，默认可为null，可以手动设置其值。  </p>
+<pre><code class="hljs">DATETIME 用于表示 年月日 时分秒，是 DATE 和 TIME 的组合，并且记录的年份（见上表）比较长久。如果实际应用中有这样的需求，就可以使用 DATETIME 类型。
+</code></pre>
+<p>1、DATETIME列可以设置为多个，默认可为null，可以手动设置其值。  </p>
 <p>2、DATETIME列不可设定默认值。 </p>
 <p>3、DATETIME列可以变相的设定默认值，比如通过触发器、或者在插入数据时候，将DATETIME字段值设置为now()，这样可以做到了，尤其是后者，在程序开发中常常用到。</p>
 <p> <strong>TIMESTAMP</strong></p>
@@ -345,9 +347,15 @@
 </ul>
 <p>注：一般建表时候，创建时间用datetime，更新时间用timestamp。</p>
 <p> <strong>DATE</strong></p>
-<pre><code class="hljs">DATE 用于表示 年月日，如果实际应用值需要保存 年月日 就可以使用 DATE。</code></pre><p> <strong>TIME</strong></p>
-<pre><code class="hljs">TIME 用于表示 时分秒，如果实际应用值需要保存 时分秒 就可以使用 TIME。</code></pre><p> <strong>YEAR</strong></p>
-<pre><code class="hljs">YEAR 用于表示 年份，YEAR 有 2 位（最好使用4位）和 4 位格式的年。 默认是4位。如果实际应用只保存年份，那么用 1 bytes 保存 YEAR 类型完全可以。不但能够节约存储空间，还能提高表的操作效率。</code></pre><p><strong>欢迎关注微信公众号​：</strong></p>
+<pre><code class="hljs">DATE 用于表示 年月日，如果实际应用值需要保存 年月日 就可以使用 DATE。
+</code></pre>
+<p> <strong>TIME</strong></p>
+<pre><code class="hljs">TIME 用于表示 时分秒，如果实际应用值需要保存 时分秒 就可以使用 TIME。
+</code></pre>
+<p> <strong>YEAR</strong></p>
+<pre><code class="hljs">YEAR 用于表示 年份，YEAR 有 2 位（最好使用4位）和 4 位格式的年。 默认是4位。如果实际应用只保存年份，那么用 1 bytes 保存 YEAR 类型完全可以。不但能够节约存储空间，还能提高表的操作效率。
+</code></pre>
+<p><strong>欢迎关注微信公众号​：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" lazyload alt="欢迎关注公众号" style="width: 100px" />
                 
               </div>

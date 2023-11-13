@@ -85,7 +85,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -300,10 +300,10 @@
 <li>设置 <code>Redis</code> 请求密码</li>
 </ul>
 <p>把 <code>requirepass</code> 修改为 <code>123456</code>，修改之后重启下服务</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">requirepass</span> <span class="hljs-string">"123456"</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">requirepass</span> <span class="hljs-string">&quot;123456&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>有了密码之后，进入客户端，就得这样访问：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-meta">$</span> <span class="hljs-string">redis-cli -h 127.0.0.1 -p 6379 -a 123456</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">$</span> <span class="hljs-string">redis-cli -h 127.0.0.1 -p 6379 -a 123456</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             

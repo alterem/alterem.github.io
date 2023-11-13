@@ -90,7 +90,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.4k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          20 分钟
+          21 分钟
         
       </span>
     
@@ -282,8 +282,8 @@
               <div class="markdown-body">
                 
                 <h5 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h5><blockquote>
-<p>官方网站：<a href="http://www.freetds.org" target="_blank" rel="noopener">http://www.freetds.org</a></p>
-<p>下载地址：<a href="http://ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-stable.tgz" target="_blank" rel="noopener">http://ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-stable.tgz</a></p>
+<p>官方网站：<a target="_blank" rel="noopener" href="http://www.freetds.org/">http://www.freetds.org</a></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="http://ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-stable.tgz">http://ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-stable.tgz</a></p>
 <p>这个软件能够用Linux和Unix连接MS SQLServer和Sybase数据库</p>
 </blockquote>
 <h5 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h5><ol>
@@ -291,7 +291,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget -c http://ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-stable.tgz<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrluiwrj319s08mdjy.jpg" srcset="/img/loading.gif" lazyload alt="1"></p>
-<a id="more"></a>
+<span id="more"></span>
 </li>
 <li><p>解压</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -zxvf freetds-stable.tgz<br></code></pre></td></tr></table></figure>
@@ -308,7 +308,9 @@
 
 <p>`解释：</p>
 <pre><code class="hljs">安装freetds到目录/usr/local/freetds：--prefix=/usr/local/freetds
-支持MSSQL2000：--with-tdsver=8.0 --enable-msdblib`</code></pre></li>
+支持MSSQL2000：--with-tdsver=8.0 --enable-msdblib`
+</code></pre>
+</li>
 </ol>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrnq2tqj318f02ydgf.jpg" srcset="/img/loading.gif" lazyload alt="3"></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrp4l6oj30o40pm10k.jpg" srcset="/img/loading.gif" lazyload alt="4"></p>
@@ -322,13 +324,13 @@
 </li>
 <li><p>测试连接</p>
 <p><code>tsql -H MSSQL服务器服务IP -p 1433 -U MSSQL服务器登陆帐号 －P MSSQL服务器登陆密码</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash">  tsql -H XXXXXX-p 1433 -U sa -P XXXXXX -D <span class="hljs-built_in">test</span>  </span><br>locale is "zh_CN.utf8"  <br>locale charset is "UTF-8"  <br>Default database being set to test  <br><span class="hljs-meta">1&gt;</span><span class="bash"> select @@version  </span><br><span class="hljs-meta">2&gt;</span><span class="bash"> go  </span><br>  <br>Microsoft SQL Server 2008 R2 (RTM) - 10.50.1600.1 (Intel X86)  <br>        Apr  2 2010 15:53:02  <br>        Copyright (c) Microsoft Corporation  <br>        Data Center Edition on Windows NT 5.1 &lt;X86&gt; (Build 2600: Service Pack 3)  <br>  <br>(1 row affected)<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"> tsql -H XXXXXX-p 1433 -U sa -P XXXXXX -D <span class="hljs-built_in">test</span></span>  <br>locale is &quot;zh_CN.utf8&quot;  <br>locale charset is &quot;UTF-8&quot;  <br>Default database being set to test  <br><span class="hljs-meta prompt_">1&gt; </span><span class="language-bash"><span class="hljs-keyword">select</span> @@version</span>  <br><span class="hljs-meta prompt_">2&gt; </span><span class="language-bash">go</span>  <br>  <br>Microsoft SQL Server 2008 R2 (RTM) - 10.50.1600.1 (Intel X86)  <br>        Apr  2 2010 15:53:02  <br>        Copyright (c) Microsoft Corporation  <br>        Data Center Edition on Windows NT 5.1 &lt;X86&gt; (Build 2600: Service Pack 3)  <br>  <br>(1 row affected)<br></code></pre></td></tr></table></figure>
 
 <h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><p> <strong>Adaptive Server connection failed</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">locale is "en_US.UTF-8"<br>locale charset is "UTF-8"<br>using default charset "UTF-8"<br>Error 20017 (severity 9):<br>        Unexpected EOF from the server<br>        OS error 115, "Operation now in progress"<br>Error 20002 (severity 9):<br>        Adaptive Server connection failed<br>There was a problem connecting to the server<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">locale is &quot;en_US.UTF-8&quot;<br>locale charset is &quot;UTF-8&quot;<br>using default charset &quot;UTF-8&quot;<br>Error 20017 (severity 9):<br>        Unexpected EOF from the server<br>        OS error 115, &quot;Operation now in progress&quot;<br>Error 20002 (severity 9):<br>        Adaptive Server connection failed<br>There was a problem connecting to the server<br></code></pre></td></tr></table></figure>
 
 <p>执行<code>tsql -C</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@thinkpa freetds-0.91]# tsql -C<br>Compile-time settings (established with the "configure" script)<br>                            Version: freetds v0.91<br>             freetds.conf directory: /usr/local/etc<br>     MS db-lib source compatibility: no<br>        Sybase binary compatibility: no<br>                      Thread safety: yes<br>                      iconv library: yes<br>                        TDS version: 5.0<br>                              iODBC: no<br>                           unixodbc: no<br>              SSPI "trusted" logins: no<br>                           Kerberos: no<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@thinkpa freetds-0.91]# tsql -C<br>Compile-time settings (established with the &quot;configure&quot; script)<br>                            Version: freetds v0.91<br>             freetds.conf directory: /usr/local/etc<br>     MS db-lib source compatibility: no<br>        Sybase binary compatibility: no<br>                      Thread safety: yes<br>                      iconv library: yes<br>                        TDS version: 5.0<br>                              iODBC: no<br>                           unixodbc: no<br>              SSPI &quot;trusted&quot; logins: no<br>                           Kerberos: no<br></code></pre></td></tr></table></figure>
 
 <p>发现freetds的版本是5.0，考虑到可能是freetds版本的问题</p>
 <p>两种解决方式：</p>
@@ -340,10 +342,10 @@
 <p><code>TDSVER=7.0 tsql -H</code></p>
 <p>整个连接命令则变为：</p>
 <p><code>tsql -H MSSQL服务器服务IP -p 1433 -U MSSQL服务器登陆帐号 －P MSSQL服务器登陆密码</code></p>
-<p><strong>Adaptive Server connection failed</strong></p>
 </li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">"Cannot open server 'xxxxxxx' requested by the login. Client with IP    address 'xxxxxxxxx' is not allowed to access the server.  To enable       access, use the Windows Azure Management Portal or run                   sp_set_firewall_rule on the master database to create a firewall       rule for this IP address or address range.  It may take up to five       minutes for this change to take effect."<br>Error 20002 (severity 9):<br>        Adaptive Server connection failed<br></code></pre></td></tr></table></figure>
+<p> <strong>Adaptive Server connection failed</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">&quot;Cannot open server &#x27;xxxxxxx&#x27; requested by the login. Client with IP    address &#x27;xxxxxxxxx&#x27; is not allowed to access the server.  To enable       access, use the Windows Azure Management Portal or run                   sp_set_firewall_rule on the master database to create a firewall       rule for this IP address or address range.  It may take up to five       minutes for this change to take effect.&quot;<br>Error 20002 (severity 9):<br>        Adaptive Server connection failed<br></code></pre></td></tr></table></figure>
 
 <p>这个毋庸置疑了，找管理员开通白名单再访问吧！</p>
 </li>

@@ -85,7 +85,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -278,11 +278,11 @@
                 
                 <p>1、下载</p>
 <blockquote>
-<p>32位：<a href="https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-binaries.zip" target="_blank" rel="noopener">https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-binaries.zip</a></p>
-<p>64位：<a href="https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-x64-binaries.zip" target="_blank" rel="noopener">https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-x64-binaries.zip</a></p>
+<p>32位：<a target="_blank" rel="noopener" href="https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-binaries.zip">https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-binaries.zip</a></p>
+<p>64位：<a target="_blank" rel="noopener" href="https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-x64-binaries.zip">https://get.enterprisedb.com/postgresql/postgresql-10.2-1-windows-x64-binaries.zip</a></p>
 </blockquote>
 <p>2、解压到：c:\pgsql\</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>3、设置环境变量(cmd)：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">setx PGHOME c:\pgsql<br>setx PGHOST localhost<br>setx PGLIB %PGHOME%\lib<br>setx PGDATA %PGHOME%\data<br>setx Path %Path%;%PGHOME%\bin<br></code></pre></td></tr></table></figure>
@@ -301,7 +301,7 @@
 </blockquote>
 <p>​    6.2  设置ipv4段  notepad c:\pgsql\data\pg_hba.conf </p>
 <blockquote>
-<p>host    all    all    0.0.0.0/0    md5 </p>
+<p>host    all    all    0.0.0.0/0    md5 </p>
 </blockquote>
 <p>7、启动服务 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">net start PostgreSQL<br></code></pre></td></tr></table></figure>

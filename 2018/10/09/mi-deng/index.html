@@ -83,7 +83,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -275,32 +275,32 @@
               <div class="markdown-body">
                 
                 <p>幂等（idempotent、idempotence）是一个数学与计算机学概念，常见于抽象代数中。</p>
-<p>在编程中一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同。幂等函数，或幂等方法，是指可以使用相同参数重复执行，并能获得相同结果的函数。这些<a href="https://baike.baidu.com/item/%E5%87%BD%E6%95%B0/301912" target="_blank" rel="noopener">函数</a>不会影响系统状态，也不用担心重复执行会对系统造成改变。例如，“setTrue()”函数就是一个幂等函数,无论多次执行，其结果都是一样的.更复杂的操作幂等保证是利用唯一交易号(流水号)实现.</p>
-<a id="more"></a>
+<p>在编程中一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同。幂等函数，或幂等方法，是指可以使用相同参数重复执行，并能获得相同结果的函数。这些<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%87%BD%E6%95%B0/301912">函数</a>不会影响系统状态，也不用担心重复执行会对系统造成改变。例如，“setTrue()”函数就是一个幂等函数,无论多次执行，其结果都是一样的.更复杂的操作幂等保证是利用唯一交易号(流水号)实现.</p>
+<span id="more"></span>
 
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在数学里，<strong>幂等</strong>有两种主要的定义。</p>
 <p>在某二元运算下，<strong>幂等元素</strong>是指被自己重复运算(或对于函数是为复合)的结果等于它自己的元素。例如，乘法下唯一两个幂等实数为0和1。</p>
 <p>某一元运算为<strong>幂等</strong>的时，其作用在任一元素两次后会和其作用一次的结果相同。例如，高斯符号便是幂等的。</p>
 <p>一元运算的定义是二元运算定义的特例</p>
 <h3 id="二元运算"><a href="#二元运算" class="headerlink" title="二元运算"></a>二元运算</h3><p>设<em>S</em>为一具有作用于其自身的二元运算的集合，则<em>S</em>的元素<em>s</em>称为幂等的(相对于*)当</p>
-<p><em>s</em> <em>*s</em> = <em>s</em>.</p>
+<p><em>s</em> *<em>s</em> = <em>s</em>.</p>
 <p>特别的是，任一单位元都是幂等的。若<em>S</em>的所有元素都是幂等的话，则其二元运算*被称做是幂等的。例如，联集和交集的运算便都是幂等的。</p>
 <h3 id="一元运算"><a href="#一元运算" class="headerlink" title="一元运算"></a>一元运算</h3><p>设<em>f</em>为一由<em>X</em>映射至<em>X</em>的一元运算，则<em>f</em>为幂等的，当对于所有在<em>X</em>内的<em>x</em>，</p>
 <p><em>f</em>(<em>f</em>(<em>x</em>)) = <em>f</em>(<em>x</em>).</p>
-<p>特别的是，恒等函数一定是幂等的，且任一<a href="https://baike.baidu.com/item/%E5%B8%B8%E6%95%B0%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">常数函数</a>也都是幂等的。</p>
+<p>特别的是，恒等函数一定是幂等的，且任一<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B8%B8%E6%95%B0%E5%87%BD%E6%95%B0">常数函数</a>也都是幂等的。</p>
 <p>注意当考虑一由<em>X</em>至<em>X</em>的所有函数所组成的集合<em>S</em>时。在<em>f</em>在一元运算下为幂等的若且唯若在二元运算下，<em>f</em>相对于其复合运算(标记为<em>o</em>)会是幂等的。这可以写成<em>f</em> o <em>f</em> = <em>f</em>。</p>
 <h2 id="一般例子"><a href="#一般例子" class="headerlink" title="一般例子"></a>一般例子</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>如上述所说，恒等函数和常数函数总会是幂等的。较不当然的例子有实数或复数引数的绝对值函数，以及实数引数的高斯符号。</p>
 <p>将一拓扑空间<em>X</em>内各子集<em>U</em>映射至<em>U</em>闭包的函数在<em>X</em>的幂集上是幂等的。这是闭包运算元的一个例子；所有个闭包运算元都会是幂等函数。</p>
 <h3 id="环的幂等元素"><a href="#环的幂等元素" class="headerlink" title="环的幂等元素"></a>环的幂等元素</h3><p>定义上，环的幂等元素为一相对于环乘法为幂等的元素。可以定义一于环幂等上的偏序：若e和f为幂等的，当ef= fe= e时，标记为e≤ f。依其顺序，0会是最小幂等元素，而1为最大幂等元素。</p>
 <p>若<em>e</em>在环<em>R</em>内为幂等的，则<em>eRe</em>一样会是个乘法单位元为<em>e</em>的环。</p>
-<p>两个幂等元素<em>e</em>和<em>f</em>被称为<em>正交的<em>当</em>ef</em>=<em>fe</em>=0。在此一情形下，<em>e</em>+<em>f</em>也是幂等的，且有<em>e</em> ≤ <em>e</em> + <em>f</em>和<em>f</em> ≤ <em>e</em> + <em>f</em>。</p>
+<p>两个幂等元素<em>e</em>和<em>f</em>被称为<em>正交的</em>当<em>ef</em>=<em>fe</em>=0。在此一情形下，<em>e</em>+<em>f</em>也是幂等的，且有<em>e</em> ≤ <em>e</em> + <em>f</em>和<em>f</em> ≤ <em>e</em> + <em>f</em>。</p>
 <p>若<em>e</em>在环<em>R</em>内为幂等的，则<em>f</em> = 1 − <em>e</em>也会是幂等的，且<em>e</em>和<em>f</em>正交。</p>
-<p>一在<em>R</em>内的幂等元素<em>e</em>称为<em>核心的<em>，若对所有在</em>R<em>内的</em>x<em>，</em>ex</em>=<em>xe<em>。在此情形之下，</em>Re<em>会是个乘法单位元为</em>e<em>的环。</em>R<em>的核心幂等元素和</em>R<em>的分解为环的直和有很直接的关接。若</em>R<em>为环</em>R<em>1、…、</em>R<strong>n<em>的直和，则环</em>R</strong>i<em>的单位元在</em>R<em>内为核心幂等的，相互正交，且其总和为1。相反地，给出</em>R<em>内给相互正交且总和为1的核心幂等元素</em>e<em>1、…、</em>e<strong>n<em>，则</em>R<em>会是环</em>Re<em>1、…、</em>Re</strong>n<em>的直和。所有较有趣的是，每一于</em>R<em>内的核心幂等</em>e<em>都会给出一</em>R<em>的分解－</em>Re<em>和</em>R</em>(1 − <em>e</em>)的直和。</p>
+<p>一在<em>R</em>内的幂等元素<em>e</em>称为<em>核心的</em>，若对所有在<em>R</em>内的<em>x</em>，<em>ex</em>=<em>xe</em>。在此情形之下，<em>Re</em>会是个乘法单位元为<em>e</em>的环。<em>R</em>的核心幂等元素和<em>R</em>的分解为环的直和有很直接的关接。若<em>R</em>为环<em>R</em>1、…、<em>R**n</em>的直和，则环<em>R**i</em>的单位元在<em>R</em>内为核心幂等的，相互正交，且其总和为1。相反地，给出<em>R</em>内给相互正交且总和为1的核心幂等元素<em>e</em>1、…、<em>e**n</em>，则<em>R</em>会是环<em>Re</em>1、…、<em>Re**n</em>的直和。所有较有趣的是，每一于<em>R</em>内的核心幂等<em>e</em>都会给出一<em>R</em>的分解－<em>Re</em>和<em>R</em>(1 − <em>e</em>)的直和。</p>
 <p>任一不等于0和1的幂等元素都是零因子(因为<em>e</em>(1 − <em>e</em>) = 0)。这表示了整环及除环都不会存在此种幂等元素。局部环也没有此种幂等元素，但理由有点不同。唯一包含于一环的雅各布森根内的幂等元素只有0。共四元数环内会有一幂等元素组成的悬链曲面。</p>
 <p><em>所有</em>元素都幂等的环称做布尔环。可证明在每一此类环内，乘法都是可交换的，且每一元素都有其各自的加法逆元。</p>
-<h3 id="其他例子"><a href="#其他例子" class="headerlink" title="其他例子"></a>其他例子</h3><p>幂等运算也可以在布林代数内找到。逻辑和与<a href="https://baike.baidu.com/item/%E9%80%BB%E8%BE%91%E6%88%96" target="_blank" rel="noopener">逻辑或</a>便都是幂等运算。</p>
-<p>在<a href="https://baike.baidu.com/item/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0" target="_blank" rel="noopener">线性代数</a>里，<a href="https://baike.baidu.com/item/%E6%8A%95%E5%B0%84" target="_blank" rel="noopener">投射</a>是幂等的。亦即，每一将向量投射至一子空间V(不需正交)上的<a href="https://baike.baidu.com/item/%E7%BA%BF%E6%80%A7%E7%AE%97%E5%AD%90" target="_blank" rel="noopener">线性算子</a>，都是幂等的。</p>
-<p>一幂等半环为其<em>加法</em>(非乘法)为幂等的<a href="https://baike.baidu.com/item/%E5%8D%8A%E7%8E%AF" target="_blank" rel="noopener">半环</a>。</p>
+<h3 id="其他例子"><a href="#其他例子" class="headerlink" title="其他例子"></a>其他例子</h3><p>幂等运算也可以在布林代数内找到。逻辑和与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%80%BB%E8%BE%91%E6%88%96">逻辑或</a>便都是幂等运算。</p>
+<p>在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0">线性代数</a>里，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8A%95%E5%B0%84">投射</a>是幂等的。亦即，每一将向量投射至一子空间V(不需正交)上的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E6%80%A7%E7%AE%97%E5%AD%90">线性算子</a>，都是幂等的。</p>
+<p>一幂等半环为其<em>加法</em>(非乘法)为幂等的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8D%8A%E7%8E%AF">半环</a>。</p>
 
                 
               </div>

@@ -116,7 +116,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -325,7 +325,7 @@
 <p>在该面板空白处 右键创建 server连接，选择SonarQube</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ympmmr9zj30zy0n0jss.jpg" srcset="/img/loading.gif" lazyload alt="new"></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ympnoy67j30zy0n03zm.jpg" srcset="/img/loading.gif" lazyload alt="url"></p>
-<p>url为：<a href="http://localhost:9000" target="_blank" rel="noopener">http://localhost:9000</a></p>
+<p>url为：<a target="_blank" rel="noopener" href="http://localhost:9000/">http://localhost:9000</a></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymppxsmgj30zy0n0js9.jpg" srcset="/img/loading.gif" lazyload alt="utoken"></p>
 <p>使用UserName+Password或者token登陆</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ympraf22j30zy0n0myf.jpg" srcset="/img/loading.gif" lazyload alt="token"></p>
@@ -342,14 +342,14 @@
 <p>输入sonarQube中创建的工程的名称</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ympzptzaj30t60n0gmu.jpg" srcset="/img/loading.gif" lazyload alt="f"></p>
 <p>完成</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq1afbhj323k0oaq5r.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq1afbhj323k0oaq5r.jpg" srcset="/img/loading.gif" lazyload></p>
 <h4 id="4、-结果同步SonarQube显示"><a href="#4、-结果同步SonarQube显示" class="headerlink" title="4、 结果同步SonarQube显示"></a>4、 结果同步SonarQube显示</h4><p>在maven的settings.xml中配置如下：</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq283h7j31ey0gan0q.jpg" srcset="/img/loading.gif" lazyload alt="setting"></p>
 <p>配置完成后，使用soanr:sonar命令运行项目，此部分要求JDK为1.8。<code>clean install sonar:sonar</code></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq40r24j326c0raqb5.jpg" srcset="/img/loading.gif" lazyload alt="package"></p>
-<p>可以打开<a href="http://localhost:9000/dashboard?id=com.xxx查看对应的错误信息，也可以在SonarQube点击Issues进行查看" target="_blank" rel="noopener">http://localhost:9000/dashboard?id=com.xxx查看对应的错误信息，也可以在SonarQube点击Issues进行查看</a></p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq5616rj31jw0b20vw.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq7qiowj315y0u0jtb.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>可以打开<a target="_blank" rel="noopener" href="http://localhost:9000/dashboard?id=com.xxx%E6%9F%A5%E7%9C%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%9C%A8SonarQube%E7%82%B9%E5%87%BBIssues%E8%BF%9B%E8%A1%8C%E6%9F%A5%E7%9C%8B">http://localhost:9000/dashboard?id=com.xxx查看对应的错误信息，也可以在SonarQube点击Issues进行查看</a></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq5616rj31jw0b20vw.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq7qiowj315y0u0jtb.jpg" srcset="/img/loading.gif" lazyload></p>
 <h3 id="IDEA中使用"><a href="#IDEA中使用" class="headerlink" title="IDEA中使用"></a><strong>IDEA中使用</strong></h3><h4 id="1、-安装-1"><a href="#1、-安装-1" class="headerlink" title="1、  安装"></a>1、  安装</h4><p>​            File -&gt; settings -&gt; plugins 搜索sonarLint，Install。</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymq84v9pj31cg07074z.jpg" srcset="/img/loading.gif" lazyload alt="install"></p>
 <h4 id="2、-使用-1"><a href="#2、-使用-1" class="headerlink" title="2、 使用"></a>2、 使用</h4><p>在左下角点击隐藏面板，可以看到sonarLint，打开</p>
@@ -359,16 +359,16 @@
 <p>也可以通过点击上图的绿色倒三角手动执行分析。</p>
 <h4 id="3、-Server"><a href="#3、-Server" class="headerlink" title="3、 Server"></a>3、 Server</h4><p>连接SonarQube的主要目的是同步分析规则、质量规则与自定义设置。操作如下：</p>
 <p>从File -&gt; settings -&gt; OtherSettings中找到“SonarLint General Settings”打开；</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqcut2ej31nq0q4mzv.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>点击加号，输入一个name，如localhost;选择SonarQube，Url为<a href="http://localhost9000；" target="_blank" rel="noopener">http://localhost9000；</a></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqcut2ej31nq0q4mzv.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>点击加号，输入一个name，如localhost;选择SonarQube，Url为<a target="_blank" rel="noopener" href="http://localhost9000;/">http://localhost9000；</a></p>
 <p>选择Login/Password或者token，输入账号与密码或者token；</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqea12tj31nq0q4q51.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqea12tj31nq0q4q51.jpg" srcset="/img/loading.gif" lazyload></p>
 <p>finish</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqf8fetj31nq0q475u.jpg" srcset="/img/loading.gif" lazyload alt="finish"></p>
 <p>勾选“Enable binding to remote SonarQube Server”,选择添加的server,搜索到你需要绑定的项目，然后选择确认。</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqg4txyj313s0u0dhl.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqg4txyj313s0u0dhl.jpg" srcset="/img/loading.gif" lazyload></p>
 <h4 id="4、结果同步SonarQube显示"><a href="#4、结果同步SonarQube显示" class="headerlink" title="4、结果同步SonarQube显示"></a>4、结果同步SonarQube显示</h4><p>同Eclipse部分，此部分要求JDK为1.8。</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqh83gmj31330u0gnp.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqh83gmj31330u0gnp.jpg" srcset="/img/loading.gif" lazyload></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymqhzedij31330u0gnp.jpg" srcset="/img/loading.gif" lazyload alt="png"></p>
 <p><strong>欢迎关注微信公众号​：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" lazyload alt="欢迎关注公众号" style="width: 100px" />

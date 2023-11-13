@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -236,7 +236,7 @@
         
         
         
-          14 分钟
+          15 分钟
         
       </span>
     
@@ -280,18 +280,18 @@
                 
                 <p>Redis是一个高性能的，开源key-value型数据库。是构建高性能，可扩展的Web应用的完美解决方案，可以内存存储亦可持久化存储。因为要使用跨进程，跨服务级别的数据缓存，在对比多个方案后，决定使用Redis。顺便整理下Redis的安装过程，以便查阅。</p>
 <p>1 . 下载Redis<br>目前，最新的Redist版本为3.0，使用wget下载，命令如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> wget http://download.redis.io/releases/redis-3.0.4.tar.gz</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">wget http://download.redis.io/releases/redis-3.0.4.tar.gz</span><br></code></pre></td></tr></table></figure>
 
-<a id="more"></a>
+<span id="more"></span>
 
 <p>2 . 解压Redis<br>下载完成后，使用tar命令解压下载文件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> tar -xzvf redis-3.0.4.tar.gz</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">tar -xzvf redis-3.0.4.tar.gz</span><br></code></pre></td></tr></table></figure>
 
 <p>3 . 编译安装Redis<br>切换至程序目录，并执行make命令编译：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">cd</span> redis-3.0.4</span><br><span class="hljs-meta">#</span><span class="bash"> make</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> redis-3.0.4</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">make</span><br></code></pre></td></tr></table></figure>
 
 <p>执行安装命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> make install</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">make install</span><br></code></pre></td></tr></table></figure>
 
 <p>make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：</p>
 <ul>
@@ -303,13 +303,13 @@
 </ul>
 <p>备注</p>
 <p>有的机器会出现类似以下错误：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">make[1]: Entering directory `/root/redis/src'<br>You need tcl 8.5 or newer in order to run the Redis test<br>……<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">make[1]: Entering directory `/root/redis/src&#x27;<br>You need tcl 8.5 or newer in order to run the Redis test<br>……<br></code></pre></td></tr></table></figure>
 
 <p>这是因为没有安装tcl导致，yum安装即可：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install tcl<br></code></pre></td></tr></table></figure>
 
 <p>4 . 配置Redis<br>复制配置文件到/etc/目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> cp redis.conf /etc/</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cp</span> redis.conf /etc/</span><br></code></pre></td></tr></table></figure>
 
 <p>为了让Redis后台运行，一般还需要修改redis.conf文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vi /etc/redis.conf<br></code></pre></td></tr></table></figure>
@@ -318,17 +318,17 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">daemonize yes<br></code></pre></td></tr></table></figure>
 
 <p>5 . 启动Redis<br>配置完成后，启动Redis：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/bin</span><br><span class="hljs-meta">#</span><span class="bash"> ./redis-server /etc/redis.conf</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> /usr/local/bin</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">./redis-server /etc/redis.conf</span><br></code></pre></td></tr></table></figure>
 
 <p>检查启动情况：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> ps -ef | grep redis</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">ps -ef | grep redis</span><br></code></pre></td></tr></table></figure>
 
 <p>看到类似下面的一行，表示启动成功：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">root     18443     1  0 13:05 ?        00:00:00 ./redis-server *:6379<br></code></pre></td></tr></table></figure>
 
 <p>6 . 添加开机启动项<br>让Redis开机运行可以将其添加到rc.local文件，也可将添加为系统服务service。本文使用rc.local的方式，添加service请参考：Redis 配置为 Service 系统服务 。</p>
 <p>为了能让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo "/usr/local/bin/redis-server /etc/redis.conf" &gt;&gt;/etc/rc.local<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &quot;/usr/local/bin/redis-server /etc/redis.conf&quot; &gt;&gt;/etc/rc.local<br></code></pre></td></tr></table></figure>
 
 <p>7 . Redis配置参数<br>在 前面的操作中，我们用到了使Redis进程在后台运行的参数，下面介绍其它一些常用的Redis启动参数：</p>
 <blockquote>
