@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &amp;#x27;3:on&amp;#x27;">
+    <meta name="description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &#x27;3:on&#x27;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10招强化Linux安全的技能">
 <meta property="og:url" content="https://alterem.github.io/2018/09/14/10-zhao-qiang-hua-linux-an-quan-de-ji-neng/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &amp;#x27;3:on&amp;#x27;">
+<meta property="og:description" content="1.找出不必要的服务很明显，服务器上跑的服务，并不是每个都有用的。强烈建议检查并关掉不需要的服务，从而减少风险（多跑一个服务，就可能多几个漏洞）。 查询运行在runlevel 3的服务列表： 1[alter@alter ~]# &#x2F;sbin&#x2F;chkconfig --list |grep &#x27;3:on&#x27;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrkisisj30eq0q6ajx.jpg">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg">
@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          3.5k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          28 分钟
+          30 分钟
         
       </span>
     
@@ -313,16 +313,16 @@
 <h3 id="2-检查监听的网络端口"><a href="#2-检查监听的网络端口" class="headerlink" title="2.检查监听的网络端口"></a>2.检查监听的网络端口</h3><p>通过netstat命名能够看到所有已经打开的端口，并且可以看到是哪些程序打开的。如果发现某些是必须要的，建议关掉：</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">[<span class="hljs-keyword">alter</span>@<span class="hljs-keyword">alter</span>~]# netstat -tulpn<br>Active Internet connections (<span class="hljs-keyword">only</span> servers)<br>Proto Recv-Q Send-Q <span class="hljs-keyword">Local</span> Address  <span class="hljs-keyword">Foreign</span> Address  State   PID/Program <span class="hljs-type">name</span>   <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2181</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        <span class="hljs-keyword">LISTEN</span>  <span class="hljs-number">48983</span>/java          <br>tcp        <span class="hljs-number">0</span>      <span class="hljs-number">0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:<span class="hljs-number">2182</span>   <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>:*        <span class="hljs-keyword">LISTEN</span>  <span class="hljs-number">49051</span>/java  <br></code></pre></td></tr></table></figure>
 
-<h3 id="3-优化CRON任务"><a href="#3-优化CRON任务" class="headerlink" title="3.优化CRON任务"></a>3.优化CRON任务</h3><p>linux的cron可以执行一些定时任务。并且还可以通过/etc/cron.allow 和 /etc/cron.deny 控制哪些用户可以运行JOB，哪位用户禁止运行JOB。例如:<br>允许用户alter允许JOB，执行如下命令：</p>
+<h3 id="3-优化CRON任务"><a href="#3-优化CRON任务" class="headerlink" title="3.优化CRON任务"></a>3.优化CRON任务</h3><p>linux的cron可以执行一些定时任务。并且还可以通过&#x2F;etc&#x2F;cron.allow 和 &#x2F;etc&#x2F;cron.deny 控制哪些用户可以运行JOB，哪位用户禁止运行JOB。例如:<br>允许用户alter允许JOB，执行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> alter &gt;&gt; /etc/cron.allow<br></code></pre></td></tr></table></figure>
 
 <p>禁止所有用户访问JOB，执行如下命令：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">echo</span> <span class="hljs-literal">ALL</span> &gt;&gt;/etc/cron.<span class="hljs-literal">deny</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="4-限制用户使用旧密码"><a href="#4-限制用户使用旧密码" class="headerlink" title="4.限制用户使用旧密码"></a>4.限制用户使用旧密码</h3><p>linux用户的旧密码保存在文件/etc/security/opasswd中：</p>
+<h3 id="4-限制用户使用旧密码"><a href="#4-限制用户使用旧密码" class="headerlink" title="4.限制用户使用旧密码"></a>4.限制用户使用旧密码</h3><p>linux用户的旧密码保存在文件&#x2F;etc&#x2F;security&#x2F;opasswd中：</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@LAPP</span>-V1159 ~]<span class="hljs-meta"># cat /etc/security/opasswd</span><br>alter:<span class="hljs-number">504</span>:<span class="hljs-number">4</span>:$1$MVAi/EpJ$iXXkV5r3Hjc8AaK2b5KyQ/,$1$AbpFPYaD$ZKj12lK6qaYUqgQnEdocd0,$1$POabjmzY$F4Cp6aTwN6RRk1KjZWm8A/,$1$LoHe5GHY$QjkLGqABANpLmlQsRB4WE.<br></code></pre></td></tr></table></figure>
 
-<p>检查是否有开启限制使用旧密码，在RHEL / CentOS / Fedora系统中，查看文件：/etc/pam.d/system-auth。在Ubuntu/Debian/Linux Mint系统中，查看文件：/etc/pam.d/common-password，需要下面两行关键内容，其中remember=4，表示不能使用最后4次密码，否则会报错：Password has been already used. Choose another.：</p>
+<p>检查是否有开启限制使用旧密码，在RHEL &#x2F; CentOS &#x2F; Fedora系统中，查看文件：&#x2F;etc&#x2F;pam.d&#x2F;system-auth。在Ubuntu&#x2F;Debian&#x2F;Linux Mint系统中，查看文件：&#x2F;etc&#x2F;pam.d&#x2F;common-password，需要下面两行关键内容，其中remember&#x3D;4，表示不能使用最后4次密码，否则会报错：Password has been already used. Choose another.：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">auth        sufficient    pam_unix.so <span class="hljs-literal">null</span>ok try_first_pass<br>password    sufficient    pam_unix.so sha512 shadow <span class="hljs-literal">null</span>ok try_first_pass use_authtok remember=<span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="5-检查密码过期"><a href="#5-检查密码过期" class="headerlink" title="5.检查密码过期"></a>5.检查密码过期</h3><p>密码的过期属性可以通过如下命令查看：</p>
@@ -331,7 +331,7 @@
 <p>修改密码的过期属性可以执行如下命令：</p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tap">chage -M<span class="hljs-number"> 60 </span>-W<span class="hljs-number"> 7 </span> alter<br>说明：<br>-M 60表示密码最大有效期是60天。<br>-W<span class="hljs-number"> 7 </span>表示密码还有7天过期时给出告警提醒。<br></code></pre></td></tr></table></figure>
 
-<h3 id="6-检查密码为空的用户"><a href="#6-检查密码为空的用户" class="headerlink" title="6.检查密码为空的用户"></a>6.检查密码为空的用户</h3><p>密码为空意味着只要知道用户名就能访问，这非常危险。因为用户与密码信息保存在文件/etc/shadow中，且格式如下：</p>
+<h3 id="6-检查密码为空的用户"><a href="#6-检查密码为空的用户" class="headerlink" title="6.检查密码为空的用户"></a>6.检查密码为空的用户</h3><p>密码为空意味着只要知道用户名就能访问，这非常危险。因为用户与密码信息保存在文件&#x2F;etc&#x2F;shadow中，且格式如下：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">admin</span>:$<span class="hljs-number">6</span>$YTSkre3DLd4SAZ$Jy9piv/gPezhLrLzMMeUleV8F5DNjP:<span class="hljs-number">17765</span>:<span class="hljs-number">0</span>:<span class="hljs-number">99</span>:<span class="hljs-number">5</span>:::<br><span class="hljs-attribute">alter</span>:$<span class="hljs-number">6</span>$.vMcyE9ss96$YNk2Q5qiS/SAeGCcyEFsmspkC5dr3OXfnN:<span class="hljs-number">17788</span>:<span class="hljs-number">0</span>:<span class="hljs-number">60</span>:<span class="hljs-number">7</span>:::<br></code></pre></td></tr></table></figure>
 
 <blockquote>
@@ -340,7 +340,7 @@
 <p>所以，检查密码为空的用户，只需要执行如下命令即可，如果发现有这样的用户，通过root用户执行<code>passwd username</code>强行修改它的密码：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">cat</span> /etc/shadow | awk -F: <span class="hljs-string">&#x27;(<span class="hljs-variable">$2</span>==&quot;&quot;)&#123;print <span class="hljs-variable">$1</span>&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="7-锁定-amp-解锁用户"><a href="#7-锁定-amp-解锁用户" class="headerlink" title="7.锁定&amp;解锁用户"></a>7.锁定&amp;解锁用户</h3><p>和删除用户账户不一样，这个只是限制用户登录。只需要执行如下密码即可锁定&amp;解锁用户：</p>
+<h3 id="7-锁定-解锁用户"><a href="#7-锁定-解锁用户" class="headerlink" title="7.锁定&amp;解锁用户"></a>7.锁定&amp;解锁用户</h3><p>和删除用户账户不一样，这个只是限制用户登录。只需要执行如下密码即可锁定&amp;解锁用户：</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">[root@root ~]<span class="hljs-comment"># passwd -l alter</span><br>Locking password for <span class="hljs-keyword">user</span> <span class="hljs-title">alter</span>.<br>passwd: Success<br>[root@root ~]<span class="hljs-comment"># passwd -u alter</span><br>Unlocking password for <span class="hljs-keyword">user</span> <span class="hljs-title">alter</span>.<br>passwd: Success<br></code></pre></td></tr></table></figure>
 
 <p>说明：</p>
@@ -348,21 +348,21 @@
 <li>参数l表示lock，即锁定用户密码；</li>
 <li>参数u表示unlock，即解锁用户密码；</li>
 </ul>
-<h3 id="8-关闭IPv6"><a href="#8-关闭IPv6" class="headerlink" title="8.关闭IPv6"></a>8.关闭IPv6</h3><p>现在IPv6基本上没有实际使用，所以我们可以关掉它，在文件/etc/sysconfig/network中增加如下两行内容即可：</p>
+<h3 id="8-关闭IPv6"><a href="#8-关闭IPv6" class="headerlink" title="8.关闭IPv6"></a>8.关闭IPv6</h3><p>现在IPv6基本上没有实际使用，所以我们可以关掉它，在文件&#x2F;etc&#x2F;sysconfig&#x2F;network中增加如下两行内容即可：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">NETWORKING_IPV6</span>=<span class="hljs-literal">no</span><br><span class="hljs-attr">IPV6INIT</span>=<span class="hljs-literal">no</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="9-复查日志"><a href="#9-复查日志" class="headerlink" title="9.复查日志"></a>9.复查日志</h3><p>Linux服务器上很多的行为都会有记录相应的日志，简单列举一些如下，如果有一些非法操作，就能从这些日志中造成蛛丝马迹，例如非法登陆，非法定时任务等：</p>
 <ul>
-<li>/var/log/message – Where whole system logs or current activity logs are available.</li>
-<li>/var/log/auth.log – Authentication logs.</li>
-<li>/var/log/kern.log – Kernel logs.</li>
-<li>/var/log/cron.log – Crond logs (cron job).</li>
-<li>/var/log/maillog – Mail server logs.</li>
-<li>/var/log/boot.log – System boot log.</li>
-<li>/var/log/mysqld.log – MySQL database server log file.</li>
-<li>/var/log/secure – Authentication log.</li>
-<li>/var/log/utmp or /var/log/wtmp : Login records file.</li>
-<li>/var/log/yum.log: Yum log files.</li>
+<li>&#x2F;var&#x2F;log&#x2F;message – Where whole system logs or current activity logs are available.</li>
+<li>&#x2F;var&#x2F;log&#x2F;auth.log – Authentication logs.</li>
+<li>&#x2F;var&#x2F;log&#x2F;kern.log – Kernel logs.</li>
+<li>&#x2F;var&#x2F;log&#x2F;cron.log – Crond logs (cron job).</li>
+<li>&#x2F;var&#x2F;log&#x2F;maillog – Mail server logs.</li>
+<li>&#x2F;var&#x2F;log&#x2F;boot.log – System boot log.</li>
+<li>&#x2F;var&#x2F;log&#x2F;mysqld.log – MySQL database server log file.</li>
+<li>&#x2F;var&#x2F;log&#x2F;secure – Authentication log.</li>
+<li>&#x2F;var&#x2F;log&#x2F;utmp or &#x2F;var&#x2F;log&#x2F;wtmp : Login records file.</li>
+<li>&#x2F;var&#x2F;log&#x2F;yum.log: Yum log files.</li>
 </ul>
 <h3 id="10-保持系统更新"><a href="#10-保持系统更新" class="headerlink" title="10.保持系统更新"></a>10.保持系统更新</h3><p>总是让系统更新最新发行的补丁包，因为这些补丁包会修复一些BUG：</p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs smali">sudo apt-get upgrade<br><br>yum<span class="hljs-built_in"> check-update</span><br><span class="hljs-built_in"></span>yum upgrade<br></code></pre></td></tr></table></figure>

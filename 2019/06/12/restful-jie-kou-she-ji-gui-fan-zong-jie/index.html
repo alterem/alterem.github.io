@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="这篇 文章主要是借鉴他人，但是自己很想总结出一套规范，以供向我这样的新手使用，用来规范代码，如果有什么好的提议，请不吝赐教，本篇文章长期更新！  一、重要概念： REST,即Representational State Transfer的缩写。我对这个词组的翻译是”表现层状态转化”。      Resource（资源） ：对象的单个实例。 例如，一只动物。它可以是一段文本、一张图片、一首歌曲、一种">
+    <meta name="description" content="这篇 文章主要是借鉴他人，但是自己很想总结出一套规范，以供向我这样的新手使用，用来规范代码，如果有什么好的提议，请不吝赐教，本篇文章长期更新！  一、重要概念： REST,即Representational State Transfer的缩写。我对这个词组的翻译是”表现层状态转化”。 	 Resource（资源） ：对象的单个实例。 例如，一只动物。它可以是一段文本、一张图片、一首歌曲、一种服务，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="restful接口设计规范总结">
 <meta property="og:url" content="https://alterem.github.io/2019/06/12/restful-jie-kou-she-ji-gui-fan-zong-jie/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="这篇 文章主要是借鉴他人，但是自己很想总结出一套规范，以供向我这样的新手使用，用来规范代码，如果有什么好的提议，请不吝赐教，本篇文章长期更新！  一、重要概念： REST,即Representational State Transfer的缩写。我对这个词组的翻译是”表现层状态转化”。      Resource（资源） ：对象的单个实例。 例如，一只动物。它可以是一段文本、一张图片、一首歌曲、一种">
+<meta property="og:description" content="这篇 文章主要是借鉴他人，但是自己很想总结出一套规范，以供向我这样的新手使用，用来规范代码，如果有什么好的提议，请不吝赐教，本篇文章长期更新！  一、重要概念： REST,即Representational State Transfer的缩写。我对这个词组的翻译是”表现层状态转化”。 	 Resource（资源） ：对象的单个实例。 例如，一只动物。它可以是一段文本、一张图片、一首歌曲、一种服务，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg">
 <meta property="article:published_time" content="2019-06-12T05:30:54.000Z">
@@ -88,7 +88,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          3.9k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          32 分钟
+          33 分钟
         
       </span>
     
@@ -301,17 +301,17 @@
                 
                 <p><strong>这篇 文章主要是借鉴他人，但是自己很想总结出一套规范，以供向我这样的新手使用，用来规范代码，如果有什么好的提议，请不吝赐教，本篇文章长期更新！</strong> </p>
 <h3 id="一、重要概念："><a href="#一、重要概念：" class="headerlink" title="一、重要概念："></a>一、重要概念：</h3><blockquote>
-<p>REST,即Representational State Transfer的缩写。我对这个词组的翻译是”表现层状态转化”。     </p>
-<p><strong>Resource</strong>（资源） ：对象的单个实例。 例如，一只动物。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。     </p>
-<p><strong>集合</strong>：对象的集合。 例如，动物。     </p>
-<p><strong>第三方</strong>：使用我们接口的开发者     </p>
-<p><strong>表现层（Representation）</strong>     </p>
-<p>“资源”是一种信息实体，它可以有多种外在表现形式。我们把”资源”具体呈现出来的形式，叫做它的”表现层”（Representation）。     </p>
-<p><strong>状态转化（State Transfer）</strong>     </p>
-<p>访问一个网站，就代表了客户端和服务器的一个互动过程。在这个过程中，势必涉及到数据和状态的变化。互联网通信协议HTTP协议，是一个无状态协议。这意味着，所有的状态都保存在服务器端。因此，如果客户端想要操作服务器，必须通过某种手段，让服务器端发生”状态转化”（State Transfer）。而这种转化是建立在表现层之上的，所以就是”表现层状态转化”。     </p>
-<p>客户端用到的手段，只能是HTTP协议。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。     </p>
-<p>比如，文本可以用txt格式表现，也可以用HTML格式、XML格式、JSON格式表现，甚至可以采用二进制格式；图片可以用JPG格式表现，也可以用PNG格式表现。     </p>
-<p>URI只代表资源的实体，不代表它的形式。严格地说，有些网址最后的”.html”后缀名是不必要的，因为这个后缀名表示格式，属于”表现层”范畴，而URI应该只代表”资源”的位置。它的具体表现形式，应该在HTTP请求的头信息中用Accept和Content-Type字段指定，这两个字段才是对”表现层”的描述。     </p>
+<p>REST,即Representational State Transfer的缩写。我对这个词组的翻译是”表现层状态转化”。 	</p>
+<p><strong>Resource</strong>（资源） ：对象的单个实例。 例如，一只动物。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。 	</p>
+<p><strong>集合</strong>：对象的集合。 例如，动物。 	</p>
+<p><strong>第三方</strong>：使用我们接口的开发者 	</p>
+<p><strong>表现层（Representation）</strong> 	</p>
+<p>“资源”是一种信息实体，它可以有多种外在表现形式。我们把”资源”具体呈现出来的形式，叫做它的”表现层”（Representation）。 	</p>
+<p><strong>状态转化（State Transfer）</strong> 	</p>
+<p>访问一个网站，就代表了客户端和服务器的一个互动过程。在这个过程中，势必涉及到数据和状态的变化。互联网通信协议HTTP协议，是一个无状态协议。这意味着，所有的状态都保存在服务器端。因此，如果客户端想要操作服务器，必须通过某种手段，让服务器端发生”状态转化”（State Transfer）。而这种转化是建立在表现层之上的，所以就是”表现层状态转化”。 	</p>
+<p>客户端用到的手段，只能是HTTP协议。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。 	</p>
+<p>比如，文本可以用txt格式表现，也可以用HTML格式、XML格式、JSON格式表现，甚至可以采用二进制格式；图片可以用JPG格式表现，也可以用PNG格式表现。 	</p>
+<p>URI只代表资源的实体，不代表它的形式。严格地说，有些网址最后的”.html”后缀名是不必要的，因为这个后缀名表示格式，属于”表现层”范畴，而URI应该只代表”资源”的位置。它的具体表现形式，应该在HTTP请求的头信息中用Accept和Content-Type字段指定，这两个字段才是对”表现层”的描述。 	</p>
 </blockquote>
 <p>综合上面的解释，我们总结一下什么是RESTful架构： </p>
 <p>　（1）每一个URI代表一种资源； </p>
@@ -320,7 +320,7 @@
 <span id="more"></span>
 
 <h3 id="二、REST接口规范"><a href="#二、REST接口规范" class="headerlink" title="二、REST接口规范"></a>二、REST接口规范</h3><h4 id="1、动作"><a href="#1、动作" class="headerlink" title="1、动作"></a>1、动作</h4><p>GET （SELECT）：从服务器检索特定资源，或资源列表。<br>POST （CREATE）：在服务器上创建一个新的资源。<br>PUT （UPDATE）：更新服务器上的资源，提供整个资源。<br>PATCH （UPDATE）：更新服务器上的资源，仅提供更改的属性。<br>DELETE （DELETE）：从服务器删除资源。 </p>
-<p>首先是四个半种动作：<br>post、delete、put/patch、get<br>因为put/patch只能算作一类，所以将patch归为半个。 </p>
+<p>首先是四个半种动作：<br>post、delete、put&#x2F;patch、get<br>因为put&#x2F;patch只能算作一类，所以将patch归为半个。 </p>
 <p>另外还有有两个较少知名的HTTP动词：<br>HEAD - 检索有关资源的元数据，例如数据的哈希或上次更新时间。<br>OPTIONS - 检索关于客户端被允许对资源做什么的信息。 </p>
 <h4 id="2、路径（接口命名）"><a href="#2、路径（接口命名）" class="headerlink" title="2、路径（接口命名）"></a>2、路径（接口命名）</h4><p>路径又称”终点”（endpoint），表示API的具体网址。 </p>
 <p>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。 </p>
@@ -331,16 +331,16 @@
 <p>反例： </p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">/getAllCars</span><br><span class="hljs-attr">/createNewCar</span><br><span class="hljs-attr">/deleteAllRedCars</span><br></code></pre></td></tr></table></figure>
 
-<p>再比如，某个URI是/posts/show/1，其中show是动词，这个URI就设计错了，正确的写法应该是/posts/1，然后用GET方法表示show。 </p>
+<p>再比如，某个URI是&#x2F;posts&#x2F;show&#x2F;1，其中show是动词，这个URI就设计错了，正确的写法应该是&#x2F;posts&#x2F;1，然后用GET方法表示show。 </p>
 <p>如果某些动作是HTTP动词表示不了的，你就应该把动作做成一种资源。比如网上汇款，从账户1向账户2汇款500元，错误的URI是： </p>
 <blockquote>
-<p>　　POST /accounts/1/transfer/500/to/2     </p>
+<p>　　POST &#x2F;accounts&#x2F;1&#x2F;transfer&#x2F;500&#x2F;to&#x2F;2 	</p>
 </blockquote>
 <p>正确的写法是把动词transfer改成名词transaction，资源不能是动词，但是可以是一种服务： </p>
 <blockquote>
-<p>　　POST /transaction HTTP/1.1<br>　　Host: 127.0.0.1<br>　　from=1&amp;to=2&amp;amount=500.00     </p>
+<p>　　POST &#x2F;transaction HTTP&#x2F;1.1<br>　　Host: 127.0.0.1<br>　　from&#x3D;1&amp;to&#x3D;2&amp;amount&#x3D;500.00 	</p>
 </blockquote>
-<p>理清资源的层次结构，比如业务针对的范围是学校，那么学校会是一级资源(/school)，老师(/school/teachers)，学生(/school/students)就是二级资源。 </p>
+<p>理清资源的层次结构，比如业务针对的范围是学校，那么学校会是一级资源(&#x2F;school)，老师(&#x2F;school&#x2F;teachers)，学生(&#x2F;school&#x2F;students)就是二级资源。 </p>
 <h4 id="3、版本（Versioning）"><a href="#3、版本（Versioning）" class="headerlink" title="3、版本（Versioning）"></a>3、版本（Versioning）</h4><p>应该将API的版本号放入URL。如： </p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">https</span>:<span class="hljs-string">//api.example.com/v1/</span><br></code></pre></td></tr></table></figure>
 

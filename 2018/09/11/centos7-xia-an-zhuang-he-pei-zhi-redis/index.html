@@ -27,10 +27,10 @@
 <meta property="article:published_time" content="2018-09-11T03:28:51.000Z">
 <meta property="article:modified_time" content="2023-05-16T02:25:56.914Z">
 <meta property="article:author" content="Alterem">
+<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="CentOS">
 <meta property="article:tag" content="Server">
-<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg">
   
@@ -89,7 +89,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -315,7 +315,7 @@
 <p>执行安装命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">make install</span><br></code></pre></td></tr></table></figure>
 
-<p>make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：</p>
+<p>make install安装完成后，会在&#x2F;usr&#x2F;local&#x2F;bin目录下生成下面几个可执行文件，它们的作用分别是：</p>
 <ul>
 <li>redis-server：Redis服务器端启动程序</li>
 <li>redis-cli：Redis客户端操作工具。也可以用telnet根据其纯文本协议来操作</li>
@@ -330,7 +330,7 @@
 <p>这是因为没有安装tcl导致，yum安装即可：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install tcl<br></code></pre></td></tr></table></figure>
 
-<p>4 . 配置Redis<br>复制配置文件到/etc/目录：</p>
+<p>4 . 配置Redis<br>复制配置文件到&#x2F;etc&#x2F;目录：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cp</span> redis.conf /etc/</span><br></code></pre></td></tr></table></figure>
 
 <p>为了让Redis后台运行，一般还需要修改redis.conf文件：</p>
@@ -396,13 +396,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
         <a href="/tags/Redis/" class="print-no-link">#Redis</a>
       
         <a href="/tags/CentOS/" class="print-no-link">#CentOS</a>
       
         <a href="/tags/Server/" class="print-no-link">#Server</a>
-      
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
       
     </div>
   

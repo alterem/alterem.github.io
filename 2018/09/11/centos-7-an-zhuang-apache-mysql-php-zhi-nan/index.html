@@ -91,7 +91,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -340,7 +340,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">sudo firewall-cmd --permanent --zone=public --add-service=http</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">sudo firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="hljs-meta prompt_">$</span><span class="language-bash">sudo firewall-cmd --reload</span><br></code></pre></td></tr></table></figure>
 
 <p>在 Apache 启动的情况下，你可以在浏览器里访问服务器的公网 IP 地址以验证一切如计划那样顺利地进行（如果你现在还不知道如何获取服务器的公网 IP 地址，请参考下一标题中的内容）：</p>
-<p>http://&lt;服务器的公网 IP 地址&gt;/</p>
+<p>http:&#x2F;&#x2F;&lt;服务器的公网 IP 地址&gt;&#x2F;</p>
 <p>你将会看到一个出于通知和测试目的而存在的默认 CentOS 7 Apache 网页。它应该长这样子：</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrtia7nj30jv05zaaj.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>如果你看到了这个页面，那么你的 web 服务器现在已经正确地安装了。</p>
@@ -434,7 +434,7 @@
 <p>第四步 —— 测试你 Web 服务器上的 PHP 处理程序</p>
 <p>为了测试系统已经配置得适合 PHP 运行，我们可以创建一个非常简易的 PHP 脚本。</p>
 <p>我们将这个脚本命名为 info.php。为了让 Apache 能够正确地找到并为之服务，它必须保存在一个称为『web 目录』特殊的目录中。</p>
-<p>在 CentOS 7 中，这个目录位于 /var/www/html/。我们可以通过下面这条命令在此创建一个文件：</p>
+<p>在 CentOS 7 中，这个目录位于 &#x2F;var&#x2F;www&#x2F;html&#x2F;。我们可以通过下面这条命令在此创建一个文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">sudo vi /var/www/html/info.php</span><br></code></pre></td></tr></table></figure>
 
 <p>这将会打开一个空白文件，敲击小写字母 I 即可进行编辑。我们想在文件中输入下列 PHP 代码组成的文本：</p>
@@ -443,7 +443,7 @@
 <p>然后，敲击 ESC 键并键入 :wq! 即可保存并关闭这个文件。</p>
 <p>现在我们可以测试 web 服务器是否能够正确地显示由 PHP 脚本生成的内容了。我们可以尝试通过 web 浏览器访问这个页面。你需要再次获取服务器的公网 IP 地址。</p>
 <p>你希望访问的地址就是：</p>
-<p>http://&lt;服务器的公网 IP 地址&gt;/info.php</p>
+<p>http:&#x2F;&#x2F;&lt;服务器的公网 IP 地址&gt;&#x2F;info.php</p>
 <p>你看到的页面应该像下面这样子：</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymru1oojj30jv05zaaj.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>如果你的浏览器成功地显示了这个页面，那么你的 PHP 就像预期中的那样正常工作了。</p>

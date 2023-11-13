@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -346,7 +346,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>    Thread.<span class="hljs-keyword">yield</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h1 id="三、中断"><a href="#三、中断" class="headerlink" title="三、中断"></a>三、中断</h1><p>一个线程执行完毕之后会自动结束，如果在运行过程中发生异常也会提前结束。</p>
-<h2 id="InterruptedException"><a href="#InterruptedException" class="headerlink" title="InterruptedException"></a>InterruptedException</h2><p>通过调用一个线程的 interrupt() 来中断该线程，如果该线程处于阻塞、限期等待或者无限期等待状态，那么就会抛出 InterruptedException，从而提前结束该线程。但是不能中断 I/O 阻塞和 synchronized 锁阻塞。</p>
+<h2 id="InterruptedException"><a href="#InterruptedException" class="headerlink" title="InterruptedException"></a>InterruptedException</h2><p>通过调用一个线程的 interrupt() 来中断该线程，如果该线程处于阻塞、限期等待或者无限期等待状态，那么就会抛出 InterruptedException，从而提前结束该线程。但是不能中断 I&#x2F;O 阻塞和 synchronized 锁阻塞。</p>
 <p>对于以下代码，在 main() 中启动一个线程之后再中断它，由于线程中调用了 Thread.sleep() 方法，因此会抛出一个 InterruptedException，从而提前结束线程，不执行之后的语句。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InterruptExample</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                Thread.sleep(<span class="hljs-number">2000</span>);<br>                System.out.println(<span class="hljs-string">&quot;Thread run&quot;</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>    <span class="hljs-type">Thread</span> <span class="hljs-variable">thread1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread1</span>();<br>    thread1.start();<br>    thread1.interrupt();<br>    System.out.println(<span class="hljs-string">&quot;Main run&quot;</span>);<br>&#125;<br>Main run<br>java.lang.InterruptedException: sleep interrupted<br>    at java.lang.Thread.sleep(Native Method)<br>    at InterruptExample.lambda$main$<span class="hljs-number">0</span>(InterruptExample.java:<span class="hljs-number">5</span>)<br>    at InterruptExample$$Lambda$<span class="hljs-number">1</span>/<span class="hljs-number">713338599.</span>run(Unknown Source)<br>    at java.lang.Thread.run(Thread.java:<span class="hljs-number">745</span>)<br></code></pre></td></tr></table></figure>
 
@@ -438,7 +438,7 @@
 </thead>
 <tbody><tr>
 <td>没有设置 Timeout 参数的 Object.wait() 方法</td>
-<td>Object.notify() / Object.notifyAll()</td>
+<td>Object.notify() &#x2F; Object.notifyAll()</td>
 </tr>
 <tr>
 <td>没有设置 Timeout 参数的 Thread.join() 方法</td>
@@ -463,11 +463,11 @@
 </tr>
 <tr>
 <td>设置了 Timeout 参数的 Object.wait() 方法</td>
-<td>时间结束 / Object.notify() / Object.notifyAll()</td>
+<td>时间结束 &#x2F; Object.notify() &#x2F; Object.notifyAll()</td>
 </tr>
 <tr>
 <td>设置了 Timeout 参数的 Thread.join() 方法</td>
-<td>时间结束 / 被调用的线程执行完毕</td>
+<td>时间结束 &#x2F; 被调用的线程执行完毕</td>
 </tr>
 <tr>
 <td>LockSupport.parkNanos() 方法</td>
@@ -694,7 +694,7 @@
 <p>当尝试获取一个锁对象时，如果锁对象标记为 0 01，说明锁对象的锁未锁定（unlocked）状态。此时虚拟机在当前线程的虚拟机栈中创建 Lock Record，然后使用 CAS 操作将对象的 Mark Word 更新为 Lock Record 指针。如果 CAS 操作成功了，那么线程就获取了该对象上的锁，并且对象的 Mark Word 的锁标记变为 00，表示该对象处于轻量级锁状态。</p>
 <p><img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/baaa681f-7c52-4198-a5ae-303b9386cf47.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>如果 CAS 操作失败了，虚拟机首先会检查对象的 Mark Word 是否指向当前线程的虚拟机栈，如果是的话说明当前线程已经拥有了这个锁对象，那就可以直接进入同步块继续执行，否则说明这个锁对象已经被其他线程线程抢占了。如果有两条以上的线程争用同一个锁，那轻量级锁就不再有效，要膨胀为重量级锁。</p>
-<h2 id="偏向锁-https-cyc2018-github-io-CS-Notes-notes-Java-并发-id-偏向锁"><a href="#偏向锁-https-cyc2018-github-io-CS-Notes-notes-Java-并发-id-偏向锁" class="headerlink" title="[偏向锁](https://cyc2018.github.io/CS-Notes/#/notes/Java 并发?id=偏向锁)"></a>[偏向锁](<a target="_blank" rel="noopener" href="https://cyc2018.github.io/CS-Notes/#/notes/Java">https://cyc2018.github.io/CS-Notes/#/notes/Java</a> 并发?id=偏向锁)</h2><p>偏向锁的思想是偏向于让第一个获取锁对象的线程，这个线程在之后获取该锁就不再需要进行同步操作，甚至连 CAS 操作也不再需要。</p>
+<h2 id="偏向锁-https-cyc2018-github-io-CS-Notes-notes-Java-并发-id-偏向锁"><a href="#偏向锁-https-cyc2018-github-io-CS-Notes-notes-Java-并发-id-偏向锁" class="headerlink" title="[偏向锁](https://cyc2018.github.io/CS-Notes/#/notes/Java 并发?id&#x3D;偏向锁)"></a>[偏向锁](<a target="_blank" rel="noopener" href="https://cyc2018.github.io/CS-Notes/#/notes/Java">https://cyc2018.github.io/CS-Notes/#/notes/Java</a> 并发?id&#x3D;偏向锁)</h2><p>偏向锁的思想是偏向于让第一个获取锁对象的线程，这个线程在之后获取该锁就不再需要进行同步操作，甚至连 CAS 操作也不再需要。</p>
 <p>当锁对象第一次被线程获得的时候，进入偏向状态，标记为 1 01。同时使用 CAS 操作将线程 ID 记录到 Mark Word 中，如果 CAS 操作成功，这个线程以后每次进入这个锁相关的同步块就不需要再进行任何同步操作。</p>
 <p>当有另外一个线程去尝试获取这个锁对象时，偏向状态就宣告结束，此时撤销偏向（Revoke Bias）后恢复到未锁定状态或者轻量级锁状态。</p>
 <p><img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/390c913b-5f31-444f-bbdb-2b88b688e7ce.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
@@ -715,13 +715,13 @@
 <li><a target="_blank" rel="noopener" href="http://www.importnew.com/12773.html">Java 线程面试题 Top 50</a></li>
 <li><a target="_blank" rel="noopener" href="http://tutorials.jenkov.com/java-util-concurrent/blockingqueue.html">BlockingQueue</a></li>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/11265289/thread-state-java">thread state java</a></li>
-<li><a target="_blank" rel="noopener" href="http://wiki.expertiza.ncsu.edu/index.php/CSC_456_Spring_2012/ch7_MN">CSC 456 Spring 2012/ch7 MN</a></li>
+<li><a target="_blank" rel="noopener" href="http://wiki.expertiza.ncsu.edu/index.php/CSC_456_Spring_2012/ch7_MN">CSC 456 Spring 2012&#x2F;ch7 MN</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/happens-before.html">Java - Understanding Happens-before relationship</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.slideshare.net/novathinker/6-thread-synchronization">6장 Thread Synchronization</a></li>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1202444/how-is-javas-threadlocal-implemented-under-the-hood/15653015">How is Java’s ThreadLocal implemented under the hood?</a></li>
 <li><a target="_blank" rel="noopener" href="https://sites.google.com/site/webdevelopart/21-compile/06-java/javase/concurrent?tmpl=/system/app/templates/print/&showPrintDialog=1">Concurrent</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.javacreed.com/java-fork-join-example/">JAVA FORK JOIN EXAMPLE</a></li>
-<li><a target="_blank" rel="noopener" href="http://ifeve.com/talk-concurrency-forkjoin/">聊聊并发（八）——Fork/Join 框架介绍</a></li>
+<li><a target="_blank" rel="noopener" href="http://ifeve.com/talk-concurrency-forkjoin/">聊聊并发（八）——Fork&#x2F;Join 框架介绍</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/tech/biasedlocking-oopsla2006-preso-150106.pdf">Eliminating SynchronizationRelated Atomic Operations with Biased Locking and Bulk Rebiasing</a></li>
 </ul>
 <p><strong>欢迎关注微信公众号​：</strong></p>

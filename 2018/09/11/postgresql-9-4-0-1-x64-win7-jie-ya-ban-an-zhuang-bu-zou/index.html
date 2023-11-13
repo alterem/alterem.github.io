@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          664 字
+          674 字
         
       </span>
     
@@ -319,11 +319,11 @@
 <p>6、修改配置以支持远程连接</p>
 <p>  6.1  notepad c:\pgsql\data\postgresql.conf</p>
 <blockquote>
-<p>listen_addresses = ‘*’ </p>
+<p>listen_addresses &#x3D; ‘*’ </p>
 </blockquote>
-<p>​    6.2  设置ipv4段  notepad c:\pgsql\data\pg_hba.conf </p>
+<p>​	6.2  设置ipv4段  notepad c:\pgsql\data\pg_hba.conf </p>
 <blockquote>
-<p>host    all    all    0.0.0.0/0    md5 </p>
+<p>host    all    all    0.0.0.0&#x2F;0    md5 </p>
 </blockquote>
 <p>7、启动服务 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">net start PostgreSQL<br></code></pre></td></tr></table></figure>

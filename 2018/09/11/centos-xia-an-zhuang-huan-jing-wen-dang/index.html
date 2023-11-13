@@ -27,10 +27,10 @@
 <meta property="article:published_time" content="2018-09-11T07:01:34.000Z">
 <meta property="article:modified_time" content="2023-05-16T02:26:33.659Z">
 <meta property="article:author" content="Alterem">
+<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="CentOS">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="Server">
-<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="JDK">
 <meta property="article:tag" content="Tomcat">
 <meta property="article:tag" content="Nginx">
@@ -92,7 +92,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.6k 字
+          8.7k 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          72 分钟
+          73 分钟
         
       </span>
     
@@ -318,7 +318,7 @@
 <p>备注：</p>
 <p>无须删除原有的openjdk;否则，与之相关的openoffice等软件，也会自动随之删除；</p>
 </blockquote>
-<p>如果直接”应用程序-添加/删除软件–基本系统–java“删除其他相关软件也会自动删除，所以删除前，最好安装配置好新的JDK环境</p>
+<p>如果直接”应用程序-添加&#x2F;删除软件–基本系统–java“删除其他相关软件也会自动删除，所以删除前，最好安装配置好新的JDK环境</p>
 <ol>
 <li>删除原有的JDK：</li>
 </ol>
@@ -335,7 +335,7 @@
 
 <p>……</p>
 <p>》配置新的JDK环境</p>
-<p>1）把安装文件文件保存在/usr/java/tools下 ,并切换到root用户</p>
+<p>1）把安装文件文件保存在&#x2F;usr&#x2F;java&#x2F;tools下 ,并切换到root用户</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">mkdir</span> /usr/java  //创建/urs/java目录</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> /usr/java/</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">rpm -ivh ./tools/jdk-7u67-linux-x64.rpm</span><br></code></pre></td></tr></table></figure>
 
 <p>》配置jdk1.6.0_22环境变量</p>
@@ -357,7 +357,7 @@
 <p><a target="_blank" rel="noopener" href="http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.40.tar.gz">http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.40.tar.gz</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz">http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz</a></p>
 <p>其中mysql使用最新的稳定版本，即最新试用版的上一个版本，且非rc或者alpha的版本，Cmake直接用的最新版。</p>
-<p> 》上传mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz到/usr/java/tools文件夹下。</p>
+<p> 》上传mysql-5.5.40.tar.gz和cmake-2.8.10.2.tar.gz到&#x2F;usr&#x2F;java&#x2F;tools文件夹下。</p>
 <p> 》CentOS安装g++和ncurses-devel</p>
  <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta"># yum install gcc-c++</span><br><span class="hljs-meta"># yum install ncurses-devel</span><br></code></pre></td></tr></table></figure>
 
@@ -365,7 +365,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">mkdir</span> -p /usr/java/make</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> /usr/java/make</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">mv</span> ../tools/cmake-2.8.10.2.tar.gz ./</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">tar -zxv -f cmake-2.8.10.2.tar.gz</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> cmake-2.8.10.2</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">./configure</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">make</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">make install</span><br></code></pre></td></tr></table></figure>
 
 <p>》将cmake永久加入系统环境变量</p>
-<p>》用vi在文件/etc/profile文件中增加变量，使其永久有效，</p>
+<p>》用vi在文件&#x2F;etc&#x2F;profile文件中增加变量，使其永久有效，</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">vi /etc/profile</span><br></code></pre></td></tr></table></figure>
 
 <p>》在文件PATH中加入MAKE_PATH环境变量：</p>
@@ -403,7 +403,7 @@
 <p>》设置环境变量</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">vi /root/.bash_profile</span><br></code></pre></td></tr></table></figure>
 
-<p>在修改PATH=$PATH:$HOME/bin为：</p>
+<p>在修改PATH&#x3D;$PATH:$HOME&#x2F;bin为：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-variable constant_">PATH</span>=<span class="hljs-variable constant_">PATH</span><span class="hljs-symbol">:HOME/bin</span><span class="hljs-symbol">:/usr/java/mysql/bin</span><span class="hljs-symbol">:/usr/java/mysql/lib</span><br><span class="hljs-comment"># source /root/.bash_profile //使刚才的修改生效</span><br></code></pre></td></tr></table></figure>
 
 <p>》手动启动mysql</p>
@@ -446,7 +446,7 @@
 <hr>
 <p>》先下载nginx-1.7.6.tar.gz</p>
 <p>》下载URL:<a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.7.6.tar.gz">http://nginx.org/download/nginx-1.7.6.tar.gz</a></p>
-<p>》把nginx-1.7.6.tar.gz放到/usr/java/tools目录下</p>
+<p>》把nginx-1.7.6.tar.gz放到&#x2F;usr&#x2F;java&#x2F;tools目录下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> /usr/local/</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">tar -zxvf /usr/java/tools/nginx-1.7.5.tar.gz</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> nginx-1.7.6/</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">yum -y install pcre-devel</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">yum install -y zlib-devel</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">./configure</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">make &amp;&amp; make install</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> /usr/local/nginx</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">cd</span> sbin</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">./nginx</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">/etc/rc.d/init.d/iptables stop</span><br></code></pre></td></tr></table></figure>
 
 <p>》配置服务器启动方式</p>
@@ -509,13 +509,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
         <a href="/tags/CentOS/" class="print-no-link">#CentOS</a>
       
         <a href="/tags/MySQL/" class="print-no-link">#MySQL</a>
       
         <a href="/tags/Server/" class="print-no-link">#Server</a>
-      
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
       
         <a href="/tags/JDK/" class="print-no-link">#JDK</a>
       

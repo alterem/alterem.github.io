@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -339,7 +339,7 @@
 
 <p><img src="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018a/f480ac76.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><code>sqlSession2</code>更新了id为1的学生的姓名，从凯伦改为了小岑，但session1之后的查询中，id为1的学生的名字还是凯伦，出现了脏数据，也证明了之前的设想，一级缓存只在数据库会话内部共享。</p>
-<h3 id="一级缓存工作流程-amp-源码分析"><a href="#一级缓存工作流程-amp-源码分析" class="headerlink" title="一级缓存工作流程&amp;源码分析"></a>一级缓存工作流程&amp;源码分析</h3><p>那么，一级缓存的工作流程是怎样的呢？我们从源码层面来学习一下。</p>
+<h3 id="一级缓存工作流程-源码分析"><a href="#一级缓存工作流程-源码分析" class="headerlink" title="一级缓存工作流程&amp;源码分析"></a>一级缓存工作流程&amp;源码分析</h3><p>那么，一级缓存的工作流程是怎样的呢？我们从源码层面来学习一下。</p>
 <h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><p>一级缓存执行的时序图，如下图所示。</p>
 <p><img src="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018a/bb851700.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>接下来将对MyBatis查询相关的核心类和一级缓存的源码进行走读。这对后面学习二级缓存也有帮助。</p>
@@ -486,7 +486,7 @@
 <li><code>SynchronizedCache</code>：同步Cache，实现比较简单，直接使用synchronized修饰方法。</li>
 <li><code>LoggingCache</code>：日志功能，装饰类，用于记录缓存的命中率，如果开启了DEBUG模式，则会输出命中率日志。</li>
 <li><code>SerializedCache</code>：序列化功能，将值序列化后存到缓存中。该功能用于缓存返回一份实例的Copy，用于保存线程安全。</li>
-<li><code>LruCache</code>：采用了Lru算法的Cache实现，移除最近最少使用的Key/Value。</li>
+<li><code>LruCache</code>：采用了Lru算法的Cache实现，移除最近最少使用的Key&#x2F;Value。</li>
 <li><code>PerpetualCache</code>： 作为为最基础的缓存类，底层实现比较简单，直接使用了HashMap。</li>
 </ul>
 <p>然后是判断是否需要刷新缓存，代码如下所示：</p>

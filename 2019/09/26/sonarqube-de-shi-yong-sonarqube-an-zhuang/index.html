@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="工欲善其事必先利其器一 . SonarQube代码质量检查工具简介 Sonar (SonarQube)是一个开源平台，用于管理源代码的质量 Sonar 不只是一个质量数据报告工具，更是代码质量管理平台  支持Java, C#, C&#x2F;C++, PL&#x2F;SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。 Sonar可以从以下七个维度检测代码质量，而作为">
+    <meta name="description" content="工欲善其事必先利其器一 . SonarQube代码质量检查工具简介 Sonar (SonarQube)是一个开源平台，用于管理源代码的质量 Sonar 不只是一个质量数据报告工具，更是代码质量管理平台  支持Java, C#, C&#x2F;C++, PL&#x2F;SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。 Sonar可以从以下七个维度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[SonarQube的使用] SonarQube安装">
 <meta property="og:url" content="https://alterem.github.io/2019/09/26/sonarqube-de-shi-yong-sonarqube-an-zhuang/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="工欲善其事必先利其器一 . SonarQube代码质量检查工具简介 Sonar (SonarQube)是一个开源平台，用于管理源代码的质量 Sonar 不只是一个质量数据报告工具，更是代码质量管理平台  支持Java, C#, C&#x2F;C++, PL&#x2F;SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。 Sonar可以从以下七个维度检测代码质量，而作为">
+<meta property="og:description" content="工欲善其事必先利其器一 . SonarQube代码质量检查工具简介 Sonar (SonarQube)是一个开源平台，用于管理源代码的质量 Sonar 不只是一个质量数据报告工具，更是代码质量管理平台  支持Java, C#, C&#x2F;C++, PL&#x2F;SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。 Sonar可以从以下七个维度">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoi44lcj31eo0omagi.jpg">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoldzq6j31jr0u0wk8.jpg">
@@ -93,7 +93,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -254,7 +254,7 @@
         
         
         
-          36 分钟
+          37 分钟
         
       </span>
     
@@ -308,7 +308,7 @@
 <p>Sonar (SonarQube)是一个开源平台，用于管理源代码的质量</p>
 <p>Sonar 不只是一个质量数据报告工具，更是代码质量管理平台</p>
 </blockquote>
-<p>支持Java, C#, C/C++, PL/SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。</p>
+<p>支持Java, C#, C&#x2F;C++, PL&#x2F;SQL, Cobol, JavaScrip, Groovy 等等二十几种编程语言的代码质量管理与检测。</p>
 <p>Sonar可以从以下七个维度检测代码质量，而作为开发人员至少需要处理前5种代码质量问题。</p>
 <ol>
 <li><p>不遵循代码标准</p>
@@ -382,9 +382,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;username&#x27;</span>@<span class="hljs-string">&#x27;host&#x27;</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;password&#x27;</span>; <br><span class="hljs-comment">-- 创建用户并设置密码</span><br><span class="hljs-comment">-- username 为创建的用户名</span><br><span class="hljs-comment">-- host 为对应的主机地址,本地就是localhost</span><br><span class="hljs-comment">-- password 为设置的密码</span><br><span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">ON</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;username&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;<br><span class="hljs-comment">-- 对用户进行授权操作</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>修改SonarQube配置文件,添加Mysql相关配置</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">sonar.jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span><br><span class="hljs-comment"># 刚刚创建的sonarQube用户</span><br><span class="hljs-attr">sonar.jdbc.username</span>=<span class="hljs-string">sonar</span><br><span class="hljs-comment"># 创建用户对应的密码</span><br><span class="hljs-attr">sonar.jdbc.password</span>=<span class="hljs-string">sonar</span><br><span class="hljs-comment"># 设置编码格式为UTF-8</span><br><span class="hljs-attr">sonar.sorceEncoding</span>=<span class="hljs-string">UTF-8</span><br><span class="hljs-comment"># sonar登陆用户名</span><br><span class="hljs-attr">sonar.login</span>=<span class="hljs-string">admin</span><br><span class="hljs-comment"># sonar登陆密码</span><br><span class="hljs-attr">sonar.password</span>=<span class="hljs-string">admin</span><br></code></pre></td></tr></table></figure>
-
-</li>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">sonar.jdbc.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span><br><span class="hljs-comment"># 刚刚创建的sonarQube用户</span><br><span class="hljs-attr">sonar.jdbc.username</span>=<span class="hljs-string">sonar</span><br><span class="hljs-comment"># 创建用户对应的密码</span><br><span class="hljs-attr">sonar.jdbc.password</span>=<span class="hljs-string">sonar</span><br><span class="hljs-comment"># 设置编码格式为UTF-8</span><br><span class="hljs-attr">sonar.sorceEncoding</span>=<span class="hljs-string">UTF-8</span><br><span class="hljs-comment"># sonar登陆用户名</span><br><span class="hljs-attr">sonar.login</span>=<span class="hljs-string">admin</span><br><span class="hljs-comment"># sonar登陆密码</span><br><span class="hljs-attr">sonar.password</span>=<span class="hljs-string">admin</span><br></code></pre></td></tr></table></figure></li>
 </ol>
 <h4 id="2-3-重新启动服务端"><a href="#2-3-重新启动服务端" class="headerlink" title="2.3 重新启动服务端"></a>2.3 重新启动服务端</h4><ol>
 <li><p>退出 SonarQube 服务端</p>
@@ -402,10 +400,8 @@
 <p>初始的密码  :  admin</p>
 <p>附 : 一些关键配置的修改,如 主机地址,context,端口号等:</p>
 <p>通常情况下使用默认的配置即可!</p>
-<p>文件 /conf/sonar.properties</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#sonar.web.host=0.0.0.0 </span><br><span class="hljs-comment">#sonar.web.context=</span><br><span class="hljs-comment">#sonar.web.port=9000</span><br></code></pre></td></tr></table></figure>
-
-</li>
+<p>文件 &#x2F;conf&#x2F;sonar.properties</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#sonar.web.host=0.0.0.0 </span><br><span class="hljs-comment">#sonar.web.context=</span><br><span class="hljs-comment">#sonar.web.port=9000</span><br></code></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="三-使用"><a href="#三-使用" class="headerlink" title="三. 使用"></a>三. 使用</h3><h4 id="3-1-安装必要的插件-汉化包举例"><a href="#3-1-安装必要的插件-汉化包举例" class="headerlink" title="3.1. 安装必要的插件 (汉化包举例)"></a>3.1. 安装必要的插件 (汉化包举例)</h4><p>点击 导航栏的 Administration, 选择Marketplace</p>
 <p>搜索 Chinese pack, 点击install进行安装</p>
@@ -424,14 +420,14 @@
 <p>刷新界面查看 :</p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymopjdz6j31bv0u0n3x.jpg" srcset="/img/loading.gif" lazyload></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymoqvxqaj31bv0u0n3x.jpg" srcset="/img/loading.gif" lazyload></p>
-<h4 id="3-3-配置分析参数"><a href="#3-3-配置分析参数" class="headerlink" title="3.3 配置分析参数"></a>3.3 配置分析参数</h4><p>强制参数：    </p>
+<h4 id="3-3-配置分析参数"><a href="#3-3-配置分析参数" class="headerlink" title="3.3 配置分析参数"></a>3.3 配置分析参数</h4><p>强制参数：	</p>
 <ol>
-<li>Server<br>sonar.host.url        <a target="_blank" rel="noopener" href="http://localhost:9000/">http://localhost:9000</a></li>
-<li>Project Configuration<br>sonar.projectKey              Maven   <groupId>:<artifactId><br>sonar.sources                  Maven 默认的源码路径</li>
+<li>Server<br>sonar.host.url		<a target="_blank" rel="noopener" href="http://localhost:9000/">http://localhost:9000</a></li>
+<li>Project Configuration<br>sonar.projectKey	  		Maven   <groupId>:<artifactId><br>sonar.sources		  		Maven 默认的源码路径</li>
 </ol>
 <p>可以配置的参数：</p>
 <ol>
-<li>Project identity<br>sonar.projectName        项目名称<br>sonar.projectversion     项目版本</li>
+<li>Project identity<br>sonar.projectName        项目名称<br>sonar.projectversion	 项目版本</li>
 <li>Authentication<br>sonar.login                  分析该项目的用户名称<br>sonar.password                分析该项目的用户密码</li>
 </ol>
 <h4 id="3-4-程序员用户使用说明"><a href="#3-4-程序员用户使用说明" class="headerlink" title="3.4. 程序员用户使用说明"></a>3.4. 程序员用户使用说明</h4><p>SonarQube Web管理者通过配置和设置以下参数值对项目源代码进行：</p>

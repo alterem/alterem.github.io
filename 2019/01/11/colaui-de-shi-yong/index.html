@@ -86,7 +86,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -343,7 +343,7 @@
 
 <p>caption用来标志当前字段的前端显示文本，使用[(#{ })]取到当前字段对应的当前语言的国际化翻译。</p>
 <h3 id="表单相关"><a href="#表单相关" class="headerlink" title="表单相关"></a>表单相关</h3><h4 id="表单对国际化的处理"><a href="#表单对国际化的处理" class="headerlink" title="表单对国际化的处理"></a>表单对国际化的处理</h4><blockquote>
-<p>在正常情况下，dataType可能会被公用，然后每个字段在每个不同的地方显示的文本标识不一样，这时候可以使用caption属性进行操作，例如：caption=ll.l(“name”)<strong>前面提到在Js中国际化使用的是[(#{ })]</strong></p>
+<p>在正常情况下，dataType可能会被公用，然后每个字段在每个不同的地方显示的文本标识不一样，这时候可以使用caption属性进行操作，例如：caption&#x3D;ll.l(“name”)<strong>前面提到在Js中国际化使用的是[(#{ })]</strong></p>
 </blockquote>
 <h4 id="表单对日期格式的处理"><a href="#表单对日期格式的处理" class="headerlink" title="表单对日期格式的处理"></a>表单对日期格式的处理</h4><blockquote>
 <p>通常需要将当前日期字段进行格式化只需要下面代码即可：</p>
@@ -369,9 +369,9 @@
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jade">fields.cols-1<br>    field(property=&quot;remark&quot;)<br>        label<br>        c-textarea(rows=&quot;3&quot;)<br></code></pre></td></tr></table></figure>
 
-<p>首先定义当前字段独占一列，使用c-textarea(rows=”3”)表名当前字段独占三列</p>
+<p>首先定义当前字段独占一列，使用c-textarea(rows&#x3D;”3”)表名当前字段独占三列</p>
 <h4 id="表单对只读的处理"><a href="#表单对只读的处理" class="headerlink" title="表单对只读的处理"></a>表单对只读的处理</h4><blockquote>
-<p>正常场景并不是表单中列出的所有的字段都是手动输入的，比如ID，我们可以使用readOnly=”true”对每个field进行只读控制，也可以将readOnly=”true”放在c-form属性里面来控制整个表单只读</p>
+<p>正常场景并不是表单中列出的所有的字段都是手动输入的，比如ID，我们可以使用readOnly&#x3D;”true”对每个field进行只读控制，也可以将readOnly&#x3D;”true”放在c-form属性里面来控制整个表单只读</p>
 </blockquote>
 <h4 id="表单对省市县级联的处理"><a href="#表单对省市县级联的处理" class="headerlink" title="表单对省市县级联的处理"></a>表单对省市县级联的处理</h4><p>Jade</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jade">field(property=&quot;country&quot;<br>    label<br>    c-dropdown(c-items=&quot;dictionary(&#x27;CountryCode&#x27;)&quot; onSelectData=&quot;onCountrySelect&quot;)<br>(property=&quot;province&quot; caption=ll.l(&quot;province&quot;) c-readOnly=&quot;queryCondition.country != &#x27;CHN&#x27;&quot;)<br>    label<br>    c-dropdown(c-items=&quot;provinces&quot; textProperty=&quot;name&quot; assignment=&quot;province=kind&quot; onSelectData=&quot;onProvinceSel&quot;)<br>field(property=&quot;city&quot; caption=ll.l(&quot;city&quot;) c-readOnly=&quot;queryCondition.country != &#x27;CHN&#x27;&quot;)<br>    label<br>    c-dropdown(c-items=&quot;cities&quot; textProperty=&quot;name&quot; assignment=&quot;city=kind&quot; beforeOpen=&quot;beforeCityOpen&quot; onSelectData=&quot;onCitySel&quot;)<br>field(property=&quot;county&quot; caption=ll.l(&quot;county&quot;) c-readOnly=&quot;queryCondition.country != &#x27;CHN&#x27;&quot;)<br>    label<br>    c-dropdown(c-items=&quot;counties&quot; textProperty=&quot;name&quot; assignment=&quot;county=kind&quot; beforeOpen=&quot;beforeCountyOpen&quot;)<br></code></pre></td></tr></table></figure>

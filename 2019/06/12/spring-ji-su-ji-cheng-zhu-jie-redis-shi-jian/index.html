@@ -89,7 +89,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.6k 字
+          6.7k 字
         
       </span>
     
@@ -331,13 +331,14 @@
 <h3 id="5-在你喜欢的地方进行注解缓存"><a href="#5-在你喜欢的地方进行注解缓存" class="headerlink" title="5. 在你喜欢的地方进行注解缓存"></a>5. 在你喜欢的地方进行注解缓存</h3><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ympcrzd7j30k00bvwfe.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>spring缓存一般使用在服务层，在你想缓存的方法上面添加相应的注解即可，下面三个缓存的注解你得掌握。 </p>
 <ul>
-<li>@Cacheable spring 会在其被调用后将返回值缓存起来，以保证下次利用同样的参数来执行该方法时可以直接从缓存中获取结果，而不需要再次执行该方法。     </li>
-<li>@CachePut 标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。     </li>
-<li>@CacheEvict 用来标注在需要清除缓存元素的方法或类上的。     </li>
+<li>@Cacheable spring 会在其被调用后将返回值缓存起来，以保证下次利用同样的参数来执行该方法时可以直接从缓存中获取结果，而不需要再次执行该方法。 	</li>
+<li>@CachePut 标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。 	</li>
+<li>@CacheEvict 用来标注在需要清除缓存元素的方法或类上的。</li>
 </ul>
+<p> 	</p>
 <p>当然这些注解里面还有很多其他的属性配置，配合 spring-el 表达式能做的事情还有很多，大概只有你想不到，没有做不到。 </p>
 <p>在业务规则比较复杂的情况下，缓存 key 的设计相当重要，设计出色可以使你的应用飞起来。 </p>
-<p>整个集成工作就结束了，是不是很简单，上述算是 redis 的冰山一角，还有很多像 redis 路由/分布式/集群….，有机会实践慢慢体会。 </p>
+<p>整个集成工作就结束了，是不是很简单，上述算是 redis 的冰山一角，还有很多像 redis 路由&#x2F;分布式&#x2F;集群….，有机会实践慢慢体会。 </p>
 <p><strong>欢迎关注微信公众号​：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" lazyload alt="欢迎关注公众号" style="width: 100px" />
                 

@@ -93,7 +93,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -323,7 +323,7 @@
 <li>此时可以看到Jenkins的启动日志，查看是否有异常。</li>
 <li>通过浏览器访问<a href="http://localhost:8080。">http://localhost:8080。</a></li>
 </ul>
-<p>注意：可以通过 –httpPort方式指定端口， java -jar jenkins.war -httpPort=9090。</p>
+<p>注意：可以通过 –httpPort方式指定端口， java -jar jenkins.war -httpPort&#x3D;9090。</p>
 <h3 id="2-2-基于MAC系统部署"><a href="#2-2-基于MAC系统部署" class="headerlink" title="2.2 基于MAC系统部署"></a>2.2 基于MAC系统部署</h3><ul>
 <li>下载软件包手动安装</li>
 <li>brew install jenkins #安装jenkins最新版本</li>
@@ -340,7 +340,7 @@
 </ul>
 <h2 id="3-安装后配置"><a href="#3-安装后配置" class="headerlink" title="3. 安装后配置"></a>3. 安装后配置</h2><h3 id="3-1-解锁Jenkins"><a href="#3-1-解锁Jenkins" class="headerlink" title="3.1 解锁Jenkins"></a>3.1 解锁Jenkins</h3><ul>
 <li>当您第一次访问Jenkins的时候，系统会要求您使用自动生成的密码对其进行解锁。</li>
-<li>解锁秘钥可以通过$JENKINS_HOME/secrets/initialAdminPassword文件获取。还可以通过在启动日志中获取。 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrvk8puj30o00gh74w.jpg" srcset="/img/loading.gif" lazyload></li>
+<li>解锁秘钥可以通过$JENKINS_HOME&#x2F;secrets&#x2F;initialAdminPassword文件获取。还可以通过在启动日志中获取。 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrvk8puj30o00gh74w.jpg" srcset="/img/loading.gif" lazyload></li>
 </ul>
 <h3 id="3-2-自定义Jenkins插件"><a href="#3-2-自定义Jenkins插件" class="headerlink" title="3.2 自定义Jenkins插件"></a>3.2 自定义Jenkins插件</h3><ul>
 <li>解锁Jenkins之后再自定义Jenkins页面，您可以安装任何数量的插件作为初始化的一部分。</li>
@@ -361,13 +361,13 @@
 <li><p>创建完成后会出现slave节点启动的命令，下载agent.jar，然后启动服务。 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9yms1twppj30o007egly.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>启动命令</p>
-<p>  wget <a target="_blank" rel="noopener" href="http://192.168.0.41/jnlpJars/agent.jar">http://192.168.0.41/jnlpJars/agent.jar</a><br>  java -jar agent.jar -jnlpUrl <a target="_blank" rel="noopener" href="http://192.168.0.41/computer/test1/slave-agent.jnlp">http://192.168.0.41/computer/test1/slave-agent.jnlp</a> -secret 807b0135fb5b071d99930166ac4fc5dd0cf355e670a66da73120dfa2e8cebc5f -workDir “/var/lib/jenkins”</p>
+<p>  wget <a target="_blank" rel="noopener" href="http://192.168.0.41/jnlpJars/agent.jar">http://192.168.0.41/jnlpJars/agent.jar</a><br>  java -jar agent.jar -jnlpUrl <a target="_blank" rel="noopener" href="http://192.168.0.41/computer/test1/slave-agent.jnlp">http://192.168.0.41/computer/test1/slave-agent.jnlp</a> -secret 807b0135fb5b071d99930166ac4fc5dd0cf355e670a66da73120dfa2e8cebc5f -workDir “&#x2F;var&#x2F;lib&#x2F;jenkins”</p>
 </li>
 <li><p>启动成功 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9yms2ncctj30o00cfq3m.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 <h3 id="3-6-Jenkins配置文件"><a href="#3-6-Jenkins配置文件" class="headerlink" title="3.6 Jenkins配置文件"></a>3.6 Jenkins配置文件</h3><ul>
-<li>以rpm方式部署的配置文件在/etc/sysconfig/jenkins，可以定义Jenkins启动参数和端口。 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9yms4ki1hj30o00a4my6.jpg" srcset="/img/loading.gif" lazyload></li>
+<li>以rpm方式部署的配置文件在&#x2F;etc&#x2F;sysconfig&#x2F;jenkins，可以定义Jenkins启动参数和端口。 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9yms4ki1hj30o00a4my6.jpg" srcset="/img/loading.gif" lazyload></li>
 </ul>
 <p><strong>欢迎关注微信公众号​：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" lazyload alt="欢迎关注公众号" style="width: 100px" />

@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="Java 运算符优先级    运算符 优先级    postfix expr++ expr–   unary ++expr –expr +expr -expr ~ !   multiplicative * &#x2F; %   additive + -   shift &lt;&lt; &gt;&gt; &gt;&gt;&gt;   relational &lt; &gt; &lt;&#x3D; &gt;&#x3D; inst">
+    <meta name="description" content="Java 运算符优先级    运算符 优先级    postfix expr++ expr–   unary ++expr –expr +expr -expr ~ !   multiplicative * &#x2F; %   additive + -   shift &lt;&lt; &gt;&gt; &gt;&gt;&gt;   relational &lt; &gt; &lt;&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运算符优先级">
 <meta property="og:url" content="https://alterem.github.io/2019/06/12/yun-suan-fu-you-xian-ji/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="Java 运算符优先级    运算符 优先级    postfix expr++ expr–   unary ++expr –expr +expr -expr ~ !   multiplicative * &#x2F; %   additive + -   shift &lt;&lt; &gt;&gt; &gt;&gt;&gt;   relational &lt; &gt; &lt;&#x3D; &gt;&#x3D; inst">
+<meta property="og:description" content="Java 运算符优先级    运算符 优先级    postfix expr++ expr–   unary ++expr –expr +expr -expr ~ !   multiplicative * &#x2F; %   additive + -   shift &lt;&lt; &gt;&gt; &gt;&gt;&gt;   relational &lt; &gt; &lt;&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-06-12T10:43:48.000Z">
 <meta property="article:modified_time" content="2019-12-16T08:14:17.000Z">
@@ -84,7 +84,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          3.7k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          29 分钟
+          32 分钟
         
       </span>
     
@@ -313,7 +313,7 @@
 </tr>
 <tr>
 <td align="left">multiplicative</td>
-<td align="left">* / %</td>
+<td align="left">* &#x2F; %</td>
 </tr>
 <tr>
 <td align="left">additive</td>
@@ -325,11 +325,11 @@
 </tr>
 <tr>
 <td align="left">relational</td>
-<td align="left">&lt; &gt; &lt;= &gt;= instanceof</td>
+<td align="left">&lt; &gt; &lt;&#x3D; &gt;&#x3D; instanceof</td>
 </tr>
 <tr>
 <td align="left">equality</td>
-<td align="left">== !=</td>
+<td align="left">&#x3D;&#x3D; !&#x3D;</td>
 </tr>
 <tr>
 <td align="left">bitwise AND</td>
@@ -357,7 +357,7 @@
 </tr>
 <tr>
 <td align="left">assignment</td>
-<td align="left">= += -= *= /= %= &amp;= ^=</td>
+<td align="left">&#x3D; +&#x3D; -&#x3D; *&#x3D; &#x2F;&#x3D; %&#x3D; &amp;&#x3D; ^&#x3D;</td>
 </tr>
 </tbody></table>
 <p>C++运算符优先级</p>
@@ -379,7 +379,7 @@
 <tr>
 <td align="left">2</td>
 <td align="left">++    –</td>
-<td align="left">Suffix/postfix increment and decrement</td>
+<td align="left">Suffix&#x2F;postfix increment and decrement</td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -468,7 +468,7 @@
 </tr>
 <tr>
 <td align="left">5</td>
-<td align="left">*    /    %</td>
+<td align="left">*    &#x2F;    %</td>
 <td align="left">Multiplication, division, and remainder</td>
 <td align="left"></td>
 </tr>
@@ -486,20 +486,20 @@
 </tr>
 <tr>
 <td align="left">8</td>
-<td align="left">&lt;    &lt;=</td>
+<td align="left">&lt;    &lt;&#x3D;</td>
 <td align="left">For relational operators &lt; and ≤ respectively</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">&gt;    &gt;=</td>
+<td align="left">&gt;    &gt;&#x3D;</td>
 <td align="left">For relational operators &gt; and ≥ respectively</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">9</td>
-<td align="left">==    !=</td>
-<td align="left">For relational = and ≠ respectively</td>
+<td align="left">&#x3D;&#x3D;    !&#x3D;</td>
+<td align="left">For relational &#x3D; and ≠ respectively</td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -540,31 +540,31 @@
 </tr>
 <tr>
 <td align="left">16</td>
-<td align="left">=</td>
+<td align="left">&#x3D;</td>
 <td align="left">Direct assignment (provided by default for C++ classes)</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">+=    −=</td>
+<td align="left">+&#x3D;    −&#x3D;</td>
 <td align="left">Assignment by sum and difference</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">*=    /=    %=</td>
+<td align="left">*&#x3D;    &#x2F;&#x3D;    %&#x3D;</td>
 <td align="left">Assignment by product, quotient, and remainder</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">&lt;&lt;=    &gt;&gt;=</td>
+<td align="left">&lt;&lt;&#x3D;    &gt;&gt;&#x3D;</td>
 <td align="left">Assignment by bitwise left shift and right shift</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">&amp;=    ^=    &#124;=</td>
+<td align="left">&amp;&#x3D;    ^&#x3D;    &#124;&#x3D;</td>
 <td align="left">Assignment by bitwise AND, XOR, and OR</td>
 <td align="left"></td>
 </tr>
@@ -594,7 +594,7 @@
 <tbody><tr>
 <td align="left">1</td>
 <td align="left">++  –</td>
-<td align="left">Suffix/postfix increment and decrement</td>
+<td align="left">Suffix&#x2F;postfix increment and decrement</td>
 <td align="left">Left-to-right</td>
 </tr>
 <tr>
@@ -677,7 +677,7 @@
 </tr>
 <tr>
 <td align="left">3</td>
-<td align="left">*  /  %</td>
+<td align="left">*  &#x2F;  %</td>
 <td align="left">Multiplication, division, and remainder</td>
 <td align="left">Left-to-right</td>
 </tr>
@@ -695,20 +695,20 @@
 </tr>
 <tr>
 <td align="left">6</td>
-<td align="left">&lt;  &lt;=</td>
+<td align="left">&lt;  &lt;&#x3D;</td>
 <td align="left">For relational operators &lt; and ≤ respectively</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">&gt;  &gt;=</td>
+<td align="left">&gt;  &gt;&#x3D;</td>
 <td align="left">For relational operators &gt; and ≥ respectively</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left">7</td>
-<td align="left">==  !=</td>
-<td align="left">For relational = and ≠ respectively</td>
+<td align="left">&#x3D;&#x3D;  !&#x3D;</td>
+<td align="left">For relational &#x3D; and ≠ respectively</td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -749,32 +749,32 @@
 </tr>
 <tr>
 <td align="left">14</td>
-<td align="left">=</td>
+<td align="left">&#x3D;</td>
 <td align="left">Simple assignment</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">+=  −=</td>
+<td align="left">+&#x3D;  −&#x3D;</td>
 <td align="left">Assignment by sum and difference</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">*=  /=  %=</td>
+<td align="left">*&#x3D;  &#x2F;&#x3D;  %&#x3D;</td>
 <td align="left">Assignment by product, quotient, and remainder</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">&lt;&lt;=  &gt;&gt;=</td>
+<td align="left">&lt;&lt;&#x3D;  &gt;&gt;&#x3D;</td>
 <td align="left">Assignment by bitwise left shift and right shift</td>
 <td align="left"></td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left">&amp;=  ^=</td>
-<td align="left">=</td>
+<td align="left">&amp;&#x3D;  ^&#x3D;</td>
+<td align="left">&#x3D;</td>
 <td align="left">Assignment by bitwise AND, XOR, and OR</td>
 </tr>
 <tr>
@@ -825,7 +825,7 @@
 </tr>
 <tr>
 <td align="left">左</td>
-<td align="left">* / %</td>
+<td align="left">* &#x2F; %</td>
 <td align="left">算术运算符</td>
 </tr>
 <tr>
@@ -840,12 +840,12 @@
 </tr>
 <tr>
 <td align="left">非结合</td>
-<td align="left">&lt; &lt;= &gt; &gt;= &lt;&gt;</td>
+<td align="left">&lt; &lt;&#x3D; &gt; &gt;&#x3D; &lt;&gt;</td>
 <td align="left">比较运算符</td>
 </tr>
 <tr>
 <td align="left">非结合</td>
-<td align="left">== != === !==</td>
+<td align="left">&#x3D;&#x3D; !&#x3D; &#x3D;&#x3D;&#x3D; !&#x3D;&#x3D;</td>
 <td align="left">比较运算符</td>
 </tr>
 <tr>
@@ -880,7 +880,7 @@
 </tr>
 <tr>
 <td align="left">右</td>
-<td align="left">= += -= *= /= .= %= &amp;= &#124;= ^= &lt;&lt;= &gt;&gt;=</td>
+<td align="left">&#x3D; +&#x3D; -&#x3D; *&#x3D; &#x2F;&#x3D; .&#x3D; %&#x3D; &amp;&#x3D; &#124;&#x3D; ^&#x3D; &lt;&lt;&#x3D; &gt;&gt;&#x3D;</td>
 <td align="left">赋值运算符</td>
 </tr>
 <tr>
@@ -904,7 +904,136 @@
 <td align="left">多处用到</td>
 </tr>
 </tbody></table>
-<p>Python 运算符优先级<br>| 运算符               | 描述             | 序号 |<br>| :——————- | :————— | —- |<br>| lambda               | Lambda表达式     | 1    |<br>| or                   | 布尔“或”         | 2    |<br>| and                  | 布尔“与”         | 3    |<br>| not x                | 布尔“非”         | 4    |<br>| in，not in           | 成员测试         | 5    |<br>| is，is not           | 同一性测试       | 6    |<br>| &lt;，&lt;=，&gt;，&gt;=，!=，== | 比较             | 7    |<br>| &#124;               | 按位或           | 8    |<br>| ^                    | 按位异或         | 9    |<br>| &amp;                    | 按位与           | 10   |<br>| &lt;&lt;，&gt;&gt;               | 移位             | 11   |<br>| +，-                 | 加法与减法       | 12   |<br>| *，/，%              | 乘法、除法与取余 | 13   |<br>| +x，-x               | 正负号           | 14   |<br>| ~x                   | 按位翻转         | 15   |<br>| **                   | 指数             | 16   |<br>| x.attribute          | 属性参考         | 17   |<br>| x[index]             | 下标             | 18   |<br>| x[index:index]       | 寻址段           | 19   |<br>| f(arguments…)      | 函数调用         | 20   |<br>| (experession,…)    | 绑定或元组显示   | 21   |<br>| [expression,…]     | 列表显示         | 22   |<br>| {key:datum,…}      | 字典显示         | 23   |<br>| ‘expression,…’     | 字符串转换       | 24   |</p>
+<p>Python 运算符优先级</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th>序号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">lambda</td>
+<td align="left">Lambda表达式</td>
+<td>1</td>
+</tr>
+<tr>
+<td align="left">or</td>
+<td align="left">布尔“或”</td>
+<td>2</td>
+</tr>
+<tr>
+<td align="left">and</td>
+<td align="left">布尔“与”</td>
+<td>3</td>
+</tr>
+<tr>
+<td align="left">not x</td>
+<td align="left">布尔“非”</td>
+<td>4</td>
+</tr>
+<tr>
+<td align="left">in，not in</td>
+<td align="left">成员测试</td>
+<td>5</td>
+</tr>
+<tr>
+<td align="left">is，is not</td>
+<td align="left">同一性测试</td>
+<td>6</td>
+</tr>
+<tr>
+<td align="left">&lt;，&lt;&#x3D;，&gt;，&gt;&#x3D;，!&#x3D;，&#x3D;&#x3D;</td>
+<td align="left">比较</td>
+<td>7</td>
+</tr>
+<tr>
+<td align="left">&#124;</td>
+<td align="left">按位或</td>
+<td>8</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">按位异或</td>
+<td>9</td>
+</tr>
+<tr>
+<td align="left">&amp;</td>
+<td align="left">按位与</td>
+<td>10</td>
+</tr>
+<tr>
+<td align="left">&lt;&lt;，&gt;&gt;</td>
+<td align="left">移位</td>
+<td>11</td>
+</tr>
+<tr>
+<td align="left">+，-</td>
+<td align="left">加法与减法</td>
+<td>12</td>
+</tr>
+<tr>
+<td align="left">*，&#x2F;，%</td>
+<td align="left">乘法、除法与取余</td>
+<td>13</td>
+</tr>
+<tr>
+<td align="left">+x，-x</td>
+<td align="left">正负号</td>
+<td>14</td>
+</tr>
+<tr>
+<td align="left">~x</td>
+<td align="left">按位翻转</td>
+<td>15</td>
+</tr>
+<tr>
+<td align="left">**</td>
+<td align="left">指数</td>
+<td>16</td>
+</tr>
+<tr>
+<td align="left">x.attribute</td>
+<td align="left">属性参考</td>
+<td>17</td>
+</tr>
+<tr>
+<td align="left">x[index]</td>
+<td align="left">下标</td>
+<td>18</td>
+</tr>
+<tr>
+<td align="left">x[index:index]</td>
+<td align="left">寻址段</td>
+<td>19</td>
+</tr>
+<tr>
+<td align="left">f(arguments…)</td>
+<td align="left">函数调用</td>
+<td>20</td>
+</tr>
+<tr>
+<td align="left">(experession,…)</td>
+<td align="left">绑定或元组显示</td>
+<td>21</td>
+</tr>
+<tr>
+<td align="left">[expression,…]</td>
+<td align="left">列表显示</td>
+<td>22</td>
+</tr>
+<tr>
+<td align="left">{key:datum,…}</td>
+<td align="left">字典显示</td>
+<td>23</td>
+</tr>
+<tr>
+<td align="left">‘expression,…’</td>
+<td align="left">字符串转换</td>
+<td>24</td>
+</tr>
+</tbody></table>
 
                 
               </div>

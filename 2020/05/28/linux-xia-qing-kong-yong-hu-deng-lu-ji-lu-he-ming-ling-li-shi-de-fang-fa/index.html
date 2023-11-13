@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="清除登陆系统成功的记录，也就是last命令看到的记录 [root@localhost root]# echo &gt; &#x2F;var&#x2F;log&#x2F;wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息 [root@localhost root]# echo &gt;&#x2F;var&#x2F;log&#x2F;wtmp[root@localhost root]# last 此时即看不到用户登录信息 清除登陆系统失败的记录，也就是">
+    <meta name="description" content="清除登陆系统成功的记录，也就是last命令看到的记录 [root@localhost root]# echo &gt; &#x2F;var&#x2F;log&#x2F;wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息 [root@localhost root]# echo &gt;&#x2F;var&#x2F;log&#x2F;wtmp[root@localhost root]# las">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下清空用户登录记录和命令历史的方法">
 <meta property="og:url" content="https://alterem.github.io/2020/05/28/linux-xia-qing-kong-yong-hu-deng-lu-ji-lu-he-ming-ling-li-shi-de-fang-fa/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="清除登陆系统成功的记录，也就是last命令看到的记录 [root@localhost root]# echo &gt; &#x2F;var&#x2F;log&#x2F;wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息 [root@localhost root]# echo &gt;&#x2F;var&#x2F;log&#x2F;wtmp[root@localhost root]# last 此时即看不到用户登录信息 清除登陆系统失败的记录，也就是">
+<meta property="og:description" content="清除登陆系统成功的记录，也就是last命令看到的记录 [root@localhost root]# echo &gt; &#x2F;var&#x2F;log&#x2F;wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息 [root@localhost root]# echo &gt;&#x2F;var&#x2F;log&#x2F;wtmp[root@localhost root]# las">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/10/15/ccJL6g.jpg">
 <meta property="article:published_time" content="2020-05-28T06:09:24.000Z">
@@ -86,7 +86,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          438 字
+          503 字
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -298,16 +298,16 @@
               <div class="markdown-body">
                 
                 <p><strong>清除登陆系统成功的记录</strong>，也就是last命令看到的记录</p>
-<p>[root@localhost root]# echo &gt; /var/log/wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息</p>
-<p>[root@localhost root]# echo &gt;/var/log/wtmp<br>[root@localhost root]# last</p>
+<p>[root@localhost root]# echo &gt; &#x2F;var&#x2F;log&#x2F;wtmp 此文件默认打开时乱码的，里面可以看到ip等等信息</p>
+<p>[root@localhost root]# echo &gt;&#x2F;var&#x2F;log&#x2F;wtmp<br>[root@localhost root]# last</p>
 <p>此时即看不到用户登录信息</p>
-<p><strong>清除登陆系统失败的记录</strong>，也就是lastb命令看到的记录<br>[root@localhost root]# echo &gt; /var/log/btmp 此文件默认打开时乱码的</p>
-<p>[root@localhost root]# echo &gt; /var/log/btmp<br>[root@localhost root]# lastb</p>
+<p><strong>清除登陆系统失败的记录</strong>，也就是lastb命令看到的记录<br>[root@localhost root]# echo &gt; &#x2F;var&#x2F;log&#x2F;btmp 此文件默认打开时乱码的</p>
+<p>[root@localhost root]# echo &gt; &#x2F;var&#x2F;log&#x2F;btmp<br>[root@localhost root]# lastb</p>
 <p>此时就没有结果输出了</p>
 <p><strong>清除历史执行命令</strong></p>
 <p>[root@localhost root]# history -c </p>
 <p>或者，清空用户目录下的这个文件即可</p>
-<p>[root@localhost root]# echo &gt; ./.bash_history</p>
+<p>[root@localhost root]# echo &gt; .&#x2F;.bash_history</p>
 <p><a target="_blank" rel="noopener" href="http://www.linuxidc.com/">
 </a></p>
 <p><strong>欢迎关注微信公众号 ：</strong></p>

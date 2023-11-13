@@ -87,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -301,17 +301,18 @@
                 <p>很多讲Java优化的文章都会强调对String拼接的优化。倒不用特意记，本质上在于对不可变类优势和劣势的理解上。 </p>
 <p>需要关注的是编译器对String拼接做出的优化，在简单场景下的性能能够与StringBuilder相当，复杂场景下仍然有较大的性能问题。网上关于这一问题讲的非常乱；如果我讲的有什么纰漏，也欢迎指正。 </p>
 <blockquote>
-<p>本文用到了反编译工具jad。在查阅网上关于String拼接操作的优化时发现了这个工具，能同时反编译出来源码和字节码，亲测好用，<a href="https://link.juejin.im/?target=https://varaneckas.com/jad/">点我下载</a>。     </p>
+<p>本文用到了反编译工具jad。在查阅网上关于String拼接操作的优化时发现了这个工具，能同时反编译出来源码和字节码，亲测好用，<a href="https://link.juejin.im/?target=https://varaneckas.com/jad/">点我下载</a>。 	</p>
 </blockquote>
 <span id="more"></span>
 
 <h1 id="String拼接的性能问题"><a href="#String拼接的性能问题" class="headerlink" title="String拼接的性能问题"></a>String拼接的性能问题</h1><p>优化之前，每次用”+”拼接，都会生成一个新的String。特别在循环拼接字符串的场景下，性能损失是极其严重的： </p>
 <ol>
-<li>空间浪费：每次拼接的结果都需要创建新的不可变类     </li>
-<li>时间浪费：创建的新不可变类需要初始化；产生大量“短命”垃圾，影响 young gc甚至full gc     </li>
+<li>空间浪费：每次拼接的结果都需要创建新的不可变类 	</li>
+<li>时间浪费：创建的新不可变类需要初始化；产生大量“短命”垃圾，影响 young gc甚至full gc</li>
 </ol>
+<p> 	</p>
 <h1 id="所谓简单场景"><a href="#所谓简单场景" class="headerlink" title="所谓简单场景"></a>所谓简单场景</h1><blockquote>
-<p>简单场景和复杂场景是我乱起的名字，帮助理解编译器的优化方案。     </p>
+<p>简单场景和复杂场景是我乱起的名字，帮助理解编译器的优化方案。 	</p>
 </blockquote>
 <p>简单场景可理解为在一句中完成拼接： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">sentence</span> <span class="hljs-operator">=</span> “Hello” + “world” + String.valueOf(i) + “\n”;<br>System.out.println(sentence);<br></code></pre></td></tr></table></figure>
@@ -327,17 +328,19 @@
 
 <h2 id="理想的优化方案"><a href="#理想的优化方案" class="headerlink" title="理想的优化方案"></a>理想的优化方案</h2><p>当然，无论什么场景，程序猿都可以手动优化： </p>
 <ul>
-<li>在性能敏感的场景使用StringBuilder完成拼接。     </li>
-<li>在性能不敏感的场景使用更方便的String。     </li>
+<li>在性能敏感的场景使用StringBuilder完成拼接。 	</li>
+<li>在性能不敏感的场景使用更方便的String。</li>
 </ul>
+<p> 	</p>
 <blockquote>
-<p>PS：别吐槽，这样的API设计是合理的，<strong>在合适的地方做合适的事</strong>。     </p>
+<p>PS：别吐槽，这样的API设计是合理的，<strong>在合适的地方做合适的事</strong>。 	</p>
 </blockquote>
 <p>理想目标是把这件事交给javac和JIT： </p>
 <ul>
-<li>设定一个拼接次数的阈值，超过阈值就启动优化（对于javac有一个编译期的阈值，JIT有一个运行期的阈值，以分阶段优化）。     </li>
-<li>优化时，在拼接前生成StringBuilder对象，将拼接操作换成StringBuilder#append()，继续使用该对象，直至“需要”String对象时，使用StringBuilder#toString()“懒加载”新的String对象。     </li>
+<li>设定一个拼接次数的阈值，超过阈值就启动优化（对于javac有一个编译期的阈值，JIT有一个运行期的阈值，以分阶段优化）。 	</li>
+<li>优化时，在拼接前生成StringBuilder对象，将拼接操作换成StringBuilder#append()，继续使用该对象，直至“需要”String对象时，使用StringBuilder#toString()“懒加载”新的String对象。</li>
 </ul>
+<p> 	</p>
 <p>该优化方案的难度在于代码分析：机器很难知道到底何时“需要”String对象，所以也很难在合适的位置注入代码完成“懒加载”。 </p>
 <p>虽然很难实现，但还是给出理想的优化结果，以供实际方案对比： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">sentence</span> <span class="hljs-operator">=</span> “”;<br><span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sentenceSB</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(sentence);<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10000000</span>; i++) &#123;<br>  sentenceSB.append(“Hello”).append(“world”).append(String.valueOf(i)).append(“\n”);<br>&#125;<br>sentence = sentenceSB.toString();<br>System.out.println(sentence);<br></code></pre></td></tr></table></figure>
@@ -351,7 +354,7 @@
 
 <p>观察第3行的代码，等式右侧引用了sentence。我肉眼知道这句话只完成了字符串拼接，机器呢？最起码，现在的机器还很难通过代码判断。 </p>
 <blockquote>
-<p>待以后将人工智能与编译优化结合起来，就算只能以90%的概率完成优化，也是非常cool的。     </p>
+<p>待以后将人工智能与编译优化结合起来，就算只能以90%的概率完成优化，也是非常cool的。 	</p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个问题我没有做性能测试。其实也没必要过于深究，与其让编译器以隐晦的方式完成优化，不如用代码进行主动、清晰的优化，让代码能够“自解释”。 </p>
 <p>那么，如果需要优化，使用StringBuilder吧。 </p>

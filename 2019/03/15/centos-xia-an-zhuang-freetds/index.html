@@ -92,7 +92,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -328,17 +328,14 @@
 <li><p>开始安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd freetds-0.91/<br>./configure --prefix=/usr/local/freetds --with-tdsver=8.0 --enable-msdblib<br>make &amp;&amp; makeinstall<br></code></pre></td></tr></table></figure>
 
-<p>`解释：</p>
-<pre><code class="hljs">安装freetds到目录/usr/local/freetds：--prefix=/usr/local/freetds
-支持MSSQL2000：--with-tdsver=8.0 --enable-msdblib`
-</code></pre>
+<p><code>解释： 安装freetds到目录/usr/local/freetds：--prefix=/usr/local/freetds 支持MSSQL2000：--with-tdsver=8.0 --enable-msdblib</code></p>
 </li>
 </ol>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrnq2tqj318f02ydgf.jpg" srcset="/img/loading.gif" lazyload alt="3"></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrp4l6oj30o40pm10k.jpg" srcset="/img/loading.gif" lazyload alt="4"></p>
 <p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1g9ymrri8e3j31a30pbe34.jpg" srcset="/img/loading.gif" lazyload alt="5"></p>
 </li>
-<li><p>FreeTDS默认安装在/usr/local/freetds目录当中，库文件在相应的lib目录下。</p>
+<li><p>FreeTDS默认安装在&#x2F;usr&#x2F;local&#x2F;freetds目录当中，库文件在相应的lib目录下。</p>
 <p><code>vim /etc/ld.so.conf</code>加入一行 <code>/usr/local/freetds/lib</code></p>
 </li>
 <li><p>然后运行以下指令使更改生效：</p>

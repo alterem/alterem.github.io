@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="​    开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：版本控制 ​    很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多的Bug，但是突然想到以前的代码中有一个比较重要的算法你不小心覆盖掉了，这时候你应该怎么办？ ​    或许你会告诉我你可以在修改这些代码之前备份一次当前修改的文件，">
+    <meta name="description" content="​	开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：版本控制 ​	很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多的Bug，但是突然想到以前的代码中有一个比较重要的算法你不小心覆盖掉了，这时候你应该怎么办？ ​	或许你会告诉我你可以在修改这些代码之前备份一次当前修改的文件，或者是当前项目。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql在CentOS上执行自动备份">
 <meta property="og:url" content="https://alterem.github.io/2019/10/13/mysql-zai-centos-shang-zhi-xing-zi-dong-bei-fen/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="​    开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：版本控制 ​    很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多的Bug，但是突然想到以前的代码中有一个比较重要的算法你不小心覆盖掉了，这时候你应该怎么办？ ​    或许你会告诉我你可以在修改这些代码之前备份一次当前修改的文件，">
+<meta property="og:description" content="​	开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：版本控制 ​	很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多的Bug，但是突然想到以前的代码中有一个比较重要的算法你不小心覆盖掉了，这时候你应该怎么办？ ​	或许你会告诉我你可以在修改这些代码之前备份一次当前修改的文件，或者是当前项目。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg">
 <meta property="article:published_time" content="2019-10-13T15:19:07.000Z">
@@ -86,7 +86,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -297,16 +297,16 @@
             
               <div class="markdown-body">
                 
-                <p>​    开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：<strong>版本控制</strong></p>
-<p>​    很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多的Bug，但是突然想到以前的代码中有一个比较重要的算法你不小心覆盖掉了，这时候你应该怎么办？</p>
-<p>​    或许你会告诉我你可以在修改这些代码之前备份一次当前修改的文件，或者是当前项目。</p>
-<p>​    但是时间久了你的机器上会有多少备份文件呢？</p>
-<p>​    如果有一天你的同事需要回滚到之前的代码看一下那时候Bug的原因，你会从你的机器上找到指定时间的文件发给他嘛？</p>
-<p>​    当然不是，我们有Svn或者是Git之后我们可以方便的看到文件之前的版本，还可以方便的对比。那么现在清楚了版本控制的重要性了。</p>
-<p>​    同样数据库也是这样，我们的系统99%都离不开数据库，因为我们总要把数据存储起来。</p>
-<p>​    那如果我们数据库被误删、被黑客入侵、被恶意修改怎么办？</p>
-<p>​    那么我们可以试着让我们的服务器自动来帮我们备份数据库的数据到指定位置，万一有一天我们的数据库不小心手抖了，我们还可以用备份下来的数据库脚本直接恢复。</p>
-<p>​    上脚本：</p>
+                <p>​	开发中我们常常有使用Svn或者Git来管理我们的代码或者是项目相关的文件，然而他们都有一个共同点就是：<strong>版本控制</strong></p>
+<p>​	很多人会问为什么要使用Svn或者是Git，那么我会问：我相信你写的代码很好，但是有一天你修改了很多很多的Bug，但是突然想到以前的代码中有一个比较重要的算法你不小心覆盖掉了，这时候你应该怎么办？</p>
+<p>​	或许你会告诉我你可以在修改这些代码之前备份一次当前修改的文件，或者是当前项目。</p>
+<p>​	但是时间久了你的机器上会有多少备份文件呢？</p>
+<p>​	如果有一天你的同事需要回滚到之前的代码看一下那时候Bug的原因，你会从你的机器上找到指定时间的文件发给他嘛？</p>
+<p>​	当然不是，我们有Svn或者是Git之后我们可以方便的看到文件之前的版本，还可以方便的对比。那么现在清楚了版本控制的重要性了。</p>
+<p>​	同样数据库也是这样，我们的系统99%都离不开数据库，因为我们总要把数据存储起来。</p>
+<p>​	那如果我们数据库被误删、被黑客入侵、被恶意修改怎么办？</p>
+<p>​	那么我们可以试着让我们的服务器自动来帮我们备份数据库的数据到指定位置，万一有一天我们的数据库不小心手抖了，我们还可以用备份下来的数据库脚本直接恢复。</p>
+<p>​	上脚本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># db username</span><br>db_user=<span class="hljs-string">&quot;test&quot;</span>  <br><span class="hljs-comment"># db password</span><br>db_passwd=<span class="hljs-string">&quot;test&quot;</span><br><span class="hljs-comment"># db host</span><br>db_host=<span class="hljs-string">&quot;121.201.5.216&quot;</span><br><span class="hljs-comment"># backup db name</span><br>db_name=<span class="hljs-string">&quot;Alterem&quot;</span>  <br><span class="hljs-comment"># the directory for story your backup file.  </span><br>backup_dir=<span class="hljs-string">&quot;backup&quot;</span>  <span class="hljs-built_in">cd</span> <br><span class="hljs-comment"># date format for backup file (dd-mm-yyyy)  </span><br>time=<span class="hljs-string">&quot;<span class="hljs-subst">$(date +<span class="hljs-string">&quot;%Y-%m-%d-%H-%M-%S&quot;</span>)</span>&quot;</span>  <br><span class="hljs-comment"># mysql, mysqldump and some other bin&#x27;s path  </span><br>MYSQL=<span class="hljs-string">&quot;/usr/local/mysql/bin/mysql&quot;</span>  <br>MYSQLDUMP=<span class="hljs-string">&quot;/usr/local/mysql/bin/mysqldump&quot;</span>  <br>GZIP=<span class="hljs-string">&quot;/bin/gzip&quot;</span>  <br>  <br><span class="hljs-variable">$MYSQLDUMP</span> -u <span class="hljs-variable">$db_user</span> -h <span class="hljs-variable">$db_host</span> -p<span class="hljs-variable">$db_passwd</span> <span class="hljs-variable">$db_name</span> | <span class="hljs-variable">$GZIP</span> -9 &gt; <span class="hljs-string">&quot;/data/backup/<span class="hljs-variable">$backup_dir</span>/<span class="hljs-variable">$db_name</span>&quot;</span>_<span class="hljs-string">&quot;<span class="hljs-variable">$time</span>.gz&quot;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="创建定时器"><a href="#创建定时器" class="headerlink" title="创建定时器"></a>创建定时器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">crontab -e<br></code></pre></td></tr></table></figure>

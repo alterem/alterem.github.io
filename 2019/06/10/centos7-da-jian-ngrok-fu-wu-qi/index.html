@@ -27,9 +27,9 @@
 <meta property="article:published_time" content="2019-06-10T08:38:52.000Z">
 <meta property="article:modified_time" content="2023-05-16T02:26:22.424Z">
 <meta property="article:author" content="Alterem">
+<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="CentOS">
 <meta property="article:tag" content="Server">
-<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ngrok">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/10/16/48Ujje.jpg">
@@ -89,7 +89,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.9k 字
+          8k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          66 分钟
+          67 分钟
         
       </span>
     
@@ -358,7 +358,7 @@
 <p>不同平台使用不同的 GOOS 和 GOARCH，GOOS为go编译出来的操作系统 (windows,linux,darwin)，GOARCH, 对应的构架 (386,amd64,arm)</p>
 <p>通过上面的步骤，将生成所有客户端文件，客户端文件放在对于的文件夹中，如windows 64位的为：windows_amd64，linux客户端在bin目录下的ngrok文件。</p>
 <p>完成之后，把相应的客户端文件使用SFTP或其他方式分发到客户端电脑上面，比如我用的windows电脑，就把<code>windows_amd64/ngrok.exe</code>文件复制过去。</p>
-<h3 id="启动ngrokd服务器"><a href="#启动ngrokd服务器" class="headerlink" title="启动ngrokd服务器"></a>启动ngrokd服务器</h3><p>请将 bin/ngrokd 放入PATH环境变量中，启动命令：</p>
+<h3 id="启动ngrokd服务器"><a href="#启动ngrokd服务器" class="headerlink" title="启动ngrokd服务器"></a>启动ngrokd服务器</h3><p>请将 bin&#x2F;ngrokd 放入PATH环境变量中，启动命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">nohup</span> ngrokd -domain=ngrok.xncoding.com -httpAddr=:5442 -httpsAddr=:5443 -tunnelAddr=<span class="hljs-string">&quot;:4443&quot;</span> &amp;<br></code></pre></td></tr></table></figure>
 
 
@@ -392,7 +392,7 @@
 <p>要完美的解决这个端口的问题，就需要让 ngrokd 直接监听 80 端口，或者使用Docker容器的端口映射来解决。</p>
 <h2 id="使用Docker"><a href="#使用Docker" class="headerlink" title="使用Docker"></a>使用Docker</h2><p>上面我讲到自己手动搭建的时候出现的端口问题，没办法解决。 一般80端口早就被占用了，不可能就给你ngrok使用，最完美的方式是使用Docker + Nginx的方式。</p>
 <h3 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h3><p>参考我的这篇<a target="_blank" rel="noopener" href="https://www.xncoding.com/2017/04/01/docker/docker01.html">Docker入门</a>来安装docker。</p>
-<h3 id="构建镜象"><a href="#构建镜象" class="headerlink" title="构建镜象"></a>构建镜象</h3><p>这里使用的是<a target="_blank" rel="noopener" href="https://github.com/hteen/docker-ngrok">hteen/docker-ngrok</a></p>
+<h3 id="构建镜象"><a href="#构建镜象" class="headerlink" title="构建镜象"></a>构建镜象</h3><p>这里使用的是<a target="_blank" rel="noopener" href="https://github.com/hteen/docker-ngrok">hteen&#x2F;docker-ngrok</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/hteen/docker-ngrok.git<br><span class="hljs-built_in">cd</span> docker-ngrok<br>docker build -t hteen/ngrok .<br></code></pre></td></tr></table></figure>
 
 <p>这里需要等待一段时间下载</p>
@@ -418,8 +418,8 @@
 <p>如果在腾讯云主机上面，还需要本级防火墙放行4443端口，以及在腾讯云安全组中也要放开4443端口。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.查看已开放的端口(默认不开放任何端口)</span><br>firewall-cmd --list-ports<br><span class="hljs-comment"># 2.开启4443端口</span><br>firewall-cmd --zone=public --add-port=4443/tcp --permanent<br><span class="hljs-comment"># 3.重启防火墙</span><br>systemctl restart firewalld<br></code></pre></td></tr></table></figure>
 
-<p>这里会把主机的5442端口映射到Docker容器中的80端口，讲5443端口映射到443端口，同时将本机的/data/ngrok文件夹映射到docker容器的/myfiles目录。</p>
-<p>运行后，会要等一段时间，因为要编译客户端。一直等到/data/ngrok/目录里面有/bin目录就OK了。</p>
+<p>这里会把主机的5442端口映射到Docker容器中的80端口，讲5443端口映射到443端口，同时将本机的&#x2F;data&#x2F;ngrok文件夹映射到docker容器的&#x2F;myfiles目录。</p>
+<p>运行后，会要等一段时间，因为要编译客户端。一直等到&#x2F;data&#x2F;ngrok&#x2F;目录里面有&#x2F;bin目录就OK了。</p>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>因为ngrok有心跳机制，每次心跳均会产生日志，所以以docker方式运行，会产生很多日志。实测试中，大概每个星期会产生100M的日志文件。</p>
 <p>查年docker日志文件位置<code>sudo docker inspect &lt;id&gt; | grep LogPath</code></p>
 <p>查看大小<code>sudo ls -lh /var/lib/docker/containers/&lt;id&gt;/&lt;id&gt;-json.log</code></p>
@@ -490,11 +490,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
         <a href="/tags/CentOS/" class="print-no-link">#CentOS</a>
       
         <a href="/tags/Server/" class="print-no-link">#Server</a>
-      
-        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
       
         <a href="/tags/Ngrok/" class="print-no-link">#Ngrok</a>
       

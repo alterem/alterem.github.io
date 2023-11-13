@@ -16,12 +16,12 @@
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
   
-    <meta name="description" content="一、把数组转成       ArrayList为了将数组转换为ArrayList，开发者经常会这样做：  1List&lt;String&gt; list &#x3D; Arrays.asList(arr);  使用       Arrays.asList()方法可以得到一个ArrayList，但是得到这个       ArrayList其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和">
+    <meta name="description" content="一、把数组转成 	  ArrayList为了将数组转换为ArrayList，开发者经常会这样做：  1List&lt;String&gt; list &#x3D; Arrays.asList(arr);  使用 	  Arrays.asList()方法可以得到一个ArrayList，但是得到这个 	  ArrayList其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和 	  java.uti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java开发人员最常犯的10个错误">
 <meta property="og:url" content="https://alterem.github.io/2019/06/12/java-kai-fa-ren-yuan-zui-chang-fan-de-10-ge-cuo-wu/index.html">
 <meta property="og:site_name" content="Alterem">
-<meta property="og:description" content="一、把数组转成       ArrayList为了将数组转换为ArrayList，开发者经常会这样做：  1List&lt;String&gt; list &#x3D; Arrays.asList(arr);  使用       Arrays.asList()方法可以得到一个ArrayList，但是得到这个       ArrayList其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和">
+<meta property="og:description" content="一、把数组转成 	  ArrayList为了将数组转换为ArrayList，开发者经常会这样做：  1List&lt;String&gt; list &#x3D; Arrays.asList(arr);  使用 	  Arrays.asList()方法可以得到一个ArrayList，但是得到这个 	  ArrayList其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和 	  java.uti">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg">
 <meta property="article:published_time" content="2019-06-12T04:53:33.000Z">
@@ -86,7 +86,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -297,14 +297,14 @@
             
               <div class="markdown-body">
                 
-                <h2 id="一、把数组转成-ArrayList"><a href="#一、把数组转成-ArrayList" class="headerlink" title="一、把数组转成       ArrayList"></a>一、把数组转成     <code>  ArrayList</code></h2><p>为了将数组转换为ArrayList，开发者经常会这样做： </p>
+                <h2 id="一、把数组转成-ArrayList"><a href="#一、把数组转成-ArrayList" class="headerlink" title="一、把数组转成 	  ArrayList"></a>一、把数组转成 	<code>  ArrayList</code></h2><p>为了将数组转换为ArrayList，开发者经常会这样做： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;String&gt; list = Arrays.asList(arr);<br></code></pre></td></tr></table></figure>
 
-<p>使用     <code>  Arrays.asList()</code>方法可以得到一个ArrayList，但是得到这个     <code>  ArrayList</code>其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和     <code>  java.util.ArrayList</code>同名，但是并不是同一个类。     <code>  java.util.Arrays.ArrayList</code>类中实现了     <code>  set()</code>,      <code>  get()</code>,      <code>  contains()</code>等方法，但是并没有定义向其中增加元素的方法。也就是说通过     <code>  Arrays.asList()</code>得到的ArrayList的大小是固定的。 </p>
-<p>如果在开发过程中，想得到一个真正的ArrayList对象（     <code>  java.util.ArrayList</code>的实例），可以通过以下方式： </p>
+<p>使用 	<code>  Arrays.asList()</code>方法可以得到一个ArrayList，但是得到这个 	<code>  ArrayList</code>其实是定义在Arrays类中的一个私有的静态内部类。这个类虽然和 	<code>  java.util.ArrayList</code>同名，但是并不是同一个类。 	<code>  java.util.Arrays.ArrayList</code>类中实现了 	<code>  set()</code>,  	<code>  get()</code>,  	<code>  contains()</code>等方法，但是并没有定义向其中增加元素的方法。也就是说通过 	<code>  Arrays.asList()</code>得到的ArrayList的大小是固定的。 </p>
+<p>如果在开发过程中，想得到一个真正的ArrayList对象（ 	<code>  java.util.ArrayList</code>的实例），可以通过以下方式： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; arrayList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(arr));<br></code></pre></td></tr></table></figure>
 
-<pre><code class="hljs"> `  java.util.ArrayList`中包含一个可以接受集合类型参数的构造函数。因为     `  java.util.Arrays.ArrayList`这个内部类继承了AbstractList类，所以，该类也是Collection的子类。 
+<pre><code class="hljs"> `  java.util.ArrayList`中包含一个可以接受集合类型参数的构造函数。因为 	`  java.util.Arrays.ArrayList`这个内部类继承了AbstractList类，所以，该类也是Collection的子类。 
 </code></pre>
 <span id="more"></span>
 
@@ -312,7 +312,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Set&lt;String&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;String&gt;(Arrays.asList(arr));<br><span class="hljs-keyword">return</span> set.contains(targetValue);<br></code></pre></td></tr></table></figure>
 
 <p>在<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1269">在Java中如何高效的判断数组中是否包含某个元素</a>一文中，深入分析过，以上方式虽然可以实现功能，但是效率却比较低。因为将数组压入Collection类型中，首先要将数组元素遍历一遍，然后再使用集合类做其他操作。 </p>
-<p>在判断一个数组是否包含某个值的时候，推荐使用for循环遍历的形式或者使用Apache Commons类库中提供的     <code>  ArrayUtils</code>类的     <code>  contains</code>方法。 </p>
+<p>在判断一个数组是否包含某个值的时候，推荐使用for循环遍历的形式或者使用Apache Commons类库中提供的 	<code>  ArrayUtils</code>类的 	<code>  contains</code>方法。 </p>
 <h2 id="三、在循环中删除列表中的元素"><a href="#三、在循环中删除列表中的元素" class="headerlink" title="三、在循环中删除列表中的元素"></a>三、在循环中删除列表中的元素</h2><p>在讨论这个问题之前，先考虑以下代码的输出结果： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>,<span class="hljs-string">&quot;d&quot;</span>));<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;list.size();i++)&#123;<br>    list.remove(i);<br>&#125;<br>System.out.println(list);<br></code></pre></td></tr></table></figure>
 
@@ -323,17 +323,17 @@
 <p>也有些人知道以上代码的问题就由于数组下标变换引起的。所以，他们想到使用增强for循环的形式： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>,<span class="hljs-string">&quot;d&quot;</span>));<br><span class="hljs-keyword">for</span>(String s:list)&#123;<br>    <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">&quot;a&quot;</span>))&#123;<br>        list.remove(s);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>但是，很不幸的是，以上代码会抛出     <code>  ConcurrentModificationException</code>，有趣的是，如果在remove操作后增加一个break，代码就不会报错： </p>
+<p>但是，很不幸的是，以上代码会抛出 	<code>  ConcurrentModificationException</code>，有趣的是，如果在remove操作后增加一个break，代码就不会报错： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>,<span class="hljs-string">&quot;d&quot;</span>));<br><span class="hljs-keyword">for</span>(String s:list)&#123;<br>    <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">&quot;a&quot;</span>))&#123;<br>        list.remove(s);<br>        <span class="hljs-keyword">break</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/33">Java中的fail-fast机制</a>一文中，深入分析了几种在遍历数组的同时删除其中元素的方法以及各种方法存在的问题。其中就介绍了上面的代码出错的原因。 </p>
 <blockquote>
-<p>迭代器（Iterator）是工作在一个独立的线程中，并且拥有一个 mutex 锁。 迭代器被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则 迭代器会马上抛出         <code>  java.util.ConcurrentModificationException</code> 异常。     </p>
+<p>迭代器（Iterator）是工作在一个独立的线程中，并且拥有一个 mutex 锁。 迭代器被创建之后会建立一个指向原来对象的单链索引表，当原来的对象数量发生变化时，这个索引表的内容不会同步改变，所以当索引指针往后移动的时候就找不到要迭代的对象，所以按照 fail-fast 原则 迭代器会马上抛出 		<code>  java.util.ConcurrentModificationException</code> 异常。 	</p>
 </blockquote>
 <p>所以，正确的在遍历过程中删除元素的方法应该是使用Iterator： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;(Arrays.asList(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>));<br>Iterator&lt;String&gt; iter = list.iterator();<br><span class="hljs-keyword">while</span> (iter.hasNext()) &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> iter.next();<br><br>    <span class="hljs-keyword">if</span> (s.equals(<span class="hljs-string">&quot;a&quot;</span>)) &#123;<br>        iter.remove();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<pre><code class="hljs"> `  next()`方法必须在调用     `  remove()`方法之前调用。如果在循环过程中先调用     `  remove()`，再调用     `  next()`，就会导致异常     `  ConcurrentModificationException`。原因如上。 
+<pre><code class="hljs"> `  next()`方法必须在调用 	`  remove()`方法之前调用。如果在循环过程中先调用 	`  remove()`，再调用 	`  next()`，就会导致异常 	`  ConcurrentModificationException`。原因如上。 
 </code></pre>
 <h2 id="四、HashTable-和-HashMap-的选择"><a href="#四、HashTable-和-HashMap-的选择" class="headerlink" title="四、HashTable 和 HashMap 的选择"></a>四、HashTable 和 HashMap 的选择</h2><p>了解算法的人可能对HashTable比较熟悉，因为他是一个数据结构的名字。但在Java里边，用HashMap来表示这样的数据结构。Hashtable和 HashMap的一个关键性的不同是，HashTable是同步的，而HashMap不是。所以通常不需要HashTable，HashMap用的更多。 </p>
 <p><a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/82">HashMap完全解读</a>、<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/442">Java中常见亲属比较</a>等文章中介绍了他们的区别和如何选择。 </p>
@@ -345,39 +345,40 @@
 <pre><code class="hljs"> `  java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String` 
 </code></pre>
 <p>使用原始集合类型是很危险的，因为原始集合类型跳过了泛型类型检查，是不安全的。Set、Set&lt; ? &gt;和Set&lt; Object &gt;之间有很大差别。关于泛型，可以参考下列文章：<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1182">《成神之路-基础篇》Java基础知识——泛型</a> </p>
-<h2 id="六、访问级别"><a href="#六、访问级别" class="headerlink" title="六、访问级别"></a>六、访问级别</h2><p>程序员们经常使用     <code>  public</code>作为类中的字段的修饰符，因为这样可以很简单的通过引用得到值，但这并不是好的设计，按照经验，分配给成员变量的访问级别应该尽可能的低。参考<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1334">Java中的四种访问级别</a> </p>
-<h2 id="七、-ArrayList与-LinkedList的选择"><a href="#七、-ArrayList与-LinkedList的选择" class="headerlink" title="七、       ArrayList与       LinkedList的选择"></a>七、     <code>  ArrayList</code>与     <code>  LinkedList</code>的选择</h2><p>当程序员们不知道     <code>  ArrayList</code>与     <code>  LinkedList</code>的区别时，他们经常使用ArrayList，因为它看起来比较熟悉。然而，它们之前有巨大的性能差别。在<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1349">ArrayList vs LinkedList vs Vector 区别</a>、<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/442">Java中常见亲属比较</a>等文章中介绍过，简而言之，如果有大量的增加删除操作并且没有很多的随机访问元素的操作，应该首先     <code>  LinkedList</code>。（     <code>  LinkedList</code>更适合从中间插入或者删除（链表的特性）） </p>
+<h2 id="六、访问级别"><a href="#六、访问级别" class="headerlink" title="六、访问级别"></a>六、访问级别</h2><p>程序员们经常使用 	<code>  public</code>作为类中的字段的修饰符，因为这样可以很简单的通过引用得到值，但这并不是好的设计，按照经验，分配给成员变量的访问级别应该尽可能的低。参考<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1334">Java中的四种访问级别</a> </p>
+<h2 id="七、-ArrayList与-LinkedList的选择"><a href="#七、-ArrayList与-LinkedList的选择" class="headerlink" title="七、 	  ArrayList与 	  LinkedList的选择"></a>七、 	<code>  ArrayList</code>与 	<code>  LinkedList</code>的选择</h2><p>当程序员们不知道 	<code>  ArrayList</code>与 	<code>  LinkedList</code>的区别时，他们经常使用ArrayList，因为它看起来比较熟悉。然而，它们之前有巨大的性能差别。在<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1349">ArrayList vs LinkedList vs Vector 区别</a>、<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/442">Java中常见亲属比较</a>等文章中介绍过，简而言之，如果有大量的增加删除操作并且没有很多的随机访问元素的操作，应该首先 	<code>  LinkedList</code>。（ 	<code>  LinkedList</code>更适合从中间插入或者删除（链表的特性）） </p>
 <h2 id="八、可变与不可变"><a href="#八、可变与不可变" class="headerlink" title="八、可变与不可变"></a>八、可变与不可变</h2><p>在<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1246">为什么Java要把字符串设计成不可变的</a>一文中介绍过，不可变对象有许多的优点，比如简单，安全等等。同时，也有人提出疑问：既然不可变有这么多好处，为什么不把所有类都搞成不可变的呢？ </p>
-<p>通常情况下，可变对象可以用来避免产生过多的中间对象。一个经典的实例就是连接大量的字符串，如果使用不可变的字符串，将会产生大量的需要进行垃圾回收的对象。这会浪费CPU大量的时间，使用可变对象才是正确的方案(比如     <code>  StringBuilder</code>)。 </p>
+<p>通常情况下，可变对象可以用来避免产生过多的中间对象。一个经典的实例就是连接大量的字符串，如果使用不可变的字符串，将会产生大量的需要进行垃圾回收的对象。这会浪费CPU大量的时间，使用可变对象才是正确的方案(比如 	<code>  StringBuilder</code>)。 </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">String result=<span class="hljs-string">&quot;&quot;</span>;<br><span class="hljs-keyword">for</span>(String s: arr)&#123;<br>    result = result + s;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/23616211/why-we-need-mutable-classes">StackOverflow</a>中也有关于这个的讨论。 </p>
 <h2 id="九、父类和子类的构造函数"><a href="#九、父类和子类的构造函数" class="headerlink" title="九、父类和子类的构造函数"></a>九、父类和子类的构造函数</h2><p>上图的代码中有两处编译时错误，原因其实很简单，主要和构造函数有关。首先，我们都知道： </p>
 <blockquote>
-<p>如果一个类没有定义构造函数，编译器将会插入一个无参数的默认构造函数。     </p>
+<p>如果一个类没有定义构造函数，编译器将会插入一个无参数的默认构造函数。 	</p>
 <p>如果一个类中定义了一个带参数的构造函数，那么编译器就不会再帮我们创建无参的构造函数。 </p>
 </blockquote>
 <p>上面的Super类中定义了一个带参数的构造函数。编译器将不会插入默认的无参数构造函数。 </p>
 <p>我们还应该知道： </p>
 <blockquote>
-<p>子类的所有构造函数（无论是有参还是无参）在执行时，都会调用父类的无参构造函数。     </p>
+<p>子类的所有构造函数（无论是有参还是无参）在执行时，都会调用父类的无参构造函数。 	</p>
 </blockquote>
 <p>所以，编译器试图调用Super类中的无参构造函数。但是父类默认的构造函数未定义，编译器就会报出这个错误信息。 </p>
 <p>要解决这个问题，可以简单的通过 </p>
 <ul>
-<li><p>1)在父类中添加一个Super()构造方法，就像这样：         </p>
-<p>public Super(){}         </p>
+<li><p>1)在父类中添加一个Super()构造方法，就像这样： 		</p>
+<p>public Super(){} 		</p>
 </li>
-<li><p>2)移除自定义的父类构造函数         </p>
+<li><p>2)移除自定义的父类构造函数 		</p>
 </li>
-<li><p>3)在子类的构造函数中调用父类的super(value)。         </p>
+<li><p>3)在子类的构造函数中调用父类的super(value)。</p>
 </li>
 </ul>
+<p> 		</p>
 <h2 id="十、””还是构造函数"><a href="#十、””还是构造函数" class="headerlink" title="十、””还是构造函数"></a>十、””还是构造函数</h2><p>关于这个问题，也是程序员经常出现困惑的地方，在<a target="_blank" rel="noopener" href="http://www.hollischuang.com/archives/1249">该如何创建字符串，使用” “还是构造函数？</a>中也介绍过. </p>
 <blockquote>
-<p>如果你只需要创建一个字符串，你可以使用双引号的方式，如果你需要在堆中创建一个新的对象，你可以选择构造函数的方式。     </p>
+<p>如果你只需要创建一个字符串，你可以使用双引号的方式，如果你需要在堆中创建一个新的对象，你可以选择构造函数的方式。 	</p>
 </blockquote>
-<p>在     <code>  String d = new String(&quot;abcd&quot;)</code>时，因为字面值“abcd”已经是字符串类型，那么使用构造函数方式只会创建一个额外没有用处的对象。 </p>
+<p>在 	<code>  String d = new String(&quot;abcd&quot;)</code>时，因为字面值“abcd”已经是字符串类型，那么使用构造函数方式只会创建一个额外没有用处的对象。 </p>
 <p><strong>欢迎关注微信公众号​：</strong></p>
 <img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" lazyload alt="欢迎关注公众号" style="width: 100px" />
                 

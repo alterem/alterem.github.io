@@ -92,7 +92,7 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 
 <body>
@@ -253,7 +253,7 @@
         
         
         
-          57 分钟
+          58 分钟
         
       </span>
     
@@ -327,7 +327,7 @@
 
 <p>可以看到相比较于第一次使用<code>FileInputStream</code>效率已经提升了许多了</p>
 <h2 id="第二次优化过程-从2秒到1秒"><a href="#第二次优化过程-从2秒到1秒" class="headerlink" title="第二次优化过程-从2秒到1秒"></a>第二次优化过程-从2秒到1秒</h2><p>使用缓冲区<code>buffer</code>的话已经是满足了我的需求了，但是秉着学以致用的想法，就想着用NIO中知识进行优化一下。</p>
-<h3 id="使用Channel"><a href="#使用Channel" class="headerlink" title="使用Channel"></a>使用Channel</h3><p>为什么要用<code>Channel</code>呢？因为在NIO中新出了<code>Channel</code>和<code>ByteBuffer</code>。正是因为它们的结构更加符合操作系统执行I/O的方式，所以其速度相比较于传统IO而言速度有了显著的提高。<code>Channel</code>就像一个包含着煤矿的矿藏，而<code>ByteBuffer</code>则是派送到矿藏的卡车。也就是说我们与数据的交互都是与<code>ByteBuffer</code>的交互。</p>
+<h3 id="使用Channel"><a href="#使用Channel" class="headerlink" title="使用Channel"></a>使用Channel</h3><p>为什么要用<code>Channel</code>呢？因为在NIO中新出了<code>Channel</code>和<code>ByteBuffer</code>。正是因为它们的结构更加符合操作系统执行I&#x2F;O的方式，所以其速度相比较于传统IO而言速度有了显著的提高。<code>Channel</code>就像一个包含着煤矿的矿藏，而<code>ByteBuffer</code>则是派送到矿藏的卡车。也就是说我们与数据的交互都是与<code>ByteBuffer</code>的交互。</p>
 <p>在NIO中能够产生<code>FileChannel</code>的有三个类。分别是<code>FileInputStream</code>、<code>FileOutputStream</code>、以及既能读又能写的<code>RandomAccessFile</code>。</p>
 <p>源码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">zipFileChannel</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">//开始时间</span><br>    <span class="hljs-type">long</span> <span class="hljs-variable">beginTime</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>    <span class="hljs-type">File</span> <span class="hljs-variable">zipFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(ZIP_FILE);<br>    <span class="hljs-keyword">try</span> (<span class="hljs-type">ZipOutputStream</span> <span class="hljs-variable">zipOut</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(zipFile));<br>            <span class="hljs-type">WritableByteChannel</span> <span class="hljs-variable">writableByteChannel</span> <span class="hljs-operator">=</span> Channels.newChannel(zipOut)) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>            <span class="hljs-keyword">try</span> (<span class="hljs-type">FileChannel</span> <span class="hljs-variable">fileChannel</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(JPG_FILE).getChannel()) &#123;<br>                zipOut.putNextEntry(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipEntry</span>(i + SUFFIX_FILE));<br>                fileChannel.transferTo(<span class="hljs-number">0</span>, FILE_SIZE, writableByteChannel);<br>            &#125;<br>        &#125;<br>        printInfo(beginTime);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
