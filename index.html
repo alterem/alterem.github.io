@@ -1,57 +1,94 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Alterem">
+<meta property="og:url" content="https://alterem.github.io/index.html">
+<meta property="og:site_name" content="Alterem">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Alterem">
+<meta property="article:tag" content="Alterem">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>Alterem</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -68,9 +105,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -80,9 +117,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -92,9 +129,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -104,9 +141,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -116,9 +153,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/links/">
+              <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
@@ -128,23 +165,26 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -152,42 +192,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://github.com/alterem/picFB/raw/master/pics/2020/09/18/Y5X9bG.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="天下难事，必作于易；天下大事，必做于细。">
-              
-            </span>
-            <p id="hitokoto"> ... </p>
-            <script>
-              fetch('https://v1.hitokoto.cn')
-                .then(response => response.json())
-                .then(data => {
-                  const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
-                }).catch(console.error)
-            </script>
-            
-          </div>
+  
 
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://github.com/alterem/picFB/raw/master/pics/2020/09/18/Y5X9bG.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="天下难事，必作于易；天下大事，必做于细。"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -200,28 +238,24 @@
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/11/13/a-li-yun-pan-zi-yuan-fen-xiang/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/11/13/photo-1696931073577-5638a6891e1e.jpeg" srcset="/img/loading.gif" alt="阿里云盘资源分享">
+          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/11/13/photo-1696931073577-5638a6891e1e.jpeg" srcset="/img/loading.gif" lazyload alt="阿里云盘资源分享">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/11/13/a-li-yun-pan-zi-yuan-fen-xiang/">阿里云盘资源分享</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/11/13/a-li-yun-pan-zi-yuan-fen-xiang/">
-          
-          
-            
-          
-          知行合一王阳明(WMA) 链接：https://www.aliyundrive.com/s/hDwBtEKDAFc
-底层逻辑2 链接：https://www.aliyundrive.com/s/NUvK1GM1uJF
-下班后写作，最有效的个人增值方法 链接：https://www.aliyundrive.com/s/6QsvRAPzTE7
-可能性的艺术 链接：https://www.aliyund
+        <a href="/2023/11/13/a-li-yun-pan-zi-yuan-fen-xiang/" target="_self">
+          阿里云盘资源分享
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/11/13/a-li-yun-pan-zi-yuan-fen-xiang/" target="_self">
+        <div>
+          知行合一王阳明(WMA) 链接：https://www.aliyundrive.com/s/hDwBtEKDAFc 底层逻辑2 链接：https://www.aliyundrive.com/s/NUvK1GM1uJF 下班后写作，最有效的个人增值方法 链接：https://www.aliyundrive.com/s/6QsvRAPzTE7 可能性的艺术 链接：https://www.aliyund
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -233,22 +267,41 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/aliyundrive/">aliyundrive</a>
-            
-              <a href="/categories/aliyundrive/resource/">resource</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/aliyundrive/" class="category-chain-item">aliyundrive</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/aliyundrive/resource/" class="category-chain-item">resource</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/aliyundrive/">aliyundrive</a>
+              <a href="/tags/aliyundrive/">#aliyundrive</a>
             
-              <a href="/tags/resource/">resource</a>
+              <a href="/tags/resource/">#resource</a>
             
           </div>
         
@@ -261,30 +314,24 @@
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/10/18/uniapp-vue3-typescript-vite-chuang-jian-xiang-mu/" target="_self">
-          <img src="https://img3.wallspic.com/previews/2/5/8/5/7/175852/175852-fan_she-huang_shi_guo_jia_gong_yuan-shui_zi_yuan-yu_hui-zi_ran_jing_guan-500x.jpg" srcset="/img/loading.gif" alt="uniapp+vue3+typescript+vite创建项目">
+          <img src="https://img3.wallspic.com/previews/2/5/8/5/7/175852/175852-fan_she-huang_shi_guo_jia_gong_yuan-shui_zi_yuan-yu_hui-zi_ran_jing_guan-500x.jpg" srcset="/img/loading.gif" lazyload alt="uniapp+vue3+typescript+vite创建项目">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/10/18/uniapp-vue3-typescript-vite-chuang-jian-xiang-mu/">uniapp+vue3+typescript+vite创建项目</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/10/18/uniapp-vue3-typescript-vite-chuang-jian-xiang-mu/">
-          
-          
-            
-          
-          从创建项目到使用组件库，再到页面的过程呈现一下。
-1.创建项目
-uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html
-
-1.安装vue-clinpm install -g @vue/cli@4
-2.创建uniapp应用// 创建以 javascript 开发的工程npx degit dcloudio/uni-preset-vue#vit
+        <a href="/2023/10/18/uniapp-vue3-typescript-vite-chuang-jian-xiang-mu/" target="_self">
+          uniapp+vue3+typescript+vite创建项目
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/10/18/uniapp-vue3-typescript-vite-chuang-jian-xiang-mu/" target="_self">
+        <div>
+          从创建项目到使用组件库，再到页面的过程呈现一下。 1.创建项目 uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html  1.安装vue-clinpm install -g @vue/cli@4 2.创建uniapp应用// 创建以 javascript 开发的工程npx degit dcloudio/uni-preset-vue#vit
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -296,30 +343,59 @@ uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/vue/">vue</a>
-            
-              <a href="/categories/vue/vue3/">vue3</a>
-            
-              <a href="/categories/vue/vue3/vite/">vite</a>
-            
-              <a href="/categories/vue/vue3/vite/uniapp/">uniapp</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/vue/vue3/" class="category-chain-item">vue3</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/vue/vue3/vite/" class="category-chain-item">vite</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/vue/vue3/vite/uniapp/" class="category-chain-item">uniapp</a>
+  
+  
+
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/vue/">vue</a>
+              <a href="/tags/vue/">#vue</a>
             
-              <a href="/tags/vue3/">vue3</a>
+              <a href="/tags/vue3/">#vue3</a>
             
-              <a href="/tags/vite/">vite</a>
+              <a href="/tags/vite/">#vite</a>
             
-              <a href="/tags/uniapp/">uniapp</a>
+              <a href="/tags/uniapp/">#uniapp</a>
             
           </div>
         
@@ -332,28 +408,24 @@ uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/" target="_self">
-          <img src="https://images.unsplash.com/photo-1687702720985-48faa9c4ab7b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=880&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4ODUyNTY5Mw&ixlib=rb-4.0.3&q=80&w=1360" srcset="/img/loading.gif" alt="使用 Unsplash API 生成随机图片 ">
+          <img src="https://images.unsplash.com/photo-1687702720985-48faa9c4ab7b?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;h=880&amp;ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4ODUyNTY5Mw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1360" srcset="/img/loading.gif" lazyload alt="使用 Unsplash API 生成随机图片 ">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/">使用 Unsplash API 生成随机图片 </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/">
-          
-          
-            
-          
-          使用 Unsplash API 生成随机图片Unsplash如果你想使用免费版权的图片时，无论你是否用于商业用途，Unsplash 是不错的选择。
-我自己也经常用它来制作大型背景图片，例如：https://www.imyangyong.com 。
-虽然他们为开发人员提供了很棒的 API，但他们也提供了通过 URL 访问随机图片的选项。
-1. 默认随机请看这个例子，从他们巨大的存储中生成随机的图片。
+        <a href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/" target="_self">
+          使用 Unsplash API 生成随机图片 
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/07/05/shi-yong-unsplash-api-sheng-cheng-sui-ji-tu-pian/" target="_self">
+        <div>
+          使用 Unsplash API 生成随机图片Unsplash如果你想使用免费版权的图片时，无论你是否用于商业用途，Unsplash 是不错的选择。 我自己也经常用它来制作大型背景图片，例如：https://www.imyangyong.com 。 虽然他们为开发人员提供了很棒的 API，但他们也提供了通过 URL 访问随机图片的选项。 1. 默认随机请看这个例子，从他们巨大的存储中生成随机的图片。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -365,26 +437,50 @@ uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Resource/">Resource</a>
-            
-              <a href="/categories/Resource/Unsplash/">Unsplash</a>
-            
-              <a href="/categories/Resource/Unsplash/Photo/">Photo</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Resource/" class="category-chain-item">Resource</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Resource/Unsplash/" class="category-chain-item">Unsplash</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Resource/Unsplash/Photo/" class="category-chain-item">Photo</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Resource/">Resource</a>
+              <a href="/tags/Resource/">#Resource</a>
             
-              <a href="/tags/Unsplash/">Unsplash</a>
+              <a href="/tags/Unsplash/">#Unsplash</a>
             
-              <a href="/tags/Photo/">Photo</a>
+              <a href="/tags/Photo/">#Photo</a>
             
           </div>
         
@@ -397,26 +493,24 @@ uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/07/05/java-gen-ju-she-zhi-de-gai-lu-sheng-cheng-sui-ji-shu/" target="_self">
-          <img src="https://images.unsplash.com/photo-1688374459464-67a58cb7707c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3200&q=80" srcset="/img/loading.gif" alt="JAVA 根据设置的概率生成随机数 ">
+          <img src="https://images.unsplash.com/photo-1688374459464-67a58cb7707c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=3200&amp;q=80" srcset="/img/loading.gif" lazyload alt="JAVA 根据设置的概率生成随机数 ">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/07/05/java-gen-ju-she-zhi-de-gai-lu-sheng-cheng-sui-ji-shu/">JAVA 根据设置的概率生成随机数 </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/07/05/java-gen-ju-she-zhi-de-gai-lu-sheng-cheng-sui-ji-shu/">
-          
-          
-            
-          
-          做一个参加抽奖活动的模块，要做到抽到 3 元的概率为 0.919,5 元的概率为 0.05,10 元的概率为 0.03,200 元的概率为 0.001，看到这个真的很棒呀！
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061
+        <a href="/2023/07/05/java-gen-ju-she-zhi-de-gai-lu-sheng-cheng-sui-ji-shu/" target="_self">
+          JAVA 根据设置的概率生成随机数 
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/07/05/java-gen-ju-she-zhi-de-gai-lu-sheng-cheng-sui-ji-shu/" target="_self">
+        <div>
+          做一个参加抽奖活动的模块，要做到抽到 3 元的概率为 0.919,5 元的概率为 0.05,10 元的概率为 0.03,200 元的概率为 0.001，看到这个真的很棒呀！ 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -428,22 +522,41 @@ uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Java/">Java</a>
-            
-              <a href="/categories/Java/Random/">Random</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/Random/" class="category-chain-item">Random</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Java/">Java</a>
+              <a href="/tags/Java/">#Java</a>
             
-              <a href="/tags/Random/">Random</a>
+              <a href="/tags/Random/">#Random</a>
             
           </div>
         
@@ -456,27 +569,24 @@ uni-app官网：https://uniapp.dcloud.net.cn/quickstart-hx.html
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/" target="_self">
-          <img src="https://bt.sy/bbs/data/attachment/forum/202304/08/053633oyxrb8fm8y1modcx.gif" srcset="/img/loading.gif" alt="寶塔 Linux 面版 8.0.0 開心版">
+          <img src="https://bt.sy/bbs/data/attachment/forum/202304/08/053633oyxrb8fm8y1modcx.gif" srcset="/img/loading.gif" lazyload alt="寶塔 Linux 面版 8.0.0 開心版">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/">寶塔 Linux 面版 8.0.0 開心版</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/">
-          
-          
-            
-          
-          Centos 安裝命令（默認安裝是 7.9.10 直接在線升級 8.0.0）：
-yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/install_6.0.sh &amp;&amp; sh install.sh
-試驗性 Centos/Ubuntu/Debian 安裝命令 獨立運行環境（py3.7） 可能
+        <a href="/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/" target="_self">
+          寶塔 Linux 面版 8.0.0 開心版
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/07/04/bao-ta-linux-mian-ban-8-0-0-kai-xin-ban/" target="_self">
+        <div>
+          Centos 安裝命令（默認安裝是 7.9.10 直接在線升級 8.0.0）： yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/install_6.0.sh &amp;&amp; sh install.sh 試驗性 Centos/Ubuntu/Debian 安裝命令 獨立運行環境（py3.7） 可能
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -488,26 +598,50 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/bt/">bt</a>
-            
-              <a href="/categories/bt/%E5%AE%9D%E5%A1%94/">宝塔</a>
-            
-              <a href="/categories/bt/%E5%AE%9D%E5%A1%94/%E5%BC%80%E5%BF%83%E7%89%88/">开心版</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/bt/" class="category-chain-item">bt</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/bt/%E5%AE%9D%E5%A1%94/" class="category-chain-item">宝塔</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/bt/%E5%AE%9D%E5%A1%94/%E5%BC%80%E5%BF%83%E7%89%88/" class="category-chain-item">开心版</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/bt/">bt</a>
+              <a href="/tags/bt/">#bt</a>
             
-              <a href="/tags/%E5%AE%9D%E5%A1%94/">宝塔</a>
+              <a href="/tags/%E5%AE%9D%E5%A1%94/">#宝塔</a>
             
-              <a href="/tags/%E5%BC%80%E5%BF%83%E7%89%88/">开心版</a>
+              <a href="/tags/%E5%BC%80%E5%BF%83%E7%89%88/">#开心版</a>
             
           </div>
         
@@ -520,31 +654,24 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/07/04/qu-diao-bao-ta-7-9-0-shou-ye-ruan-jian-tui-jian-de-fang-fa/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704103846308.png" srcset="/img/loading.gif" alt="去掉宝塔7.9.0首页软件推荐的方法">
+          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/07/04/image-20230704103846308.png" srcset="/img/loading.gif" lazyload alt="去掉宝塔7.9.0首页软件推荐的方法">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/07/04/qu-diao-bao-ta-7-9-0-shou-ye-ruan-jian-tui-jian-de-fang-fa/">去掉宝塔7.9.0首页软件推荐的方法</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/07/04/qu-diao-bao-ta-7-9-0-shou-ye-ruan-jian-tui-jian-de-fang-fa/">
-          
-          
-            
-          
-          删除首页软件推荐
-文件位置：/www/server/panel/BTPanel/static/js/index.js 使用宝塔编辑器搜索
-
-搜索 setTimeout(function () { _this.get_index_list() }, 400) 取消这部分注释。
-搜索 product_recommend.init 函数，注释如下内容。
-
-123456/*product_recommen
+        <a href="/2023/07/04/qu-diao-bao-ta-7-9-0-shou-ye-ruan-jian-tui-jian-de-fang-fa/" target="_self">
+          去掉宝塔7.9.0首页软件推荐的方法
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/07/04/qu-diao-bao-ta-7-9-0-shou-ye-ruan-jian-tui-jian-de-fang-fa/" target="_self">
+        <div>
+          删除首页软件推荐 文件位置：/www/server/panel/BTPanel/static/js/index.js 使用宝塔编辑器搜索  搜索 setTimeout(function () { _this.get_index_list() }, 400) 取消这部分注释。 搜索 product_recommend.init 函数，注释如下内容。  123456/*product_recommen
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -556,26 +683,50 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/bt/">bt</a>
-            
-              <a href="/categories/bt/%E5%AE%9D%E5%A1%94/">宝塔</a>
-            
-              <a href="/categories/bt/%E5%AE%9D%E5%A1%94/%E5%BC%80%E5%BF%83%E7%89%88/">开心版</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/bt/" class="category-chain-item">bt</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/bt/%E5%AE%9D%E5%A1%94/" class="category-chain-item">宝塔</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/bt/%E5%AE%9D%E5%A1%94/%E5%BC%80%E5%BF%83%E7%89%88/" class="category-chain-item">开心版</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/bt/">bt</a>
+              <a href="/tags/bt/">#bt</a>
             
-              <a href="/tags/%E5%AE%9D%E5%A1%94/">宝塔</a>
+              <a href="/tags/%E5%AE%9D%E5%A1%94/">#宝塔</a>
             
-              <a href="/tags/%E5%BC%80%E5%BF%83%E7%89%88/">开心版</a>
+              <a href="/tags/%E5%BC%80%E5%BF%83%E7%89%88/">#开心版</a>
             
           </div>
         
@@ -588,30 +739,24 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/06/29/image-20230629135608897.png" srcset="/img/loading.gif" alt="新海诚作品打包下载">
+          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/06/29/image-20230629135608897.png" srcset="/img/loading.gif" lazyload alt="新海诚作品打包下载">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/">新海诚作品打包下载</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/">
-          
-          
-            
-          
-          
-
-新海诚作品 https://www.aliyundrive.com/s/PcX841dLxTW 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。
-
-欢迎关注微信公众号 ：
-
+        <a href="/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/" target="_self">
+          新海诚作品打包下载
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/06/29/xin-hai-cheng-zuo-pin-da-bao-xia-zai/" target="_self">
+        <div>
+          新海诚作品 https://www.aliyundrive.com/s/PcX841dLxTW 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。  欢迎关注微信公众号 ：
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -623,18 +768,32 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Other/">Other</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Other/" class="category-chain-item">Other</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Other/">Other</a>
+              <a href="/tags/Other/">#Other</a>
             
           </div>
         
@@ -647,26 +806,24 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/06/12/bie-rang-zi-ji-qiang-liao-zi-ji/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/06/12/image-20230612095751426.png" srcset="/img/loading.gif" alt="别让自己 “墙” 了自己">
+          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/06/12/image-20230612095751426.png" srcset="/img/loading.gif" lazyload alt="别让自己 “墙” 了自己">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/06/12/bie-rang-zi-ji-qiang-liao-zi-ji/">别让自己 “墙” 了自己</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/06/12/bie-rang-zi-ji-qiang-liao-zi-ji/">
-          
-          
-            
-          
-          
-这一两周与几个朋友聊天，有年轻的 90 后，也有大叔级的 70 后，这些人在我看来都是很有能力的人，但是一些喜好过于强烈，让我不经意地回顾了我工作 20 年来身边的人，有发展得好的，也有发展的不好的，有些人是很可惜的，因为限制他们的不是其它人，也不是环境，而是自己，所以，很想写下这篇文章。（注：这篇文章可能会是一篇说教的文章，所以，可能会让你看着犯困，所以，我会尽量地短一些，而且尽可能多讲故事，
+        <a href="/2023/06/12/bie-rang-zi-ji-qiang-liao-zi-ji/" target="_self">
+          别让自己 “墙” 了自己
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/06/12/bie-rang-zi-ji-qiang-liao-zi-ji/" target="_self">
+        <div>
+          这一两周与几个朋友聊天，有年轻的 90 后，也有大叔级的 70 后，这些人在我看来都是很有能力的人，但是一些喜好过于强烈，让我不经意地回顾了我工作 20 年来身边的人，有发展得好的，也有发展的不好的，有些人是很可惜的，因为限制他们的不是其它人，也不是环境，而是自己，所以，很想写下这篇文章。（注：这篇文章可能会是一篇说教的文章，所以，可能会让你看着犯困，所以，我会尽量地短一些，而且尽可能多讲故事，
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -678,18 +835,32 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Other/">Other</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Other/" class="category-chain-item">Other</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Other/">Other</a>
+              <a href="/tags/Other/">#Other</a>
             
           </div>
         
@@ -702,25 +873,24 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/05/17/centos-7-an-zhuang-clash-for-linux-bing-ding-yue-jie-dian-jiao-cheng/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/05/17/image-20230517113258662.png" srcset="/img/loading.gif" alt="Centos 7 安装 clash for linux 并订阅节点教程">
+          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/05/17/image-20230517113258662.png" srcset="/img/loading.gif" lazyload alt="Centos 7 安装 clash for linux 并订阅节点教程">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/05/17/centos-7-an-zhuang-clash-for-linux-bing-ding-yue-jie-dian-jiao-cheng/">Centos 7 安装 clash for linux 并订阅节点教程</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/05/17/centos-7-an-zhuang-clash-for-linux-bing-ding-yue-jie-dian-jiao-cheng/">
-          
-          
-            
-          
-          安装12345678910111213# 安装最新的clash for linux 最新版本(https://github.com/Dreamacro/clash/releases)cd /usr/localwget https://github.com/Dreamacro/clash/releases/download/v1.15.1/clash-linux-amd64-v1.15.1.gz# 
+        <a href="/2023/05/17/centos-7-an-zhuang-clash-for-linux-bing-ding-yue-jie-dian-jiao-cheng/" target="_self">
+          Centos 7 安装 clash for linux 并订阅节点教程
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/05/17/centos-7-an-zhuang-clash-for-linux-bing-ding-yue-jie-dian-jiao-cheng/" target="_self">
+        <div>
+          安装12345678910111213# 安装最新的clash for linux 最新版本(https://github.com/Dreamacro/clash/releases)cd /usr/localwget https://github.com/Dreamacro/clash/releases/download/v1.15.1/clash-linux-amd64-v1.15.1.gz#
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -732,24 +902,43 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Linux/">Linux</a>
-            
-              <a href="/categories/Linux/Clash/">Clash</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Linux/Clash/" class="category-chain-item">Clash</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Linux/">Linux</a>
+              <a href="/tags/Linux/">#Linux</a>
             
-              <a href="/tags/CentOS/">CentOS</a>
+              <a href="/tags/CentOS/">#CentOS</a>
             
-              <a href="/tags/Clash/">Clash</a>
+              <a href="/tags/Clash/">#Clash</a>
             
           </div>
         
@@ -762,26 +951,24 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2023/05/16/humansystemoptimization/" target="_self">
-          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/05/16/image-20230516164928703.png" srcset="/img/loading.gif" alt="HumanSystemOptimization">
+          <img src="https://cdn.jsdelivr.net/gh/alterem/picFB@master/uPic/2023/05/16/image-20230516164928703.png" srcset="/img/loading.gif" lazyload alt="HumanSystemOptimization">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/05/16/humansystemoptimization/">HumanSystemOptimization</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2023/05/16/humansystemoptimization/">
-          
-          
-            
-          
-          背景去年 5 月曾经写了一篇文章介绍了下 Lex Fridman 大佬的日常生活安排，后续我也根据他的方法对自己的日常生活做了一系列规范和改进。这一年整体实行下来，效果还是非常显著的，本文的最后会对我的一些实践以及借助的工具做一些分享。
-最近几个月，偶然在油管上看到了个 Rich Roll 采访 Andrew Huberman 的 podcast，介绍了如何提升我们日常工作，学习表现的相关神经科学
+        <a href="/2023/05/16/humansystemoptimization/" target="_self">
+          HumanSystemOptimization
         </a>
-      </p>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/05/16/humansystemoptimization/" target="_self">
+        <div>
+          背景去年 5 月曾经写了一篇文章介绍了下 Lex Fridman 大佬的日常生活安排，后续我也根据他的方法对自己的日常生活做了一系列规范和改进。这一年整体实行下来，效果还是非常显著的，本文的最后会对我的一些实践以及借助的工具做一些分享。 最近几个月，偶然在油管上看到了个 Rich Roll 采访 Andrew Huberman 的 podcast，介绍了如何提升我们日常工作，学习表现的相关神经科学
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -793,22 +980,41 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Human/">Human</a>
-            
-              <a href="/categories/Human/Optimization/">Optimization</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Human/" class="category-chain-item">Human</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Human/Optimization/" class="category-chain-item">Optimization</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Human/">Human</a>
+              <a href="/tags/Human/">#Human</a>
             
-              <a href="/tags/Optimization/">Optimization</a>
+              <a href="/tags/Optimization/">#Optimization</a>
             
           </div>
         
@@ -820,15 +1026,9 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -840,7 +1040,7 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -859,58 +1059,61 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
-<!-- SCRIPTS -->
+  
+  
+  
+</div>
 
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -921,83 +1124,54 @@ yum install -y wget &amp;&amp; wget -O install.sh http://io.bt.sy/install/instal
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      typing(title)
+        typing(text);
       
     })(window, document);
   </script>
 
 
 
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
   <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
-  </script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
 
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -1,73 +1,115 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Alterem">
   <meta name="keywords" content="Alterem">
+  
+    <meta name="description" content="什么是Feign？Feign 的英文表意为“假装，伪装，变形”， 是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，而不用像Java中通过封装HTTP请求报文的方式直接调用。Feign通过处理注解，将请求模板化，当实际调用的时候，传入参数，根据参数再应用到请求上，进而转化成真正的请求，这种请求相对而言比较直观。Feign被广泛应用在Spring Cloud 的解决方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud Feign设计原理">
+<meta property="og:url" content="https://alterem.github.io/2019/12/24/spring-cloud-feign-she-ji-yuan-li/index.html">
+<meta property="og:site_name" content="Alterem">
+<meta property="og:description" content="什么是Feign？Feign 的英文表意为“假装，伪装，变形”， 是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，而不用像Java中通过封装HTTP请求报文的方式直接调用。Feign通过处理注解，将请求模板化，当实际调用的时候，传入参数，根据参数再应用到请求上，进而转化成真正的请求，这种请求相对而言比较直观。Feign被广泛应用在Spring Cloud 的解决方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7scfseulj30p10gdq3t.jpg">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sck4dinj30o70ufwgj.jpg">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sct0h8dj30ln0a3aar.jpg">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sczwxdyj30pf0didgq.jpg">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd3ug9pj30hv0bpmxp.jpg">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd6wfyrj30r60bb0tf.jpg">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd8dfm6j30jz0i574y.jpg">
+<meta property="og:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg">
+<meta property="article:published_time" content="2019-12-24T06:05:59.000Z">
+<meta property="article:modified_time" content="2023-05-16T02:26:20.207Z">
+<meta property="article:author" content="Alterem">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="springCloud">
+<meta property="article:tag" content="Feign">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7scfseulj30p10gdq3t.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>Spring Cloud Feign设计原理 - Alterem</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alterem.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Alterem</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>Alterem</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -84,9 +126,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -96,9 +138,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -108,9 +150,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -120,9 +162,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -132,9 +174,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/links/">
+              <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
@@ -144,23 +186,26 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -168,76 +213,77 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Spring Cloud Feign设计原理">
-              
-            </span>
-            <p id="hitokoto"> ... </p>
-            <script>
-              fetch('https://v1.hitokoto.cn')
-                .then(response => response.json())
-                .then(data => {
-                  const hitokoto = document.getElementById('hitokoto')
-                  hitokoto.innerText = '🚀❤️ ' + data.hitokoto + ' —《' + data.from + '》 ❤️🚀'
-                }).catch(console.error)
-            </script>
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-12-24 14:05" pubdate>
-        2019年12月24日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      4.2k 字
-    </span>
   
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      62
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spring Cloud Feign设计原理"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-12-24 14:05" pubdate>
+          2019年12月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -246,27 +292,32 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Spring Cloud Feign设计原理</h1>
+            <h1 id="seo-header">Spring Cloud Feign设计原理</h1>
             
-            <div class="markdown-body">
-              <h2 id="什么是Feign？"><a href="#什么是Feign？" class="headerlink" title="什么是Feign？"></a>什么是Feign？</h2><p>Feign 的英文表意为“假装，伪装，变形”， 是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，而不用像Java中通过封装HTTP请求报文的方式直接调用。Feign通过处理注解，将请求模板化，当实际调用的时候，传入参数，根据参数再应用到请求上，进而转化成真正的请求，这种请求相对而言比较直观。<br>Feign被广泛应用在Spring Cloud 的解决方案中，是学习基于Spring Cloud 微服务架构不可或缺的重要组件。<br>开源项目地址：<br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2FOpenFeign%2Ffeign" target="_blank" rel="noopener">https://github.com/OpenFeign/feign</a></p>
+            
+              <div class="markdown-body">
+                
+                <h2 id="什么是Feign？"><a href="#什么是Feign？" class="headerlink" title="什么是Feign？"></a>什么是Feign？</h2><p>Feign 的英文表意为“假装，伪装，变形”， 是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，而不用像Java中通过封装HTTP请求报文的方式直接调用。Feign通过处理注解，将请求模板化，当实际调用的时候，传入参数，根据参数再应用到请求上，进而转化成真正的请求，这种请求相对而言比较直观。<br>Feign被广泛应用在Spring Cloud 的解决方案中，是学习基于Spring Cloud 微服务架构不可或缺的重要组件。<br>开源项目地址：<br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2FOpenFeign%2Ffeign" target="_blank" rel="noopener">https://github.com/OpenFeign/feign</a></p>
 <h2 id="Feign解决了什么问题？"><a href="#Feign解决了什么问题？" class="headerlink" title="Feign解决了什么问题？"></a>Feign解决了什么问题？</h2><p><strong>封装了Http调用流程，更适合面向接口化的变成习惯</strong><br>在服务调用的场景中，我们经常调用基于Http协议的服务，而我们经常使用到的框架可能有HttpURLConnection、Apache HttpComponnets、OkHttp3 、Netty等等，这些框架在基于自身的专注点提供了自身特性。而从角色划分上来看，他们的职能是一致的提供Http调用服务。具体流程如下：</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7scfseulj30p10gdq3t.jpg" srcset="/img/loading.gif" alt="img"></p>
-<h2 id="Feign是如何设计的？"><a href="#Feign是如何设计的？" class="headerlink" title="Feign是如何设计的？"></a>Feign是如何设计的？</h2><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sck4dinj30o70ufwgj.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7scfseulj30p10gdq3t.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="Feign是如何设计的？"><a href="#Feign是如何设计的？" class="headerlink" title="Feign是如何设计的？"></a>Feign是如何设计的？</h2><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sck4dinj30o70ufwgj.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h4 id="PHASE-1-基于面向接口的动态代理方式生成实现类"><a href="#PHASE-1-基于面向接口的动态代理方式生成实现类" class="headerlink" title="PHASE 1. 基于面向接口的动态代理方式生成实现类"></a>PHASE 1. 基于面向接口的动态代理方式生成实现类</h4><p>在使用feign 时，会定义对应的接口类，在接口类上使用Http相关的注解，标识HTTP请求参数信息,如下所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GitHub</span> </span>&#123;<br>  <span class="hljs-meta">@RequestLine</span>(<span class="hljs-string">"GET /repos/&#123;owner&#125;/&#123;repo&#125;/contributors"</span>)<br>  <span class="hljs-function">List&lt;Contributor&gt; <span class="hljs-title">contributors</span><span class="hljs-params">(@Param(<span class="hljs-string">"owner"</span>)</span> String owner, @<span class="hljs-title">Param</span><span class="hljs-params">(<span class="hljs-string">"repo"</span>)</span> String repo)</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Contributor</span> </span>&#123;<br>  String login;<br>  <span class="hljs-keyword">int</span> contributions;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String... args)</span> </span>&#123;<br>    GitHub github = Feign.builder()<br>                         .decoder(<span class="hljs-keyword">new</span> GsonDecoder())<br>                         .target(GitHub.class, "https://api.github.com");<br>  <br>    <span class="hljs-comment">// Fetch and print a list of the contributors to this library.</span><br>    List&lt;Contributor&gt; contributors = github.contributors(<span class="hljs-string">"OpenFeign"</span>, <span class="hljs-string">"feign"</span>);<br>    <span class="hljs-keyword">for</span> (Contributor contributor : contributors) &#123;<br>      System.out.println(contributor.login + <span class="hljs-string">" ("</span> + contributor.contributions + <span class="hljs-string">")"</span>);<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在Feign 底层，通过基于面向接口的动态代理方式生成实现类，将请求调用委托到动态代理实现类，基本原理如下所示：</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sct0h8dj30ln0a3aar.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sct0h8dj30ln0a3aar.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReflectiveFeign</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Feign</span></span>&#123;<br> <span class="hljs-comment">///省略部分代码</span><br> <span class="hljs-meta">@Override</span><br> <span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">newInstance</span><span class="hljs-params">(Target&lt;T&gt; target)</span> </span>&#123;<br>   <span class="hljs-comment">//根据接口类和Contract协议解析方式，解析接口类上的方法和注解，转换成内部的MethodHandler处理方式</span><br>   Map&lt;String, MethodHandler&gt; nameToHandler = targetToHandlersByName.apply(target);<br>   Map&lt;Method, MethodHandler&gt; methodToHandler = <span class="hljs-keyword">new</span> LinkedHashMap&lt;Method, MethodHandler&gt;();<br>   List&lt;DefaultMethodHandler&gt; defaultMethodHandlers = <span class="hljs-keyword">new</span> LinkedList&lt;DefaultMethodHandler&gt;();<br><br>   <span class="hljs-keyword">for</span> (Method method : target.type().getMethods()) &#123;<br>     <span class="hljs-keyword">if</span> (method.getDeclaringClass() == Object<span class="hljs-class">.<span class="hljs-keyword">class</span>) </span>&#123;<br>       <span class="hljs-keyword">continue</span>;<br>     &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Util.isDefault(method)) &#123;<br>       DefaultMethodHandler handler = <span class="hljs-keyword">new</span> DefaultMethodHandler(method);<br>       defaultMethodHandlers.add(handler);<br>       methodToHandler.put(method, handler);<br>     &#125; <span class="hljs-keyword">else</span> &#123;<br>       methodToHandler.put(method, nameToHandler.get(Feign.configKey(target.type(), method)));<br>     &#125;<br>   &#125;<br>   InvocationHandler handler = factory.create(target, methodToHandler);<br>   <span class="hljs-comment">// 基于Proxy.newProxyInstance 为接口类创建动态实现，将所有的请求转换给InvocationHandler 处理。</span><br>   T proxy = (T) Proxy.newProxyInstance(target.type().getClassLoader(), <span class="hljs-keyword">new</span> Class&lt;?&gt;[]&#123;target.type()&#125;, handler);<br><br>   <span class="hljs-keyword">for</span>(DefaultMethodHandler defaultMethodHandler : defaultMethodHandlers) &#123;<br>     defaultMethodHandler.bindTo(proxy);<br>   &#125;<br>   <span class="hljs-keyword">return</span> proxy;<br> &#125;<br> <span class="hljs-comment">//省略部分代码</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="PHASE-2-根据Contract协议规则，解析接口类的注解信息，解析成内部表现："><a href="#PHASE-2-根据Contract协议规则，解析接口类的注解信息，解析成内部表现：" class="headerlink" title="PHASE 2. 根据Contract协议规则，解析接口类的注解信息，解析成内部表现："></a>PHASE 2. 根据Contract协议规则，解析接口类的注解信息，解析成内部表现：</h4><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sczwxdyj30pf0didgq.jpg" srcset="/img/loading.gif" alt="img"></p>
+<h4 id="PHASE-2-根据Contract协议规则，解析接口类的注解信息，解析成内部表现："><a href="#PHASE-2-根据Contract协议规则，解析接口类的注解信息，解析成内部表现：" class="headerlink" title="PHASE 2. 根据Contract协议规则，解析接口类的注解信息，解析成内部表现："></a>PHASE 2. 根据Contract协议规则，解析接口类的注解信息，解析成内部表现：</h4><p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sczwxdyj30pf0didgq.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>Feign 定义了转换协议，定义如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Defines what annotations and values are valid on interfaces.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Contract</span> </span>&#123;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * Called to parse the methods in the class that are linked to HTTP requests.</span><br><span class="hljs-comment">   * 传入接口定义，解析成相应的方法内部元数据表示</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> targetType &#123;<span class="hljs-doctag">@link</span> feign.Target#type() type&#125; of the Feign interface.</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> break this and correct spelling at some point</span><br>  <span class="hljs-function">List&lt;MethodMetadata&gt; <span class="hljs-title">parseAndValidatateMetadata</span><span class="hljs-params">(Class&lt;?&gt; targetType)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -313,7 +364,7 @@
 </tbody></table>
 <p>具体FeignContract 是如何解析的，不在本文的介绍范围内，详情请参考代码：<br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2FOpenFeign%2Ffeign%2Fblob%2Fmaster%2Fcore%2Fsrc%2Fmain%2Fjava%2Ffeign%2FContract.java" target="_blank" rel="noopener">https://github.com/OpenFeign/feign/blob/master/core/src/main/java/feign/Contract.java</a></p>
 <h5 id="基于Spring-MVC的协议规范SpringMvcContract"><a href="#基于Spring-MVC的协议规范SpringMvcContract" class="headerlink" title="基于Spring MVC的协议规范SpringMvcContract:"></a>基于Spring MVC的协议规范SpringMvcContract:</h5><p>当前Spring Cloud 微服务解决方案中，为了降低学习成本，采用了Spring MVC的部分注解来完成 请求协议解析，也就是说 ，写客户端请求接口和像写服务端代码一样：客户端和服务端可以通过SDK的方式进行约定，客户端只需要引入服务端发布的SDK API，就可以使用面向接口的编码方式对接服务：</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd3ug9pj30hv0bpmxp.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd3ug9pj30hv0bpmxp.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <blockquote>
 <p>我们团队内部就是按照这种思路，结合Spring Boot Starter 的特性，定义了服务端starter,<br>服务消费者在使用的时候，只需要引入Starter，就可以调用服务。这个比较适合平台无关性，接口抽象出来的好处就是可以根据服务调用实现方式自有切换：</p>
 <ol>
@@ -329,9 +380,9 @@
 <p>Spring Cloud 没有基于Spring MVC 全部注解来做Feign 客户端注解协议解析，个人认为这个是一个不小的坑。在刚入手Spring Cloud 的时候，就碰到这个问题。后来是深入代码才解决的…. 这个应该有人写了增强类来处理，暂且不表，先MARK一下，是一个开源代码练手的好机会。</p>
 </blockquote>
 <h5 id="PHASE-3-基于-RequestBean，动态生成Request"><a href="#PHASE-3-基于-RequestBean，动态生成Request" class="headerlink" title="PHASE 3. 基于 RequestBean，动态生成Request"></a>PHASE 3. 基于 RequestBean，动态生成Request</h5><p>根据传入的Bean对象和注解信息，从中提取出相应的值，来构造Http Request 对象：</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd6wfyrj30r60bb0tf.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd6wfyrj30r60bb0tf.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h5 id="PHASE-4-使用Encoder-将Bean转换成-Http报文正文（消息解析和转码逻辑）"><a href="#PHASE-4-使用Encoder-将Bean转换成-Http报文正文（消息解析和转码逻辑）" class="headerlink" title="PHASE 4. 使用Encoder 将Bean转换成 Http报文正文（消息解析和转码逻辑）"></a>PHASE 4. 使用Encoder 将Bean转换成 Http报文正文（消息解析和转码逻辑）</h5><p>Feign 最终会将请求转换成Http 消息发送出去，传入的请求对象最终会解析成消息体，如下所示：</p>
-<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd8dfm6j30jz0i574y.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006tNbRwgy1ga7sd8dfm6j30jz0i574y.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>在接口定义上Feign做的比较简单，抽象出了Encoder 和decoder 接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Encoder</span> </span>&#123;<br>  <span class="hljs-comment">/** Type literal for &#123;<span class="hljs-doctag">@code</span> Map&lt;String, ?&gt;&#125;, indicating the object to encode is a form. */</span><br>  Type MAP_STRING_WILDCARD = Util.MAP_STRING_WILDCARD;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * Converts objects to an appropriate representation in the template.</span><br><span class="hljs-comment">   *  将实体对象转换成Http请求的消息正文中</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> object   what to encode as the request body.</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> bodyType the type the object should be encoded as. &#123;<span class="hljs-doctag">@link</span> #MAP_STRING_WILDCARD&#125;</span><br><span class="hljs-comment">   *                 indicates form encoding.</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> template the request template to populate.</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@throws</span> EncodeException when encoding failed due to a checked exception.</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">encode</span><span class="hljs-params">(Object object, Type bodyType, RequestTemplate template)</span> <span class="hljs-keyword">throws</span> EncodeException</span>;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * Default implementation of &#123;<span class="hljs-doctag">@code</span> Encoder&#125;.</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Default</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Encoder</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">encode</span><span class="hljs-params">(Object object, Type bodyType, RequestTemplate template)</span> </span>&#123;<br>      <span class="hljs-keyword">if</span> (bodyType == String<span class="hljs-class">.<span class="hljs-keyword">class</span>) </span>&#123;<br>        template.body(object.toString());<br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (bodyType == <span class="hljs-keyword">byte</span>[]<span class="hljs-class">.<span class="hljs-keyword">class</span>) </span>&#123;<br>        template.body((<span class="hljs-keyword">byte</span>[]) object, <span class="hljs-keyword">null</span>);<br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (object != <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> EncodeException(<br>            format(<span class="hljs-string">"%s is not a type supported by this encoder."</span>, object.getClass()));<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -443,43 +494,108 @@
 
 <h2 id="Feign-的性能怎么样？"><a href="#Feign-的性能怎么样？" class="headerlink" title="Feign 的性能怎么样？"></a>Feign 的性能怎么样？</h2><p>Feign 整体框架非常小巧，在处理请求转换和消息解析的过程中，基本上没什么时间消耗。真正影响性能的，是处理Http请求的环节。<br>如上所述，由于默认情况下，Feign采用的是JDK的<code>HttpURLConnection</code>,所以整体性能并不高，刚开始接触Spring Cloud 的同学，如果没注意这些细节，可能会对Spring Cloud 有很大的偏见。<br>我们项目内部使用的是OkHttp3 作为连接客户端。</p>
 <p><strong>欢迎关注微信公众号​：</strong></p>
-<img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" alt="欢迎关注公众号" style="width: 100px" />
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Java/SpringCloud/">SpringCloud</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
-                    
-                      <a class="hover-with-bg" href="/tags/springCloud/">springCloud</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Feign/">Feign</a>
-                    
-                  </div>
+<img src="https://github.com/alterem/picFB/raw/master/pics/2020/04/07/006y8mN6gy1g7d3llw1nkj30b40b4wee.jpg" srcset="/img/loading.gif" lazyload alt="欢迎关注公众号" style="width: 100px" />
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/SpringCloud/" class="category-chain-item">SpringCloud</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+        <a href="/tags/springCloud/" class="print-no-link">#springCloud</a>
+      
+        <a href="/tags/Feign/" class="print-no-link">#Feign</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spring Cloud Feign设计原理</div>
+      <div>https://alterem.github.io/2019/12/24/spring-cloud-feign-she-ji-yuan-li/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Alterem</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年12月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/02/shi-yong-xian-cheng/">
+                      <a href="/2020/04/02/shi-yong-xian-cheng/" title="使用线程">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">使用线程</span>
                         <span class="visible-mobile">上一篇</span>
@@ -489,7 +605,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2019/12/14/fastjson-ba-dui-xiang-zhuan-hua-cheng-json/">
+                      <a href="/2019/12/14/fastjson-ba-dui-xiang-zhuan-hua-cheng-json/" title="Fastjson把对象转化成json">
                         <span class="hidden-mobile">Fastjson把对象转化成json</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -505,25 +621,59 @@
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
 
 
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -542,58 +692,61 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
-<!-- SCRIPTS -->
+  
+  
+  
+</div>
 
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -604,89 +757,147 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      typing(title)
+        typing(text);
       
     })(window, document);
   </script>
 
 
 
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
       }
-    })()
-  </script>
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
 
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
