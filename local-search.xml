@@ -266,9 +266,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>CentOS</tag>
       
       <tag>Clash</tag>
       
@@ -1984,9 +1984,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>CentOS</tag>
       
       <tag>Server</tag>
       
@@ -2433,19 +2433,19 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
       
-      <tag>JDK</tag>
-      
       <tag>MySQL</tag>
+      
+      <tag>Server</tag>
+      
+      <tag>JDK</tag>
       
       <tag>Tomcat</tag>
       
       <tag>Nginx</tag>
-      
-      <tag>Linux</tag>
-      
-      <tag>Server</tag>
       
     </tags>
     
@@ -2474,13 +2474,13 @@
       
       <tag>CentOS</tag>
       
-      <tag>MySQL</tag>
-      
-      <tag>Server</tag>
-      
       <tag>Apache</tag>
       
+      <tag>MySQL</tag>
+      
       <tag>PHP</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2561,9 +2561,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>CentOS</tag>
       
       <tag>Server</tag>
       
@@ -2594,9 +2594,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>CentOS</tag>
       
       <tag>Server</tag>
       
