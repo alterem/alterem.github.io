@@ -266,9 +266,9 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>CentOS</tag>
       
       <tag>Clash</tag>
       
@@ -1494,9 +1494,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Cas</tag>
+      
+      <tag>Redis</tag>
       
       <tag>Ticket</tag>
       
@@ -1984,11 +1984,11 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
-      
-      <tag>Linux</tag>
       
       <tag>Ngrok</tag>
       
@@ -2433,13 +2433,13 @@
     
     <tags>
       
-      <tag>CentOS</tag>
-      
-      <tag>Server</tag>
-      
       <tag>Linux</tag>
       
+      <tag>CentOS</tag>
+      
       <tag>MySQL</tag>
+      
+      <tag>Server</tag>
       
       <tag>JDK</tag>
       
@@ -2474,13 +2474,13 @@
       
       <tag>CentOS</tag>
       
-      <tag>Server</tag>
-      
       <tag>Apache</tag>
       
       <tag>MySQL</tag>
       
       <tag>PHP</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2532,9 +2532,9 @@
     
     <tags>
       
-      <tag>Server</tag>
-      
       <tag>Linux</tag>
+      
+      <tag>Server</tag>
       
     </tags>
     
@@ -2561,13 +2561,13 @@
     
     <tags>
       
-      <tag>CentOS</tag>
+      <tag>Linux</tag>
       
       <tag>Redis</tag>
       
-      <tag>Server</tag>
+      <tag>CentOS</tag>
       
-      <tag>Linux</tag>
+      <tag>Server</tag>
       
     </tags>
     
@@ -2594,11 +2594,11 @@
     
     <tags>
       
+      <tag>Linux</tag>
+      
       <tag>CentOS</tag>
       
       <tag>Server</tag>
-      
-      <tag>Linux</tag>
       
       <tag>NodeJS</tag>
       
